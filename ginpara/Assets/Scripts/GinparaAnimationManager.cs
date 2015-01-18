@@ -14,6 +14,7 @@ created by k-sasaki
 
 public class GinparaAnimationManager : MonoBehaviour {
 	public List<Animation> m_AnimationList = new List<Animation>();
+	public List<string> m_AnimationNameList = new List<string>();
 
 	static GinparaAnimationManager _Instance;
 	private Queue m_ActionQue = new Queue();
@@ -58,19 +59,30 @@ public class GinparaAnimationManager : MonoBehaviour {
 		m_ActionQue.Enqueue(eventDict);//キューに格納 
 	}
 
+	//演出noごとの動作指定 
 	void run(int index , bool isPlay){
 		Animation animation = m_AnimationList[index];
 		if (!animation) {
 			Debug.LogWarning ("演出NO:" + index + " はありません");
 			return;
 		}
+
 		if (isPlay) {
-			animation.Play();
-			Debug.Log ("演出NO:"+index+ " を　再生");
+			animation.Play(m_AnimationNameList[index]);
+			Debug.Log ("演出NO:"+index+ "の" + m_AnimationNameList[index] + " を　再生");
 		} else {
-			animation.Stop();
+			animation.wrapMode = WrapMode.Once;
 			Debug.Log ("演出NO:"+index+" を　停止");
+			return;
 		}
+
+		switch(index){
+			case 1:
+
+				break;
+		}
+
+
 	}
 
 	//テスト用gui 
