@@ -10,6 +10,11 @@ created by k-sasaki
 シングルトン
 演出NOを渡すことで対応するアニメーションを起動します
 渡された演出ナンバーをキューに格納し順に起動します 
+
+****使い方****
+AnimationListに対象のゲームオブジェクトをインスペクターからセットしてください
+AnimationNameListに再生したいクリップのファイル名を書いてください（AnimationListに紐づいたelementNO）
+*************
 */
 
 public class GinparaAnimationManager : MonoBehaviour {
@@ -71,7 +76,7 @@ public class GinparaAnimationManager : MonoBehaviour {
 			animation.Play(m_AnimationNameList[index]);
 			Debug.Log ("演出NO:"+index+ "の" + m_AnimationNameList[index] + " を　再生");
 		} else {
-			animation.wrapMode = WrapMode.Once;
+			animation.Stop();
 			Debug.Log ("演出NO:"+index+" を　停止");
 			return;
 		}
