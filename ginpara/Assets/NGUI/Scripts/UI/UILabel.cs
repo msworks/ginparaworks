@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2015 Tasharen Entertainment
+// Copyright © 2011-2014 Tasharen Entertainment
 //----------------------------------------------
 
 #if !UNITY_3_5
@@ -21,7 +21,6 @@ public class UILabel : UIWidget
 		None,
 		Shadow,
 		Outline,
-		Outline8,
 	}
 
 	public enum Overflow
@@ -540,7 +539,7 @@ public class UILabel : UIWidget
 		{
 			if (trueTypeFont != null && keepCrispWhenShrunk != Crispness.Never)
 			{
-#if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_WP_8_1 || UNITY_BLACKBERRY
+#if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_BLACKBERRY
 				return (keepCrispWhenShrunk == Crispness.Always);
 #else
 				return true;
@@ -894,16 +893,12 @@ public class UILabel : UIWidget
 
 					if (usage == 0)
 					{
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 						mActiveTTF.textureRebuildCallback = null;
-#endif
 						mFontUsage.Remove(mActiveTTF);
 					}
 					else mFontUsage[mActiveTTF] = usage;
 				}
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 				else mActiveTTF.textureRebuildCallback = null;
-#endif
 			}
 
 			mActiveTTF = fnt;
@@ -913,10 +908,8 @@ public class UILabel : UIWidget
 				int usage = 0;
 
 				// Font hasn't been used yet? Register a change delegate callback
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 				if (!mFontUsage.TryGetValue(mActiveTTF, out usage))
 					mActiveTTF.textureRebuildCallback = OnFontTextureChanged;
-#endif
 #if UNITY_FLASH
 				mFontUsage[mActiveTTF] = usage + 1;
 #else
@@ -935,7 +928,6 @@ public class UILabel : UIWidget
 	/// So... queue yet another work-around.
 	/// </summary>
 
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 	static void OnFontTextureChanged ()
 	{
 		for (int i = 0; i < mList.size; ++i)
@@ -969,41 +961,6 @@ public class UILabel : UIWidget
 			}
 		}
 	}
-#else
-	static void OnFontChanged (Font font)
-	{
-		for (int i = 0; i < mList.size; ++i)
-		{
-			UILabel lbl = mList[i];
-
-			if (lbl != null)
-			{
-				Font fnt = lbl.trueTypeFont;
-
-				if (fnt == font)
-				{
-					fnt.RequestCharactersInTexture(lbl.mText, lbl.mPrintedSize, lbl.mFontStyle);
-				}
-			}
-		}
-
-		for (int i = 0; i < mList.size; ++i)
-		{
-			UILabel lbl = mList[i];
-
-			if (lbl != null)
-			{
-				Font fnt = lbl.trueTypeFont;
-
-				if (fnt == font)
-				{
-					lbl.RemoveFromPanel();
-					lbl.CreatePanel();
-				}
-			}
-		}
-	}
-#endif
 #endif
 
 	/// <summary>
@@ -1131,20 +1088,6 @@ public class UILabel : UIWidget
 			mAllowProcessing = true;
 			ProcessAndRequest();
 			if (autoResizeBoxCollider) ResizeCollider();
-		}
-	}
-#endif
-
-#if !UNITY_4_3 && !UNITY_4_5 && !UNITY_4_6
-	static bool mTexRebuildAdded = false;
-
-	protected override void OnEnable ()
-	{
-		base.OnEnable();
-		if (!mTexRebuildAdded)
-		{
-			mTexRebuildAdded = true;
-			Font.textureRebuilt += OnFontChanged;
 		}
 	}
 #endif
@@ -1759,7 +1702,7 @@ public class UILabel : UIWidget
 
 			ApplyShadow(verts, uvs, cols, offset, end, pos.x, -pos.y);
 
-			if ((effectStyle == Effect.Outline) || (effectStyle == Effect.Outline8))
+			if (effectStyle == Effect.Outline)
 			{
 				offset = end;
 				end = verts.size;
@@ -1775,29 +1718,6 @@ public class UILabel : UIWidget
 				end = verts.size;
 
 				ApplyShadow(verts, uvs, cols, offset, end, -pos.x, -pos.y);
-
-				if (effectStyle == Effect.Outline8)
-				{
-					offset = end;
-					end = verts.size;
-
-					ApplyShadow(verts, uvs, cols, offset, end, -pos.x, 0);
-
-					offset = end;
-					end = verts.size;
-
-					ApplyShadow(verts, uvs, cols, offset, end, pos.x, 0);
-
-					offset = end;
-					end = verts.size;
-
-					ApplyShadow(verts, uvs, cols, offset, end, 0, pos.y);
-
-					offset = end;
-					end = verts.size;
-
-					ApplyShadow(verts, uvs, cols, offset, end, 0, -pos.y);
-				}
 			}
 		}
 

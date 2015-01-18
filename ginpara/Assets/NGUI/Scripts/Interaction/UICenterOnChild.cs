@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2015 Tasharen Entertainment
+// Copyright © 2011-2014 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -109,10 +109,9 @@ public class UICenterOnChild : MonoBehaviour
 		float min = float.MaxValue;
 		Transform closest = null;
 		int index = 0;
-		int ignoredIndex = 0;
 
 		// Determine the closest child
-		for (int i = 0, imax = trans.childCount, ii = 0; i < imax; ++i)
+		for (int i = 0, imax = trans.childCount; i < imax; ++i)
 		{
 			Transform t = trans.GetChild(i);
 			if (!t.gameObject.activeInHierarchy) continue;
@@ -123,9 +122,7 @@ public class UICenterOnChild : MonoBehaviour
 				min = sqrDist;
 				closest = t;
 				index = i;
-				ignoredIndex = ii;
 			}
-			++ii;
 		}
 
 		// If we have a touch in progress and the next page threshold set
@@ -134,8 +131,7 @@ public class UICenterOnChild : MonoBehaviour
 			// If we're still on the same object
 			if (mCenteredObject != null && mCenteredObject.transform == trans.GetChild(index))
 			{
-				Vector3 totalDelta = UICamera.currentTouch.totalDelta;
-				totalDelta = transform.rotation * totalDelta;
+				Vector2 totalDelta = UICamera.currentTouch.totalDelta;
 
 				float delta = 0f;
 
@@ -169,13 +165,13 @@ public class UICenterOnChild : MonoBehaviour
 						if (delta > nextPageThreshold)
 						{
 							// Next page
-							if (ignoredIndex > 0) closest = list[ignoredIndex - 1];
+							if (index > 0) closest = list[index - 1];
 							else closest = list[0];
 						}
 						else if (delta < -nextPageThreshold)
 						{
 							// Previous page
-							if (ignoredIndex < list.Count - 1) closest = list[ignoredIndex + 1];
+							if (index < list.Count - 1) closest = list[index + 1];
 							else closest = list[list.Count - 1];
 						}
 					}

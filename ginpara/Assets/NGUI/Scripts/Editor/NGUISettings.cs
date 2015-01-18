@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2015 Tasharen Entertainment
+// Copyright © 2011-2014 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -364,12 +364,6 @@ public class NGUISettings
 		set { SetBool("NGUI Truecolor", value); }
 	}
 
-	static public bool keepPadding
-	{
-		get { return GetBool("NGUI KeepPadding", false); }
-		set { SetBool("NGUI KeepPadding", value); }
-	}
-
 	static public bool forceSquareAtlas
 	{
 		get { return GetBool("NGUI Square", false); }
@@ -400,7 +394,6 @@ public class NGUISettings
 		set { SetString("NGUI Chars", value); }
 	}
 
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 	static public string pathToFreeType
 	{
 		get
@@ -412,19 +405,6 @@ public class NGUISettings
 		}
 		set { SetString("NGUI FreeType", value); }
 	}
-#else
-	static public string pathToFreeType
-	{
-		get
-		{
-			string path = Application.dataPath;
-			if (Application.platform == RuntimePlatform.WindowsEditor) path += "/NGUI/Editor/FreeType64.dll";
-			else path += "/NGUI/Editor/FreeType64.dylib";
-			return GetString("NGUI FreeType64", path);
-		}
-		set { SetString("NGUI FreeType64", value); }
-	}
-#endif
 
 	static public string searchField
 	{

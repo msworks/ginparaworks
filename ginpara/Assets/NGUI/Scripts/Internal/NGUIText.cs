@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2015 Tasharen Entertainment
+// Copyright © 2011-2014 Tasharen Entertainment
 //----------------------------------------------
 
 #if !UNITY_3_5
@@ -39,10 +39,9 @@ static public class NGUIText
 		public Vector2 v1;
 		public Vector2 u0;
 		public Vector2 u1;
-		public Vector2 u2;
-		public Vector2 u3;
 		public float advance = 0f;
 		public int channel = 0;
+		public bool rotatedUVs = false;
 	}
 
 	/// <summary>
@@ -233,19 +232,14 @@ static public class NGUIText
 				glyph.u0.x = bmg.x;
 				glyph.u0.y = bmg.y + bmg.height;
 
-				glyph.u2.x = bmg.x + bmg.width;
-				glyph.u2.y = bmg.y;
-
-				glyph.u1.x = glyph.u0.x;
-				glyph.u1.y = glyph.u2.y;
-
-				glyph.u3.x = glyph.u2.x;
-				glyph.u3.y = glyph.u0.y;
+				glyph.u1.x = bmg.x + bmg.width;
+				glyph.u1.y = bmg.y;
 
 				int adv = bmg.advance;
 				if (thinSpace) adv >>= 1;
 				glyph.advance = adv + kern;
 				glyph.channel = bmg.channel;
+				glyph.rotatedUVs = false;
 
 				if (fontScale != 1f)
 				{
@@ -271,36 +265,25 @@ static public class NGUIText
 				glyph.u0.x = mTempChar.uv.xMin;
 				glyph.u0.y = mTempChar.uv.yMin;
 
-				glyph.u2.x = mTempChar.uv.xMax;
-				glyph.u2.y = mTempChar.uv.yMax;
-
-				if (mTempChar.flipped)
-				{
-					glyph.u1 = new Vector2(glyph.u2.x, glyph.u0.y);
-					glyph.u3 = new Vector2(glyph.u0.x, glyph.u2.y);
-				}
-				else
-				{
-					glyph.u1 = new Vector2(glyph.u0.x, glyph.u2.y);
-					glyph.u3 = new Vector2(glyph.u2.x, glyph.u0.y);
-				}
+				glyph.u1.x = mTempChar.uv.xMax;
+				glyph.u1.y = mTempChar.uv.yMax;
 
 				glyph.advance = mTempChar.width;
 				glyph.channel = 0;
-#else
+				glyph.rotatedUVs = mTempChar.flipped;
+ #else
 				glyph.v0.x = mTempChar.minX;
 				glyph.v1.x = mTempChar.maxX;
 
 				glyph.v0.y = mTempChar.maxY - baseline;
 				glyph.v1.y = mTempChar.minY - baseline;
 
-				glyph.u0 = mTempChar.uvTopLeft;
-				glyph.u1 = mTempChar.uvBottomLeft;
-				glyph.u2 = mTempChar.uvBottomRight;
-				glyph.u3 = mTempChar.uvTopRight;
+				glyph.u0 = mTempChar.uvBottomLeft;
+				glyph.u1 = mTempChar.uvTopRight;
 
 				glyph.advance = mTempChar.advance;
 				glyph.channel = 0;
+				glyph.rotatedUVs = false;
  #endif
 				glyph.v0.x = Mathf.Round(glyph.v0.x);
 				glyph.v0.y = Mathf.Round(glyph.v0.y);
@@ -1446,23 +1429,27 @@ static public class NGUIText
 					if (bitmapFont != null)
 					{
 						glyph.u0.x = uvRect.xMin + invX * glyph.u0.x;
-						glyph.u2.x = uvRect.xMin + invX * glyph.u2.x;
+						glyph.u1.x = uvRect.xMin + invX * glyph.u1.x;
 						glyph.u0.y = uvRect.yMax - invY * glyph.u0.y;
-						glyph.u2.y = uvRect.yMax - invY * glyph.u2.y;
-
-						glyph.u1.x = glyph.u0.x;
-						glyph.u1.y = glyph.u2.y;
-
-						glyph.u3.x = glyph.u2.x;
-						glyph.u3.y = glyph.u0.y;
+						glyph.u1.y = uvRect.yMax - invY * glyph.u1.y;
 					}
 
 					for (int j = 0, jmax = (bold ? 4 : 1); j < jmax; ++j)
 					{
-						uvs.Add(glyph.u0);
-						uvs.Add(glyph.u1);
-						uvs.Add(glyph.u2);
-						uvs.Add(glyph.u3);
+						if (glyph.rotatedUVs)
+						{
+							uvs.Add(glyph.u0);
+							uvs.Add(new Vector2(glyph.u1.x, glyph.u0.y));
+							uvs.Add(glyph.u1);
+							uvs.Add(new Vector2(glyph.u0.x, glyph.u1.y));
+						}
+						else
+						{
+							uvs.Add(glyph.u0);
+							uvs.Add(new Vector2(glyph.u0.x, glyph.u1.y));
+							uvs.Add(glyph.u1);
+							uvs.Add(new Vector2(glyph.u1.x, glyph.u0.y));
+						}
 					}
 				}
 
@@ -1569,18 +1556,18 @@ static public class NGUIText
 						if (bitmapFont != null)
 						{
 							dash.u0.x = uvRect.xMin + invX * dash.u0.x;
-							dash.u2.x = uvRect.xMin + invX * dash.u2.x;
+							dash.u1.x = uvRect.xMin + invX * dash.u1.x;
 							dash.u0.y = uvRect.yMax - invY * dash.u0.y;
-							dash.u2.y = uvRect.yMax - invY * dash.u2.y;
+							dash.u1.y = uvRect.yMax - invY * dash.u1.y;
 						}
 
-						float cx = (dash.u0.x + dash.u2.x) * 0.5f;
+						float cx = (dash.u0.x + dash.u1.x) * 0.5f;
 
 						for (int j = 0, jmax = (bold ? 4 : 1); j < jmax; ++j)
 						{
 							uvs.Add(new Vector2(cx, dash.u0.y));
-							uvs.Add(new Vector2(cx, dash.u2.y));
-							uvs.Add(new Vector2(cx, dash.u2.y));
+							uvs.Add(new Vector2(cx, dash.u1.y));
+							uvs.Add(new Vector2(cx, dash.u1.y));
 							uvs.Add(new Vector2(cx, dash.u0.y));
 						}
 					}
