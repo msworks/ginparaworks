@@ -24,7 +24,7 @@ SendMessengerにはSendMesseageでメソッドをよびたいときに書いて�
 
 public class GinparaAnimationManager : MonoBehaviour {
 	[SerializeField] List<GameObject> m_AnimationObjectList = new List<GameObject>();
-	[SerializeField] List<string> m_AnimationNameList = new List<string>();
+	[SerializeField] List<AnimationClip> m_AnimationClipList = new List<AnimationClip>();
 	[SerializeField] List<string> m_SendMessengerList = new List<string>();
 	Dictionary<int , WrapMode> m_DefaultWrapModeDict = new Dictionary<int , WrapMode>();
 
@@ -42,9 +42,9 @@ public class GinparaAnimationManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//ループモードの初期設定を保存
-		for(int i = 0; i < m_AnimationNameList.Count ; i++){
+		for(int i = 0; i < m_AnimationClipList.Count ; i++){
 			if(m_AnimationObjectList[i]){
-				m_DefaultWrapModeDict.Add(i, m_AnimationObjectList[i].GetComponent<Animation>().GetClip(m_AnimationNameList[i]).wrapMode); 
+				m_DefaultWrapModeDict.Add(i,m_AnimationClipList[i].wrapMode); 
 			}
 		}
 	}
@@ -98,8 +98,9 @@ public class GinparaAnimationManager : MonoBehaviour {
 				Debug.LogWarning ("デフォルトループモード:" + index + " はありません");
 			}
 			animation.wrapMode = m_DefaultWrapModeDict[index];
-			animation.Play(m_AnimationNameList[index]);
-			Debug.Log ("演出NO:"+index+ "の" + m_AnimationNameList[index] + " を　再生");
+			animation.clip = m_AnimationClipList[index];
+			animation.Play();
+			Debug.Log ("演出NO:"+index+ "の" + m_AnimationClipList[index].name + " を　再生");
 		} else {
 			animation.wrapMode = WrapMode.Once;
 			Debug.Log ("演出NO:"+index+" を　停止");
@@ -116,7 +117,7 @@ public class GinparaAnimationManager : MonoBehaviour {
 	}
 
 	//テスト用gui 
-	int testIndex = 0;
+	int testIndex = 1;
 	void OnGUI()
 	{
 		if ( GUI.Button(new Rect(40, 0, 30, 20), "←" ) )
