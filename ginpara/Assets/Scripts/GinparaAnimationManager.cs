@@ -13,9 +13,10 @@ created by k-sasaki
 
 ****使い方****
 AnimationListに対象のゲームオブジェクトをインスペクターからセットしてください
-AnimationNameListに再生したいクリップのファイル名を書いてください（AnimationListに紐づいたelementNO）
+AnimationNameListに再生したいクリップのファイルをセットしてください（AnimationListに紐づいたelementNO）
 
 SendMessengerにはSendMesseageでメソッドをよびたいときに書いてください.再生時に処理されます
+AnimationStopClipListにクリップをセットするとストップ命令時に再生されます
 
 演出の再生 runAnimation(int index)
 演出の停止 stopAniamtion(int index)
@@ -95,17 +96,19 @@ public class GinparaAnimationManager : MonoBehaviour {
 				//SendMessengerListに値があれば対象オブジェクトに送信
 				m_AnimationObjectList[index].SendMessage(m_SendMessengerList[index]);
 			}
-			if(!m_DefaultWrapModeDict.ContainsKey(index)){
+			if(m_DefaultWrapModeDict.ContainsKey(index)){
+				animation.wrapMode = m_DefaultWrapModeDict[index];
+			}else{
 				Debug.LogWarning ("デフォルトループモード:" + index + " はありません");
+				return;
 			}
-			animation.wrapMode = m_DefaultWrapModeDict[index];
 			animation.clip = m_AnimationClipList[index];
 			animation.Play();
 			Debug.Log ("演出NO:"+index+ "の" + m_AnimationClipList[index].name + " を　再生");
 		} else {
 			animation.wrapMode = WrapMode.Once;
 
-			if(m_AnimationStopClipList[index]){
+			if(m_SendMessengerList.Count >= index && m_AnimationStopClipList[index]){
 				//ストップ用のアニメーションがあったら再生
 				animation.clip = m_AnimationStopClipList[index];
 				animation.Play();
@@ -116,14 +119,6 @@ public class GinparaAnimationManager : MonoBehaviour {
 			Debug.Log ("演出NO:"+index+" を　停止");
 			return;
 		}
-
-		switch(index){
-			case 1:
-
-				break;
-		}
-
-
 	}
 
 	//テスト用gui 
