@@ -25,6 +25,7 @@ SendMessengerにはSendMesseageでメソッドをよびたいときに書いて�
 public class GinparaAnimationManager : MonoBehaviour {
 	[SerializeField] List<GameObject> m_AnimationObjectList = new List<GameObject>();
 	[SerializeField] List<AnimationClip> m_AnimationClipList = new List<AnimationClip>();
+	[SerializeField] List<AnimationClip> m_AnimationStopClipList = new List<AnimationClip>();
 	[SerializeField] List<string> m_SendMessengerList = new List<string>();
 	Dictionary<int , WrapMode> m_DefaultWrapModeDict = new Dictionary<int , WrapMode>();
 
@@ -103,6 +104,15 @@ public class GinparaAnimationManager : MonoBehaviour {
 			Debug.Log ("演出NO:"+index+ "の" + m_AnimationClipList[index].name + " を　再生");
 		} else {
 			animation.wrapMode = WrapMode.Once;
+
+			if(m_AnimationStopClipList[index]){
+				//ストップ用のアニメーションがあったら再生
+				animation.clip = m_AnimationStopClipList[index];
+				animation.Play();
+				Debug.Log ("演出NO:"+index+" を　停止(アニメーション)");
+				return;
+			}
+
 			Debug.Log ("演出NO:"+index+" を　停止");
 			return;
 		}
