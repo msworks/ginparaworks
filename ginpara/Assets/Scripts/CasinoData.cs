@@ -26,10 +26,10 @@ public class CasinoData : MonoBehaviour {
     [SerializeField] private UISprite exchangeMark = null;
     public enum EXCHANGE
     {
-        dl,
-        euro,
+        yen,
         gen,
-        yen
+        euro,
+        dl
     }
     private EXCHANGE exchange;
     [SerializeField] private UISprite[] exchangeSprites = null;
