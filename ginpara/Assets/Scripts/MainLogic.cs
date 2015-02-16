@@ -7,7 +7,6 @@ public class MainLogic : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		fsm = GetComponent<PlayMakerFSM>();
 	}
 	
 	// Update is called once per frame
