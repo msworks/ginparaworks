@@ -6,6 +6,10 @@ using System.Linq;
 
 public class MainLogic : MonoBehaviour {
 
+    // 保留オブジェクト
+    public GameObject Horyu;
+    const string ThroughChacker = "チャッカー通過";
+
     // TODO シード値にTickCountってAndroidで取れるか？
     System.Random rnd = new System.Random(Environment.TickCount);
 
@@ -19,7 +23,7 @@ public class MainLogic : MonoBehaviour {
     }
 
     // リーチライン構造体
-    struct ReachLine
+    struct structReachLine
     {
         public int No;         // No
         public int Chusenti;   // 抽選値
@@ -46,50 +50,50 @@ public class MainLogic : MonoBehaviour {
     const int CHUSEN_LEN = 65536;       // 抽選のサイズ
 
     // リーチライン抽選テーブル関係
-    ReachLine[] RL_Chusen;  // リーチライン抽選テーブル
+    structReachLine[] RL_Chusen;  // リーチライン抽選テーブル
 
     // リーチライン抽選リスト
-    List<ReachLine> reachLines = new List<ReachLine> {
-        new ReachLine{ No= 1, Chusenti=1000, ReachLine=2, Tokuzu="１タコ" },
-        new ReachLine{ No= 2, Chusenti=1500, ReachLine=1, Tokuzu="2ハリセンボン/1タコ" },
-        new ReachLine{ No= 3, Chusenti=1500, ReachLine=3, Tokuzu="2ハリセンボン/1タコ" },
-        new ReachLine{ No= 4, Chusenti=2500, ReachLine=4, Tokuzu="2ハリセンボン/1タコ" },
-        new ReachLine{ No= 5, Chusenti=1000, ReachLine=2, Tokuzu="2ハリセンボン" },
-        new ReachLine{ No= 6, Chusenti=1500, ReachLine=1, Tokuzu="3カメ/2ハリセンボン" },
-        new ReachLine{ No= 7, Chusenti=1500, ReachLine=3, Tokuzu="3カメ/2ハリセンボン" },
-        new ReachLine{ No= 8, Chusenti=2500, ReachLine=4, Tokuzu="3カメ/2ハリセンボン" },
-        new ReachLine{ No= 9, Chusenti=1000, ReachLine=2, Tokuzu="3カメ" },
-        new ReachLine{ No= 10, Chusenti=1500, ReachLine=1, Tokuzu="4サメ/3カメ" },
-        new ReachLine{ No= 11, Chusenti=1500, ReachLine=3, Tokuzu="4サメ/3カメ" },
-        new ReachLine{ No= 12, Chusenti=3036, ReachLine=4, Tokuzu="4サメ/3カメ" },
-        new ReachLine{ No= 13, Chusenti=1000, ReachLine=2, Tokuzu="4サメ" },
-        new ReachLine{ No= 14, Chusenti=1500, ReachLine=1, Tokuzu="5エビ/4サメ" },
-        new ReachLine{ No= 15, Chusenti=1500, ReachLine=3, Tokuzu="5エビ/4サメ" },
-        new ReachLine{ No= 16, Chusenti=2500, ReachLine=4, Tokuzu="5エビ/4サメ" },
-        new ReachLine{ No= 17, Chusenti=1000, ReachLine=2, Tokuzu="5エビ" },
-        new ReachLine{ No= 18, Chusenti=1500, ReachLine=1, Tokuzu="6アンコウ/5エビ" },
-        new ReachLine{ No= 19, Chusenti=1500, ReachLine=3, Tokuzu="6アンコウ/5エビ" },
-        new ReachLine{ No= 20, Chusenti=2500, ReachLine=4, Tokuzu="6アンコウ/5エビ" },
-        new ReachLine{ No= 21, Chusenti=1000, ReachLine=2, Tokuzu="6アンコウ" },
-        new ReachLine{ No= 22, Chusenti=1500, ReachLine=1, Tokuzu="7ジュゴン/6アンコウ" },
-        new ReachLine{ No= 23, Chusenti=1500, ReachLine=3, Tokuzu="7ジュゴン/6アンコウ" },
-        new ReachLine{ No= 24, Chusenti=2500, ReachLine=4, Tokuzu="7ジュゴン/6アンコウ" },
-        new ReachLine{ No= 25, Chusenti=1000, ReachLine=2, Tokuzu="7ジュゴン" },
-        new ReachLine{ No= 26, Chusenti=1500, ReachLine=1, Tokuzu="8エンゼルフィッシュ/7ジュゴン" },
-        new ReachLine{ No= 27, Chusenti=1500, ReachLine=3, Tokuzu="8エンゼルフィッシュ/7ジュゴン" },
-        new ReachLine{ No= 28, Chusenti=2500, ReachLine=4, Tokuzu="8エンゼルフィッシュ/7ジュゴン" },
-        new ReachLine{ No= 29, Chusenti=1000, ReachLine=2, Tokuzu="8エンゼルフィッシュ" },
-        new ReachLine{ No= 30, Chusenti=1500, ReachLine=1, Tokuzu="9カニ/8エンゼルフィッシュ" },
-        new ReachLine{ No= 31, Chusenti=1500, ReachLine=3, Tokuzu="9カニ/8エンゼルフィッシュ" },
-        new ReachLine{ No= 32, Chusenti=2500, ReachLine=4, Tokuzu="9カニ/8エンゼルフィッシュ" },
-        new ReachLine{ No= 33, Chusenti=1000, ReachLine=2, Tokuzu="9カニ" },
-        new ReachLine{ No= 34, Chusenti=1500, ReachLine=1, Tokuzu="10カサゴ/9カニ" },
-        new ReachLine{ No= 35, Chusenti=1500, ReachLine=3, Tokuzu="10カサゴ/9カニ" },
-        new ReachLine{ No= 36, Chusenti=2500, ReachLine=4, Tokuzu="10カサゴ/9カニ" },
-        new ReachLine{ No= 37, Chusenti=1000, ReachLine=2, Tokuzu="10カサゴ" },
-        new ReachLine{ No= 38, Chusenti=1500, ReachLine=1, Tokuzu="1タコ/10カサゴ" },
-        new ReachLine{ No= 39, Chusenti=1500, ReachLine=3, Tokuzu="1タコ/10カサゴ" },
-        new ReachLine{ No= 40, Chusenti=2500, ReachLine=4, Tokuzu="1タコ/10カサゴ" }
+    List<structReachLine> reachLines = new List<structReachLine> {
+        new structReachLine{ No= 1, Chusenti=1000, ReachLine=2, Tokuzu="１タコ" },
+        new structReachLine{ No= 2, Chusenti=1500, ReachLine=1, Tokuzu="2ハリセンボン/1タコ" },
+        new structReachLine{ No= 3, Chusenti=1500, ReachLine=3, Tokuzu="2ハリセンボン/1タコ" },
+        new structReachLine{ No= 4, Chusenti=2500, ReachLine=4, Tokuzu="2ハリセンボン/1タコ" },
+        new structReachLine{ No= 5, Chusenti=1000, ReachLine=2, Tokuzu="2ハリセンボン" },
+        new structReachLine{ No= 6, Chusenti=1500, ReachLine=1, Tokuzu="3カメ/2ハリセンボン" },
+        new structReachLine{ No= 7, Chusenti=1500, ReachLine=3, Tokuzu="3カメ/2ハリセンボン" },
+        new structReachLine{ No= 8, Chusenti=2500, ReachLine=4, Tokuzu="3カメ/2ハリセンボン" },
+        new structReachLine{ No= 9, Chusenti=1000, ReachLine=2, Tokuzu="3カメ" },
+        new structReachLine{ No= 10, Chusenti=1500, ReachLine=1, Tokuzu="4サメ/3カメ" },
+        new structReachLine{ No= 11, Chusenti=1500, ReachLine=3, Tokuzu="4サメ/3カメ" },
+        new structReachLine{ No= 12, Chusenti=3036, ReachLine=4, Tokuzu="4サメ/3カメ" },
+        new structReachLine{ No= 13, Chusenti=1000, ReachLine=2, Tokuzu="4サメ" },
+        new structReachLine{ No= 14, Chusenti=1500, ReachLine=1, Tokuzu="5エビ/4サメ" },
+        new structReachLine{ No= 15, Chusenti=1500, ReachLine=3, Tokuzu="5エビ/4サメ" },
+        new structReachLine{ No= 16, Chusenti=2500, ReachLine=4, Tokuzu="5エビ/4サメ" },
+        new structReachLine{ No= 17, Chusenti=1000, ReachLine=2, Tokuzu="5エビ" },
+        new structReachLine{ No= 18, Chusenti=1500, ReachLine=1, Tokuzu="6アンコウ/5エビ" },
+        new structReachLine{ No= 19, Chusenti=1500, ReachLine=3, Tokuzu="6アンコウ/5エビ" },
+        new structReachLine{ No= 20, Chusenti=2500, ReachLine=4, Tokuzu="6アンコウ/5エビ" },
+        new structReachLine{ No= 21, Chusenti=1000, ReachLine=2, Tokuzu="6アンコウ" },
+        new structReachLine{ No= 22, Chusenti=1500, ReachLine=1, Tokuzu="7ジュゴン/6アンコウ" },
+        new structReachLine{ No= 23, Chusenti=1500, ReachLine=3, Tokuzu="7ジュゴン/6アンコウ" },
+        new structReachLine{ No= 24, Chusenti=2500, ReachLine=4, Tokuzu="7ジュゴン/6アンコウ" },
+        new structReachLine{ No= 25, Chusenti=1000, ReachLine=2, Tokuzu="7ジュゴン" },
+        new structReachLine{ No= 26, Chusenti=1500, ReachLine=1, Tokuzu="8エンゼルフィッシュ/7ジュゴン" },
+        new structReachLine{ No= 27, Chusenti=1500, ReachLine=3, Tokuzu="8エンゼルフィッシュ/7ジュゴン" },
+        new structReachLine{ No= 28, Chusenti=2500, ReachLine=4, Tokuzu="8エンゼルフィッシュ/7ジュゴン" },
+        new structReachLine{ No= 29, Chusenti=1000, ReachLine=2, Tokuzu="8エンゼルフィッシュ" },
+        new structReachLine{ No= 30, Chusenti=1500, ReachLine=1, Tokuzu="9カニ/8エンゼルフィッシュ" },
+        new structReachLine{ No= 31, Chusenti=1500, ReachLine=3, Tokuzu="9カニ/8エンゼルフィッシュ" },
+        new structReachLine{ No= 32, Chusenti=2500, ReachLine=4, Tokuzu="9カニ/8エンゼルフィッシュ" },
+        new structReachLine{ No= 33, Chusenti=1000, ReachLine=2, Tokuzu="9カニ" },
+        new structReachLine{ No= 34, Chusenti=1500, ReachLine=1, Tokuzu="10カサゴ/9カニ" },
+        new structReachLine{ No= 35, Chusenti=1500, ReachLine=3, Tokuzu="10カサゴ/9カニ" },
+        new structReachLine{ No= 36, Chusenti=2500, ReachLine=4, Tokuzu="10カサゴ/9カニ" },
+        new structReachLine{ No= 37, Chusenti=1000, ReachLine=2, Tokuzu="10カサゴ" },
+        new structReachLine{ No= 38, Chusenti=1500, ReachLine=1, Tokuzu="1タコ/10カサゴ" },
+        new structReachLine{ No= 39, Chusenti=1500, ReachLine=3, Tokuzu="1タコ/10カサゴ" },
+        new structReachLine{ No= 40, Chusenti=2500, ReachLine=4, Tokuzu="1タコ/10カサゴ" }
     };
 
     // リーチパターン抽選テーブル関係
@@ -114,9 +118,9 @@ public class MainLogic : MonoBehaviour {
 	}
 	
     // リーチラインを抽選値の数のリストに変換
-    IEnumerable<ReachLine> RL2Sequence(ReachLine rl)
+    IEnumerable<structReachLine> RL2Sequence(structReachLine rl)
     {
-        return Enumerable.Range(0, rl.Chusenti).Select(count => new ReachLine(){
+        return Enumerable.Range(0, rl.Chusenti).Select(count => new structReachLine(){
                              No = rl.No,
                              Chusenti = rl.Chusenti,
                              ReachLine = rl.ReachLine,
@@ -124,11 +128,20 @@ public class MainLogic : MonoBehaviour {
                );
     }
 
-	// チャッカー通過
-	public void NoticeChacker(){
+    //---------------//
+	// チャッカー通過 //
+    //---------------//
+    public void NoticeChacker()
+    {
+        // 保留オブジェクトにチャッカー通過メッセージを送る
+        Horyu.GetComponent<PlayMakerFSM>().SendEvent(ThroughChacker);
+    }
 
+    // 大当たり判定
+    public void DrawLot()
+    {
         // 大当たり抽選
-        var IsKakuhen = false;  // TODO 確変ではないでとりあえず固定
+        var IsKakuhen = false;  // TODO 確変中かの値をとる // 権利回数の値を参照して、
 
         if (IsAtari(RndFFFF, IsKakuhen))
         {
@@ -140,6 +153,7 @@ public class MainLogic : MonoBehaviour {
         else
         {
             // リーチ抽選
+            // TODO 実装
         }
     }
 
@@ -154,7 +168,7 @@ public class MainLogic : MonoBehaviour {
     // リーチライン抽選（大当たり）
     // 返却値:リーチラインの構造体
     // value:抽選値（ランダム）
-    ReachLine DrawLotReachLine(int value)
+    structReachLine DrawLotReachLine(int value)
     {
         return RL_Chusen[value];
     }
