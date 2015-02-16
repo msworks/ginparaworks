@@ -6,10 +6,7 @@ using System.Linq;
 
 public class Tester : MonoBehaviour {
 
-	const string MainLogicFSMName = "MainLogicFSM";
-
 	public GameObject MainLogic;
-	private PlayMakerFSM MainLogicFSM;
 
 	string[] labels = new []{
 		"チャッカー通過",
@@ -49,12 +46,6 @@ public class Tester : MonoBehaviour {
 			ID++;
 		});
 
-		var fsms = MainLogic.GetComponents<PlayMakerFSM>();
-		fsms.ToList ().ForEach (fsm=>{
-			if( fsm.FsmName == MainLogicFSMName ){
-				MainLogicFSM = fsm;
-			}
-		});
 	}
 	
 	// Update is called once per frame
@@ -64,9 +55,7 @@ public class Tester : MonoBehaviour {
 
 	void OnGUI() {
 		checkers.ForEach(c=>{
-			if( GUI.Button (c.rect, c.Label) ){
-				MainLogicFSM.SendEvent(c.Label);
-			}
+
 		});
 	}
 }
