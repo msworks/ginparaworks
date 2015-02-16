@@ -3,7 +3,6 @@ using System.Collections;
 
 public class MainLogic : MonoBehaviour {
 
-	PlayMakerFSM fsm;
 	string CheckerEvent = "Checker";
 
 	// Use this for initialization
