@@ -25,16 +25,17 @@ public class ShootBallTest : MonoBehaviour {
 
     public void OnClick()
     {
-        //var ball = (GameObject)Instantiate(
-        //    BallPrefab,
-        //    ShootPosition.transform.position,
-        //    ShootPosition.transform.rotation );
-
         var ball = NGUITools.AddChild(BodyPath, BallPrefab);
-        //ball.transform.position = new Vector3(-800, -300, 0);
-
-        //Debug.Log(ball.transform.position.x);
         ball.transform.position = ShootPosition.transform.position;
         ball.rigidbody2D.velocity = ShootPower;
+    }
+
+    public void ShootBall(float power)
+    {
+        if (power == 0) return;
+
+        var ball = NGUITools.AddChild(BodyPath, BallPrefab);
+        ball.transform.position = ShootPosition.transform.position;
+        ball.rigidbody2D.velocity = ShootPower * power;
     }
 }
