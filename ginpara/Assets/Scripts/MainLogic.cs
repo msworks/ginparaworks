@@ -160,7 +160,7 @@ public class MainLogic : MonoBehaviour {
         new structReachPattern{ No= 62, Chusenti=4000, Name="魚群＋SP2（+1⇒戻り）" }
     };
 
-        // リーチパターン抽選④リスト
+    // リーチパターン抽選④リスト
     List<structReachPattern> reachPattern4 = new List<structReachPattern>
     {
         new structReachPattern{ No= 9, Chusenti=7534, Name="ノーマル" },
@@ -220,7 +220,30 @@ public class MainLogic : MonoBehaviour {
     };
 
     // リーチ抽選ハズレテーブル関係
+    const int H0_HAZURE_REACH = 9362;    // リーチ抽選（保留０）リーチ
+    const int H0_HAZURE_HAZURE = 56174;  // リーチ抽選（保留０）ハズレ
+    const int H12_HAZURE_REACH = 5461;   // リーチ抽選（保留１、２）リーチ
+    const int H12_HAZURE_HAZURE = 60075; // リーチ抽選（保留１、２）ハズレ
+    const int H3_HAZURE_REACH = 2527;    // リーチ抽選（保留３）リーチ
+    const int H3_HAZURE_HAZURE = 63109;  // リーチ抽選（保留３）ハズレ
 
+    bool[] H0_Chusen;   // リーチ抽選（保留０）テーブル
+    bool[] H12_Chusen;  // リーチ抽選（保留１、２）テーブル
+    bool[] H3_Chusen;   // リーチ抽選（保留３）テーブル
+
+    // リーチパターン抽選（ハズレ）テーブル関係
+    structReachPattern[] H_Reach_Chusen;
+    List<structReachPattern> reachPatternHazure = new List<structReachPattern>
+    {
+        new structReachPattern{ No= 1, Chusenti=33500, Name="ノーマル" },
+        new structReachPattern{ No= 2, Chusenti=25000, Name="泡+ノーマル" },
+        new structReachPattern{ No= 3, Chusenti=2000, Name="泡＋SP1" },
+        new structReachPattern{ No= 4, Chusenti=2000, Name="泡＋SP2" },
+        new structReachPattern{ No= 5, Chusenti=1500, Name="泡＋SP3" },
+        new structReachPattern{ No= 6, Chusenti=600, Name="魚群＋SP1" },
+        new structReachPattern{ No= 7, Chusenti=600, Name="魚群＋SP2" },
+        new structReachPattern{ No= 8, Chusenti=336, Name="魚群＋SP3" }
+    };
 
 	// 初期化
 	void Start () {
@@ -228,9 +251,11 @@ public class MainLogic : MonoBehaviour {
         // 大当たり抽選テーブルの初期化
         var ATARI = Enumerable.Range(0, ATARI_NUM).Select(v => true);
         var HAZURE = Enumerable.Range(0, HAZURE_NUM).Select(v => false);
+        NML_Chusen = ATARI.Concat(HAZURE).ToArray();
+
+        // 大当たり（確変）抽選テーブルの初期化
         var KH_ATARI = Enumerable.Range(0, ATARI_NUM).Select(v => true);
         var KH_HAZURE = Enumerable.Range(0, HAZURE_NUM).Select(v => false);
-        NML_Chusen = ATARI.Concat(HAZURE).ToArray();
         KH_Chusen = KH_ATARI.Concat(KH_HAZURE).ToArray();
 
         // リーチライン抽選テーブルの初期化
@@ -240,7 +265,24 @@ public class MainLogic : MonoBehaviour {
         // リーチパターン抽選テーブルの初期化
         RP_Chusen123 = reachPattern123.Select(rl => RP2Sequence(rl)).SelectMany(rls => rls).ToArray();
         RP_Chusen4 = reachPattern4.Select(rl => RP2Sequence(rl)).SelectMany(rls => rls).ToArray();
-	}
+
+        // リーチ抽選（ハズレ）テーブルの初期化
+        var H0_REACH = Enumerable.Range(0, H0_HAZURE_REACH).Select(v => true);
+        var H0_HAZURE = Enumerable.Range(0, H0_HAZURE_HAZURE).Select(v => false);
+        H0_Chusen = H0_REACH.Concat(H0_HAZURE).ToArray();
+
+        var H12_REACH = Enumerable.Range(0, H12_HAZURE_REACH).Select(v => true);
+        var H12_HAZURE = Enumerable.Range(0, H12_HAZURE_HAZURE).Select(v => false);
+        H12_Chusen = H12_REACH.Concat(H12_HAZURE).ToArray();
+
+        var H3_REACH = Enumerable.Range(0, H3_HAZURE_REACH).Select(v => true);
+        var H3_HAZURE = Enumerable.Range(0, H3_HAZURE_HAZURE).Select(v => false);
+        H3_Chusen = H3_REACH.Concat(H3_HAZURE).ToArray();
+
+        // リーチパターン抽選（ハズレ）テーブルの初期化
+        H_Reach_Chusen = reachPatternHazure.Select(rp => RP2Sequence(rp)).SelectMany(rps => rps).ToArray();
+
+    }
 	
     // リーチラインを抽選値の数のシーケンスに変換
     IEnumerable<structReachLine> RL2Sequence(structReachLine rl)
@@ -273,40 +315,72 @@ public class MainLogic : MonoBehaviour {
         Horyu.GetComponent<PlayMakerFSM>().SendEvent(ThroughChacker);
     }
 
-    // 大当たり判定
-    public void DrawLot()
+    //----------------------
+    // 大当たり抽選 
+    // HoryuSu : 保留カウント
+    // KenriKaisu : 権利回数（０でなければ確変中）
+    public void DrawLot(int HoryuSu, int KenriKaisu)
     {
-        // 大当たり抽選
-        var IsKakuhen = false;  // TODO 確変中かの値をとる // 権利回数の値を参照して、
+        var IsKakuhen = (KenriKaisu == 0) ? false : true;
 
         if (IsAtari(RndFFFF, IsKakuhen))
         {
+            //---------//
+            // 大当たり //
+            //---------//
+
             // リーチライン抽選
             var rl = DrawLotReachLine(RndFFFF);
 
-            Func<int, structReachPattern> DrawLotReachPattern;
-
             // リーチパターン抽選
+            Func<int, structReachPattern> DrawLotReachPattern;
             if (rl.ReachLine != 4) { DrawLotReachPattern = DrawLotReachPattern123; }
             else { DrawLotReachPattern = DrawLotReachPattern4; }
 
             var rp = DrawLotReachPattern(RndFFFF);
 
             // TODO 具体的にどうする
+            Debug.Log("大当たり："+rp.Name);
         }
         else
         {
+            Func<int, bool> DrawLotHazure;
+            if (HoryuSu == 0)
+            {
+                DrawLotHazure = DrawLotHazureH0;
+            }
+            else if (HoryuSu == 1 || HoryuSu == 2)
+            {
+                DrawLotHazure = DrawLotHazureH12;
+            }
+            else
+            {
+                DrawLotHazure = DrawLotHazureH3;
+            }
+
             // リーチ抽選
-            // TODO 実装
+            var reach = DrawLotHazure(RndFFFF);
+
+            if (reach)
+            {
+                var rp = DrawLotReachPatternHazure(RndFFFF);
+
+                // TODO ハズレリーチ
+                Debug.Log("ハズレリーチ：" + rp.Name);
+            }
+            else
+            {
+                // TODO ハズレ
+                Debug.Log("ハズレ");
+            }
         }
     }
 
     // 大当たり抽選
     bool IsAtari(int value, bool IsKakuhen)
     {
-        var chusen = IsKakuhen ? NML_Chusen : KH_Chusen;
-        var isAtari = chusen[value];
-        return false;
+        var chusen = IsKakuhen ? KH_Chusen : NML_Chusen;
+        return chusen[value];
     }
 
     // リーチライン抽選（大当たり）
@@ -333,4 +407,35 @@ public class MainLogic : MonoBehaviour {
         return RP_Chusen4[value];
     }
 
+    // リーチ抽選（ハズレ）保留０
+    // 返却値： true:リーチ　false:ハズレ
+    // value:抽選値（ランダム）
+    bool DrawLotHazureH0(int value)
+    {
+        return H0_Chusen[value];
+    }
+
+    // リーチ抽選（ハズレ）保留１、２
+    // 返却値： true:リーチ　false:ハズレ
+    // value:抽選値（ランダム）
+    bool DrawLotHazureH12(int value)
+    {
+        return H12_Chusen[value];
+    }
+
+    // リーチ抽選（ハズレ）保留３
+    // 返却値： true:リーチ　false:ハズレ
+    // value:抽選値（ランダム）
+    bool DrawLotHazureH3(int value)
+    {
+        return H3_Chusen[value];
+    }
+
+    // リーチパターン抽選（ハズレ）
+    // 返却値：リーチパターンのNO
+    // value:抽選値（ランダム）
+    structReachPattern DrawLotReachPatternHazure(int value)
+    {
+        return H_Reach_Chusen[value];
+    }
 }
