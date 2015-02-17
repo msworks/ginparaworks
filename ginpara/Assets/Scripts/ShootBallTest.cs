@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class ShootBallTest : MonoBehaviour {
@@ -34,8 +35,10 @@ public class ShootBallTest : MonoBehaviour {
     {
         if (power == 0) return;
 
+        float rndp = UnityEngine.Random.Range(0.995f, 1.005f);
+
         var ball = NGUITools.AddChild(BodyPath, BallPrefab);
         ball.transform.position = ShootPosition.transform.position;
-        ball.rigidbody2D.velocity = ShootPower * power;
+        ball.rigidbody2D.velocity = ShootPower * power * rndp;
     }
 }
