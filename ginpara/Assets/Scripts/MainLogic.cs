@@ -31,8 +31,13 @@ public class MainLogic : MonoBehaviour {
         public string Tokuzu;  // 枠内停止特図
     }
 
-	PlayMakerFSM fsm;
-	string ChackerEvent = "Chacker";
+    // リーチパターン構造体
+    struct structReachPattern
+    {
+        public int No;          // No
+        public int Chusenti;    // 抽選値
+        public string Name;     // リーチ名
+    }
 
     //--------------------------------------
     // 抽選の方法
@@ -97,12 +102,128 @@ public class MainLogic : MonoBehaviour {
     };
 
     // リーチパターン抽選テーブル関係
+    structReachPattern[] RP_Chusen123;
+    structReachPattern[] RP_Chusen4;
 
     // リーチパターン抽選①②③リスト
+    List<structReachPattern> reachPattern123 = new List<structReachPattern>
+    {
+        new structReachPattern{ No= 9, Chusenti=7534, Name="ノーマル" },
+        new structReachPattern{ No= 10, Chusenti=1000, Name="ノーマル＋再始動（+1）" },
+        new structReachPattern{ No= 11, Chusenti=75, Name="ノーマル＋再始動（+2）" },
+        new structReachPattern{ No= 12, Chusenti=75, Name="ノーマル＋再始動（+3）" },
+        new structReachPattern{ No= 13, Chusenti=75, Name="ノーマル＋再始動（+4）" },
+        new structReachPattern{ No= 14, Chusenti=75, Name="ノーマル＋再始動（+5）" },
+        new structReachPattern{ No= 15, Chusenti=75, Name="ノーマル＋再始動（+6）" },
+        new structReachPattern{ No= 16, Chusenti=75, Name="ノーマル＋再始動（+7）" },
+        new structReachPattern{ No= 17, Chusenti=75, Name="ノーマル＋再始動（+8）" },
+        new structReachPattern{ No= 18, Chusenti=75, Name="ノーマル＋再始動（+9）" },
+        new structReachPattern{ No= 19, Chusenti=75, Name="ノーマル＋再始動（+10）" },
+        new structReachPattern{ No= 20, Chusenti=75, Name="ノーマル＋再始動（+11）" },
+        new structReachPattern{ No= 21, Chusenti=75, Name="ノーマル＋再始動（+12）" },
+        new structReachPattern{ No= 22, Chusenti=75, Name="ノーマル＋再始動（+13）" },
+        new structReachPattern{ No= 23, Chusenti=75, Name="ノーマル＋再始動（+14）" },
+        new structReachPattern{ No= 24, Chusenti=75, Name="ノーマル＋再始動（+15）" },
+        new structReachPattern{ No= 25, Chusenti=75, Name="ノーマル＋再始動（+16）" },
+        new structReachPattern{ No= 26, Chusenti=75, Name="ノーマル＋再始動（+17）" },
+        new structReachPattern{ No= 27, Chusenti=75, Name="ノーマル＋再始動（+18）" },
+        new structReachPattern{ No= 28, Chusenti=75, Name="ノーマル＋再始動（+19）" },
+        new structReachPattern{ No= 29, Chusenti=75, Name="ノーマル＋再始動（+20）" },
+        new structReachPattern{ No= 30, Chusenti=8192, Name="泡+ノーマル" },
+        new structReachPattern{ No= 31, Chusenti=1000, Name="泡＋ノーマル＋再始動（+1）" },
+        new structReachPattern{ No= 32, Chusenti=75, Name="泡＋ノーマル＋再始動（+2）" },
+        new structReachPattern{ No= 33, Chusenti=75, Name="泡＋ノーマル＋再始動（+3）" },
+        new structReachPattern{ No= 34, Chusenti=75, Name="泡＋ノーマル＋再始動（+4）" },
+        new structReachPattern{ No= 35, Chusenti=75, Name="泡＋ノーマル＋再始動（+5）" },
+        new structReachPattern{ No= 36, Chusenti=75, Name="泡＋ノーマル＋再始動（+6）" },
+        new structReachPattern{ No= 37, Chusenti=75, Name="泡＋ノーマル＋再始動（+7）" },
+        new structReachPattern{ No= 38, Chusenti=75, Name="泡＋ノーマル＋再始動（+8）" },
+        new structReachPattern{ No= 39, Chusenti=75, Name="泡＋ノーマル＋再始動（+9）" },
+        new structReachPattern{ No= 40, Chusenti=75, Name="泡＋ノーマル＋再始動（+10）" },
+        new structReachPattern{ No= 41, Chusenti=75, Name="泡＋ノーマル＋再始動（+11）" },
+        new structReachPattern{ No= 42, Chusenti=75, Name="泡＋ノーマル＋再始動（+12）" },
+        new structReachPattern{ No= 43, Chusenti=75, Name="泡＋ノーマル＋再始動（+13）" },
+        new structReachPattern{ No= 44, Chusenti=75, Name="泡＋ノーマル＋再始動（+14）" },
+        new structReachPattern{ No= 45, Chusenti=75, Name="泡＋ノーマル＋再始動（+15）" },
+        new structReachPattern{ No= 46, Chusenti=75, Name="泡＋ノーマル＋再始動（+16）" },
+        new structReachPattern{ No= 47, Chusenti=75, Name="泡＋ノーマル＋再始動（+17）" },
+        new structReachPattern{ No= 48, Chusenti=75, Name="泡＋ノーマル＋再始動（+18）" },
+        new structReachPattern{ No= 49, Chusenti=75, Name="泡＋ノーマル＋再始動（+19）" },
+        new structReachPattern{ No= 50, Chusenti=75, Name="泡＋ノーマル＋再始動（+20）" },
+        new structReachPattern{ No= 51, Chusenti=4192, Name="泡＋SP1（0）" },
+        new structReachPattern{ No= 52, Chusenti=4000, Name="泡＋SP1（+1⇒戻り）" },
+        new structReachPattern{ No= 53, Chusenti=4192, Name="泡＋SP2（0）" },
+        new structReachPattern{ No= 54, Chusenti=4000, Name="泡＋SP2（+1⇒戻り）" },
+        new structReachPattern{ No= 59, Chusenti=10288, Name="魚群＋SP1（0）" },
+        new structReachPattern{ No= 60, Chusenti=4000, Name="魚群＋SP1（+1⇒戻り）" },
+        new structReachPattern{ No= 61, Chusenti=10288, Name="魚群＋SP2（0）" },
+        new structReachPattern{ No= 62, Chusenti=4000, Name="魚群＋SP2（+1⇒戻り）" }
+    };
+
+        // リーチパターン抽選④リスト
+    List<structReachPattern> reachPattern4 = new List<structReachPattern>
+    {
+        new structReachPattern{ No= 9, Chusenti=7534, Name="ノーマル" },
+        new structReachPattern{ No= 10, Chusenti=1000, Name="ノーマル＋再始動（+1）" },
+        new structReachPattern{ No= 11, Chusenti=75, Name="ノーマル＋再始動（+2）" },
+        new structReachPattern{ No= 12, Chusenti=75, Name="ノーマル＋再始動（+3）" },
+        new structReachPattern{ No= 13, Chusenti=75, Name="ノーマル＋再始動（+4）" },
+        new structReachPattern{ No= 14, Chusenti=75, Name="ノーマル＋再始動（+5）" },
+        new structReachPattern{ No= 15, Chusenti=75, Name="ノーマル＋再始動（+6）" },
+        new structReachPattern{ No= 16, Chusenti=75, Name="ノーマル＋再始動（+7）" },
+        new structReachPattern{ No= 17, Chusenti=75, Name="ノーマル＋再始動（+8）" },
+        new structReachPattern{ No= 18, Chusenti=75, Name="ノーマル＋再始動（+9）" },
+        new structReachPattern{ No= 19, Chusenti=75, Name="ノーマル＋再始動（+10）" },
+        new structReachPattern{ No= 20, Chusenti=75, Name="ノーマル＋再始動（+11）" },
+        new structReachPattern{ No= 21, Chusenti=75, Name="ノーマル＋再始動（+12）" },
+        new structReachPattern{ No= 22, Chusenti=75, Name="ノーマル＋再始動（+13）" },
+        new structReachPattern{ No= 23, Chusenti=75, Name="ノーマル＋再始動（+14）" },
+        new structReachPattern{ No= 24, Chusenti=75, Name="ノーマル＋再始動（+15）" },
+        new structReachPattern{ No= 25, Chusenti=75, Name="ノーマル＋再始動（+16）" },
+        new structReachPattern{ No= 26, Chusenti=75, Name="ノーマル＋再始動（+17）" },
+        new structReachPattern{ No= 27, Chusenti=75, Name="ノーマル＋再始動（+18）" },
+        new structReachPattern{ No= 28, Chusenti=75, Name="ノーマル＋再始動（+19）" },
+        new structReachPattern{ No= 29, Chusenti=75, Name="ノーマル＋再始動（+20）" },
+        new structReachPattern{ No= 30, Chusenti=8192, Name="泡+ノーマル" },
+        new structReachPattern{ No= 31, Chusenti=1000, Name="泡＋ノーマル＋再始動（+1）" },
+        new structReachPattern{ No= 32, Chusenti=75, Name="泡＋ノーマル＋再始動（+2）" },
+        new structReachPattern{ No= 33, Chusenti=75, Name="泡＋ノーマル＋再始動（+3）" },
+        new structReachPattern{ No= 34, Chusenti=75, Name="泡＋ノーマル＋再始動（+4）" },
+        new structReachPattern{ No= 35, Chusenti=75, Name="泡＋ノーマル＋再始動（+5）" },
+        new structReachPattern{ No= 36, Chusenti=75, Name="泡＋ノーマル＋再始動（+6）" },
+        new structReachPattern{ No= 37, Chusenti=75, Name="泡＋ノーマル＋再始動（+7）" },
+        new structReachPattern{ No= 38, Chusenti=75, Name="泡＋ノーマル＋再始動（+8）" },
+        new structReachPattern{ No= 39, Chusenti=75, Name="泡＋ノーマル＋再始動（+9）" },
+        new structReachPattern{ No= 40, Chusenti=75, Name="泡＋ノーマル＋再始動（+10）" },
+        new structReachPattern{ No= 41, Chusenti=75, Name="泡＋ノーマル＋再始動（+11）" },
+        new structReachPattern{ No= 42, Chusenti=75, Name="泡＋ノーマル＋再始動（+12）" },
+        new structReachPattern{ No= 43, Chusenti=75, Name="泡＋ノーマル＋再始動（+13）" },
+        new structReachPattern{ No= 44, Chusenti=75, Name="泡＋ノーマル＋再始動（+14）" },
+        new structReachPattern{ No= 45, Chusenti=75, Name="泡＋ノーマル＋再始動（+15）" },
+        new structReachPattern{ No= 46, Chusenti=75, Name="泡＋ノーマル＋再始動（+16）" },
+        new structReachPattern{ No= 47, Chusenti=75, Name="泡＋ノーマル＋再始動（+17）" },
+        new structReachPattern{ No= 48, Chusenti=75, Name="泡＋ノーマル＋再始動（+18）" },
+        new structReachPattern{ No= 49, Chusenti=75, Name="泡＋ノーマル＋再始動（+19）" },
+        new structReachPattern{ No= 50, Chusenti=75, Name="泡＋ノーマル＋再始動（+20）" },
+        new structReachPattern{ No= 51, Chusenti=0, Name="泡＋SP1（0）" },
+        new structReachPattern{ No= 52, Chusenti=0, Name="泡＋SP1（+1⇒戻り）" },
+        new structReachPattern{ No= 53, Chusenti=0, Name="泡＋SP2（0）" },
+        new structReachPattern{ No= 54, Chusenti=0, Name="泡＋SP2（+1⇒戻り）" },
+        new structReachPattern{ No= 55, Chusenti=4192, Name="泡＋SP3（0）" },
+        new structReachPattern{ No= 56, Chusenti=4000, Name="泡＋SP3（+1⇒戻り）" },
+        new structReachPattern{ No= 57, Chusenti=4192, Name="泡＋SP3（+2）" },
+        new structReachPattern{ No= 58, Chusenti=4000, Name="泡＋SP3（+3⇒戻り）" },
+        new structReachPattern{ No= 63, Chusenti=10288, Name="魚群＋SP3（0）" },
+        new structReachPattern{ No= 64, Chusenti=4000, Name="魚群＋SP3（+1⇒戻り）" },
+        new structReachPattern{ No= 65, Chusenti=10288, Name="魚群＋SP3（+2）" },
+        new structReachPattern{ No= 66, Chusenti=4000, Name="魚群＋SP3（+3⇒戻り）" }
+    };
+
+    // リーチ抽選ハズレテーブル関係
+
 
 	// 初期化
 	void Start () {
-		fsm = GetComponent<PlayMakerFSM>();
 
         // 大当たり抽選テーブルの初期化
         var ATARI = Enumerable.Range(0, ATARI_NUM).Select(v => true);
@@ -115,9 +236,13 @@ public class MainLogic : MonoBehaviour {
         // リーチライン抽選テーブルの初期化
         // リーチライン抽選リストを65536個の配列に変換する
         RL_Chusen = reachLines.Select(rl=>RL2Sequence(rl)).SelectMany(rls=>rls).ToArray();
+
+        // リーチパターン抽選テーブルの初期化
+        RP_Chusen123 = reachPattern123.Select(rl => RP2Sequence(rl)).SelectMany(rls => rls).ToArray();
+        RP_Chusen4 = reachPattern4.Select(rl => RP2Sequence(rl)).SelectMany(rls => rls).ToArray();
 	}
 	
-    // リーチラインを抽選値の数のリストに変換
+    // リーチラインを抽選値の数のシーケンスに変換
     IEnumerable<structReachLine> RL2Sequence(structReachLine rl)
     {
         return Enumerable.Range(0, rl.Chusenti).Select(count => new structReachLine(){
@@ -127,6 +252,17 @@ public class MainLogic : MonoBehaviour {
                              Tokuzu = rl.Tokuzu }
                );
     }
+
+    // リーチパターンを抽選値の数のシーケンスに変換
+    IEnumerable<structReachPattern> RP2Sequence(structReachPattern rp)
+    {
+        return Enumerable.Range(0, rp.Chusenti)
+                         .Select(count => new structReachPattern(){
+                            No = rp.No,
+                            Chusenti = rp.Chusenti,
+                            Name = rp.Name });
+    }
+
 
     //---------------//
 	// チャッカー通過 //
@@ -147,8 +283,16 @@ public class MainLogic : MonoBehaviour {
         {
             // リーチライン抽選
             var rl = DrawLotReachLine(RndFFFF);
+
+            Func<int, structReachPattern> DrawLotReachPattern;
+
             // リーチパターン抽選
+            if (rl.ReachLine != 4) { DrawLotReachPattern = DrawLotReachPattern123; }
+            else { DrawLotReachPattern = DrawLotReachPattern4; }
+
             var rp = DrawLotReachPattern(RndFFFF);
+
+            // TODO 具体的にどうする
         }
         else
         {
@@ -173,13 +317,20 @@ public class MainLogic : MonoBehaviour {
         return RL_Chusen[value];
     }
 
-    // リーチパターン抽選（大当たり）
+    // リーチパターン抽選①②③（大当たり）
     // 返却値：リーチパターンのNO
     // value:抽選値（ランダム）
-    int DrawLotReachPattern(int value)
+    structReachPattern DrawLotReachPattern123(int value)
     {
-        return -1;
+        return RP_Chusen123[value];
     }
 
+    // リーチパターン抽選④（大当たり）
+    // 返却値：リーチパターンのNO
+    // value:抽選値（ランダム）
+    structReachPattern DrawLotReachPattern4(int value)
+    {
+        return RP_Chusen4[value];
+    }
 
 }
