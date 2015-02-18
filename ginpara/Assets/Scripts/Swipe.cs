@@ -7,6 +7,9 @@ public class Swipe : MonoBehaviour {
     public GameObject DisplayHandle;
     public float power = 0.0f;
 
+    const float HANDLE_TURNABLE = 120.0f;
+
+    // スワイプ時処理
     void OnSwipe(SwipeGesture gesture) {
         // ハンドルをスワイプしたなら
         if (gesture.StartSelection == this.gameObject)
@@ -37,7 +40,7 @@ public class Swipe : MonoBehaviour {
             Slider.GetComponent<UISlider>().value = power;
 
             // ハンドルを回転
-            var angle = Slider.GetComponent<UISlider>().value * 180;
+            var angle = Slider.GetComponent<UISlider>().value * -HANDLE_TURNABLE;
             //DisplayHandle.transform.Rotate(0, 0, angle);
             iTween.RotateTo(DisplayHandle, iTween.Hash("z", angle, "time", 0.5f));
         }

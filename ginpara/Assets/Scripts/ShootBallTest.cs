@@ -19,7 +19,7 @@ public class ShootBallTest : MonoBehaviour {
     // テスト用
     Vector2 ShootPower = new Vector2(-7.5f, 7.5f);
 
-	// Use this for initialization
+	// 初期化
 	void Start () {
 
         var uchi = Uchidashi.GetComponent<ShootPowerEditor>();
@@ -29,19 +29,17 @@ public class ShootBallTest : MonoBehaviour {
         yureMin = 1 - uchi.Yure;
         yureMax = 1 + uchi.Yure;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
+    // 打ち出し←→止める　のトグル
     public void OnClick()
     {
+        // TODO 実装
         var ball = NGUITools.AddChild(BodyPath, BallPrefab);
         ball.transform.position = ShootPosition.transform.position;
         ball.rigidbody2D.velocity = ShootPower;
     }
 
+    // 玉を発射する
     public void ShootBall(float power)
     {
         if (power == 0) return;
