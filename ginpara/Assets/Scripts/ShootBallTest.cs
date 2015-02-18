@@ -11,12 +11,23 @@ public class ShootBallTest : MonoBehaviour {
     public GameObject BodyPath;
     public GameObject ShootPosition;
 
+    public GameObject Uchidashi;
+
+    private float yureMin;
+    private float yureMax;
+
     // テスト用
-    static Vector2 ShootPower = new Vector2(-7.5f, 7.5f);
+    Vector2 ShootPower = new Vector2(-7.5f, 7.5f);
 
 	// Use this for initialization
 	void Start () {
-	
+
+        var uchi = Uchidashi.GetComponent<ShootPowerEditor>();
+
+        ShootPower = new Vector2(-uchi.Power, uchi.Power);
+
+        yureMin = 1 - uchi.Yure;
+        yureMax = 1 + uchi.Yure;
 	}
 	
 	// Update is called once per frame
@@ -35,7 +46,7 @@ public class ShootBallTest : MonoBehaviour {
     {
         if (power == 0) return;
 
-        float rndp = UnityEngine.Random.Range(0.995f, 1.005f);
+        float rndp = UnityEngine.Random.Range(yureMin, yureMax);
 
         var ball = NGUITools.AddChild(BodyPath, BallPrefab);
         ball.transform.position = ShootPosition.transform.position;
