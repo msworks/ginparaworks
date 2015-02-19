@@ -21,7 +21,7 @@ public class Swipe : MonoBehaviour {
         {
             float force = gesture.Velocity / 10000.0f;
 
-            Debug.Log("FORCE:" + force);
+            Debug.Log("SWIPE VELOCITY" + gesture.Velocity);
 
             switch (gesture.Direction)
             {
