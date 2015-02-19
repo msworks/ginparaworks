@@ -19,7 +19,9 @@ public class Swipe : MonoBehaviour {
         // ハンドルをスワイプしたなら
         //if (gesture.StartSelection == this.gameObject)
         {
-            float force = gesture.Velocity / 1000;
+            float force = gesture.Velocity / 5000.0f;
+
+            Debug.Log("FORCE:" + force);
 
             switch (gesture.Direction)
             {
