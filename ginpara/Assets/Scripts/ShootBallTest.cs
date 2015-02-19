@@ -27,6 +27,12 @@ public class ShootBallTest : MonoBehaviour {
     // 玉を発射する
     public void ShootBall(float power)
     {
+        // パワー０なら打たない
+        if (power == 0) return;
+
+        // パワーを変換
+        power = 0.5f + power * 0.3f;
+
         var uchi = Uchidashi.GetComponent<ShootPowerEditor>();
 
         ShootPower = new Vector2(-uchi.Power, uchi.Power);
@@ -34,7 +40,6 @@ public class ShootBallTest : MonoBehaviour {
         yureMin = 1 - uchi.Yure;
         yureMax = 1 + uchi.Yure;
 
-        if (power == 0) return;
 
 
         float rndp = UnityEngine.Random.Range(yureMin, yureMax);
