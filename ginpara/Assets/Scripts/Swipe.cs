@@ -11,13 +11,14 @@ public class Swipe : MonoBehaviour {
 
     // スワイプ時処理
     void OnSwipe(SwipeGesture gesture) {
-        // ハンドルをスワイプしたなら
-        if (gesture.StartSelection == this.gameObject)
-        {
-            Debug.Log("Swipe Direction:" + gesture.Direction);
-            Debug.Log("Swipe Selection:" + gesture.StartSelection.name);
-            Debug.Log("Swipe Velocity:" + gesture.Velocity);
 
+        //Debug.Log("Swipe Direction:" + gesture.Direction);
+        //Debug.Log("Swipe Selection:" + gesture.StartSelection.name);
+        //Debug.Log("Swipe Velocity:" + gesture.Velocity);
+
+        // ハンドルをスワイプしたなら
+        //if (gesture.StartSelection == this.gameObject)
+        {
             float force = gesture.Velocity / 1000;
 
             switch (gesture.Direction)
