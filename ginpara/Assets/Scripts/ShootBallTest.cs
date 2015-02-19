@@ -30,15 +30,6 @@ public class ShootBallTest : MonoBehaviour {
         yureMax = 1 + uchi.Yure;
 	}
 
-    // 打ち出し←→止める　のトグル
-    public void OnClick()
-    {
-        // TODO 実装
-        var ball = NGUITools.AddChild(BodyPath, BallPrefab);
-        ball.transform.position = ShootPosition.transform.position;
-        ball.rigidbody2D.velocity = ShootPower;
-    }
-
     // 玉を発射する
     public void ShootBall(float power)
     {
