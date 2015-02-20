@@ -30,12 +30,12 @@ public class ShootBallTest : MonoBehaviour {
         // パワー０なら打たない
         if (power == 0) return;
 
-        // パワーを変換
-        power = 0.5f + power * 0.3f;
-
         var uchi = Uchidashi.GetComponent<ShootPowerEditor>();
 
-        ShootPower = new Vector2(-uchi.Power, uchi.Power);
+        // パワーを変換
+        power = uchi.Power_MIN + power * (uchi.Power_MAX-uchi.Power_MIN);
+
+        ShootPower = new Vector2(-power, power);
 
         yureMin = 1 - uchi.Yure;
         yureMax = 1 + uchi.Yure;
@@ -46,6 +46,6 @@ public class ShootBallTest : MonoBehaviour {
 
         var ball = NGUITools.AddChild(BodyPath, BallPrefab);
         ball.transform.position = ShootPosition.transform.position;
-        ball.rigidbody2D.velocity = ShootPower * power * rndp;
+        ball.rigidbody2D.velocity = ShootPower * rndp;
     }
 }
