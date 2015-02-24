@@ -13,12 +13,7 @@ public class Tester : MonoBehaviour {
     private MainLogic ml;
 
 	string[] labels = new []{
-		"チャッカー通過",
-		"check2",
-		"check3",
-		"check4",
-		"check5",
-		"check6"
+		"チャッカー通過"
 	};
 
 	class CheckerThrower {
