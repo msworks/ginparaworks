@@ -3,12 +3,16 @@ using System.Collections;
 
 public class Syokyu : MonoBehaviour {
 
+    public GameObject Uchidashi;
+    public int Syokyusu;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // TODO 玉を増やす処理
         if (collision.gameObject.tag == "Ball")
         {
             Destroy(collision.gameObject);
+
+            Uchidashi.GetComponent<PlayMakerFSM>().FsmVariables.GetFsmInt("tama").Value += Syokyusu;
         }
     }
 }

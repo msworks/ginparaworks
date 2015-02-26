@@ -10,7 +10,6 @@ public class MainLogic : MonoBehaviour {
     public GameObject Horyu;
     const string ThroughChacker = "チャッカー通過";
 
-    // TODO シード値にTickCountってAndroidで取れるか？
     System.Random rnd = new System.Random(Environment.TickCount);
 
     // 0～65535のランダム値を返す
