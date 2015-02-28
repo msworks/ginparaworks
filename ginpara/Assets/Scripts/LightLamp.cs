@@ -12,7 +12,7 @@ public class LightLamp : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        LightFlg = true;
+        LightFlg = false;
         Counter = 0;
 	}
 	
@@ -22,7 +22,7 @@ public class LightLamp : MonoBehaviour {
 
         Counter++;
 
-        var r = (float)Counter * 3.14f / 60f * 5f;
+        var r = (float)Counter * 3.14f / 60f * 3f;
         var v = Mathf.Sin(r) * Mathf.Sin(r);
         var v2 = 1f - v;
 
@@ -30,4 +30,19 @@ public class LightLamp : MonoBehaviour {
         left.GetComponent<UISprite>().alpha = v2;
 
 	}
+
+    public void ON()
+    {
+        LightFlg = true;
+        Counter = 0;
+    }
+
+    public void OFF()
+    {
+        LightFlg = false;
+        Counter = 0;
+        right.GetComponent<UISprite>().alpha = 0;
+        left.GetComponent<UISprite>().alpha = 0;
+    }
+
 }
