@@ -18,6 +18,8 @@ public class TouchKaitentai : MonoBehaviour {
         var ball = NGUITools.AddChild(BodyPath, TurnBallPrefab);
         //ball.transform.position = ShootPosition.transform.position;
         //ball.rigidbody2D.velocity = ShootPower * rndp;
+
+        this.gameObject.GetComponent<PlayMakerFSM>().SendEvent("玉通過");
     }
 
 }

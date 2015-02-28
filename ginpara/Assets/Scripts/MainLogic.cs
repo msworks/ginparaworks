@@ -346,8 +346,10 @@ public class MainLogic : MonoBehaviour {
     // 大当たり抽選 
     // HoryuSu : 保留カウント
     // KenriKaisu : 権利回数（０でなければ確変中）
-    public void DrawLot(int HoryuSu, int KenriKaisu)
+    public DrawLotResult DrawLot(int HoryuSu, int KenriKaisu)
     {
+        DrawLotResult result = new DrawLotResult();
+
         var IsKakuhen = (KenriKaisu == 0) ? false : true;
 
         if (IsAtari(RndFFFF, IsKakuhen))
@@ -366,8 +368,12 @@ public class MainLogic : MonoBehaviour {
 
             var rp = DrawLotReachPattern(RndFFFF);
 
-            // TODO 具体的にどうする
-            Debug.Log("大当たり："+rp.Name);
+            // 返却値をセット
+            result.isOOatari = true;
+            result.reachLine = rl.ReachLine;
+            result.reachLineName = rl.Tokuzu;
+            result.reachPattern = rp.No;
+            result.reachPatternName = rp.Name;
         }
         else
         {
@@ -387,10 +393,11 @@ public class MainLogic : MonoBehaviour {
 
             // リーチ抽選
             var reach = DrawLotHazure(RndFFFF);
+            structReachPattern rp = new structReachPattern();
 
             if (reach)
             {
-                var rp = DrawLotReachPatternHazure(RndFFFF);
+                rp = DrawLotReachPatternHazure(RndFFFF);
 
                 // TODO ハズレリーチ
                 Debug.Log("ハズレリーチ：" + rp.Name);
@@ -399,8 +406,20 @@ public class MainLogic : MonoBehaviour {
             {
                 // TODO ハズレ
                 Debug.Log("ハズレ");
+                rp.No = -1;
+                rp.Name = "ハズレ";
             }
+
+            // 返却値をセット
+            result.isOOatari = false;
+            result.reachLine = -1;
+            result.reachLineName = "ハズレ";
+            result.reachPattern = rp.No;
+            result.reachPatternName = rp.Name;
         }
+
+        // 結果を返却する
+        return result;
     }
 
     // 大当たり抽選

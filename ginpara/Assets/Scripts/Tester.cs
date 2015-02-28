@@ -9,20 +9,22 @@ public class Tester : MonoBehaviour {
 	const string MainLogicFSMName = "MainLogicFSM";
 
 	public GameObject MainLogic;
+    public GameObject Atacker;
 	private PlayMakerFSM MainLogicFSM;
     private MainLogic ml;
 
 	string[] labels = new []{
-		"チャッカー通過"
+		"チャッカー通過",
+        "アタッカー開"
 	};
 
-	class CheckerThrower {
+	class EventButton {
 		public string Label{ set; get; }
 		public int CheckerID{ set; get; }
 		public Rect rect{ set; get;}
 	}
 
-	List<CheckerThrower> checkers = new List<CheckerThrower>();
+	List<EventButton> checkers = new List<EventButton>();
 
 	// Use this for initialization
 	void Start () {
@@ -35,7 +37,7 @@ public class Tester : MonoBehaviour {
 		int ID = 0;
 
 		labels.ToList().ForEach(label=>{
-			var checker = new CheckerThrower{
+			var checker = new EventButton{
 				Label = label,
 				CheckerID = ID,
 				rect = new Rect(0,y,ButtonWidth,ButtonHeight)
@@ -62,9 +64,19 @@ public class Tester : MonoBehaviour {
 
 	void OnGUI() {
 		checkers.ForEach(c=>{
-			if( GUI.Button (c.rect, c.Label) ){
-				ml.NoticeChacker();
-			}
+            switch (c.CheckerID)
+            {
+                case 0:
+			        if( GUI.Button (c.rect, c.Label) ){
+				        ml.NoticeChacker();
+			        }
+                    break;
+                case 1:
+			        if( GUI.Button (c.rect, c.Label) ){
+                        Atacker.GetComponent<PlayMakerFSM>().SendEvent("大当たり");
+			        }
+                    break;
+            }
 		});
 	}
 }
