@@ -75,7 +75,7 @@ public class GinparaManager : MonoBehaviour {
 		string errorCode = null;
 		switch (patternNo) {
 		case "0":
-			this.Order("7-1");
+			this.Order("8-1");
 			break;
 
 		case "1":
@@ -577,83 +577,123 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "8-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (-1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (-2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (-3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (-4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (-5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (-6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (-7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (-8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (-9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "8-20":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailSuperReach (-10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-1":

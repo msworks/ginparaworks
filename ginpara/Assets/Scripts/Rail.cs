@@ -134,8 +134,31 @@ public class Rail : MonoBehaviour {
 		while(this.railAnimation.isPlaying){
 			yield return null;
 		}
-
-		this.ResetAnchor(this.pictureManager.ReachStartNum (targetNum));
+		
+		this.ResetAnchor(targetNum);
+		this.isRolling = false;
+		this.railAnimation.clip = this.anims[2];
+		this.originValue = (int)this.anchorValue;
+		this.anchorValue = 0;
+		this.railAnimation.Play ();
+		while(this.railAnimation.isPlaying){
+			yield return null;
+		}
+		
+		this.anchorValue = (this.anchorValue + this.originValue);
+		this.originValue = 0;
+		if(callback != null) callback();
+		yield break;
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public IEnumerator RailSuperReach(int targetNum, System.Action callback){
+		while(this.railAnimation.isPlaying){
+			yield return null;
+		}
+		
+		this.ResetAnchor(targetNum);
+//		this.ResetAnchor(this.pictureManager.SuperReachStartNum(targetNum));
 		this.isRolling = false;
 		this.railAnimation.clip = this.anims[2];
 		this.originValue = (int)this.anchorValue;

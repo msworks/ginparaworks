@@ -162,17 +162,13 @@ public class PictureManager : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	public int ReachStartNum(int targetNum){
-		if(!this.isTop){
-			if(targetNum == 1)
-				return -10;
-			else
-				return (targetNum > 0) ? -(targetNum - 1) : -targetNum;
-		} else {
-			if(targetNum == 10)
-				return -1;
-			else
-				return (targetNum > 0) ? -(targetNum + 1) : -targetNum;
-		}
+	public int SuperReachStartNum(int targetNum){
+		if(this.isTop)
+			Debug.LogError("リーチ演出は中リールのみです");
+
+		if(targetNum == -10)
+			return 1;
+		else
+			return (targetNum > 0) ? -targetNum : (-targetNum) + 1;
 	}
 }
