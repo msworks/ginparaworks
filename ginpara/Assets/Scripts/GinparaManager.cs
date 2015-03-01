@@ -87,83 +87,123 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "4-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (-10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (-9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (-8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (-7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (-6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (-5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (-4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (-3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (-2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "4-20":
-			Debug.Log ("未実装");
+			StartCoroutine (this.topRail.RailStop (-1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "5-1":

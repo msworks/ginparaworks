@@ -137,4 +137,27 @@ public class PictureManager : MonoBehaviour {
 
 		return dic;
 	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public int StopStartNum(int targetNum){
+		if(!this.isTop){
+			if(targetNum == 1)
+				return -9;
+			else if(targetNum == - 1)
+				return 10;
+			else if(targetNum == 2)
+				return -10;
+			else
+				return (targetNum > 0) ? -(targetNum - 2) : (-targetNum) - 1;
+		} else {
+			if(targetNum == 10)
+				return -2;
+			else if(targetNum == -10)
+				return 1;
+			else if(targetNum == 9)
+				return -1;
+			else
+				return (targetNum > 0) ? -(targetNum + 2) : (-targetNum) + 1;
+		}
+	}
 }

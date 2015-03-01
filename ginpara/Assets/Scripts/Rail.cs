@@ -13,7 +13,7 @@ public class Rail : MonoBehaviour {
 	public float anchorValue = 0;
 	[SerializeField]private float preAnchorValue = 0;
 	private float originValue = 0;
-	private bool isRolling = false;
+	[SerializeField] private bool isRolling = false;
 
 	//====================================================================================================
 	// Property
@@ -29,7 +29,7 @@ public class Rail : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	void Update(){
 		if(this.isRolling)
-			this.anchorValue += Time.deltaTime * 28f;
+			this.anchorValue += Time.deltaTime * 14f;
 
 		if ((this.anchorValue + this.originValue) != this.preAnchorValue  &&  (this.anchorValue + this.originValue) > this.preAnchorValue) {
 			for (int i = 0; i < this.railPanels.Length; ++i) {
@@ -44,7 +44,7 @@ public class Rail : MonoBehaviour {
 		//tes
 		{
 			if(Input.GetMouseButtonDown(0)){
-				StartCoroutine (this.RailStart (null));
+//				StartCoroutine (this.RailStop (-8, null));
 			}
 		}
 	}
@@ -69,7 +69,7 @@ public class Rail : MonoBehaviour {
 	public IEnumerator RailStart(System.Action callback){
 		if(this.railAnimation.isPlaying)
 			this.railAnimation.Stop ();
-
+		
 		this.railAnimation.clip = this.anims[0];
 		this.originValue = this.anchorValue;
 		this.anchorValue = 0;
@@ -77,10 +77,33 @@ public class Rail : MonoBehaviour {
 		while(this.railAnimation.isPlaying){
 			yield return null;
 		}
-
+		
 		this.anchorValue = this.preAnchorValue = (this.anchorValue + this.originValue) % this.railPanels.Length;
 		this.originValue = 0;
 		this.isRolling = true;
+		if(callback != null) callback();
+		yield break;
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public IEnumerator RailStop(int targetNum, System.Action callback){
+		if(this.railAnimation.isPlaying)
+			this.railAnimation.Stop ();
+
+		while(this.pictureManager.StopStartNum(targetNum) != this.pictureManager.PictureNum){
+			yield return null;
+		}
+		this.isRolling = false;
+		this.railAnimation.clip = this.anims[1];
+		this.originValue = (int)this.anchorValue;
+		this.anchorValue = 0;
+		this.railAnimation.Play ();
+		while(this.railAnimation.isPlaying){
+			yield return null;
+		}
+		
+		this.anchorValue = this.preAnchorValue = (this.anchorValue + this.originValue) % this.railPanels.Length;
+		this.originValue = 0;
 		if(callback != null) callback();
 		yield break;
 	}
