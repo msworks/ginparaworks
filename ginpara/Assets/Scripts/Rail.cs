@@ -14,10 +14,7 @@ public class Rail : MonoBehaviour {
 	public float anchorValue = 0;
 	[SerializeField]private float preAnchorValue = 0;
 	private float originValue = 0;
-	private int targetNum = 0;
 	private bool isRolling = false;
-	private bool isStoping = false;
-	private System.Action callBack = null;
 
 	//====================================================================================================
 	// Property
@@ -40,19 +37,26 @@ public class Rail : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
+	private void ResetAnchor(int pictureNum){
+		this.anchorValue = this.preAnchorValue = 0;
+		for (int i = 0; i < this.railPanels.Length; ++i) {
+			this.railPanels [(this.railPanels.Length - 1) - i].Anchor.relativeOffset = new Vector2 ((this.railPanels.Length - 1) - ((this.anchorValue + i + this.originValue) % this.railPanels.Length), 0);
+			this.railPanels [(this.railPanels.Length - 1) - i].Reset();
+		}
+		
+		Dictionary<int, Texture> dic = this.pictureManager.Initialize (pictureNum);
+		
+		foreach(RailPanel panel in this.railPanels){
+			panel.MainTexture = dic[(int)panel.Anchor.relativeOffset.x];
+		}
+	}
+	
+	//----------------------------------------------------------------------------------------------------
 	void Update(){
-		if(this.targetNum != 0){
-			if(this.isStoping  &&  this.targetNum == this.pictureManager.PictureNum  &&  this.anchorValue - (float)((int)this.anchorValue) < 0.3f){
-				this.isRolling = false;
-				this.isStoping = false;
-				StartCoroutine (this.RailStopping(this.targetNum, this.callBack));
-			}
-		}
-
 		if(this.isRolling){
-			this.anchorValue += Time.deltaTime * 14f;
+			this.anchorValue += Time.deltaTime * 32f;
 		}
-
+		
 		if ((this.anchorValue + this.originValue) != this.preAnchorValue  &&  (this.anchorValue + this.originValue) > this.preAnchorValue) {
 			for (int i = 0; i < this.railPanels.Length; ++i) {
 				this.railPanels [(this.railPanels.Length - 1) - i].Anchor.relativeOffset = new Vector2 ((this.railPanels.Length - 1) - ((this.anchorValue + i + this.originValue) % this.railPanels.Length), 0);
@@ -89,10 +93,6 @@ public class Rail : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	public IEnumerator RailStart(System.Action callback){
-//		while(this.railAnimation.isPlaying){
-//			yield return null;
-//		}
-//		
 		this.railAnimation.clip = this.anims[0];
 		this.originValue = this.anchorValue;
 		this.anchorValue = 0;
@@ -108,22 +108,36 @@ public class Rail : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	public void RailStop(int targetNum, System.Action callback){
-		this.callBack = callback;
-		this.targetNum = this.pictureManager.StopStartNum(targetNum);
-		this.isStoping = true;
-	}
-	public IEnumerator RailStopping(int targetNum, System.Action callback){
-//		while(this.railAnimation.isPlaying){
-//			yield return null;
-//		}
+	public IEnumerator RailStop(int targetNum, System.Action callback){
+		while(this.railAnimation.isPlaying){
+			yield return null;
+		}
 
-//		int target = this.pictureManager.StopStartNum(targetNum);
-//		while((target != this.pictureManager.PictureNum)  ||  this.anchorValue - (float)((int)this.anchorValue) > 0.3f){
-//			yield return null;
-//		}
-//		this.isRolling = false;
+		this.ResetAnchor(this.pictureManager.StopStartNum(targetNum));
+		this.isRolling = false;
 		this.railAnimation.clip = this.anims[1];
+		this.originValue = (int)this.anchorValue;
+		this.anchorValue = 0;
+		this.railAnimation.Play ();
+		while(this.railAnimation.isPlaying){
+			yield return null;
+		}
+		
+		this.anchorValue = (this.anchorValue + this.originValue);
+		this.originValue = 0;
+		if(callback != null) callback();
+		yield break;
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public IEnumerator RailReach(int targetNum, System.Action callback){
+		while(this.railAnimation.isPlaying){
+			yield return null;
+		}
+
+		this.ResetAnchor(this.pictureManager.ReachStartNum (targetNum));
+		this.isRolling = false;
+		this.railAnimation.clip = this.anims[2];
 		this.originValue = (int)this.anchorValue;
 		this.anchorValue = 0;
 		this.railAnimation.Play ();

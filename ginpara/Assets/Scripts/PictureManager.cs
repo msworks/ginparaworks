@@ -160,4 +160,19 @@ public class PictureManager : MonoBehaviour {
 				return (targetNum > 0) ? -(targetNum + 2) : (-targetNum) + 1;
 		}
 	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public int ReachStartNum(int targetNum){
+		if(!this.isTop){
+			if(targetNum == 1)
+				return -10;
+			else
+				return (targetNum > 0) ? -(targetNum - 1) : -targetNum;
+		} else {
+			if(targetNum == 10)
+				return -1;
+			else
+				return (targetNum > 0) ? -(targetNum + 1) : -targetNum;
+		}
+	}
 }

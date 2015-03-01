@@ -35,6 +35,7 @@ public class RailPanel : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	public void SetAnchor(float value){
+	public void Reset(){
+		this.preAnchorValue = this.anchorPanel.relativeOffset.x;
 	}
 }
