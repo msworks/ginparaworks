@@ -36,6 +36,9 @@ public class GinparaManager : MonoBehaviour {
 	[SerializeField] private TextureAnimation loseBubbleAnime = null;
 	[SerializeField] private UIAnchor lostStringAnchor = null;
 	[SerializeField] private TextureAnimation lostStringAnime = null;
+	[SerializeField] private UIAnchor marinPeaceAnchor = null;
+	[SerializeField] private TextureAnimation marinPeaceAnime = null;
+	[SerializeField] private TextureAnimation rollBubble = null;
 	private bool isBackgroundLoop = false;
 	private float deltaTime = 0;
 #if UNITY_EDITOR
@@ -3393,11 +3396,13 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "301":
-			Debug.Log ("未実装");
+			this.marinPeaceAnchor.transform.gameObject.SetActive (true);
+			StartCoroutine(this.MarinPeace(callback));
 			break;
 			
 		case "302":
-			Debug.Log ("未実装");
+			this.rollBubble.transform.gameObject.SetActive (true);
+			StartCoroutine(this.RollBubble(callback));
 			break;
 			
 		case "401":
@@ -3710,6 +3715,32 @@ public class GinparaManager : MonoBehaviour {
 		
 		this.lostStringAnchor.relativeOffset = new Vector2(0, 0);
 		this.lostStringAnchor.transform.gameObject.SetActive (false);
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator MarinPeace(System.Action callback){
+		this.marinPeaceAnime.Play (null);
+		
+		while(this.marinPeaceAnime.IsAnimating  ||  this.loseBubbleAnime.IsAnimating)
+			yield return null;
+		
+		this.marinPeaceAnchor.relativeOffset = new Vector2(0, 0);
+		this.marinPeaceAnchor.transform.gameObject.SetActive (false);
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator RollBubble(System.Action callback){
+		this.rollBubble.Play (null);
+		
+		while(this.rollBubble.IsAnimating  ||  this.loseBubbleAnime.IsAnimating){
+			this.rollBubble.transform.Rotate (0, 0, -90f * this.deltaTime);
+			yield return null;
+		}
+		
+		this.rollBubble.transform.localRotation = new Quaternion();
+		this.rollBubble.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
 	
