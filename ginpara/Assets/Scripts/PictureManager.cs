@@ -24,7 +24,7 @@ public class PictureManager : MonoBehaviour {
 	//====================================================================================================
 	// Property
 	//====================================================================================================
-	public int PictureNum { get { return this.pictureNum; } set { this.pictureNum = value; } }
+	public int PictureNum { get { return this.pictureNum; } }
 
 	//====================================================================================================
 	// Method
@@ -53,8 +53,8 @@ public class PictureManager : MonoBehaviour {
 		this.pictures.Add (this.picture9);
 		this.pictures.Add (this.picture10);
 	}
-
-    //----------------------------------------------------------------------------------------------------
+		
+	//----------------------------------------------------------------------------------------------------
 	public void SetPicture(int pictureNum, int patternNum){
 		if(pictureNum > this.pictures.Count  ||  patternNum > this.pictures[pictureNum].Count){
 			Debug.LogError("指定範囲がオーバー！");

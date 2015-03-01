@@ -10,10 +10,14 @@ public class Rail : MonoBehaviour {
 	[SerializeField] private PictureManager pictureManager = null;
 	[SerializeField] private Animation railAnimation = null;
 	[SerializeField] private AnimationClip[] anims = null;
+	[SerializeField] private UIStretch[] stretchs = null;
 	public float anchorValue = 0;
 	[SerializeField]private float preAnchorValue = 0;
 	private float originValue = 0;
-	[SerializeField] private bool isRolling = false;
+	private int targetNum = 0;
+	private bool isRolling = false;
+	private bool isStoping = false;
+	private System.Action callBack = null;
 
 	//====================================================================================================
 	// Property
@@ -24,12 +28,30 @@ public class Rail : MonoBehaviour {
 	//====================================================================================================
 	void Start(){
 		this.Initialize (1);
+		StartCoroutine (this.ResetStretch ());
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator ResetStretch(){
+		yield return new WaitForSeconds(1);
+		foreach(UIStretch str in this.stretchs){
+			str.enabled = true;
+		}
 	}
 	
 	//----------------------------------------------------------------------------------------------------
 	void Update(){
-		if(this.isRolling)
+		if(this.targetNum != 0){
+			if(this.isStoping  &&  this.targetNum == this.pictureManager.PictureNum  &&  this.anchorValue - (float)((int)this.anchorValue) < 0.3f){
+				this.isRolling = false;
+				this.isStoping = false;
+				StartCoroutine (this.RailStopping(this.targetNum, this.callBack));
+			}
+		}
+
+		if(this.isRolling){
 			this.anchorValue += Time.deltaTime * 14f;
+		}
 
 		if ((this.anchorValue + this.originValue) != this.preAnchorValue  &&  (this.anchorValue + this.originValue) > this.preAnchorValue) {
 			for (int i = 0; i < this.railPanels.Length; ++i) {
@@ -67,9 +89,10 @@ public class Rail : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	public IEnumerator RailStart(System.Action callback){
-		if(this.railAnimation.isPlaying)
-			this.railAnimation.Stop ();
-		
+//		while(this.railAnimation.isPlaying){
+//			yield return null;
+//		}
+//		
 		this.railAnimation.clip = this.anims[0];
 		this.originValue = this.anchorValue;
 		this.anchorValue = 0;
@@ -77,8 +100,7 @@ public class Rail : MonoBehaviour {
 		while(this.railAnimation.isPlaying){
 			yield return null;
 		}
-		
-		this.anchorValue = this.preAnchorValue = (this.anchorValue + this.originValue) % this.railPanels.Length;
+		this.anchorValue = (this.anchorValue + this.originValue);
 		this.originValue = 0;
 		this.isRolling = true;
 		if(callback != null) callback();
@@ -86,14 +108,21 @@ public class Rail : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	public IEnumerator RailStop(int targetNum, System.Action callback){
-		if(this.railAnimation.isPlaying)
-			this.railAnimation.Stop ();
+	public void RailStop(int targetNum, System.Action callback){
+		this.callBack = callback;
+		this.targetNum = this.pictureManager.StopStartNum(targetNum);
+		this.isStoping = true;
+	}
+	public IEnumerator RailStopping(int targetNum, System.Action callback){
+//		while(this.railAnimation.isPlaying){
+//			yield return null;
+//		}
 
-		while(this.pictureManager.StopStartNum(targetNum) != this.pictureManager.PictureNum){
-			yield return null;
-		}
-		this.isRolling = false;
+//		int target = this.pictureManager.StopStartNum(targetNum);
+//		while((target != this.pictureManager.PictureNum)  ||  this.anchorValue - (float)((int)this.anchorValue) > 0.3f){
+//			yield return null;
+//		}
+//		this.isRolling = false;
 		this.railAnimation.clip = this.anims[1];
 		this.originValue = (int)this.anchorValue;
 		this.anchorValue = 0;
@@ -102,7 +131,7 @@ public class Rail : MonoBehaviour {
 			yield return null;
 		}
 		
-		this.anchorValue = this.preAnchorValue = (this.anchorValue + this.originValue) % this.railPanels.Length;
+		this.anchorValue = (this.anchorValue + this.originValue);
 		this.originValue = 0;
 		if(callback != null) callback();
 		yield break;

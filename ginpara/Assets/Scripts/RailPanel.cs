@@ -33,4 +33,8 @@ public class RailPanel : MonoBehaviour {
 
 		this.preAnchorValue = anchorValue;
 	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public void SetAnchor(float value){
+	}
 }
