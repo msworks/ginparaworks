@@ -2,9 +2,6 @@
 using System.Collections;
 
 public class UITextureManager : MonoBehaviour {
-	//====================================================================================================
-	// Field
-	//====================================================================================================
 	[SerializeField] private UITexture uiTexture = null;
 	[SerializeField] private Texture[] textures = null;
 	public Animation textureAnimation = null;

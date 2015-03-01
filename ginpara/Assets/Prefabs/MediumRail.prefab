@@ -190,7 +190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 136, y: 0, z: 0}
+  m_LocalPosition: {x: 136, y: -9.53674316e-07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400008}
@@ -220,7 +220,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -68.3367615, y: -1.90734863e-06, z: 0}
+  m_LocalPosition: {x: -68.3367462, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400002}
@@ -232,7 +232,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67.9999924, y: 0, z: 0}
+  m_LocalPosition: {x: 68, y: -9.53674316e-07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400016}
@@ -257,7 +257,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -68.0000076, y: 0, z: 0}
+  m_LocalPosition: {x: -68, y: -9.53674316e-07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400014}
@@ -320,10 +320,13 @@ Animation:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 4797d2a2636a6c346a8e4e4250493864, type: 2}
+  m_Animation: {fileID: 7400000, guid: 302f972f83df15440be1d9386c3f0494, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 0b646ee3dc616dd488364d2bafe84ad6, type: 2}
   - {fileID: 7400000, guid: 4797d2a2636a6c346a8e4e4250493864, type: 2}
+  - {fileID: 7400000, guid: 76d46aec47fa00143a8c748104a8ff43, type: 2}
+  - {fileID: 7400000, guid: 2900da2f1223cee4c89bf9e038b1269f, type: 2}
+  - {fileID: 7400000, guid: 302f972f83df15440be1d9386c3f0494, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -452,7 +455,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.45652151
+  aspectRatio: 2.44680858
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -474,6 +477,9 @@ MonoBehaviour:
   anims:
   - {fileID: 7400000, guid: 0b646ee3dc616dd488364d2bafe84ad6, type: 2}
   - {fileID: 7400000, guid: 4797d2a2636a6c346a8e4e4250493864, type: 2}
+  - {fileID: 7400000, guid: 76d46aec47fa00143a8c748104a8ff43, type: 2}
+  - {fileID: 7400000, guid: 2900da2f1223cee4c89bf9e038b1269f, type: 2}
+  - {fileID: 7400000, guid: 302f972f83df15440be1d9386c3f0494, type: 2}
   stretchs:
   - {fileID: 11400032}
   - {fileID: 11400046}
@@ -733,8 +739,8 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 68
-  mHeight: 68
+  mWidth: 38
+  mHeight: 38
   mDepth: 8
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1011,8 +1017,8 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 68
-  mHeight: 68
+  mWidth: 38
+  mHeight: 38
   mDepth: 8
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1106,8 +1112,8 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 68
-  mHeight: 68
+  mWidth: 38
+  mHeight: 38
   mDepth: 8
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0

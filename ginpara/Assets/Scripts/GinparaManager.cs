@@ -17,14 +17,30 @@ public class GinparaManager : MonoBehaviour {
 	[SerializeField] private Rail topRail = null;
 	[SerializeField] private Rail mediumRail = null;
 	[SerializeField] private Rail belowRail = null;
+	[SerializeField] private UITexture background = null;
+	[SerializeField] private Texture[] backgroundTexture = null;
+	[SerializeField] private UIAnchor bubbleNoticeAnchor = null;
+	[SerializeField] private UIAnchor shoalNoticeAnchor = null;
+	[SerializeField] private UIAnchor coralReefNoticeAnchor = null;
+	[SerializeField] private UIAnchor marinNoticeWinAnchor = null;
+	[SerializeField] private TextureAnimation marinNoticeWinAnime = null;
+	[SerializeField] private UIAnchor marinNoticeLoseAnchor = null;
+	[SerializeField] private TextureAnimation marinNoticeLoseAnime = null;
+	private bool isBackgroundLoop = false;
 #if UNITY_EDITOR
 	private string orderCode = string.Empty;
 #endif
-
+	
+	//====================================================================================================
+	// Method
+	//====================================================================================================
 	void Start(){
 	}
-
+	
+	//----------------------------------------------------------------------------------------------------
 	void Update(){
+		if(this.isBackgroundLoop)
+			this.background.uvRect = new Rect(this.background.uvRect.x - (Time.deltaTime / 45f) + ((this.background.uvRect.x < -1) ? 1 : 0), 0, 1, 1);
 #if UNITY_EDITOR
 		if(Input.GetKeyUp(KeyCode.Alpha0)){
 			this.orderCode += "0";
@@ -65,9 +81,8 @@ public class GinparaManager : MonoBehaviour {
 		}
 #endif
 	}
-	//====================================================================================================
-	// Method
-	//====================================================================================================
+	
+	//----------------------------------------------------------------------------------------------------
 	/// <para>【第1引数】実行するパターンNo</para>
 	/// <para>【第2引数】実行完了後（またはループ開始時）に呼ばれるコールバック</para>
 	/// <para>【戻り値】発生したエラー内容を返します（普通は null が返ります）</para>
@@ -3293,35 +3308,46 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "101":
-			Debug.Log ("未実装");
+			this.isBackgroundLoop = true;
+			this.background.mainTexture = this.backgroundTexture[0];
+			if(callback != null) callback();
 			break;
 			
 		case "102":
-			Debug.Log ("未実装");
+			this.isBackgroundLoop = true;
+			this.background.mainTexture = this.backgroundTexture[1];
+			if(callback != null) callback();
 			break;
 			
 		case "103":
-			Debug.Log ("未実装");
+			this.isBackgroundLoop = true;
+			this.background.mainTexture = this.backgroundTexture[2];
+			if(callback != null) callback();
 			break;
 			
 		case "104":
-			Debug.Log ("未実装");
+			this.bubbleNoticeAnchor.transform.gameObject.SetActive (true);
+			StartCoroutine (this.BubbleNotice (callback));
 			break;
 			
 		case "105":
-			Debug.Log ("未実装");
+			this.shoalNoticeAnchor.transform.gameObject.SetActive (true);
+			StartCoroutine (this.ShoalNotice (callback));
 			break;
 			
 		case "106":
-			Debug.Log ("未実装");
+			this.coralReefNoticeAnchor.transform.gameObject.SetActive (true);
+			StartCoroutine (this.CoralReefNotice (callback));
 			break;
 			
 		case "107":
-			Debug.Log ("未実装");
+			this.marinNoticeWinAnchor.transform.gameObject.SetActive(true);
+			StartCoroutine (this.MarinNoticeWin(callback));
 			break;
 			
 		case "108":
-			Debug.Log ("未実装");
+			this.marinNoticeLoseAnchor.transform.gameObject.SetActive(true);
+			StartCoroutine (this.MarinNoticeLose(callback));
 			break;
 			
 		case "201":
@@ -3464,11 +3490,129 @@ public class GinparaManager : MonoBehaviour {
 
 		return errorCode;
 	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator BubbleNotice(System.Action callback){
+		float totalTime = 0;
+		while(totalTime < 1f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			float xValue = 0;
+			if(totalTime < 0.3f)
+				xValue = -0.03f;
+			else if(totalTime < 0.7f)
+				xValue = -0.14f;
+			else
+				xValue = -0.03f;
+				
+			this.bubbleNoticeAnchor.relativeOffset += new Vector2(time * xValue, time * 2f);
+			yield return null;
+		}
+		this.bubbleNoticeAnchor.relativeOffset = new Vector2(0, -1f);
+		this.bubbleNoticeAnchor.transform.gameObject.SetActive (false);
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator ShoalNotice(System.Action callback){
+		float totalTime = 0;
+		while(totalTime < 2f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			this.shoalNoticeAnchor.relativeOffset -= new Vector2(time * 1.5f, 0);
+			yield return null;
+		}
+		this.shoalNoticeAnchor.relativeOffset = new Vector2(1.5f, 0);
+		this.shoalNoticeAnchor.transform.gameObject.SetActive (false);
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator CoralReefNotice(System.Action callback){
+		float totalTime = 0;
+		while(totalTime < 2f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			this.coralReefNoticeAnchor.relativeOffset += new Vector2(0, time * 0.5f);
+			yield return null;
+		}
 
-    //----------------------------------------------------------------------------------------------------
-#if UNITY_EDITOR
+		while(this.mediumRail.IsAnimating)
+			yield return null;
+
+		totalTime = 0;
+		while(totalTime < 2f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			this.coralReefNoticeAnchor.relativeOffset -= new Vector2(0, time * 0.5f);
+			yield return null;
+		}
+
+		this.coralReefNoticeAnchor.relativeOffset = new Vector2(0, -1);
+		this.coralReefNoticeAnchor.transform.gameObject.SetActive (false);
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator MarinNoticeWin(System.Action callback){
+		float totalTime = 0;
+		while(totalTime < 2f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			this.marinNoticeWinAnchor.relativeOffset -= new Vector2(0, time * 1.5f);
+			yield return null;
+		}
+		
+		this.marinNoticeWinAnime.Play (null);
+		
+		while(this.marinNoticeWinAnime.IsAnimating)
+			yield return null;
+		
+		totalTime = 0;
+		while(totalTime < 2f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			this.marinNoticeWinAnchor.relativeOffset += new Vector2(0, time * 1.5f);
+			yield return null;
+		}
+		
+		this.marinNoticeWinAnchor.relativeOffset = new Vector2(0, 2);
+		this.marinNoticeWinAnchor.transform.gameObject.SetActive (false);
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator MarinNoticeLose(System.Action callback){
+		float totalTime = 0;
+		while(totalTime < 2f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			this.marinNoticeLoseAnchor.relativeOffset -= new Vector2(0, time * 1.5f);
+			yield return null;
+		}
+		
+		this.marinNoticeLoseAnime.Play (null);
+		
+		while(this.marinNoticeLoseAnime.IsAnimating)
+			yield return null;
+		
+		totalTime = 0;
+		while(totalTime < 1f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			this.marinNoticeLoseAnchor.relativeOffset -= new Vector2(0, time);
+			yield return null;
+		}
+		
+		this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 2);
+		this.marinNoticeLoseAnchor.transform.gameObject.SetActive (false);
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	#if UNITY_EDITOR
 	void OnGUI(){
 		GUILayout.Label ("パターンNoを入力（Enterで実行） : " + this.orderCode, GUILayout.Height (Screen.height / 5));
 	}
-#endif
+	#endif
 }
