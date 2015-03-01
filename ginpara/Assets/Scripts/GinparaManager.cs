@@ -17,7 +17,9 @@ public class GinparaManager : MonoBehaviour {
 	[SerializeField] private Rail topRail = null;
 	[SerializeField] private Rail mediumRail = null;
 	[SerializeField] private Rail belowRail = null;
+	[SerializeField] private UIAnchor railAreaAnchor = null;
 	[SerializeField] private UITexture background = null;
+	[SerializeField] private UIAnchor backgroundAnchor = null;
 	[SerializeField] private Texture[] backgroundTexture = null;
 	[SerializeField] private UIAnchor bubbleNoticeAnchor = null;
 	[SerializeField] private UIAnchor shoalNoticeAnchor = null;
@@ -26,7 +28,16 @@ public class GinparaManager : MonoBehaviour {
 	[SerializeField] private TextureAnimation marinNoticeWinAnime = null;
 	[SerializeField] private UIAnchor marinNoticeLoseAnchor = null;
 	[SerializeField] private TextureAnimation marinNoticeLoseAnime = null;
+	[SerializeField] private UIAnchor marinShakeHandAnchor = null;
+	[SerializeField] private TextureAnimation marinShakeHandAnime = null;
+	[SerializeField] private UIAnchor marinBrownAnchor = null;
+	[SerializeField] private TextureAnimation marinSBrownAnime = null;
+	[SerializeField] private UIAnchor loseBubbleAnchor = null;
+	[SerializeField] private TextureAnimation loseBubbleAnime = null;
+	[SerializeField] private UIAnchor lostStringAnchor = null;
+	[SerializeField] private TextureAnimation lostStringAnime = null;
 	private bool isBackgroundLoop = false;
+	private float deltaTime = 0;
 #if UNITY_EDITOR
 	private string orderCode = string.Empty;
 #endif
@@ -39,8 +50,13 @@ public class GinparaManager : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	void Update(){
-		if(this.isBackgroundLoop)
-			this.background.uvRect = new Rect(this.background.uvRect.x - (Time.deltaTime / 45f) + ((this.background.uvRect.x < -1) ? 1 : 0), 0, 1, 1);
+			this.deltaTime = Time.deltaTime;
+		if(this.isBackgroundLoop){
+			float value = this.backgroundAnchor.relativeOffset.x + (this.deltaTime / 22.5f);
+			if(value > 1) value -= 2;
+			this.backgroundAnchor.relativeOffset = new Vector2(value, this.backgroundAnchor.relativeOffset.y);
+		}
+//			this.background.uvRect = new Rect(this.background.uvRect.x - (Time.deltaTime / 45f) + ((this.background.uvRect.x < -1) ? 1 : 0), this.background.uvRect.y, 1, 1);
 #if UNITY_EDITOR
 		if(Input.GetKeyUp(KeyCode.Alpha0)){
 			this.orderCode += "0";
@@ -3309,19 +3325,25 @@ public class GinparaManager : MonoBehaviour {
 			
 		case "101":
 			this.isBackgroundLoop = true;
+			this.backgroundAnchor.relativeOffset = new Vector2(this.backgroundAnchor.relativeOffset.x, 0.5f);
 			this.background.mainTexture = this.backgroundTexture[0];
+			this.railAreaAnchor.relativeOffset = new Vector2(0, 0);
 			if(callback != null) callback();
 			break;
 			
 		case "102":
 			this.isBackgroundLoop = true;
+			this.backgroundAnchor.relativeOffset = new Vector2(this.backgroundAnchor.relativeOffset.x, 0.5f);
 			this.background.mainTexture = this.backgroundTexture[1];
+			this.railAreaAnchor.relativeOffset = new Vector2(0, 0);
 			if(callback != null) callback();
 			break;
 			
 		case "103":
 			this.isBackgroundLoop = true;
+			this.backgroundAnchor.relativeOffset = new Vector2(this.backgroundAnchor.relativeOffset.x, 0.5f);
 			this.background.mainTexture = this.backgroundTexture[2];
+			this.railAreaAnchor.relativeOffset = new Vector2(0, 0);
 			if(callback != null) callback();
 			break;
 			
@@ -3351,19 +3373,23 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "201":
-			Debug.Log ("未実装");
+			StartCoroutine (this.DisplayUpper (callback));
 			break;
 			
 		case "202":
-			Debug.Log ("未実装");
+			this.marinShakeHandAnchor.transform.gameObject.SetActive (true);
+			StartCoroutine (this.MarinShakeHand (callback));
 			break;
 			
 		case "203":
-			Debug.Log ("未実装");
+			this.marinBrownAnchor.transform.gameObject.SetActive (true);
+			this.loseBubbleAnchor.transform.gameObject.SetActive (true);
+			StartCoroutine(this.MarinBrown(callback));
 			break;
 			
 		case "204":
-			Debug.Log ("未実装");
+			this.lostStringAnchor.transform.gameObject.SetActive (true);
+			StartCoroutine(this.LostString(callback));
 			break;
 			
 		case "301":
@@ -3606,6 +3632,84 @@ public class GinparaManager : MonoBehaviour {
 		
 		this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 2);
 		this.marinNoticeLoseAnchor.transform.gameObject.SetActive (false);
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator DisplayUpper(System.Action callback){
+		float totalTime = 0;
+		while(totalTime < 5f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			float value = this.railAreaAnchor.relativeOffset.y - (this.deltaTime / 5f);
+			this.railAreaAnchor.relativeOffset = new Vector2(this.railAreaAnchor.relativeOffset.x ,value);
+			yield return null;
+		}
+
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator MarinShakeHand(System.Action callback){
+		float totalTime = 0;
+		while(totalTime < 2f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			this.marinShakeHandAnchor.relativeOffset -= new Vector2(0, time * 0.5f);
+			yield return null;
+		}
+		
+		this.marinShakeHandAnime.Play (null);
+		
+		while(this.marinShakeHandAnime.IsAnimating)
+			yield return null;
+		
+		this.marinShakeHandAnchor.relativeOffset = new Vector2(0, 0);
+		this.marinShakeHandAnchor.transform.gameObject.SetActive (false);
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator MarinBrown(System.Action callback){
+		this.marinSBrownAnime.Play (null);
+		this.loseBubbleAnime.Play (null);
+		
+		while(this.marinSBrownAnime.IsAnimating  ||  this.loseBubbleAnime.IsAnimating)
+			yield return null;
+		
+		float totalTime = 0;
+		while(totalTime < 2f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			this.loseBubbleAnchor.relativeOffset -= new Vector2(0, time * 0.5f);
+			this.marinBrownAnchor.relativeOffset -= new Vector2(0, time * 0.5f);
+			yield return null;
+		}
+		
+		this.marinBrownAnchor.relativeOffset = new Vector2(0, 0);
+		this.loseBubbleAnchor.relativeOffset = new Vector2(0, 0);
+		this.loseBubbleAnchor.transform.gameObject.SetActive (false);
+		this.marinBrownAnchor.transform.gameObject.SetActive (false);
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator LostString(System.Action callback){
+		this.lostStringAnime.Play (null);
+		
+		while(this.lostStringAnime.IsAnimating  ||  this.loseBubbleAnime.IsAnimating)
+			yield return null;
+		
+		float totalTime = 0;
+		while(totalTime < 2f){
+			float time = Time.deltaTime;
+			totalTime += time;
+			this.lostStringAnchor.relativeOffset -= new Vector2(0, time * 0.5f);
+			yield return null;
+		}
+		
+		this.lostStringAnchor.relativeOffset = new Vector2(0, 0);
+		this.lostStringAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
 	
