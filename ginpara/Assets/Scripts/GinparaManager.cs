@@ -14,6 +14,7 @@ public class GinparaManager : MonoBehaviour {
 	[SerializeField] private UITextureManager pull11 = null;
 	[SerializeField] private UITextureManager lampCircle2 = null;
 	[SerializeField] private UITextureManager lampCircle3 = null;
+	[SerializeField] private Rail topRail = null;
 #if UNITY_EDITOR
 	private string orderCode = string.Empty;
 #endif
@@ -72,7 +73,9 @@ public class GinparaManager : MonoBehaviour {
 		string errorCode = null;
 		switch (patternNo) {
 		case "1":
-			Debug.Log ("未実装");
+			StartCoroutine(this.topRail.RailStart(() => {
+				if(callback != null) callback();
+			}));
 			break;
 
 		case "2":

@@ -44,7 +44,7 @@ public class Rail : MonoBehaviour {
 		//tes
 		{
 			if(Input.GetMouseButtonDown(0)){
-				StartCoroutine (this.RailStart ());
+				StartCoroutine (this.RailStart (null));
 			}
 		}
 	}
@@ -66,7 +66,7 @@ public class Rail : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	private IEnumerator RailStart(){
+	public IEnumerator RailStart(System.Action callback){
 		if(this.railAnimation.isPlaying)
 			this.railAnimation.Stop ();
 
@@ -81,6 +81,7 @@ public class Rail : MonoBehaviour {
 		this.anchorValue = this.preAnchorValue = (this.anchorValue + this.originValue) % this.railPanels.Length;
 		this.originValue = 0;
 		this.isRolling = true;
+		if(callback != null) callback();
 		yield break;
 	}
 }
