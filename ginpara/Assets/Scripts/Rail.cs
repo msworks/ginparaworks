@@ -158,9 +158,29 @@ public class Rail : MonoBehaviour {
 		}
 		
 		this.ResetAnchor(targetNum);
-//		this.ResetAnchor(this.pictureManager.SuperReachStartNum(targetNum));
 		this.isRolling = false;
-		this.railAnimation.clip = this.anims[2];
+		this.railAnimation.clip = this.anims[3];
+		this.originValue = (int)this.anchorValue;
+		this.anchorValue = 0;
+		this.railAnimation.Play ();
+		while(this.railAnimation.isPlaying){
+			yield return null;
+		}
+		
+		this.anchorValue = (this.anchorValue + this.originValue);
+		this.originValue = 0;
+		if(callback != null) callback();
+		yield break;
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public IEnumerator RailVitaStop(int moveNum, System.Action callback){
+		while(this.railAnimation.isPlaying){
+			yield return null;
+		}
+		
+		this.isRolling = false;
+		this.railAnimation.clip = this.anims[3 + moveNum];
 		this.originValue = (int)this.anchorValue;
 		this.anchorValue = 0;
 		this.railAnimation.Play ();

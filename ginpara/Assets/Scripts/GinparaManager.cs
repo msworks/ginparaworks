@@ -74,10 +74,6 @@ public class GinparaManager : MonoBehaviour {
 	public string Order(string patternNo, System.Action callback = null){
 		string errorCode = null;
 		switch (patternNo) {
-		case "0":
-			this.Order("8-1");
-			break;
-
 		case "1":
 			StartCoroutine(this.topRail.RailStart(() => {
 				if(callback != null) callback();
@@ -697,1523 +693,2283 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "9-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "9-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "10-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "11-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "12-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "13-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "14-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "15-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "16-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "17-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "18-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "19-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "20-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "21-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "22-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "23-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "24-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "25-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "26-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "27-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-1":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-2":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-3":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-4":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-5":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-6":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-7":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-8":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-9":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-10":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-11":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-12":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-13":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-14":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-15":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-16":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-17":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-18":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "28-19":
-			Debug.Log ("未実装");
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+				if(callback != null) callback();
+			}));
 			break;
 			
 		case "29-1":
