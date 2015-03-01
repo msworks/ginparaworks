@@ -2489,7 +2489,7 @@ public class GinparaManager : MonoBehaviour {
 
 		default:
 			errorCode = "指定コードが間違えています";
-			Debug.LogError ("指定コードが間違えています");
+			Debug.LogWarning ("指定コードが間違えています");
 			break;
 		}
 
@@ -2499,7 +2499,7 @@ public class GinparaManager : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
 #if UNITY_EDITOR
 	void OnGUI(){
-		GUILayout.Label ("Order Code : " + this.orderCode, GUILayout.Height (Screen.height / 5));
+		GUILayout.Label ("パターンNoを入力（Enterで実行） : " + this.orderCode, GUILayout.Height (Screen.height / 5));
 	}
 #endif
 }
