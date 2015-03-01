@@ -4917,6 +4917,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 4797d2a2636a6c346a8e4e4250493864, type: 2}
   anchorValue: 0
   preAnchorValue: 0
+  isRolling: 0
 --- !u!1 &804774545
 GameObject:
   m_ObjectHideFlags: 0
@@ -8947,6 +8948,74 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400014, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
       propertyPath: updateAnchors
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400002, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400016, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400018, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400024, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400026, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400030, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400032, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400038, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400040, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400044, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400046, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400050, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400052, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400056, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400058, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: uiCamera
+      value: 
+      objectReference: {fileID: 82494824}
+    - target: {fileID: 11400012, guid: fe72cdd12bb8e1241843f46c8f0b817f, type: 2}
+      propertyPath: isTop
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
