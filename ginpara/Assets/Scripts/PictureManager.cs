@@ -18,8 +18,15 @@ public class PictureManager : MonoBehaviour {
 	[SerializeField] private List<Texture> picture8 = new List<Texture>();
 	[SerializeField] private List<Texture> picture9 = new List<Texture>();
 	[SerializeField] private List<Texture> picture10 = new List<Texture>();
+	[SerializeField] private float[] animeIntervalTime = null;
+	[SerializeField] private int[] animeStartNum = null;
+	[SerializeField] private int[] animeEndNum = null;	
+	private bool[] isAnime = new bool[11];
+	private float[] animeTimeElapsed = new float[11];
+	private int[] currentNum = new int[11];
 	private List<List<Texture>> pictures = new List<List<Texture>>();
-	[SerializeField] private int pictureNum = 1;
+	private int pictureNum = 1;
+	private List<RecodePanel> recodePanel = new List<RecodePanel>();
 
 	//====================================================================================================
 	// Property
@@ -53,7 +60,23 @@ public class PictureManager : MonoBehaviour {
 		this.pictures.Add (this.picture9);
 		this.pictures.Add (this.picture10);
 	}
-		
+	
+	//----------------------------------------------------------------------------------------------------
+	void Update(){
+		for(int i = 0; i < this.isAnime.Length; ++i){
+			if(this.isAnime[i]){
+				this.animeTimeElapsed[i] += Time.deltaTime;
+				if(this.animeTimeElapsed[i] > this.animeIntervalTime[i]){
+					this.animeTimeElapsed[i] = 0;
+					this.currentNum[i] = (this.currentNum[i] == this.animeEndNum[i]) ? this.animeStartNum[i] : this.currentNum[i] + 1;
+					foreach(RecodePanel recode in this.recodePanel){
+						if(recode.pictureNum == i) recode.railPanel.MainTexture = this.pictures[i][this.currentNum[i]];
+					}
+				}
+			}
+		}
+	}
+	
 	//----------------------------------------------------------------------------------------------------
 	public void SetPicture(int pictureNum, int patternNum){
 		if(pictureNum > this.pictures.Count  ||  patternNum > this.pictures[pictureNum].Count){
@@ -65,7 +88,7 @@ public class PictureManager : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	public Texture GetTexture(){
+	public Texture GetTexture(RailPanel railPanel){
 		int index = 0;
 		if(!this.isTop){
 			if(this.pictureNum == -10)
@@ -93,14 +116,19 @@ public class PictureManager : MonoBehaviour {
 			}
 		}
 
-		if(index > 0)
+		if(index > 0){
+			this.recodePanel.Add(new RecodePanel(index, railPanel));
+			if(this.recodePanel.Count > 4) this.recodePanel.RemoveAt(0);
 			return this.pictures[index][this.pictures[index].Count - 1];
-		else
+		} else {
+			this.recodePanel.Add(new RecodePanel(0, railPanel));
+			if(this.recodePanel.Count > 4) this.recodePanel.RemoveAt(0);
 			return this.pictures[0][this.pictures[0].Count - 1];
+		}
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	public Dictionary<int, Texture> Initialize(int pictureNum){
+	public Dictionary<int, Texture> Initialize(int pictureNum, RailPanel[] panelList){
 		if(pictureNum > this.pictures.Count){
 			Debug.LogError("指定範囲がオーバー！【指定値："+pictureNum+"】");
 			return null;
@@ -111,10 +139,14 @@ public class PictureManager : MonoBehaviour {
 		Dictionary<int, Texture> dic = new Dictionary<int, Texture>();
 		int index = this.pictureNum;
 
-		if(this.pictureNum > 0)
+		this.recodePanel.Clear ();
+		if(this.pictureNum > 0){
+			this.recodePanel.Add(new RecodePanel(pictureNum, panelList[0]));
 			dic.Add (0, this.pictures[this.pictureNum][this.pictures[this.pictureNum].Count - 1]);
-		else
+		} else {
+			this.recodePanel.Add(new RecodePanel(0, panelList[0]));
 			dic.Add (0, this.pictures[0][this.pictures[0].Count - 1]);
+		}
 
 		for(int i = 1; i < 4; ++i){
 			if(!this.isTop){
@@ -129,10 +161,13 @@ public class PictureManager : MonoBehaviour {
 					index = (index > 0) ? -index : -index - 1;
 			}
 			
-			if(index > 0)
+			if(index > 0){
+				this.recodePanel.Add(new RecodePanel(index, panelList[i]));
 				dic.Add (i, this.pictures[index][this.pictures[index].Count - 1]);
-			else
+			} else {
+				this.recodePanel.Add(new RecodePanel(0, panelList[i]));
 				dic.Add (i, this.pictures[0][this.pictures[0].Count - 1]);
+			}
 		}
 
 		return dic;
@@ -158,6 +193,38 @@ public class PictureManager : MonoBehaviour {
 				return -1;
 			else
 				return (targetNum > 0) ? -(targetNum + 2) : (-targetNum) + 1;
+		}
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public void StartAnime(int pictureNum){
+		this.isAnime[pictureNum] = true;
+		this.currentNum[pictureNum] = this.animeStartNum[pictureNum] - 1;
+		this.animeTimeElapsed[pictureNum] = 0;
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public void StopAnime(int pictureNum){
+		this.isAnime[pictureNum] = false;
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public void ChangePicture(int pictureNum, int patternNum){
+		this.StopAnime(pictureNum);
+		foreach(RecodePanel recode in this.recodePanel){
+			if(recode.pictureNum == pictureNum) recode.railPanel.MainTexture = this.pictures[pictureNum][patternNum];
+		}
+	}
+	
+	//====================================================================================================
+	// InnerClass
+	//====================================================================================================
+	private class RecodePanel{
+		public int pictureNum = 0;
+		public RailPanel railPanel = null;
+		public RecodePanel(int num, RailPanel panel){
+			this.pictureNum = num;
+			this.railPanel = panel;
 		}
 	}
 }

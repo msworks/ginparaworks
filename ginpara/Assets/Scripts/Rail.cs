@@ -45,7 +45,7 @@ public class Rail : MonoBehaviour {
 			this.railPanels [(this.railPanels.Length - 1) - i].Reset();
 		}
 		
-		Dictionary<int, Texture> dic = this.pictureManager.Initialize (pictureNum);
+		Dictionary<int, Texture> dic = this.pictureManager.Initialize (pictureNum, this.railPanels);
 		
 		foreach(RailPanel panel in this.railPanels){
 			panel.MainTexture = dic[(int)panel.Anchor.relativeOffset.x];
@@ -83,7 +83,7 @@ public class Rail : MonoBehaviour {
 			this.railPanels [(this.railPanels.Length - 1) - i].Anchor.relativeOffset = new Vector2 ((this.railPanels.Length - 1) - ((this.anchorValue + i) % this.railPanels.Length), 0);
 		}
 
-		Dictionary<int, Texture> dic = this.pictureManager.Initialize (pictureNum);
+		Dictionary<int, Texture> dic = this.pictureManager.Initialize (pictureNum, this.railPanels);
 
 		foreach(RailPanel panel in this.railPanels){
 			panel.MainTexture = dic[(int)panel.Anchor.relativeOffset.x];
@@ -193,5 +193,15 @@ public class Rail : MonoBehaviour {
 		this.originValue = 0;
 		if(callback != null) callback();
 		yield break;
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public void StartAnime(int pictureNum){
+		this.pictureManager.StartAnime (pictureNum);
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public void ChangePicture(int pictureNum, int patternNum){
+		this.pictureManager.ChangePicture(pictureNum, patternNum);
 	}
 }

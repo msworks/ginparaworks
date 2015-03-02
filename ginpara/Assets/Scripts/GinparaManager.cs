@@ -59,7 +59,6 @@ public class GinparaManager : MonoBehaviour {
 			if(value > 1) value -= 2;
 			this.backgroundAnchor.relativeOffset = new Vector2(value, this.backgroundAnchor.relativeOffset.y);
 		}
-//			this.background.uvRect = new Rect(this.background.uvRect.x - (Time.deltaTime / 45f) + ((this.background.uvRect.x < -1) ? 1 : 0), this.background.uvRect.y, 1, 1);
 #if UNITY_EDITOR
 		if(Input.GetKeyUp(KeyCode.Alpha0)){
 			this.orderCode += "0";
@@ -3007,323 +3006,343 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "29-1":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (1);
+			this.mediumRail.StartAnime (1);
+			this.belowRail.StartAnime (1);
 			break;
 			
 		case "29-2":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (1);
+			this.mediumRail.StartAnime (1);
+			this.belowRail.StartAnime (1);
 			break;
 			
 		case "29-3":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (1);
+			this.mediumRail.StartAnime (1);
+			this.belowRail.StartAnime (1);
 			break;
 			
 		case "29-4":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (1);
+			this.mediumRail.StartAnime (1);
+			this.belowRail.StartAnime (1);
 			break;
 			
 		case "29-5":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (1);
+			this.mediumRail.StartAnime (1);
+			this.belowRail.StartAnime (1);
 			break;
 			
 		case "30-1":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (2);
+			this.mediumRail.StartAnime (2);
+			this.belowRail.StartAnime (2);
 			break;
 			
 		case "30-2":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (2);
+			this.mediumRail.StartAnime (2);
+			this.belowRail.StartAnime (2);
 			break;
 			
 		case "30-3":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (2);
+			this.mediumRail.StartAnime (2);
+			this.belowRail.StartAnime (2);
 			break;
 			
 		case "30-4":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (2);
+			this.mediumRail.StartAnime (2);
+			this.belowRail.StartAnime (2);
 			break;
 			
 		case "30-5":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (2);
+			this.mediumRail.StartAnime (2);
+			this.belowRail.StartAnime (2);
 			break;
 			
 		case "31-1":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (3);
+			this.mediumRail.StartAnime (3);
+			this.belowRail.StartAnime (3);
 			break;
 			
 		case "31-2":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (3);
+			this.mediumRail.StartAnime (3);
+			this.belowRail.StartAnime (3);
 			break;
 			
 		case "31-3":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (3);
+			this.mediumRail.StartAnime (3);
+			this.belowRail.StartAnime (3);
 			break;
 			
 		case "31-4":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (3);
+			this.mediumRail.StartAnime (3);
+			this.belowRail.StartAnime (3);
 			break;
 			
 		case "31-5":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (3);
+			this.mediumRail.StartAnime (3);
+			this.belowRail.StartAnime (3);
 			break;
 			
 		case "32-1":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (4);
+			this.mediumRail.StartAnime (4);
+			this.belowRail.StartAnime (4);
 			break;
 			
 		case "32-2":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (4);
+			this.mediumRail.StartAnime (4);
+			this.belowRail.StartAnime (4);
 			break;
 			
 		case "32-3":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (4);
+			this.mediumRail.StartAnime (4);
+			this.belowRail.StartAnime (4);
 			break;
 			
 		case "32-4":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (4);
+			this.mediumRail.StartAnime (4);
+			this.belowRail.StartAnime (4);
 			break;
 			
 		case "32-5":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (4);
+			this.mediumRail.StartAnime (4);
+			this.belowRail.StartAnime (4);
 			break;
 			
 		case "33-1":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (5);
+			this.mediumRail.StartAnime (5);
+			this.belowRail.StartAnime (5);
 			break;
 			
 		case "33-2":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (5);
+			this.mediumRail.StartAnime (5);
+			this.belowRail.StartAnime (5);
 			break;
 			
 		case "33-3":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (5);
+			this.mediumRail.StartAnime (5);
+			this.belowRail.StartAnime (5);
 			break;
 			
 		case "33-4":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (5);
+			this.mediumRail.StartAnime (5);
+			this.belowRail.StartAnime (5);
 			break;
 			
 		case "33-5":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (5);
+			this.mediumRail.StartAnime (5);
+			this.belowRail.StartAnime (5);
 			break;
 			
 		case "34-1":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (6);
+			this.mediumRail.StartAnime (6);
+			this.belowRail.StartAnime (6);
 			break;
 			
 		case "34-2":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (6);
+			this.mediumRail.StartAnime (6);
+			this.belowRail.StartAnime (6);
 			break;
 			
 		case "34-3":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (6);
+			this.mediumRail.StartAnime (6);
+			this.belowRail.StartAnime (6);
 			break;
 			
 		case "34-4":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (6);
+			this.mediumRail.StartAnime (6);
+			this.belowRail.StartAnime (6);
 			break;
 			
 		case "34-5":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (6);
+			this.mediumRail.StartAnime (6);
+			this.belowRail.StartAnime (6);
 			break;
 			
 		case "35-1":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (7);
+			this.mediumRail.StartAnime (7);
+			this.belowRail.StartAnime (7);
 			break;
 			
 		case "35-2":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (7);
+			this.mediumRail.StartAnime (7);
+			this.belowRail.StartAnime (7);
 			break;
 			
 		case "35-3":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (7);
+			this.mediumRail.StartAnime (7);
+			this.belowRail.StartAnime (7);
 			break;
 			
 		case "35-4":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (7);
+			this.mediumRail.StartAnime (7);
+			this.belowRail.StartAnime (7);
 			break;
 			
 		case "35-5":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (7);
+			this.mediumRail.StartAnime (7);
+			this.belowRail.StartAnime (7);
 			break;
 			
 		case "36-1":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (8);
+			this.mediumRail.StartAnime (8);
+			this.belowRail.StartAnime (8);
 			break;
 			
 		case "36-2":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (8);
+			this.mediumRail.StartAnime (8);
+			this.belowRail.StartAnime (8);
 			break;
 			
 		case "36-3":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (8);
+			this.mediumRail.StartAnime (8);
+			this.belowRail.StartAnime (8);
 			break;
 			
 		case "36-4":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (8);
+			this.mediumRail.StartAnime (8);
+			this.belowRail.StartAnime (8);
 			break;
 			
 		case "36-5":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (8);
+			this.mediumRail.StartAnime (8);
+			this.belowRail.StartAnime (8);
 			break;
 			
 		case "37-1":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (9);
+			this.mediumRail.StartAnime (9);
+			this.belowRail.StartAnime (9);
 			break;
 			
 		case "37-2":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (9);
+			this.mediumRail.StartAnime (9);
+			this.belowRail.StartAnime (9);
 			break;
 			
 		case "37-3":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (9);
+			this.mediumRail.StartAnime (9);
+			this.belowRail.StartAnime (9);
 			break;
 			
 		case "37-4":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (9);
+			this.mediumRail.StartAnime (9);
+			this.belowRail.StartAnime (9);
 			break;
 			
 		case "37-5":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (9);
+			this.mediumRail.StartAnime (9);
+			this.belowRail.StartAnime (9);
 			break;
 			
 		case "38-1":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (10);
+			this.mediumRail.StartAnime (10);
+			this.belowRail.StartAnime (10);
 			break;
 			
 		case "38-2":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (10);
+			this.mediumRail.StartAnime (10);
+			this.belowRail.StartAnime (10);
 			break;
 			
 		case "38-3":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (10);
+			this.mediumRail.StartAnime (10);
+			this.belowRail.StartAnime (10);
 			break;
 			
 		case "38-4":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (10);
+			this.mediumRail.StartAnime (10);
+			this.belowRail.StartAnime (10);
 			break;
 			
 		case "38-5":
-			Debug.Log ("未実装");
+			this.topRail.StartAnime (10);
+			this.mediumRail.StartAnime (10);
+			this.belowRail.StartAnime (10);
 			break;
 			
 		case "39-1":
-			Debug.Log ("未実装");
-			break;
-			
-		case "39-2":
-			Debug.Log ("未実装");
-			break;
-			
-		case "39-3":
-			Debug.Log ("未実装");
+			this.topRail.ChangePicture (1, 2);
 			break;
 			
 		case "40-1":
-			Debug.Log ("未実装");
-			break;
-			
-		case "40-2":
-			Debug.Log ("未実装");
-			break;
-			
-		case "40-3":
-			Debug.Log ("未実装");
+			this.topRail.ChangePicture (2, 2);
 			break;
 			
 		case "41-1":
-			Debug.Log ("未実装");
-			break;
-			
-		case "41-2":
-			Debug.Log ("未実装");
-			break;
-			
-		case "41-3":
-			Debug.Log ("未実装");
+			this.topRail.ChangePicture (3, 2);
 			break;
 			
 		case "42-1":
-			Debug.Log ("未実装");
-			break;
-			
-		case "42-2":
-			Debug.Log ("未実装");
-			break;
-			
-		case "42-3":
-			Debug.Log ("未実装");
+			this.topRail.ChangePicture (4, 2);
 			break;
 			
 		case "43-1":
-			Debug.Log ("未実装");
-			break;
-			
-		case "43-2":
-			Debug.Log ("未実装");
-			break;
-			
-		case "43-3":
-			Debug.Log ("未実装");
+			this.topRail.ChangePicture (5, 2);
 			break;
 			
 		case "44-1":
-			Debug.Log ("未実装");
-			break;
-			
-		case "44-2":
-			Debug.Log ("未実装");
-			break;
-			
-		case "44-3":
-			Debug.Log ("未実装");
+			this.topRail.ChangePicture (6, 2);
 			break;
 			
 		case "45-1":
-			Debug.Log ("未実装");
-			break;
-			
-		case "45-2":
-			Debug.Log ("未実装");
-			break;
-			
-		case "45-3":
-			Debug.Log ("未実装");
+			this.topRail.ChangePicture (7, 2);
 			break;
 			
 		case "46-1":
-			Debug.Log ("未実装");
-			break;
-			
-		case "46-2":
-			Debug.Log ("未実装");
-			break;
-			
-		case "46-3":
-			Debug.Log ("未実装");
+			this.topRail.ChangePicture (8, 2);
 			break;
 			
 		case "47-1":
-			Debug.Log ("未実装");
-			break;
-			
-		case "47-2":
-			Debug.Log ("未実装");
-			break;
-			
-		case "47-3":
-			Debug.Log ("未実装");
+			this.topRail.ChangePicture (9, 2);
 			break;
 			
 		case "48-1":
-			Debug.Log ("未実装");
-			break;
-			
-		case "48-2":
-			Debug.Log ("未実装");
-			break;
-			
-		case "48-3":
-			Debug.Log ("未実装");
+			this.topRail.ChangePicture (10, 2);
 			break;
 			
 		case "101":

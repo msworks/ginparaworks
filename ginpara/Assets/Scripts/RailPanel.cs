@@ -28,7 +28,7 @@ public class RailPanel : MonoBehaviour {
 	void Update(){
 		float anchorValue = this.anchorPanel.relativeOffset.x;
 		if(anchorValue > this.preAnchorValue){
-			this.MainTexture = this.pictureManager.GetTexture ();
+			this.MainTexture = this.pictureManager.GetTexture (this);
 		}
 
 		this.preAnchorValue = anchorValue;
