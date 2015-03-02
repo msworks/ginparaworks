@@ -204,4 +204,7 @@ public class Rail : MonoBehaviour {
 	public void ChangePicture(int pictureNum, int patternNum){
 		this.pictureManager.ChangePicture(pictureNum, patternNum);
 	}
+	
+	//----------------------------------------------------------------------------------------------------
+	public int[] RecodePanelNum { get { return this.pictureManager.RecodePanelNum; } }
 }

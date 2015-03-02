@@ -32,6 +32,7 @@ public class PictureManager : MonoBehaviour {
 	// Property
 	//====================================================================================================
 	public int PictureNum { get { return this.pictureNum; } }
+	public int[] RecodePanelNum { get { return new int[4]{ this.recodePanel[0].pictureNum, this.recodePanel[1].pictureNum, this.recodePanel[2].pictureNum, this.recodePanel[3].pictureNum }; } }
 
 	//====================================================================================================
 	// Method

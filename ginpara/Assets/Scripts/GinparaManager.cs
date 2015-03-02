@@ -3579,6 +3579,15 @@ public class GinparaManager : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator CoralReefNotice(System.Action callback){
+		int[] top = this.topRail.RecodePanelNum;
+		int[] below = this.belowRail.RecodePanelNum;
+		float anchorX = 0;
+		if(top[0] != 0  &&  top[0] == below[0])
+			anchorX = -0.333f;
+		else if(top[2] != 0  &&  top[2] == below[2])
+			anchorX = 0.333f;
+		this.coralReefNoticeAnchor.relativeOffset = new Vector2(anchorX, this.coralReefNoticeAnchor.relativeOffset.y);
+
 		float totalTime = 0;
 		while(totalTime < 2f){
 			float time = Time.deltaTime;
