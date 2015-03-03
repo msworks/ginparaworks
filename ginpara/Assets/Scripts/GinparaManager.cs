@@ -39,6 +39,20 @@ public class GinparaManager : MonoBehaviour {
 	[SerializeField] private UIAnchor marinPeaceAnchor = null;
 	[SerializeField] private TextureAnimation marinPeaceAnime = null;
 	[SerializeField] private TextureAnimation rollBubble = null;
+	[SerializeField] private TextureAnimation bonusPicture = null;
+	[SerializeField] private UITexture bonusPictureNum = null;
+	[SerializeField] private GameObject bonusPictureBase = null;
+	[SerializeField] private UITexture bonusRound = null;
+	[SerializeField] private UITexture bonusRoundBase = null;
+	[SerializeField] private int picturePatternNum = 0;
+	[SerializeField] private Texture[] pictureTexture = null;
+	[SerializeField] private Texture[] roundtexture = null;
+	[SerializeField] private Texture[] numTexture = null;
+	private int roundCount = 0;
+	[SerializeField] private TextureAnimation marinFinishAnime = null;
+	[SerializeField] private UIAnchor marinFinishAnchor = null;
+	[SerializeField] private GameObject bonusFinishBackground = null;
+	[SerializeField] private GameObject bonusFinishLabel = null;
 	private bool isBackgroundLoop = false;
 	private float deltaTime = 0;
 #if UNITY_EDITOR
@@ -3347,6 +3361,7 @@ public class GinparaManager : MonoBehaviour {
 			
 		case "101":
 			this.isBackgroundLoop = true;
+			this.background.depth = -1;
 			this.backgroundAnchor.relativeOffset = new Vector2(this.backgroundAnchor.relativeOffset.x, 0.5f);
 			this.background.mainTexture = this.backgroundTexture[0];
 			this.railAreaAnchor.relativeOffset = new Vector2(0, 0);
@@ -3355,6 +3370,7 @@ public class GinparaManager : MonoBehaviour {
 			
 		case "102":
 			this.isBackgroundLoop = true;
+			this.background.depth = -1;
 			this.backgroundAnchor.relativeOffset = new Vector2(this.backgroundAnchor.relativeOffset.x, 0.5f);
 			this.background.mainTexture = this.backgroundTexture[1];
 			this.railAreaAnchor.relativeOffset = new Vector2(0, 0);
@@ -3363,6 +3379,7 @@ public class GinparaManager : MonoBehaviour {
 			
 		case "103":
 			this.isBackgroundLoop = true;
+			this.background.depth = -1;
 			this.backgroundAnchor.relativeOffset = new Vector2(this.backgroundAnchor.relativeOffset.x, 0.5f);
 			this.background.mainTexture = this.backgroundTexture[2];
 			this.railAreaAnchor.relativeOffset = new Vector2(0, 0);
@@ -3425,15 +3442,57 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "401":
-			Debug.Log ("未実装");
+			this.Order ("101", null);
+			this.background.depth = 300;
+			int[] topNum = this.topRail.RecodePanelNum;
+			int[] belowNum = this.belowRail.RecodePanelNum;
+			int bonusNum = 0;
+			if(topNum[0] == belowNum[0]  &&  topNum[0] != 0)
+				bonusNum = topNum[0];
+			else if( (topNum[1] == belowNum[1]  &&  topNum[1] != 0)  ||  topNum[0] == belowNum[2]  ||  topNum[2] == belowNum[0] )
+				bonusNum = topNum[1];
+			else if(topNum[2] == belowNum[2]  &&  topNum[2] != 0)
+				bonusNum = topNum[2];
+
+
+			this.bonusPicture.TextureList.Clear ();
+			for(int i = 0; i < this.picturePatternNum; ++i){
+				this.bonusPicture.TextureList.Add(this.pictureTexture[( (bonusNum - 1) * this.picturePatternNum) + i]);
+			}
+			this.bonusPictureNum.mainTexture = this.numTexture[bonusNum - 1];
+			this.bonusPicture.transform.gameObject.SetActive(true);
+			this.bonusPictureNum.transform.gameObject.SetActive(true);
+			this.bonusPictureBase.transform.gameObject.SetActive(true);
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusPicture.Play (null);
+			Debug.Log ("大当たりUIの準備が完了。ラウンド数を表示・更新するにはorderCode「402」を実行。");
+			if(callback != null) callback();
 			break;
 			
 		case "402":
-			Debug.Log ("未実装");
+			if(this.roundCount > this.roundtexture.Length - 1){
+				Debug.LogError("表示ラウンド数が超過しています！表示ラウンド数を減らすか、テクスチャを追加して下さい。");
+				break;
+			}
+			
+			this.bonusRound.mainTexture = this.roundtexture[this.roundCount];
+			this.bonusRound.transform.gameObject.SetActive(true);
+			this.roundCount = (this.roundCount < this.roundtexture.Length - 1) ? this.roundCount + 1 : 0;
+			Debug.Log ("Round ("+this.roundCount+") を表示します。次のRoundを表示する為には、もう一度 orderCode[402] を送信して下さい。");
+			if(callback != null) callback();
 			break;
 			
 		case "403":
-			Debug.Log ("未実装");
+			this.bonusPicture.transform.gameObject.SetActive (false);
+			this.bonusPictureNum.transform.gameObject.SetActive(false);
+			this.bonusPictureBase.transform.gameObject.SetActive (false);
+			this.bonusRound.transform.gameObject.SetActive(false);
+			this.bonusRoundBase.transform.gameObject.SetActive(false);
+			
+			this.bonusFinishBackground.transform.gameObject.SetActive (true);
+			this.bonusFinishLabel.transform.gameObject.SetActive (true);
+			this.marinFinishAnime.transform.gameObject.SetActive (true);
+			StartCoroutine (this.BonusFinish(callback));
 			break;
 			
 		case "501":
@@ -3772,6 +3831,22 @@ public class GinparaManager : MonoBehaviour {
 		if(callback != null) callback();
 	}
 	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator BonusFinish(System.Action callback){
+		this.marinFinishAnime.Play( ()=> {
+			this.marinFinishAnchor.relativeOffset = new Vector2(-0.35f, 0);
+			this.marinFinishAnime.transform.gameObject.SetActive (false);
+			this.bonusFinishBackground.transform.gameObject.SetActive (false);
+			this.bonusFinishLabel.transform.gameObject.SetActive (false);
+			if(callback != null) callback();
+		});
+		
+		while(this.marinFinishAnime.IsAnimating){
+			this.marinFinishAnchor.relativeOffset += new Vector2(this.deltaTime * 0.35f / 3f, 0);
+			yield return null;
+		}
+	}
+
 	//----------------------------------------------------------------------------------------------------
 	#if UNITY_EDITOR
 	void OnGUI(){
