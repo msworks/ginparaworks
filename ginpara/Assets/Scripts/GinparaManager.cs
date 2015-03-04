@@ -3450,10 +3450,14 @@ public class GinparaManager : MonoBehaviour {
 			int[] topNum = this.topRail.RecodePanelNum;
 			int[] belowNum = this.belowRail.RecodePanelNum;
 			int bonusNum = 0;
-			if(topNum[0] == belowNum[0]  &&  topNum[0] != 0)
-				bonusNum = topNum[0];
-			else if( (topNum[1] == belowNum[1]  &&  topNum[1] != 0)  ||  topNum[0] == belowNum[2]  ||  topNum[2] == belowNum[0] )
+			if(topNum[1] == belowNum[1]  &&  topNum[1] != 0)
 				bonusNum = topNum[1];
+			else if(topNum[2] == belowNum[2]  &&  topNum[2] != 0)
+				bonusNum = topNum[2];
+			else if(topNum[1] == belowNum[3]  &&  topNum[1] != 0)
+				bonusNum = topNum[1];
+			else if(topNum[3] == belowNum[1]  &&  topNum[3] != 0)
+				bonusNum = topNum[3];
 			else if(topNum[2] == belowNum[2]  &&  topNum[2] != 0)
 				bonusNum = topNum[2];
 
