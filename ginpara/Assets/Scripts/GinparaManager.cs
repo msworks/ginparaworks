@@ -3648,9 +3648,9 @@ public class GinparaManager : MonoBehaviour {
 		int[] top = this.topRail.RecodePanelNum;
 		int[] below = this.belowRail.RecodePanelNum;
 		float anchorX = 0;
-		if(top[0] != 0  &&  top[0] == below[0])
+		if(top[1] != 0  &&  top[1] == below[1])
 			anchorX = -0.333f;
-		else if(top[2] != 0  &&  top[2] == below[2])
+		else if(top[3] != 0  &&  top[3] == below[3])
 			anchorX = 0.333f;
 		this.coralReefNoticeAnchor.relativeOffset = new Vector2(anchorX, this.coralReefNoticeAnchor.relativeOffset.y);
 
