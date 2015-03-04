@@ -97,7 +97,7 @@ public class PictureManager : MonoBehaviour {
 			else
 				this.pictureNum = (this.pictureNum > 0) ? -this.pictureNum : -this.pictureNum + 1;
 
-			index = (this.pictureNum > 0) ? -(this.pictureNum + 1) : -this.pictureNum + 2;
+			index = (this.pictureNum > 0) ? this.pictureNum + 2 : this.pictureNum - 2;
 			if(index > 10) index = index - 10;
 			if(index < -10) index = index + 10;
 		} else {
@@ -106,24 +106,26 @@ public class PictureManager : MonoBehaviour {
 			else
 				this.pictureNum = (this.pictureNum > 0) ? -this.pictureNum : -this.pictureNum - 1;
 
-			if(this.pictureNum == -2)
+			if(this.pictureNum == 2)
 				index = 10;
-			else if(this.pictureNum == 1)
+			else if(this.pictureNum == -2)
 				index = -10;
-			else if(this.pictureNum == -1)
+			else if(this.pictureNum == 1)
 				index = 9;
+			else if(this.pictureNum == -1)
+				index = -9;
 			else{
-				index = (this.pictureNum > 0) ? -(this.pictureNum - 1) : -this.pictureNum - 2;
+				index = (this.pictureNum > 0) ? this.pictureNum - 2 : this.pictureNum + 2;
 			}
 		}
 
 		if(index > 0){
 			this.recodePanel.Add(new RecodePanel(index, railPanel));
-			if(this.recodePanel.Count > 4) this.recodePanel.RemoveAt(0);
+			if(this.recodePanel.Count > 6) this.recodePanel.RemoveAt(0);
 			return this.pictures[index][this.pictures[index].Count - 1];
 		} else {
 			this.recodePanel.Add(new RecodePanel(0, railPanel));
-			if(this.recodePanel.Count > 4) this.recodePanel.RemoveAt(0);
+			if(this.recodePanel.Count > 6) this.recodePanel.RemoveAt(0);
 			return this.pictures[0][this.pictures[0].Count - 1];
 		}
 	}
@@ -141,15 +143,37 @@ public class PictureManager : MonoBehaviour {
 		int index = this.pictureNum;
 
 		this.recodePanel.Clear ();
-		if(this.pictureNum > 0){
-			this.recodePanel.Add(new RecodePanel(pictureNum, panelList[0]));
-			dic.Add (0, this.pictures[this.pictureNum][this.pictures[this.pictureNum].Count - 1]);
+
+		if(!this.isTop){
+			if(index == 1)
+				index = -10;
+			else
+				index = (index > 0) ? -(index - 1) : -index;
+		}else {
+			if(index == 10)
+				index = -1;
+			else
+				index = (index > 0) ? -(index + 1) : -index;
+		}
+		if(index > 0){
+			this.recodePanel.Add(new RecodePanel(index, panelList[0]));
+			dic.Add (0, this.pictures[index][this.pictures[index].Count - 1]);
 		} else {
 			this.recodePanel.Add(new RecodePanel(0, panelList[0]));
 			dic.Add (0, this.pictures[0][this.pictures[0].Count - 1]);
 		}
 
-		for(int i = 1; i < 4; ++i){
+		if(this.pictureNum > 0){
+			this.recodePanel.Add(new RecodePanel(pictureNum, panelList[1]));
+			dic.Add (1, this.pictures[this.pictureNum][this.pictures[this.pictureNum].Count - 1]);
+		} else {
+			this.recodePanel.Add(new RecodePanel(0, panelList[1]));
+			dic.Add (1, this.pictures[0][this.pictures[0].Count - 1]);
+		}
+		
+		index = this.pictureNum;
+
+		for(int i = 2; i < 6; ++i){
 			if(!this.isTop){
 				if(index == -10)
 					index = 1;
@@ -200,6 +224,9 @@ public class PictureManager : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	public void StartAnime(int pictureNum){
 		this.isAnime[pictureNum] = true;
+		Debug.Log (pictureNum);
+		Debug.Log (this.currentNum[pictureNum]);
+		Debug.Log (this.animeStartNum[pictureNum] - 1);
 		this.currentNum[pictureNum] = this.animeStartNum[pictureNum] - 1;
 		this.animeTimeElapsed[pictureNum] = 0;
 	}

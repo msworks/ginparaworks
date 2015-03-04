@@ -64,31 +64,27 @@ public class Rail : MonoBehaviour {
 			}
 			this.preAnchorValue = this.anchorValue + this.originValue;
 		}
-
-		if(this.isRolling  &&  this.anchorValue > 4f)
+		if(this.isRolling  &&  this.anchorValue > 5f)
 			this.anchorValue = this.preAnchorValue = 0;
-
-		//tes
-		{
-			if(Input.GetMouseButtonDown(0)){
-//				StartCoroutine (this.RailStop (-8, null));
-			}
-		}
 	}
 
     //----------------------------------------------------------------------------------------------------
 	void Initialize(int pictureNum){
 		this.anchorValue = this.preAnchorValue = 0;
-		for (int i = 0; i < this.railPanels.Length; ++i) {
-			this.railPanels [(this.railPanels.Length - 1) - i].Anchor.relativeOffset = new Vector2 ((this.railPanels.Length - 1) - ((this.anchorValue + i) % this.railPanels.Length), 0);
-		}
 
+		this.railPanels[0].Anchor.relativeOffset = new Vector2(0, 0);
+		this.railPanels[1].Anchor.relativeOffset = new Vector2(1, 0);
+		this.railPanels[2].Anchor.relativeOffset = new Vector2(2, 0);
+		this.railPanels[3].Anchor.relativeOffset = new Vector2(3, 0);
+		this.railPanels[4].Anchor.relativeOffset = new Vector2(4, 0);
+		this.railPanels[5].Anchor.relativeOffset = new Vector2(5, 0);
+		
 		Dictionary<int, Texture> dic = this.pictureManager.Initialize (pictureNum, this.railPanels);
-
+		
 		foreach(RailPanel panel in this.railPanels){
 			panel.MainTexture = dic[(int)panel.Anchor.relativeOffset.x];
 		}
-
+		
 		Debug.Log (this.gameObject.name+"を"+pictureNum.ToString()+"で初期化");
 	}
 	
