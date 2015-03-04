@@ -51,7 +51,9 @@ public class TextureAnimation : MonoBehaviour {
 			yield return null;
 		}
 
+		this.currentNum = 0;
 		this.isAnimating = false;
+		this.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
 }

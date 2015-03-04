@@ -36,6 +36,7 @@ public class GinparaManager : MonoBehaviour {
 	[SerializeField] private TextureAnimation loseBubbleAnime = null;
 	[SerializeField] private UIAnchor lostStringAnchor = null;
 	[SerializeField] private TextureAnimation lostStringAnime = null;
+	[SerializeField] private TextureAnimation luckyStringAnime = null;
 	[SerializeField] private UIAnchor marinPeaceAnchor = null;
 	[SerializeField] private TextureAnimation marinPeaceAnime = null;
 	[SerializeField] private TextureAnimation rollBubble = null;
@@ -3433,12 +3434,14 @@ public class GinparaManager : MonoBehaviour {
 			
 		case "301":
 			this.marinPeaceAnchor.transform.gameObject.SetActive (true);
+			this.rollBubble.transform.gameObject.SetActive (true);
 			StartCoroutine(this.MarinPeace(callback));
+			StartCoroutine(this.RollBubble(callback));
 			break;
 			
 		case "302":
-			this.rollBubble.transform.gameObject.SetActive (true);
-			StartCoroutine(this.RollBubble(callback));
+			this.luckyStringAnime.transform.gameObject.SetActive (true);
+			this.luckyStringAnime.Play(null);
 			break;
 			
 		case "401":
