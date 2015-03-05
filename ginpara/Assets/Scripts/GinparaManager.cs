@@ -6,54 +6,63 @@ public class GinparaManager : MonoBehaviour {
 	//====================================================================================================
 	// Field
 	//====================================================================================================
-	[SerializeField] private UITextureManager back = null;
-	[SerializeField] private UITextureManager lamp1 = null;
-	[SerializeField] private UITextureManager lamp6 = null;
-	[SerializeField] private UITextureManager lamp7 = null;
-	[SerializeField] private UITextureManager lamp8 = null;
-	[SerializeField] private UITextureManager pull11 = null;
-	[SerializeField] private UITextureManager lampCircle2 = null;
-	[SerializeField] private UITextureManager lampCircle3 = null;
-	[SerializeField] private Rail topRail = null;
-	[SerializeField] private Rail mediumRail = null;
-	[SerializeField] private Rail belowRail = null;
-	[SerializeField] private UIAnchor railAreaAnchor = null;
-	[SerializeField] private UITexture background = null;
-	[SerializeField] private UIAnchor backgroundAnchor = null;
-	[SerializeField] private Texture[] backgroundTexture = null;
-	[SerializeField] private UIAnchor bubbleNoticeAnchor = null;
-	[SerializeField] private UIAnchor shoalNoticeAnchor = null;
-	[SerializeField] private UIAnchor coralReefNoticeAnchor = null;
-	[SerializeField] private UIAnchor marinNoticeWinAnchor = null;
-	[SerializeField] private TextureAnimation marinNoticeWinAnime = null;
-	[SerializeField] private UIAnchor marinNoticeLoseAnchor = null;
-	[SerializeField] private TextureAnimation marinNoticeLoseAnime = null;
-	[SerializeField] private UIAnchor marinShakeHandAnchor = null;
-	[SerializeField] private TextureAnimation marinShakeHandAnime = null;
-	[SerializeField] private UIAnchor marinBrownAnchor = null;
-	[SerializeField] private TextureAnimation marinSBrownAnime = null;
-	[SerializeField] private UIAnchor loseBubbleAnchor = null;
-	[SerializeField] private TextureAnimation loseBubbleAnime = null;
-	[SerializeField] private UIAnchor lostStringAnchor = null;
-	[SerializeField] private TextureAnimation lostStringAnime = null;
-	[SerializeField] private TextureAnimation luckyStringAnime = null;
-	[SerializeField] private UIAnchor marinPeaceAnchor = null;
-	[SerializeField] private TextureAnimation marinPeaceAnime = null;
-	[SerializeField] private TextureAnimation rollBubble = null;
-	[SerializeField] private TextureAnimation bonusPicture = null;
-	[SerializeField] private UITexture bonusPictureNum = null;
-	[SerializeField] private GameObject bonusPictureBase = null;
-	[SerializeField] private UITexture bonusRound = null;
-	[SerializeField] private UITexture bonusRoundBase = null;
-	[SerializeField] private int picturePatternNum = 0;
-	[SerializeField] private Texture[] pictureTexture = null;
-	[SerializeField] private Texture[] roundtexture = null;
-	[SerializeField] private Texture[] numTexture = null;
-	private int roundCount = 0;
-	[SerializeField] private TextureAnimation marinFinishAnime = null;
-	[SerializeField] private UIAnchor marinFinishAnchor = null;
-	[SerializeField] private GameObject bonusFinishBackground = null;
-	[SerializeField] private GameObject bonusFinishLabel = null;
+	public UITextureManager back = null;
+	public UITextureManager lamp1 = null;
+	public UITextureManager lamp6 = null;
+	public UITextureManager lamp7 = null;
+	public UITextureManager lamp8 = null;
+	public UITextureManager pull11 = null;
+	public UITextureManager lampCircle2 = null;
+	public UITextureManager lampCircle3 = null;
+	public Rail topRail = null;
+	public Rail mediumRail = null;
+	public Rail belowRail = null;
+	public UIAnchor railAreaAnchor = null;
+	public UITexture background = null;
+	public UIAnchor backgroundAnchor = null;
+	public Texture[] backgroundTexture = null;
+	public UIAnchor bubbleNoticeAnchor = null;
+	public UIAnchor shoalNoticeAnchor = null;
+	public UIAnchor coralReefNoticeAnchor = null;
+	public UIAnchor marinNoticeCallAnchor = null;
+	public TextureAnimation marinNoticeCallAnime = null;
+	public UIAnchor marinNoticeWinAnchor = null;
+	public TextureAnimation marinNoticeWinAnime = null;
+	public UIAnchor marinNoticeLoseAnchor = null;
+	public TextureAnimation marinNoticeLoseAnime = null;
+	public UIAnchor marinShakeHandAnchor = null;
+	public TextureAnimation marinShakeHandAnime = null;
+	public UIAnchor marinBrownAnchor = null;
+	public TextureAnimation marinSBrownAnime = null;
+	public UIAnchor loseBubbleAnchor = null;
+	public TextureAnimation loseBubbleAnime = null;
+	public UIAnchor lostStringAnchor = null;
+	public TextureAnimation lostStringAnime = null;
+	public TextureAnimation luckyStringAnime = null;
+	public UIAnchor marinPeaceAnchor = null;
+	public TextureAnimation marinPeaceAnime = null;
+	public TextureAnimation rollBubble = null;
+	public TextureAnimation bonusPicture = null;
+	public UITexture bonusPictureNum = null;
+	public GameObject bonusPictureBase = null;
+	public UITexture bonusRound = null;
+	public UITexture bonusRoundBase = null;
+	public List<Texture> picture1 = null;
+	public List<Texture> picture2	 = null;
+	public List<Texture> picture3 = null;
+	public List<Texture> picture4 = null;
+	public List<Texture> picture5 = null;
+	public List<Texture> picture6 = null;
+	public List<Texture> picture7 = null;
+	public List<Texture> picture8 = null;
+	public List<Texture> picture9 = null;
+	public List<Texture> picture10 = null;
+	public Texture[] roundtexture = null;
+	public Texture[] numTexture = null;
+	public TextureAnimation marinFinishAnime = null;
+	public UIAnchor marinFinishAnchor = null;
+	public GameObject bonusFinishBackground = null;
+	public GameObject bonusFinishLabel = null;
 	private bool isBackgroundLoop = false;
 	private float deltaTime = 0;
 #if UNITY_EDITOR
@@ -3021,343 +3030,163 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "29-1":
-			this.topRail.StartAnime (1);
-			this.mediumRail.StartAnime (1);
-			this.belowRail.StartAnime (1);
-			break;
-			
 		case "29-2":
-			this.topRail.StartAnime (1);
-			this.mediumRail.StartAnime (1);
-			this.belowRail.StartAnime (1);
-			break;
-			
 		case "29-3":
-			this.topRail.StartAnime (1);
-			this.mediumRail.StartAnime (1);
-			this.belowRail.StartAnime (1);
-			break;
-			
 		case "29-4":
-			this.topRail.StartAnime (1);
-			this.mediumRail.StartAnime (1);
-			this.belowRail.StartAnime (1);
-			break;
-			
 		case "29-5":
-			this.topRail.StartAnime (1);
-			this.mediumRail.StartAnime (1);
-			this.belowRail.StartAnime (1);
+			this.topRail.ChangeHitPicture(1);
+			this.mediumRail.ChangeHitPicture(1);
+			this.belowRail.ChangeHitPicture(1);
 			break;
 			
 		case "30-1":
-			this.topRail.StartAnime (2);
-			this.mediumRail.StartAnime (2);
-			this.belowRail.StartAnime (2);
-			break;
-			
 		case "30-2":
-			this.topRail.StartAnime (2);
-			this.mediumRail.StartAnime (2);
-			this.belowRail.StartAnime (2);
-			break;
-			
 		case "30-3":
-			this.topRail.StartAnime (2);
-			this.mediumRail.StartAnime (2);
-			this.belowRail.StartAnime (2);
-			break;
-			
 		case "30-4":
-			this.topRail.StartAnime (2);
-			this.mediumRail.StartAnime (2);
-			this.belowRail.StartAnime (2);
-			break;
-			
 		case "30-5":
-			this.topRail.StartAnime (2);
-			this.mediumRail.StartAnime (2);
-			this.belowRail.StartAnime (2);
+			this.topRail.ChangeHitPicture(2);
+			this.mediumRail.ChangeHitPicture(2);
+			this.belowRail.ChangeHitPicture(2);
 			break;
 			
 		case "31-1":
-			this.topRail.StartAnime (3);
-			this.mediumRail.StartAnime (3);
-			this.belowRail.StartAnime (3);
-			break;
-			
 		case "31-2":
-			this.topRail.StartAnime (3);
-			this.mediumRail.StartAnime (3);
-			this.belowRail.StartAnime (3);
-			break;
-			
 		case "31-3":
-			this.topRail.StartAnime (3);
-			this.mediumRail.StartAnime (3);
-			this.belowRail.StartAnime (3);
-			break;
-			
 		case "31-4":
-			this.topRail.StartAnime (3);
-			this.mediumRail.StartAnime (3);
-			this.belowRail.StartAnime (3);
-			break;
-			
 		case "31-5":
-			this.topRail.StartAnime (3);
-			this.mediumRail.StartAnime (3);
-			this.belowRail.StartAnime (3);
+			this.topRail.ChangeHitPicture(3);
+			this.mediumRail.ChangeHitPicture(3);
+			this.belowRail.ChangeHitPicture(3);
 			break;
 			
 		case "32-1":
-			this.topRail.StartAnime (4);
-			this.mediumRail.StartAnime (4);
-			this.belowRail.StartAnime (4);
-			break;
-			
 		case "32-2":
-			this.topRail.StartAnime (4);
-			this.mediumRail.StartAnime (4);
-			this.belowRail.StartAnime (4);
-			break;
-			
 		case "32-3":
-			this.topRail.StartAnime (4);
-			this.mediumRail.StartAnime (4);
-			this.belowRail.StartAnime (4);
-			break;
-			
 		case "32-4":
-			this.topRail.StartAnime (4);
-			this.mediumRail.StartAnime (4);
-			this.belowRail.StartAnime (4);
-			break;
-			
 		case "32-5":
-			this.topRail.StartAnime (4);
-			this.mediumRail.StartAnime (4);
-			this.belowRail.StartAnime (4);
+			this.topRail.ChangeHitPicture(4);
+			this.mediumRail.ChangeHitPicture(4);
+			this.belowRail.ChangeHitPicture(4);
 			break;
 			
 		case "33-1":
-			this.topRail.StartAnime (5);
-			this.mediumRail.StartAnime (5);
-			this.belowRail.StartAnime (5);
-			break;
-			
 		case "33-2":
-			this.topRail.StartAnime (5);
-			this.mediumRail.StartAnime (5);
-			this.belowRail.StartAnime (5);
-			break;
-			
 		case "33-3":
-			this.topRail.StartAnime (5);
-			this.mediumRail.StartAnime (5);
-			this.belowRail.StartAnime (5);
-			break;
-			
 		case "33-4":
-			this.topRail.StartAnime (5);
-			this.mediumRail.StartAnime (5);
-			this.belowRail.StartAnime (5);
-			break;
-			
 		case "33-5":
-			this.topRail.StartAnime (5);
-			this.mediumRail.StartAnime (5);
-			this.belowRail.StartAnime (5);
+			this.topRail.ChangeHitPicture(5);
+			this.mediumRail.ChangeHitPicture(5);
+			this.belowRail.ChangeHitPicture(5);
 			break;
 			
 		case "34-1":
-			this.topRail.StartAnime (6);
-			this.mediumRail.StartAnime (6);
-			this.belowRail.StartAnime (6);
-			break;
-			
 		case "34-2":
-			this.topRail.StartAnime (6);
-			this.mediumRail.StartAnime (6);
-			this.belowRail.StartAnime (6);
-			break;
-			
 		case "34-3":
-			this.topRail.StartAnime (6);
-			this.mediumRail.StartAnime (6);
-			this.belowRail.StartAnime (6);
-			break;
-			
 		case "34-4":
-			this.topRail.StartAnime (6);
-			this.mediumRail.StartAnime (6);
-			this.belowRail.StartAnime (6);
-			break;
-			
 		case "34-5":
-			this.topRail.StartAnime (6);
-			this.mediumRail.StartAnime (6);
-			this.belowRail.StartAnime (6);
+			this.topRail.ChangeHitPicture(6);
+			this.mediumRail.ChangeHitPicture(6);
+			this.belowRail.ChangeHitPicture(6);
 			break;
 			
 		case "35-1":
-			this.topRail.StartAnime (7);
-			this.mediumRail.StartAnime (7);
-			this.belowRail.StartAnime (7);
-			break;
-			
 		case "35-2":
-			this.topRail.StartAnime (7);
-			this.mediumRail.StartAnime (7);
-			this.belowRail.StartAnime (7);
-			break;
-			
 		case "35-3":
-			this.topRail.StartAnime (7);
-			this.mediumRail.StartAnime (7);
-			this.belowRail.StartAnime (7);
-			break;
-			
 		case "35-4":
-			this.topRail.StartAnime (7);
-			this.mediumRail.StartAnime (7);
-			this.belowRail.StartAnime (7);
-			break;
-			
 		case "35-5":
-			this.topRail.StartAnime (7);
-			this.mediumRail.StartAnime (7);
-			this.belowRail.StartAnime (7);
+			this.topRail.ChangeHitPicture(7);
+			this.mediumRail.ChangeHitPicture(7);
+			this.belowRail.ChangeHitPicture(7);
 			break;
 			
 		case "36-1":
-			this.topRail.StartAnime (8);
-			this.mediumRail.StartAnime (8);
-			this.belowRail.StartAnime (8);
-			break;
-			
 		case "36-2":
-			this.topRail.StartAnime (8);
-			this.mediumRail.StartAnime (8);
-			this.belowRail.StartAnime (8);
-			break;
-			
 		case "36-3":
-			this.topRail.StartAnime (8);
-			this.mediumRail.StartAnime (8);
-			this.belowRail.StartAnime (8);
-			break;
-			
 		case "36-4":
-			this.topRail.StartAnime (8);
-			this.mediumRail.StartAnime (8);
-			this.belowRail.StartAnime (8);
-			break;
-			
 		case "36-5":
-			this.topRail.StartAnime (8);
-			this.mediumRail.StartAnime (8);
-			this.belowRail.StartAnime (8);
+			this.topRail.ChangeHitPicture(8);
+			this.mediumRail.ChangeHitPicture(8);
+			this.belowRail.ChangeHitPicture(8);
 			break;
 			
 		case "37-1":
-			this.topRail.StartAnime (9);
-			this.mediumRail.StartAnime (9);
-			this.belowRail.StartAnime (9);
-			break;
-			
 		case "37-2":
-			this.topRail.StartAnime (9);
-			this.mediumRail.StartAnime (9);
-			this.belowRail.StartAnime (9);
-			break;
-			
 		case "37-3":
-			this.topRail.StartAnime (9);
-			this.mediumRail.StartAnime (9);
-			this.belowRail.StartAnime (9);
-			break;
-			
 		case "37-4":
-			this.topRail.StartAnime (9);
-			this.mediumRail.StartAnime (9);
-			this.belowRail.StartAnime (9);
-			break;
-			
 		case "37-5":
-			this.topRail.StartAnime (9);
-			this.mediumRail.StartAnime (9);
-			this.belowRail.StartAnime (9);
+			this.topRail.ChangeHitPicture(9);
+			this.mediumRail.ChangeHitPicture(9);
+			this.belowRail.ChangeHitPicture(9);
 			break;
 			
 		case "38-1":
-			this.topRail.StartAnime (10);
-			this.mediumRail.StartAnime (10);
-			this.belowRail.StartAnime (10);
-			break;
-			
 		case "38-2":
-			this.topRail.StartAnime (10);
-			this.mediumRail.StartAnime (10);
-			this.belowRail.StartAnime (10);
-			break;
-			
 		case "38-3":
-			this.topRail.StartAnime (10);
-			this.mediumRail.StartAnime (10);
-			this.belowRail.StartAnime (10);
-			break;
-			
 		case "38-4":
-			this.topRail.StartAnime (10);
-			this.mediumRail.StartAnime (10);
-			this.belowRail.StartAnime (10);
-			break;
-			
 		case "38-5":
-			this.topRail.StartAnime (10);
-			this.mediumRail.StartAnime (10);
-			this.belowRail.StartAnime (10);
+			this.topRail.ChangeHitPicture(10);
+			this.mediumRail.ChangeHitPicture(10);
+			this.belowRail.ChangeHitPicture(10);
 			break;
-			
+
 		case "39-1":
-			this.topRail.ChangePicture (1, 2);
+			this.topRail.StartAnime (1);
+			this.mediumRail.StartAnime (1);
+			this.belowRail.StartAnime (1);
 			break;
 			
 		case "40-1":
-			this.topRail.ChangePicture (2, 2);
+			this.topRail.StartAnime (2);
+			this.mediumRail.StartAnime (2);
+			this.belowRail.StartAnime (2);
 			break;
 			
 		case "41-1":
-			this.topRail.ChangePicture (3, 2);
+			this.topRail.StartAnime (3);
+			this.mediumRail.StartAnime (3);
+			this.belowRail.StartAnime (3);
 			break;
 			
 		case "42-1":
-			this.topRail.ChangePicture (4, 2);
+			this.topRail.StartAnime (4);
+			this.mediumRail.StartAnime (4);
+			this.belowRail.StartAnime (4);
 			break;
 			
 		case "43-1":
-			this.topRail.ChangePicture (5, 2);
+			this.topRail.StartAnime (5);
+			this.mediumRail.StartAnime (5);
+			this.belowRail.StartAnime (5);
 			break;
 			
 		case "44-1":
-			this.topRail.ChangePicture (6, 2);
+			this.topRail.StartAnime (6);
+			this.mediumRail.StartAnime (6);
+			this.belowRail.StartAnime (6);
 			break;
 			
 		case "45-1":
-			this.topRail.ChangePicture (7, 2);
+			this.topRail.StartAnime (7);
+			this.mediumRail.StartAnime (7);
+			this.belowRail.StartAnime (7);
 			break;
 			
 		case "46-1":
-			this.topRail.ChangePicture (8, 2);
+			this.topRail.StartAnime (8);
+			this.mediumRail.StartAnime (8);
+			this.belowRail.StartAnime (8);
 			break;
 			
 		case "47-1":
-			this.topRail.ChangePicture (9, 2);
+			this.topRail.StartAnime (9);
+			this.mediumRail.StartAnime (9);
+			this.belowRail.StartAnime (9);
 			break;
 			
 		case "48-1":
-			this.topRail.ChangePicture (10, 2);
+			this.topRail.StartAnime (10);
+			this.mediumRail.StartAnime (10);
+			this.belowRail.StartAnime (10);
 			break;
 			
 		case "101":
@@ -3397,19 +3226,51 @@ public class GinparaManager : MonoBehaviour {
 			StartCoroutine (this.ShoalNotice (callback));
 			break;
 			
-		case "106":
+		case "106-1":
 			this.coralReefNoticeAnchor.transform.gameObject.SetActive (true);
-			StartCoroutine (this.CoralReefNotice (callback));
+			StartCoroutine (this.CoralReefNoticeIN (callback));
 			break;
 			
-		case "107":
+		case "106-2":
+			this.coralReefNoticeAnchor.transform.gameObject.SetActive (true);
+			StartCoroutine (this.CoralReefNoticeOUT (callback));
+			break;
+			
+		case "107-1":
+			this.marinNoticeCallAnchor.transform.gameObject.SetActive(true);
+			StartCoroutine (this.MarinNoticeIN(callback));
+			break;
+			
+		case "107-2":
+			this.marinNoticeCallAnchor.transform.gameObject.SetActive(true);
+			this.marinNoticeCallAnime.Play (null);
+			if(callback != null) callback();
+			break;
+			
+		case "107-3":
 			this.marinNoticeWinAnchor.transform.gameObject.SetActive(true);
-			StartCoroutine (this.MarinNoticeWin(callback));
+			this.marinNoticeCallAnime.StopAllCoroutines ();
+			this.marinNoticeCallAnchor.relativeOffset = new Vector2(0, 2);
+			this.marinNoticeCallAnchor.transform.gameObject.SetActive (false);
+			this.marinNoticeWinAnime.Play (callback);
 			break;
 			
-		case "108":
+		case "107-4":
+			this.marinNoticeWinAnchor.transform.gameObject.SetActive(true);
+			StartCoroutine (this.MarinNoticeUpOUT(callback));
+			break;
+			
+		case "108-1":
 			this.marinNoticeLoseAnchor.transform.gameObject.SetActive(true);
-			StartCoroutine (this.MarinNoticeLose(callback));
+			this.marinNoticeCallAnime.StopAllCoroutines ();
+			this.marinNoticeCallAnchor.relativeOffset = new Vector2(0, 2);
+			this.marinNoticeCallAnchor.transform.gameObject.SetActive (false);
+			this.marinNoticeLoseAnime.Play (callback);
+			break;
+			
+		case "108-2":
+			this.marinNoticeLoseAnchor.transform.gameObject.SetActive(true);
+			StartCoroutine (this.MarinNoticeDownOUT(callback));
 			break;
 			
 		case "201":
@@ -3444,48 +3305,275 @@ public class GinparaManager : MonoBehaviour {
 			this.luckyStringAnime.Play(null);
 			break;
 			
-		case "401":
-			this.Order ("101", null);
-			this.background.depth = 300;
-			int[] topNum = this.topRail.RecodePanelNum;
-			int[] belowNum = this.belowRail.RecodePanelNum;
-			int bonusNum = 0;
-			if(topNum[1] == belowNum[1]  &&  topNum[1] != 0)
-				bonusNum = topNum[1];
-			else if(topNum[2] == belowNum[2]  &&  topNum[2] != 0)
-				bonusNum = topNum[2];
-			else if(topNum[1] == belowNum[3]  &&  topNum[1] != 0)
-				bonusNum = topNum[1];
-			else if(topNum[3] == belowNum[1]  &&  topNum[3] != 0)
-				bonusNum = topNum[3];
-			else if(topNum[2] == belowNum[2]  &&  topNum[2] != 0)
-				bonusNum = topNum[2];
-
-
+		case "401-1":
 			this.bonusPicture.TextureList.Clear ();
-			for(int i = 0; i < this.picturePatternNum; ++i){
-				this.bonusPicture.TextureList.Add(this.pictureTexture[( (bonusNum - 1) * this.picturePatternNum) + i]);
+			this.bonusPicture.StopAllCoroutines();
+			for(int i = 0; i < this.picture1.Count; ++i){
+				this.bonusPicture.TextureList.Add(this.picture1[i]);
 			}
-			this.bonusPictureNum.mainTexture = this.numTexture[bonusNum - 1];
+			this.bonusPictureNum.mainTexture = this.numTexture[0];
+			
 			this.bonusPicture.transform.gameObject.SetActive(true);
 			this.bonusPictureNum.transform.gameObject.SetActive(true);
 			this.bonusPictureBase.transform.gameObject.SetActive(true);
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
 			this.bonusPicture.Play (null);
-			Debug.Log ("大当たりUIの準備が完了。ラウンド数を表示・更新するにはorderCode「402」を実行。");
+			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
 			if(callback != null) callback();
 			break;
 			
-		case "402":
-			if(this.roundCount > this.roundtexture.Length - 1){
-				Debug.LogError("表示ラウンド数が超過しています！表示ラウンド数を減らすか、テクスチャを追加して下さい。");
-				break;
+		case "401-2":
+			this.bonusPicture.TextureList.Clear ();
+			this.bonusPicture.StopAllCoroutines();
+			for(int i = 0; i < this.picture1.Count; ++i){
+				this.bonusPicture.TextureList.Add(this.picture2[i]);
 			}
+			this.bonusPictureNum.mainTexture = this.numTexture[0];
 			
-			this.bonusRound.mainTexture = this.roundtexture[this.roundCount];
+			this.bonusPicture.transform.gameObject.SetActive(true);
+			this.bonusPictureNum.transform.gameObject.SetActive(true);
+			this.bonusPictureBase.transform.gameObject.SetActive(true);
+			this.bonusPicture.Play (null);
+			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+			if(callback != null) callback();
+			break;
+			
+		case "401-3":
+			this.bonusPicture.TextureList.Clear ();
+			this.bonusPicture.StopAllCoroutines();
+			for(int i = 0; i < this.picture1.Count; ++i){
+				this.bonusPicture.TextureList.Add(this.picture3[i]);
+			}
+			this.bonusPictureNum.mainTexture = this.numTexture[0];
+			
+			this.bonusPicture.transform.gameObject.SetActive(true);
+			this.bonusPictureNum.transform.gameObject.SetActive(true);
+			this.bonusPictureBase.transform.gameObject.SetActive(true);
+			this.bonusPicture.Play (null);
+			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+			if(callback != null) callback();
+			break;
+			
+		case "401-4":
+			this.bonusPicture.TextureList.Clear ();
+			this.bonusPicture.StopAllCoroutines();
+			for(int i = 0; i < this.picture1.Count; ++i){
+				this.bonusPicture.TextureList.Add(this.picture4[i]);
+			}
+			this.bonusPictureNum.mainTexture = this.numTexture[0];
+			
+			this.bonusPicture.transform.gameObject.SetActive(true);
+			this.bonusPictureNum.transform.gameObject.SetActive(true);
+			this.bonusPictureBase.transform.gameObject.SetActive(true);
+			this.bonusPicture.Play (null);
+			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+			if(callback != null) callback();
+			break;
+			
+		case "401-5":
+			this.bonusPicture.TextureList.Clear ();
+			this.bonusPicture.StopAllCoroutines();
+			for(int i = 0; i < this.picture1.Count; ++i){
+				this.bonusPicture.TextureList.Add(this.picture5[i]);
+			}
+			this.bonusPictureNum.mainTexture = this.numTexture[0];
+			
+			this.bonusPicture.transform.gameObject.SetActive(true);
+			this.bonusPictureNum.transform.gameObject.SetActive(true);
+			this.bonusPictureBase.transform.gameObject.SetActive(true);
+			this.bonusPicture.Play (null);
+			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+			if(callback != null) callback();
+			break;
+			
+		case "401-6":
+			this.bonusPicture.TextureList.Clear ();
+			this.bonusPicture.StopAllCoroutines();
+			for(int i = 0; i < this.picture1.Count; ++i){
+				this.bonusPicture.TextureList.Add(this.picture6[i]);
+			}
+			this.bonusPictureNum.mainTexture = this.numTexture[0];
+			
+			this.bonusPicture.transform.gameObject.SetActive(true);
+			this.bonusPictureNum.transform.gameObject.SetActive(true);
+			this.bonusPictureBase.transform.gameObject.SetActive(true);
+			this.bonusPicture.Play (null);
+			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+			if(callback != null) callback();
+			break;
+			
+		case "401-7":
+			this.bonusPicture.TextureList.Clear ();
+			this.bonusPicture.StopAllCoroutines();
+			for(int i = 0; i < this.picture1.Count; ++i){
+				this.bonusPicture.TextureList.Add(this.picture7[i]);
+			}
+			this.bonusPictureNum.mainTexture = this.numTexture[0];
+			
+			this.bonusPicture.transform.gameObject.SetActive(true);
+			this.bonusPictureNum.transform.gameObject.SetActive(true);
+			this.bonusPictureBase.transform.gameObject.SetActive(true);
+			this.bonusPicture.Play (null);
+			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+			if(callback != null) callback();
+			break;
+			
+		case "401-8":
+			this.bonusPicture.TextureList.Clear ();
+			this.bonusPicture.StopAllCoroutines();
+			for(int i = 0; i < this.picture1.Count; ++i){
+				this.bonusPicture.TextureList.Add(this.picture8[i]);
+			}
+			this.bonusPictureNum.mainTexture = this.numTexture[0];
+			
+			this.bonusPicture.transform.gameObject.SetActive(true);
+			this.bonusPictureNum.transform.gameObject.SetActive(true);
+			this.bonusPictureBase.transform.gameObject.SetActive(true);
+			this.bonusPicture.Play (null);
+			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+			if(callback != null) callback();
+			break;
+			
+		case "401-9":
+			this.bonusPicture.TextureList.Clear ();
+			this.bonusPicture.StopAllCoroutines();
+			for(int i = 0; i < this.picture1.Count; ++i){
+				this.bonusPicture.TextureList.Add(this.picture9[i]);
+			}
+			this.bonusPictureNum.mainTexture = this.numTexture[0];
+			
+			this.bonusPicture.transform.gameObject.SetActive(true);
+			this.bonusPictureNum.transform.gameObject.SetActive(true);
+			this.bonusPictureBase.transform.gameObject.SetActive(true);
+			this.bonusPicture.Play (null);
+			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+			if(callback != null) callback();
+			break;
+			
+		case "401-10":
+			this.bonusPicture.TextureList.Clear ();
+			this.bonusPicture.StopAllCoroutines();
+			for(int i = 0; i < this.picture1.Count; ++i){
+				this.bonusPicture.TextureList.Add(this.picture10[i]);
+			}
+			this.bonusPictureNum.mainTexture = this.numTexture[0];
+			
+			this.bonusPicture.transform.gameObject.SetActive(true);
+			this.bonusPictureNum.transform.gameObject.SetActive(true);
+			this.bonusPictureBase.transform.gameObject.SetActive(true);
+			this.bonusPicture.Play (null);
+			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+			if(callback != null) callback();
+			break;
+			
+		case "402-1":
+			this.bonusRound.mainTexture = this.roundtexture[0];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
 			this.bonusRound.transform.gameObject.SetActive(true);
-			this.roundCount = (this.roundCount < this.roundtexture.Length - 1) ? this.roundCount + 1 : 0;
-			Debug.Log ("Round ("+this.roundCount+") を表示します。次のRoundを表示する為には、もう一度 orderCode[402] を送信して下さい。");
+			if(callback != null) callback();
+			break;
+			
+		case "402-2":
+			this.bonusRound.mainTexture = this.roundtexture[1];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-3":
+			this.bonusRound.mainTexture = this.roundtexture[2];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-4":
+			this.bonusRound.mainTexture = this.roundtexture[3];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-5":
+			this.bonusRound.mainTexture = this.roundtexture[4];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-6":
+			this.bonusRound.mainTexture = this.roundtexture[5];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-7":
+			this.bonusRound.mainTexture = this.roundtexture[6];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-8":
+			this.bonusRound.mainTexture = this.roundtexture[7];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-9":
+			this.bonusRound.mainTexture = this.roundtexture[8];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-10":
+			this.bonusRound.mainTexture = this.roundtexture[9];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-11":
+			this.bonusRound.mainTexture = this.roundtexture[10];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-12":
+			this.bonusRound.mainTexture = this.roundtexture[11];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-13":
+			this.bonusRound.mainTexture = this.roundtexture[12];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-14":
+			this.bonusRound.mainTexture = this.roundtexture[13];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-15":
+			this.bonusRound.mainTexture = this.roundtexture[14];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
+			if(callback != null) callback();
+			break;
+			
+		case "402-16":
+			this.bonusRound.mainTexture = this.roundtexture[15];
+			this.bonusRoundBase.transform.gameObject.SetActive(true);
+			this.bonusRound.transform.gameObject.SetActive(true);
 			if(callback != null) callback();
 			break;
 			
@@ -3644,13 +3732,13 @@ public class GinparaManager : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	private IEnumerator CoralReefNotice(System.Action callback){
+	private IEnumerator CoralReefNoticeIN(System.Action callback){
 		int[] top = this.topRail.RecodePanelNum;
 		int[] below = this.belowRail.RecodePanelNum;
 		float anchorX = 0;
-		if(top[1] != 0  &&  top[1] == below[1])
+		if(top[0] != 0  &&  top[0] == below[0])
 			anchorX = -0.333f;
-		else if(top[3] != 0  &&  top[3] == below[3])
+		else if(top[2] != 0  &&  top[2] == below[2])
 			anchorX = 0.333f;
 		this.coralReefNoticeAnchor.relativeOffset = new Vector2(anchorX, this.coralReefNoticeAnchor.relativeOffset.y);
 
@@ -3661,39 +3749,40 @@ public class GinparaManager : MonoBehaviour {
 			this.coralReefNoticeAnchor.relativeOffset += new Vector2(0, time * 0.5f);
 			yield return null;
 		}
-
-		while(this.mediumRail.IsAnimating)
-			yield return null;
-
-		totalTime = 0;
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator CoralReefNoticeOUT(System.Action callback){
+		float totalTime = 0;
 		while(totalTime < 2f){
 			float time = Time.deltaTime;
 			totalTime += time;
 			this.coralReefNoticeAnchor.relativeOffset -= new Vector2(0, time * 0.5f);
 			yield return null;
 		}
-
+		
 		this.coralReefNoticeAnchor.relativeOffset = new Vector2(0, -1);
 		this.coralReefNoticeAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	private IEnumerator MarinNoticeWin(System.Action callback){
+	private IEnumerator MarinNoticeIN(System.Action callback){
 		float totalTime = 0;
 		while(totalTime < 2f){
 			float time = Time.deltaTime;
 			totalTime += time;
-			this.marinNoticeWinAnchor.relativeOffset -= new Vector2(0, time * 1.5f);
+			this.marinNoticeCallAnchor.relativeOffset -= new Vector2(0, time * 1.5f);
 			yield return null;
 		}
-		
-		this.marinNoticeWinAnime.Play (null);
-		
-		while(this.marinNoticeWinAnime.IsAnimating)
-			yield return null;
-		
-		totalTime = 0;
+
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator MarinNoticeUpOUT(System.Action callback){
+		float totalTime = 0;
 		while(totalTime < 2f){
 			float time = Time.deltaTime;
 			totalTime += time;
@@ -3702,12 +3791,13 @@ public class GinparaManager : MonoBehaviour {
 		}
 		
 		this.marinNoticeWinAnchor.relativeOffset = new Vector2(0, 2);
+		this.marinNoticeWinAnime.StopAllCoroutines ();
 		this.marinNoticeWinAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	private IEnumerator MarinNoticeLose(System.Action callback){
+	private IEnumerator MarinNoticeDownOUT(System.Action callback){
 		float totalTime = 0;
 		while(totalTime < 2f){
 			float time = Time.deltaTime;
@@ -3716,12 +3806,15 @@ public class GinparaManager : MonoBehaviour {
 			yield return null;
 		}
 		
-		this.marinNoticeLoseAnime.Play (null);
-		
-		while(this.marinNoticeLoseAnime.IsAnimating)
-			yield return null;
-		
-		totalTime = 0;
+		this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 2);
+		this.marinNoticeLoseAnime.StopAllCoroutines ();
+		this.marinNoticeLoseAnchor.transform.gameObject.SetActive (false);
+		if(callback != null) callback();
+	}
+	
+	//----------------------------------------------------------------------------------------------------
+	private IEnumerator MarinNoticeLose(System.Action callback){
+		float totalTime = 0;
 		while(totalTime < 1f){
 			float time = Time.deltaTime;
 			totalTime += time;
@@ -3730,6 +3823,7 @@ public class GinparaManager : MonoBehaviour {
 		}
 		
 		this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 2);
+		this.marinNoticeLoseAnchor.StopAllCoroutines();
 		this.marinNoticeLoseAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}

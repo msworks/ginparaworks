@@ -12,7 +12,7 @@ public class Rail : MonoBehaviour {
 	[SerializeField] private AnimationClip[] anims = null;
 	[SerializeField] private UIStretch[] stretchs = null;
 	public float anchorValue = 0;
-	[SerializeField]private float preAnchorValue = 0;
+	private float preAnchorValue = 0;
 	private float originValue = 0;
 	private bool isRolling = false;
 
@@ -197,8 +197,8 @@ public class Rail : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	public void ChangePicture(int pictureNum, int patternNum){
-		this.pictureManager.ChangePicture(pictureNum, patternNum);
+	public void ChangeHitPicture(int pictureNum){
+		this.pictureManager.ChangeHitPicture(pictureNum);
 	}
 	
 	//----------------------------------------------------------------------------------------------------

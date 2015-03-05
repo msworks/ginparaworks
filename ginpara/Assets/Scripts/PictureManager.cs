@@ -7,20 +7,19 @@ public class PictureManager : MonoBehaviour {
 	// Field
 	//====================================================================================================
 	[SerializeField] private bool isTop = false;
-	[SerializeField] private List<Texture> picture0 = new List<Texture>();
-	[SerializeField] private List<Texture> picture1 = new List<Texture>();
-	[SerializeField] private List<Texture> picture2 = new List<Texture>();
-	[SerializeField] private List<Texture> picture3 = new List<Texture>();
-	[SerializeField] private List<Texture> picture4 = new List<Texture>();
-	[SerializeField] private List<Texture> picture5 = new List<Texture>();
-	[SerializeField] private List<Texture> picture6 = new List<Texture>();
-	[SerializeField] private List<Texture> picture7 = new List<Texture>();
-	[SerializeField] private List<Texture> picture8 = new List<Texture>();
-	[SerializeField] private List<Texture> picture9 = new List<Texture>();
-	[SerializeField] private List<Texture> picture10 = new List<Texture>();
-	[SerializeField] private float[] animeIntervalTime = null;
-	[SerializeField] private int[] animeStartNum = null;
-	[SerializeField] private int[] animeEndNum = null;	
+	public List<Texture> picture0 = new List<Texture>();
+	public List<Texture> picture1 = new List<Texture>();
+	public List<Texture> picture2 = new List<Texture>();
+	public List<Texture> picture3 = new List<Texture>();
+	public List<Texture> picture4 = new List<Texture>();
+	public List<Texture> picture5 = new List<Texture>();
+	public List<Texture> picture6 = new List<Texture>();
+	public List<Texture> picture7 = new List<Texture>();
+	public List<Texture> picture8 = new List<Texture>();
+	public List<Texture> picture9 = new List<Texture>();
+	public List<Texture> picture10 = new List<Texture>();
+	public Texture[] pictureHit = new Texture[10];
+	public float animeIntervalTime = 0.25f;
 	private bool[] isAnime = new bool[11];
 	private float[] animeTimeElapsed = new float[11];
 	private int[] currentNum = new int[11];
@@ -32,7 +31,7 @@ public class PictureManager : MonoBehaviour {
 	// Property
 	//====================================================================================================
 	public int PictureNum { get { return this.pictureNum; } }
-	public int[] RecodePanelNum { get { return new int[4]{ this.recodePanel[0].pictureNum, this.recodePanel[1].pictureNum, this.recodePanel[2].pictureNum, this.recodePanel[3].pictureNum }; } }
+	public int[] RecodePanelNum { get { return new int[3]{ this.recodePanel[1].pictureNum, this.recodePanel[2].pictureNum, this.recodePanel[3].pictureNum }; } }
 
 	//====================================================================================================
 	// Method
@@ -67,9 +66,9 @@ public class PictureManager : MonoBehaviour {
 		for(int i = 0; i < this.isAnime.Length; ++i){
 			if(this.isAnime[i]){
 				this.animeTimeElapsed[i] += Time.deltaTime;
-				if(this.animeTimeElapsed[i] > this.animeIntervalTime[i]){
+				if(this.animeTimeElapsed[i] > this.animeIntervalTime){
 					this.animeTimeElapsed[i] = 0;
-					this.currentNum[i] = (this.currentNum[i] == this.animeEndNum[i]) ? this.animeStartNum[i] : this.currentNum[i] + 1;
+					this.currentNum[i] = (this.currentNum[i] == this.pictures[i].Count - 1) ? 0 : this.currentNum[i] + 1;
 					foreach(RecodePanel recode in this.recodePanel){
 						if(recode.pictureNum == i) recode.railPanel.MainTexture = this.pictures[i][this.currentNum[i]];
 					}
@@ -224,10 +223,7 @@ public class PictureManager : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	public void StartAnime(int pictureNum){
 		this.isAnime[pictureNum] = true;
-		Debug.Log (pictureNum);
-		Debug.Log (this.currentNum[pictureNum]);
-		Debug.Log (this.animeStartNum[pictureNum] - 1);
-		this.currentNum[pictureNum] = this.animeStartNum[pictureNum] - 1;
+		this.currentNum[pictureNum] = 0;
 		this.animeTimeElapsed[pictureNum] = 0;
 	}
 	
@@ -237,10 +233,10 @@ public class PictureManager : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	public void ChangePicture(int pictureNum, int patternNum){
+	public void ChangeHitPicture(int pictureNum){
 		this.StopAnime(pictureNum);
 		foreach(RecodePanel recode in this.recodePanel){
-			if(recode.pictureNum == pictureNum) recode.railPanel.MainTexture = this.pictures[pictureNum][patternNum];
+			if(recode.pictureNum == pictureNum) recode.railPanel.MainTexture = this.pictureHit[pictureNum - 1];
 		}
 	}
 	

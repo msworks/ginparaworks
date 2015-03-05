@@ -17,15 +17,26 @@ public class TextureAnimation : MonoBehaviour {
 	//====================================================================================================
 	// Priperty
 	//====================================================================================================
+	public UITexture UiTexture { get { return this.uiTexture; } set { this.uiTexture = value; } }
 	public bool IsAnimating{ get { return this.isAnimating; } }
-	public float IntervalTime { set { this.intervalTime = value; } }
-	public float TotalTime { set { this.totalTime = value; } }
-	public bool IsLoop { set { this.isLoop = value;} }
+	public float IntervalTime { get {return this.intervalTime; }  set { this.intervalTime = value; } }
+	public float TotalTime { get { return this.totalTime; } set { this.totalTime = value; } }
+	public bool IsLoop { get { return this.isLoop; } set { this.isLoop = value;} }
 	public List<Texture> TextureList { get { return this.textureList; } set { this.textureList = value; } }
 
 	//====================================================================================================
 	// Method
 	//====================================================================================================
+	void Start ()
+	{
+		if (this.uiTexture != null)
+			this.uiTexture = this.GetComponent<UITexture> ();
+		
+		if (this.textureList.Count == 0)
+			Debug.Log(this.gameObject.name+"のTextureAnimation-textureListに画像が設定されていません。");
+	}
+	
+	//----------------------------------------------------------------------------------------------------
 	public void Play(System.Action callback){
 		this.isAnimating = true;
 		StartCoroutine (this.TextureAnimating (callback));
