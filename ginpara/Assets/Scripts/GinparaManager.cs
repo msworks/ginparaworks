@@ -510,121 +510,121 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "7-1":
-			StartCoroutine (this.mediumRail.RailReach (1, () => {
+			StartCoroutine (this.mediumRail.RailReach (19, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-2":
-			StartCoroutine (this.mediumRail.RailReach (-1, () => {
+			StartCoroutine (this.mediumRail.RailReach (20, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-3":
-			StartCoroutine (this.mediumRail.RailReach (2, () => {
+			StartCoroutine (this.mediumRail.RailReach (21, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-4":
-			StartCoroutine (this.mediumRail.RailReach (-2, () => {
+			StartCoroutine (this.mediumRail.RailReach (22, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-5":
-			StartCoroutine (this.mediumRail.RailReach (3, () => {
+			StartCoroutine (this.mediumRail.RailReach (23, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-6":
-			StartCoroutine (this.mediumRail.RailReach (-3, () => {
+			StartCoroutine (this.mediumRail.RailReach (24, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-7":
-			StartCoroutine (this.mediumRail.RailReach (4, () => {
+			StartCoroutine (this.mediumRail.RailReach (25, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-8":
-			StartCoroutine (this.mediumRail.RailReach (-4, () => {
+			StartCoroutine (this.mediumRail.RailReach (26, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-9":
-			StartCoroutine (this.mediumRail.RailReach (5, () => {
+			StartCoroutine (this.mediumRail.RailReach (27, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-10":
-			StartCoroutine (this.mediumRail.RailReach (-5, () => {
+			StartCoroutine (this.mediumRail.RailReach (28, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-11":
-			StartCoroutine (this.mediumRail.RailReach (6, () => {
+			StartCoroutine (this.mediumRail.RailReach (29, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-12":
-			StartCoroutine (this.mediumRail.RailReach (-6, () => {
+			StartCoroutine (this.mediumRail.RailReach (30, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-13":
-			StartCoroutine (this.mediumRail.RailReach (7, () => {
+			StartCoroutine (this.mediumRail.RailReach (31, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-14":
-			StartCoroutine (this.mediumRail.RailReach (-7, () => {
+			StartCoroutine (this.mediumRail.RailReach (12, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-15":
-			StartCoroutine (this.mediumRail.RailReach (8, () => {
+			StartCoroutine (this.mediumRail.RailReach (13, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-16":
-			StartCoroutine (this.mediumRail.RailReach (-8, () => {
+			StartCoroutine (this.mediumRail.RailReach (14, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-17":
-			StartCoroutine (this.mediumRail.RailReach (9, () => {
+			StartCoroutine (this.mediumRail.RailReach (15, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-18":
-			StartCoroutine (this.mediumRail.RailReach (-9, () => {
+			StartCoroutine (this.mediumRail.RailReach (16, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-19":
-			StartCoroutine (this.mediumRail.RailReach (10, () => {
+			StartCoroutine (this.mediumRail.RailReach (17, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "7-20":
-			StartCoroutine (this.mediumRail.RailReach (-10, () => {
+			StartCoroutine (this.mediumRail.RailReach (18, () => {
 				if(callback != null) callback();
 			}));
 			break;
@@ -750,12 +750,14 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "9-1":
+			this.mediumRail.ResetAnchor (1);
 			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "9-2":
+			this.mediumRail.ResetAnchor (1);
 			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));

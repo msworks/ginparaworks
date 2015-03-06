@@ -38,7 +38,7 @@ public class Rail : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	private void ResetAnchor(int pictureNum){
+	public void ResetAnchor(int pictureNum){
 		this.anchorValue = this.preAnchorValue = 0;
 		for (int i = 0; i < this.railPanels.Length; ++i) {
 			this.railPanels [(this.railPanels.Length - 1) - i].Anchor.relativeOffset = new Vector2 ((this.railPanels.Length - 1) - ((this.anchorValue + i + this.originValue) % this.railPanels.Length), 0);
@@ -127,18 +127,26 @@ public class Rail : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	public IEnumerator RailReach(int targetNum, System.Action callback){
+	public IEnumerator RailReach(int certainNum, System.Action callback){
 		while(this.railAnimation.isPlaying){
 			yield return null;
 		}
-		
-		this.ResetAnchor(targetNum);
+
+		this.ResetAnchor(1);
 		this.isRolling = false;
-		this.railAnimation.clip = this.anims[2];
-		this.originValue = (int)this.anchorValue;
-		this.anchorValue = 0;
-		this.railAnimation.Play ();
-		while(this.railAnimation.isPlaying){
+		float totalTime = 0;
+		while(totalTime < ((1f / 3f) * (float)certainNum)){
+			float deltaTime = Time.deltaTime;
+			totalTime += deltaTime;
+			this.anchorValue += deltaTime * 3f;
+			yield return null;
+		}
+		totalTime = 1;
+		while(totalTime > 0){
+			float deltaTime = Time.deltaTime;
+			totalTime -= deltaTime;
+			if(totalTime >= 0) this.anchorValue += deltaTime;
+			else if(totalTime < 0) this.anchorValue += totalTime;
 			yield return null;
 		}
 		
@@ -177,7 +185,7 @@ public class Rail : MonoBehaviour {
 		}
 		
 		this.isRolling = false;
-		this.railAnimation.clip = this.anims[1 + moveNum];
+		this.railAnimation.clip = this.anims[3 + moveNum];
 		this.originValue = (int)this.anchorValue;
 		this.anchorValue = 0;
 		this.railAnimation.Play ();
