@@ -1596,18 +1596,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: f0954d74aaedebe4d8baa3e5216caf99, type: 3}
   - {fileID: 2800000, guid: 57c2aa2fc38da58419b3ddabf82e31e4, type: 3}
   - {fileID: 2800000, guid: 30d38c8c94803da44ac75f8b89a98d9f, type: 3}
-  animeIntervalTime:
-  - .25
-  - .25
-  - .25
-  - .25
-  - .25
-  - .25
-  - .25
-  - .25
-  - .25
-  - .25
-  - .25
+  animeIntervalTime: 0
 --- !u!114 &11400084
 MonoBehaviour:
   m_ObjectHideFlags: 1

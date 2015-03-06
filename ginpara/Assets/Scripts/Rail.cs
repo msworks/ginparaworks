@@ -177,7 +177,7 @@ public class Rail : MonoBehaviour {
 		}
 		
 		this.isRolling = false;
-		this.railAnimation.clip = this.anims[3 + moveNum];
+		this.railAnimation.clip = this.anims[1 + moveNum];
 		this.originValue = (int)this.anchorValue;
 		this.anchorValue = 0;
 		this.railAnimation.Play ();
