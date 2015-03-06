@@ -452,7 +452,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 0b646ee3dc616dd488364d2bafe84ad6, type: 2}
   - {fileID: 7400000, guid: 4797d2a2636a6c346a8e4e4250493864, type: 2}
-  - {fileID: 7400000, guid: 5f312444b825e8142899a749f1513f26, type: 2}
+  - {fileID: 7400000, guid: 302f972f83df15440be1d9386c3f0494, type: 2}
   - {fileID: 7400000, guid: 4fd5a68411e43d542b345e25b69768bd, type: 2}
   - {fileID: 7400000, guid: cab97d22465e7624795187a7e1020db5, type: 2}
   - {fileID: 7400000, guid: f9880a5fc484c894ab7c95934e229dbd, type: 2}

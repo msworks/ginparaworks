@@ -128,10 +128,6 @@ public class Rail : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	public IEnumerator RailReach(int certainNum, System.Action callback){
-		while(this.railAnimation.isPlaying){
-			yield return null;
-		}
-
 		this.ResetAnchor(1);
 		this.isRolling = false;
 		float totalTime = 0;
@@ -157,18 +153,22 @@ public class Rail : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	public IEnumerator RailSuperReach(int targetNum, System.Action callback){
-		while(this.railAnimation.isPlaying){
+	public IEnumerator RailSuperReach(int certainNum, System.Action callback){
+		this.ResetAnchor(1);
+		this.isRolling = false;
+		float totalTime = 0;
+		while(totalTime < ((1f / 3f) * (float)certainNum)){
+			float deltaTime = Time.deltaTime;
+			totalTime += deltaTime;
+			this.anchorValue += deltaTime * 3f;
 			yield return null;
 		}
-		
-		this.ResetAnchor(targetNum);
-		this.isRolling = false;
-		this.railAnimation.clip = this.anims[3];
-		this.originValue = (int)this.anchorValue;
-		this.anchorValue = 0;
-		this.railAnimation.Play ();
-		while(this.railAnimation.isPlaying){
+		totalTime = 2;
+		while(totalTime > 0){
+			float deltaTime = Time.deltaTime;
+			totalTime -= deltaTime;
+			if(totalTime >= 0) this.anchorValue += deltaTime / 2f;
+			else if(totalTime < 0) this.anchorValue += totalTime / 2f;
 			yield return null;
 		}
 		
