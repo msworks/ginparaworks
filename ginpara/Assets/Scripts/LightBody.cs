@@ -18,8 +18,8 @@ public class LightBody : MonoBehaviour {
     private float mCycle = 0.0f;
 
 	void Start () {
-        insideSprite = inside.GetComponent<UISprite>();
-        outsideSprite = outside.GetComponent<UISprite>();
+        if (inside) insideSprite = inside.GetComponent<UISprite>();
+        if (outside) outsideSprite = outside.GetComponent<UISprite>();
 	}
 	
 	void Update () {
@@ -41,8 +41,8 @@ public class LightBody : MonoBehaviour {
             v2 = v;
         }
 
-        insideSprite.GetComponent<UISprite>().alpha = v;
-        outsideSprite.GetComponent<UISprite>().alpha = v2;
+        if(insideSprite) insideSprite.GetComponent<UISprite>().alpha = v;
+        if(outsideSprite) outsideSprite.GetComponent<UISprite>().alpha = v2;
 	}
 
     /***
@@ -64,8 +64,8 @@ public class LightBody : MonoBehaviour {
         LightFlg = false;
        
         Counter = 0;
-        insideSprite.alpha = 0;
-        outsideSprite.alpha = 0;
+        if (insideSprite) insideSprite.alpha = 0;
+        if (outsideSprite) outsideSprite.alpha = 0;
     }
 
 }

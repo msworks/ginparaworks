@@ -15,7 +15,8 @@ public class TouchKaitentai : MonoBehaviour {
     {
         Destroy(collision.gameObject);
 
-        var ball = NGUITools.AddChild(BodyPath, TurnBallPrefab);
+        NGUITools.AddChild(BodyPath, TurnBallPrefab);
+        //var ball = NGUITools.AddChild(BodyPath, TurnBallPrefab);
         //ball.transform.position = ShootPosition.transform.position;
         //ball.rigidbody2D.velocity = ShootPower * rndp;
 
