@@ -1,0 +1,71 @@
+﻿using UnityEngine;
+using System.Collections;
+
+/***
+ * 筐体を光らせる
+ */
+public class LightBody : MonoBehaviour {
+
+    public GameObject inside;
+    public GameObject outside;
+
+    private UISprite insideSprite;
+    private UISprite outsideSprite;
+
+    private int Counter = 0;
+    private bool LightFlg = false;
+    private float mPower = 0.0f;
+    private float mCycle = 0.0f;
+
+	void Start () {
+        insideSprite = inside.GetComponent<UISprite>();
+        outsideSprite = outside.GetComponent<UISprite>();
+	}
+	
+	void Update () {
+        if (!LightFlg) return; 
+        
+        Counter++;
+
+        var r = (float)Counter * Mathf.PI / 60f * mCycle;
+        if (mCycle == 0f)
+        {
+            r = Mathf.PI / 2f;
+        }
+
+        var v = Mathf.Sin(r) * mPower;
+
+        var v2 = v * -1;
+        if (mCycle == 0f)
+        {
+            v2 = v;
+        }
+
+        insideSprite.GetComponent<UISprite>().alpha = v;
+        outsideSprite.GetComponent<UISprite>().alpha = v2;
+	}
+
+    /***
+     * 点灯
+     * cycle : 何ヘルツで光るか
+     * power : 光る強さ（１：最高　０：消灯）
+     */
+    public void ON( float cycle, float power )
+    {
+        // TODO 波形もいじれたほうがいいかもね
+        LightFlg = true;
+        Counter = 0;
+        mCycle = cycle;
+        mPower = power;
+    }
+
+    public void OFF()
+    {
+        LightFlg = false;
+       
+        Counter = 0;
+        insideSprite.alpha = 0;
+        outsideSprite.alpha = 0;
+    }
+
+}
