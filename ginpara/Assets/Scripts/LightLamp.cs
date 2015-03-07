@@ -22,9 +22,9 @@ public class LightLamp : MonoBehaviour {
 
         Counter++;
 
-        var r = (float)Counter * 3.14f / 60f * 3f;
-        var v = Mathf.Sin(r) * Mathf.Sin(r);
-        var v2 = 1f - v;
+        var r = (float)Counter * 3.14f / 60f * 10f;
+        var v = Mathf.Sin(r);
+        var v2 = v * -1f;
 
         right.GetComponent<UISprite>().alpha = v;
         left.GetComponent<UISprite>().alpha = v2;

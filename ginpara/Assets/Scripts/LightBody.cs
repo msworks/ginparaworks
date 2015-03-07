@@ -33,13 +33,15 @@ public class LightBody : MonoBehaviour {
             r = Mathf.PI / 2f;
         }
 
-        var v = Mathf.Sin(r) * mPower;
-
-        var v2 = v * -1;
+        var v  = Mathf.Sin(r) * mPower;
+        var v2 = Mathf.Sin(r+Mathf.PI/2) * mPower;
         if (mCycle == 0f)
         {
             v2 = v;
         }
+
+        v = Mathf.Abs(v);
+        v2 = Mathf.Abs(v2);
 
         if(insideSprite) insideSprite.GetComponent<UISprite>().alpha = v;
         if(outsideSprite) outsideSprite.GetComponent<UISprite>().alpha = v2;
