@@ -153,7 +153,7 @@ public class Rail : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	public IEnumerator RailSuperReach(int certainNum, System.Action callback){
+	public IEnumerator RailSuperReach(int certainNum, int lowNum, System.Action callback){
 		this.ResetAnchor(1);
 		this.isRolling = false;
 		float totalTime = 0;
@@ -163,12 +163,12 @@ public class Rail : MonoBehaviour {
 			this.anchorValue += deltaTime * 3f;
 			yield return null;
 		}
-		totalTime = 2;
+		totalTime = (float)lowNum;
 		while(totalTime > 0){
 			float deltaTime = Time.deltaTime;
 			totalTime -= deltaTime;
-			if(totalTime >= 0) this.anchorValue += deltaTime / 2f;
-			else if(totalTime < 0) this.anchorValue += totalTime / 2f;
+			if(totalTime >= 0) this.anchorValue += deltaTime / (float)lowNum;
+			else if(totalTime < 0) this.anchorValue += totalTime / (float)lowNum;
 			yield return null;
 		}
 		
