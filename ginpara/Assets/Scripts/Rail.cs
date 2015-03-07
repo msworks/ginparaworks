@@ -163,12 +163,12 @@ public class Rail : MonoBehaviour {
 			this.anchorValue += deltaTime * 3f;
 			yield return null;
 		}
-		totalTime = (float)lowNum;
+		totalTime = (float)lowNum * 2f;
 		while(totalTime > 0){
 			float deltaTime = Time.deltaTime;
 			totalTime -= deltaTime;
-			if(totalTime >= 0) this.anchorValue += deltaTime / (float)lowNum;
-			else if(totalTime < 0) this.anchorValue += totalTime / (float)lowNum;
+			if(totalTime >= 0) this.anchorValue += deltaTime / 2f;
+			else if(totalTime < 0) this.anchorValue += totalTime / 2f;
 			yield return null;
 		}
 		

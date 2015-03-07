@@ -630,125 +630,365 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "8-1":
-			StartCoroutine (this.mediumRail.RailSuperReach (39, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (39, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-2":
-			StartCoroutine (this.mediumRail.RailSuperReach (40, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (40, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-3":
-			StartCoroutine (this.mediumRail.RailSuperReach (41, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (41, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-4":
-			StartCoroutine (this.mediumRail.RailSuperReach (42, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (42, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-5":
-			StartCoroutine (this.mediumRail.RailSuperReach (43, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (43, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-6":
-			StartCoroutine (this.mediumRail.RailSuperReach (44, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (44, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-7":
-			StartCoroutine (this.mediumRail.RailSuperReach (45, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (45, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-8":
-			StartCoroutine (this.mediumRail.RailSuperReach (46, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (46, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-9":
-			StartCoroutine (this.mediumRail.RailSuperReach (47, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (47, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-10":
-			StartCoroutine (this.mediumRail.RailSuperReach (48, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (48, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-11":
-			StartCoroutine (this.mediumRail.RailSuperReach (49, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (49, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-12":
-			StartCoroutine (this.mediumRail.RailSuperReach (50, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (50, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 
 		case "8-13":
-			StartCoroutine (this.mediumRail.RailSuperReach (31, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (31, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-14":
-			StartCoroutine (this.mediumRail.RailSuperReach (32, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (32, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-15":
-			StartCoroutine (this.mediumRail.RailSuperReach (33, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (33, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-16":
-			StartCoroutine (this.mediumRail.RailSuperReach (34, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (34, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-17":
-			StartCoroutine (this.mediumRail.RailSuperReach (35, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (35, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-18":
-			StartCoroutine (this.mediumRail.RailSuperReach (36, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (36, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-19":
-			StartCoroutine (this.mediumRail.RailSuperReach (37, 2, () => {
+			StartCoroutine (this.mediumRail.RailSuperReach (37, 1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "8-20":
+			StartCoroutine (this.mediumRail.RailSuperReach (38, 1, () => {
+				if(callback != null) callback();
+			}));
+			break;
+
+		case "8-21":
 			StartCoroutine (this.mediumRail.RailSuperReach (38, 2, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
+		case "8-22":
+			StartCoroutine (this.mediumRail.RailSuperReach (39, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-23":
+			StartCoroutine (this.mediumRail.RailSuperReach (40, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-24":
+			StartCoroutine (this.mediumRail.RailSuperReach (41, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-25":
+			StartCoroutine (this.mediumRail.RailSuperReach (42, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-26":
+			StartCoroutine (this.mediumRail.RailSuperReach (43, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-27":
+			StartCoroutine (this.mediumRail.RailSuperReach (44, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-28":
+			StartCoroutine (this.mediumRail.RailSuperReach (45, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-29":
+			StartCoroutine (this.mediumRail.RailSuperReach (46, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-30":
+			StartCoroutine (this.mediumRail.RailSuperReach (47, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-31":
+			StartCoroutine (this.mediumRail.RailSuperReach (48, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-32":
+			StartCoroutine (this.mediumRail.RailSuperReach (49, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-33":
+			StartCoroutine (this.mediumRail.RailSuperReach (30, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-34":
+			StartCoroutine (this.mediumRail.RailSuperReach (31, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-35":
+			StartCoroutine (this.mediumRail.RailSuperReach (32, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-36":
+			StartCoroutine (this.mediumRail.RailSuperReach (33, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-37":
+			StartCoroutine (this.mediumRail.RailSuperReach (34, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-38":
+			StartCoroutine (this.mediumRail.RailSuperReach (35, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-39":
+			StartCoroutine (this.mediumRail.RailSuperReach (36, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-40":
+			StartCoroutine (this.mediumRail.RailSuperReach (37, 2, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-41":
+			StartCoroutine (this.mediumRail.RailSuperReach (37, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-42":
+			StartCoroutine (this.mediumRail.RailSuperReach (38, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-43":
+			StartCoroutine (this.mediumRail.RailSuperReach (39, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-44":
+			StartCoroutine (this.mediumRail.RailSuperReach (40, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-45":
+			StartCoroutine (this.mediumRail.RailSuperReach (41, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-46":
+			StartCoroutine (this.mediumRail.RailSuperReach (42, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-47":
+			StartCoroutine (this.mediumRail.RailSuperReach (43, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-48":
+			StartCoroutine (this.mediumRail.RailSuperReach (44, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-49":
+			StartCoroutine (this.mediumRail.RailSuperReach (45, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-50":
+			StartCoroutine (this.mediumRail.RailSuperReach (46, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-51":
+			StartCoroutine (this.mediumRail.RailSuperReach (47, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-52":
+			StartCoroutine (this.mediumRail.RailSuperReach (48, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-53":
+			StartCoroutine (this.mediumRail.RailSuperReach (29, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-54":
+			StartCoroutine (this.mediumRail.RailSuperReach (30, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-55":
+			StartCoroutine (this.mediumRail.RailSuperReach (31, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-56":
+			StartCoroutine (this.mediumRail.RailSuperReach (32, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-57":
+			StartCoroutine (this.mediumRail.RailSuperReach (33, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-58":
+			StartCoroutine (this.mediumRail.RailSuperReach (34, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-59":
+			StartCoroutine (this.mediumRail.RailSuperReach (35, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+			
+		case "8-60":
+			StartCoroutine (this.mediumRail.RailSuperReach (36, 3, () => {
+				if(callback != null) callback();
+			}));
+			break;
+					
 		case "9-1":
 			this.mediumRail.ResetAnchor(1);
 			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
