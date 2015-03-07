@@ -3733,6 +3733,7 @@ public class GinparaManager : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator CoralReefNoticeIN(System.Action callback){
+		this.coralReefNoticeAnchor.relativeOffset = new Vector2(0, -1.2f);
 		int[] top = this.topRail.RecodePanelNum;
 		int[] below = this.belowRail.RecodePanelNum;
 		float anchorX = 0;
@@ -3754,6 +3755,7 @@ public class GinparaManager : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator CoralReefNoticeOUT(System.Action callback){
+		this.coralReefNoticeAnchor.relativeOffset = new Vector2(this.coralReefNoticeAnchor.relativeOffset.x, 0);
 		float totalTime = 0;
 		while(totalTime < 2f){
 			float time = Time.deltaTime;
@@ -3762,7 +3764,7 @@ public class GinparaManager : MonoBehaviour {
 			yield return null;
 		}
 		
-		this.coralReefNoticeAnchor.relativeOffset = new Vector2(0, -1);
+		this.coralReefNoticeAnchor.relativeOffset = new Vector2(0, -1.2f);
 		this.coralReefNoticeAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
