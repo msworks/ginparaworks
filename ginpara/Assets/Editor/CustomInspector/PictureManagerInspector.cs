@@ -48,6 +48,13 @@ public class PictureManagerInspector : Editor {
 		PictureManager obj = target as PictureManager;
 		
 		//----------------------------------------------------------------------------------------------------
+		// animeIntervalTime
+		obj.animeIntervalTime = EditorGUILayout.FloatField("アニメーション間隔時間", obj.animeIntervalTime);
+		if(obj.animeIntervalTime < 0)
+			obj.animeIntervalTime = 0;
+		EditorGUILayout.Space();
+		
+		//----------------------------------------------------------------------------------------------------
 		// pictures
 		EditorGUILayout.HelpBox ("アニメーションさせる画像を設定.ここで設定した順に画像を表示.\n" +
 		                         "項目「アニメーションする画像一覧」左横にある▶をクリックする事で中身を確認", MessageType.None);
