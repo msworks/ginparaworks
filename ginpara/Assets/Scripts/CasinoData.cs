@@ -103,7 +103,7 @@ public class CasinoData : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
 	void Update()
 	{
-        //GameCount += 1;
+        GameCount += 1;
         AVG += 1;
         Exchange += 0.1f;
         ExchangeRate += 0.1f;

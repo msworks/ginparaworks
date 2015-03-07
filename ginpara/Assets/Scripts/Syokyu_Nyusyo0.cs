@@ -5,6 +5,9 @@ using System.Collections;
 public class Syokyu_Nyusyo0 : MonoBehaviour {
 
     public GameObject Horyu;
+    public GameObject ChackerOut;
+    public GameObject BallPrefab;
+    public GameObject BodyPath;
 
     const string msg = "チャッカー通過";
 
@@ -17,6 +20,10 @@ public class Syokyu_Nyusyo0 : MonoBehaviour {
 
         // 保留オブジェクトにチャッカー通過メッセージを送る
         Horyu.GetComponent<PlayMakerFSM>().SendEvent(msg);
+
+        // チャッカー出口に玉を出す(TODO 遅れて出す)
+        var ball = NGUITools.AddChild(BodyPath, BallPrefab);
+        ball.transform.position = ChackerOut.transform.position;
 
     }
 
