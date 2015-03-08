@@ -7,6 +7,10 @@ public class Atacker : MonoBehaviour {
 
     string msg = "権利獲得成功";
 
+    /// <summary>
+    /// アタッカーに入ったときに権利獲得メッセージをメインロジックに通知
+    /// </summary>
+    /// <param name="collision"></param>
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Ball")

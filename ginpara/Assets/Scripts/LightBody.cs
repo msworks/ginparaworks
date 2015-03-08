@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/***
- * 筐体を光らせる
- */
+/// <summary>
+/// 筐体、ランプを光らせる
+/// </summary>
 public class LightBody : MonoBehaviour {
 
     public GameObject inside;

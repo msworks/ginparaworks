@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// メインロジック
+/// </summary>
 public class MainLogic : MonoBehaviour {
 
     // 保留オブジェクト
@@ -12,7 +15,9 @@ public class MainLogic : MonoBehaviour {
 
     System.Random rnd = new System.Random(Environment.TickCount);
 
-    // 0～65535のランダム値を返す
+    /// <summary>
+    /// 0～65535のランダム値を返す
+    /// </summary>
     int RndFFFF
     {
         get
@@ -333,19 +338,21 @@ public class MainLogic : MonoBehaviour {
     }
 
 
-    //---------------//
-	// チャッカー通過 //
-    //---------------//
+    /// <summary>
+    /// チャッカー通過
+    /// </summary>
     public void NoticeChacker()
     {
         // 保留オブジェクトにチャッカー通過メッセージを送る
         Horyu.GetComponent<PlayMakerFSM>().SendEvent(ThroughChacker);
     }
 
-    //----------------------
-    // 大当たり抽選 
-    // HoryuSu : 保留カウント
-    // KenriKaisu : 権利回数（０でなければ確変中）
+    /// <summary>
+    /// 大当たり抽選 
+    /// </summary>
+    /// <param name="HoryuSu">保留カウント</param>
+    /// <param name="KenriKaisu">権利回数（０でなければ確変中）</param>
+    /// <returns></returns>
     public DrawLotResult DrawLot(int HoryuSu, int KenriKaisu)
     {
         DrawLotResult result = new DrawLotResult();
@@ -422,16 +429,23 @@ public class MainLogic : MonoBehaviour {
         return result;
     }
 
-    // 大当たり抽選
+    /// <summary>
+    /// 大当たり抽選
+    /// </summary>
+    /// <param name="value">抽選値（ランダム）</param>
+    /// <param name="IsKakuhen">true:カクヘン中　false:カクヘン中でない</param>
+    /// <returns></returns>
     bool IsAtari(int value, bool IsKakuhen)
     {
         var chusen = IsKakuhen ? KH_Chusen : NML_Chusen;
         return chusen[value];
     }
 
-    // リーチライン抽選（大当たり）
-    // 返却値:リーチラインの構造体
-    // value:抽選値（ランダム）
+    /// <summary>
+    /// リーチライン抽選（大当たり）
+    /// </summary>
+    /// <param name="value">抽選値（ランダム）</param>
+    /// <returns>リーチラインの構造体</returns>
     structReachLine DrawLotReachLine(int value)
     {
         return RL_Chusen[value];

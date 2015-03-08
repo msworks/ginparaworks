@@ -103,6 +103,7 @@ public class CasinoData : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
 	void Update()
 	{
+        /*
         GameCount += 1;
         AVG += 1;
         Exchange += 0.1f;
@@ -116,6 +117,7 @@ public class CasinoData : MonoBehaviour {
         UpdatePastRB(BB, BB);
         UpdatePastAT(BB, BB);
         AddHistory(GameCount % 10);
+        */
     }
 
     //----------------------------------------------------------------------------------------------------
