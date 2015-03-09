@@ -187,11 +187,21 @@ public class Rail : MonoBehaviour {
 		}
 		
 		this.isRolling = false;
-		this.railAnimation.clip = this.anims[3 + moveNum];
+//		this.railAnimation.clip = this.anims[3 + moveNum];
 		this.originValue = (int)this.anchorValue;
 		this.anchorValue = 0;
-		this.railAnimation.Play ();
-		while(this.railAnimation.isPlaying){
+//		this.railAnimation.Play ();
+//		while(this.railAnimation.isPlaying){
+//			yield return null;
+//		}
+
+
+		float totalTime = (float)moveNum / 5f;
+		while(totalTime > 0){
+			float deltaTime = Time.deltaTime;
+			totalTime -= deltaTime;
+			if(totalTime >= 0) this.anchorValue += deltaTime *5f;
+			else if(totalTime < 0) this.anchorValue += totalTime * 5f;
 			yield return null;
 		}
 		
