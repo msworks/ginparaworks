@@ -180,7 +180,9 @@ public class Rail : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	public IEnumerator RailVitaStop(int moveNum, System.Action callback){
-		while(this.railAnimation.isPlaying){
+		float time = 0.5f;
+		while(time > 0){
+			time -= Time.deltaTime;
 			yield return null;
 		}
 		

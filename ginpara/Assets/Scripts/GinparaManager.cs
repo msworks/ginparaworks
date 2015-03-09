@@ -990,2664 +990,3044 @@ public class GinparaManager : MonoBehaviour {
 			break;
 					
 		case "9-1":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
-				if(callback != null) callback();
-			}));
+			this.Order("7-2", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-2":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-3", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-3":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-4", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-4":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-5", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-5":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-6", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-6":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-7", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-7":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-8", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-8":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-9", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-9":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-10", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-10":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-11", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-11":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-12", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-12":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-13", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-13":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-14", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-14":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-15", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-15":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-16", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-16":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-17", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-17":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-18", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-18":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-19", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "9-19":
-			this.mediumRail.ResetAnchor(1);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-20", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-1":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-3", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-2":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-4", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+					if(callback != null) callback();
+				}));
+				});
 			break;
 			
 		case "10-3":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-5", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-4":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-6", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-5":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-7", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-6":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-8", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-7":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-9", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-8":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-10", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-9":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-11", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-10":
-			this.mediumRail.ResetAnchor(-1);
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-12", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-11":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-13", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-12":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-14", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+					if(callback != null) callback();
+				}));
+			});	
 			break;
 			
 		case "10-13":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-15", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-14":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-16", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-15":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-17", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-16":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-18", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-17":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-19", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-18":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-20", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "10-19":
-			this.mediumRail.ResetAnchor(-1);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-1", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-1":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-4", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-2":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-5", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-3":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-6", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-4":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-7", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-5":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-8", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-6":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-9", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-7":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-10", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-8":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-11", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-9":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-12", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-10":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-13", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-11":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-14", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-12":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-15", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-13":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-16", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-14":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-17", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-15":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-18", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-16":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-19", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-17":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-20", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-18":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-1", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "11-19":
-			this.mediumRail.ResetAnchor(2);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-2", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-1":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-5", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-2":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-6", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-3":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-7", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-4":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-8", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-5":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-9", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-6":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-10", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-7":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-11", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-8":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-12", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-9":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-13", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-10":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-14", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-11":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-15", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-12":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-16", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-13":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-17", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-14":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-18", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-15":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-19", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-16":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-20", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-17":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-1", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-18":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-2", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "12-19":
-			this.mediumRail.ResetAnchor(-2);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
-				if(callback != null) callback();
-			}));
+			this.Order ("7-3", () => {
+				StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+					if(callback != null) callback();
+				}));
+			});
 			break;
 			
 		case "13-1":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-2":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-3":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-4":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-5":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-6":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-7":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-8":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-9":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-10":
-			this.mediumRail.ResetAnchor(3);
+			this.Order ("7-15", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-11":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-12":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-13":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-14":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-15":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-16":
+			this.Order ("7-1", () => {
 			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-17":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-18":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "13-19":
-			this.mediumRail.ResetAnchor(3);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-1":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-2":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-3":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-4":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-5":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-6":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-7":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-8":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-9":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-10":
-			this.mediumRail.ResetAnchor(-3);
+			this.Order ("7-16", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-11":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-12":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-13":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-14":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-15":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-16":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-17":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-18":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "14-19":
-			this.mediumRail.ResetAnchor(-3);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-1":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-2":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-3":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-4":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-5":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-6":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-7":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-8":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-9":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-10":
-			this.mediumRail.ResetAnchor(4);
+			this.Order ("7-17", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-11":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-12":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-13":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-14":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-15":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-16":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-17":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-18":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "15-19":
-			this.mediumRail.ResetAnchor(4);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-1":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-2":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-3":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-4":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-5":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-6":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-7":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-8":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-9":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-10":
-			this.mediumRail.ResetAnchor(-4);
+			this.Order ("7-18", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-11":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-12":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-13":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-14":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-15":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-16":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-17":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-18":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "16-19":
-			this.mediumRail.ResetAnchor(-4);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-1":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-2":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-3":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-4":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-5":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-6":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-7":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-8":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-9":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-10":
-			this.mediumRail.ResetAnchor(5);
+			this.Order ("7-19", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-11":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-12":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-13":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-14":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-15":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-16":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-17":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-18":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "17-19":
-			this.mediumRail.ResetAnchor(5);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-1":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-2":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-3":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-4":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-5":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-6":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-7":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-8":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-9":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-10":
-			this.mediumRail.ResetAnchor(-5);
+			this.Order ("7-20", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-11":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-12":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-13":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-14":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-15":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-16":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-17":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-18":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "18-19":
-			this.mediumRail.ResetAnchor(-5);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-1":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-2":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-3":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-4":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-5":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-6":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-7":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-8":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-9":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-10":
-			this.mediumRail.ResetAnchor(6);
+			this.Order ("7-1", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-11":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-12":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-13":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-14":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-15":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-16":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-17":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-18":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "19-19":
-			this.mediumRail.ResetAnchor(6);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-1":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-2":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-3":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-4":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-5":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-6":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-7":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-8":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-9":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-10":
-			this.mediumRail.ResetAnchor(-6);
+			this.Order ("7-2", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-11":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-12":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-13":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-14":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-15":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-16":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-17":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-18":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "20-19":
-			this.mediumRail.ResetAnchor(-6);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-1":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-2":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-3":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-4":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-5":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-6":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-7":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-8":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-9":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-10":
-			this.mediumRail.ResetAnchor(7);
+			this.Order ("7-3", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-11":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-12":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-13":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-14":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-15":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-16":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-17":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-18":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "21-19":
-			this.mediumRail.ResetAnchor(7);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-1":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-2":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-3":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-4":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-5":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-6":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-7":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-8":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-9":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-10":
-			this.mediumRail.ResetAnchor(-7);
+			this.Order ("7-4", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-11":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-12":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-13":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-14":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-15":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-16":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-17":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-18":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "22-19":
-			this.mediumRail.ResetAnchor(-7);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-1":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-2":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-3":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-4":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-5":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-6":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-7":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-8":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-9":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-10":
-			this.mediumRail.ResetAnchor(8);
+			this.Order ("7-5", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-11":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-12":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-13":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-14":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-15":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-16":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-17":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-18":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "23-19":
-			this.mediumRail.ResetAnchor(8);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-1":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-2":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-3":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-4":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-5":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-6":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-7":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-8":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-9":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-10":
-			this.mediumRail.ResetAnchor(-8);
+			this.Order ("7-6", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-11":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-12":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-13":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-14":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-15":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-16":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-17":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-18":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "24-19":
-			this.mediumRail.ResetAnchor(-8);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-1":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-2":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-3":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-4":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-5":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-6":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-7":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-8":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-9":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-10":
-			this.mediumRail.ResetAnchor(9);
+			this.Order ("7-7", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-11":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-12":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-13":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-14":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-15":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-16":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-17":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-18":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "25-19":
-			this.mediumRail.ResetAnchor(9);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-1":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-2":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-3":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-4":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-5":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-6":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-7":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-8":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-9":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-10":
-			this.mediumRail.ResetAnchor(-9);
+			this.Order ("7-8", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-11":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-12":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-13":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-14":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-15":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-16":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-17":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-18":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "26-19":
-			this.mediumRail.ResetAnchor(-9);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "27-1":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+			this.Order ("7-20", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "27-2":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+			this.Order ("7-1", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "27-3":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "27-4":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "27-5":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "27-6":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "27-7":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "27-8":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "27-9":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "27-10":
-			this.mediumRail.ResetAnchor(10);
+			this.Order ("7-9", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
 		case "27-11":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "27-12":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "27-13":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "27-14":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "27-15":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "27-16":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "27-17":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "27-18":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "27-19":
-			this.mediumRail.ResetAnchor(10);
-			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "28-1":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "28-2":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "28-3":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "28-4":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "28-5":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "28-6":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "28-7":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "28-8":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "28-9":
-			this.mediumRail.ResetAnchor(-10);
+			this.Order ("7-10", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
-		case "28-10":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+		case "27-12":
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
-		case "28-11":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+		case "27-13":
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
-		case "28-12":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+		case "27-14":
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
-		case "28-13":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+		case "27-15":
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
-		case "28-14":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+		case "27-16":
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
-		case "28-15":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+		case "27-17":
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
-		case "28-16":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+		case "27-18":
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
-		case "28-17":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+		case "27-19":
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
 				if(callback != null) callback();
 			}));
+			});
 			break;
 			
-		case "28-18":
-			this.mediumRail.ResetAnchor(-10);
-			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
-				if(callback != null) callback();
-			}));
-			break;
-			
-		case "28-19":
-			this.mediumRail.ResetAnchor(-10);
+		case "28-1":
+			this.Order ("7-1", () => {
 			StartCoroutine (this.mediumRail.RailVitaStop (19, () => {
 				if(callback != null) callback();
 			}));
+			});
+			break;
+			
+		case "28-2":
+			this.Order ("7-2", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (18, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-3":
+			this.Order ("7-3", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (17, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-4":
+			this.Order ("7-4", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (16, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-5":
+			this.Order ("7-5", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (15, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-6":
+			this.Order ("7-6", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (14, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-7":
+			this.Order ("7-7", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (13, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-8":
+			this.Order ("7-8", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (12, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-9":
+			this.Order ("7-9", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (11, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-10":
+			this.Order ("7-10", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (10, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-11":
+			this.Order ("7-11", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (9, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-12":
+			this.Order ("7-12", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (8, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-13":
+			this.Order ("7-13", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (7, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-14":
+			this.Order ("7-14", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (6, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-15":
+			this.Order ("7-15", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (5, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-16":
+			this.Order ("7-16", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (4, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-17":
+			this.Order ("7-17", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (3, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-18":
+			this.Order ("7-18", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (2, () => {
+				if(callback != null) callback();
+			}));
+			});
+			break;
+			
+		case "28-19":
+			this.Order ("7-19", () => {
+			StartCoroutine (this.mediumRail.RailVitaStop (1, () => {
+				if(callback != null) callback();
+			}));
+			});
 			break;
 			
 		case "29-1":
