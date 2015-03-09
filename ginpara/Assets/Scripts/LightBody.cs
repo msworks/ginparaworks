@@ -61,6 +61,9 @@ public class LightBody : MonoBehaviour {
         mPower = power;
     }
 
+    /// <summary>
+    /// 消灯
+    /// </summary>
     public void OFF()
     {
         LightFlg = false;

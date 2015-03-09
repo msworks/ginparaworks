@@ -339,11 +339,10 @@ public class MainLogic : MonoBehaviour {
 
 
     /// <summary>
-    /// チャッカー通過
+    /// 保留オブジェクトにチャッカー通過メッセージを送る
     /// </summary>
     public void NoticeChacker()
     {
-        // 保留オブジェクトにチャッカー通過メッセージを送る
         Horyu.GetComponent<PlayMakerFSM>().SendEvent(ThroughChacker);
     }
 
