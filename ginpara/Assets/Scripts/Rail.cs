@@ -15,6 +15,7 @@ public class Rail : MonoBehaviour {
 	private float preAnchorValue = 0;
 	private float originValue = 0;
 	private bool isRolling = false;
+	private bool isAct = false;
 
 	//====================================================================================================
 	// Property
@@ -90,6 +91,11 @@ public class Rail : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	public IEnumerator RailStart(System.Action callback){
+		while(this.isAct){
+			yield return null;
+		}
+		this.isAct = true;
+
 		this.railAnimation.clip = this.anims[0];
 		this.originValue = this.anchorValue;
 		this.anchorValue = 0;
@@ -100,12 +106,18 @@ public class Rail : MonoBehaviour {
 		this.anchorValue = (this.anchorValue + this.originValue);
 		this.originValue = 0;
 		this.isRolling = true;
+		this.isAct = false;
 		if(callback != null) callback();
 		yield break;
 	}
 	
 	//----------------------------------------------------------------------------------------------------
 	public IEnumerator RailStop(int targetNum, System.Action callback){
+		while(this.isAct){
+			yield return null;
+		}
+		this.isAct = true;
+
 		while(this.railAnimation.isPlaying){
 			yield return null;
 		}
@@ -122,12 +134,18 @@ public class Rail : MonoBehaviour {
 		
 		this.anchorValue = (this.anchorValue + this.originValue);
 		this.originValue = 0;
+		this.isAct = false;
 		if(callback != null) callback();
 		yield break;
 	}
 	
 	//----------------------------------------------------------------------------------------------------
 	public IEnumerator RailReach(int certainNum, System.Action callback){
+		while(this.isAct){
+			yield return null;
+		}
+		this.isAct = true;
+
 		this.ResetAnchor(1);
 		this.isRolling = false;
 		float totalTime = (1f / 3f) * (float)certainNum;
@@ -148,12 +166,18 @@ public class Rail : MonoBehaviour {
 			yield return null;
 		}
 
+		this.isAct = false;
 		if(callback != null) callback();
 		yield break;
 	}
 	
 	//----------------------------------------------------------------------------------------------------
 	public IEnumerator RailSuperReach(int certainNum, int lowNum, System.Action callback){
+		while(this.isAct){
+			yield return null;
+		}
+		this.isAct = true;
+
 		this.ResetAnchor(1);
 		this.isRolling = false;
 		float totalTime = (1f / 3f) * (float)certainNum;
@@ -174,27 +198,36 @@ public class Rail : MonoBehaviour {
 			yield return null;
 		}
 
+		this.isAct = false;
 		if(callback != null) callback();
 		yield break;
 	}
 	
 	//----------------------------------------------------------------------------------------------------
 	public IEnumerator RailVitaStop(int moveNum, System.Action callback){
+		while(this.isAct){
+			yield return null;
+		}
+		this.isAct = true;
+
 		float time = 0.5f;
 		while(time > 0){
 			time -= Time.deltaTime;
 			yield return null;
 		}
 
+		this.anchorValue = this.preAnchorValue = (int)(this.anchorValue + 0.5f);
+
 		float totalTime = (float)moveNum / 5f;
 		while(totalTime > 0){
 			float deltaTime = Time.deltaTime;
 			totalTime -= deltaTime;
-			if(totalTime >= 0) this.anchorValue += deltaTime *5f;
+			if(totalTime >= 0) this.anchorValue += deltaTime * 5f;
 			else this.anchorValue += (totalTime + deltaTime) * 5f;
 			yield return null;
 		}
 
+		this.isAct = false;
 		if(callback != null) callback();
 		yield break;
 	}
