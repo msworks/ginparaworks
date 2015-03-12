@@ -14,13 +14,6 @@ public class TouchKaitentai : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(collision.gameObject);
-
-        NGUITools.AddChild(BodyPath, TurnBallPrefab);
-        //var ball = NGUITools.AddChild(BodyPath, TurnBallPrefab);
-        //ball.transform.position = ShootPosition.transform.position;
-        //ball.rigidbody2D.velocity = ShootPower * rndp;
-
-        this.gameObject.GetComponent<PlayMakerFSM>().SendEvent("玉通過");
     }
 
 }

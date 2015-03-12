@@ -21,7 +21,7 @@ public class Syokyu_Nyusyo0 : MonoBehaviour {
         // 保留オブジェクトにチャッカー通過メッセージを送る
         Horyu.GetComponent<PlayMakerFSM>().SendEvent(msg);
 
-        // チャッカー出口に玉を出す(TODO 遅れて出す)
+        // チャッカー出口に玉を出す(TODO 遅れて出す 遅れなくてもそんなに不自然には見えない)
         var ball = NGUITools.AddChild(BodyPath, BallPrefab);
         ball.transform.position = ChackerOut.transform.position;
 
