@@ -1,0 +1,269 @@
+using UnityEngine;
+using HutongGames.PlayMaker;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+/// <summary>
+/// リールテーブル
+/// </summary>
+public struct ReelElement
+{
+    public String Tokuzu;   // 数字か貝
+    public String Sizi;     // 指示No( 4-1 等 )
+};
+
+/// <summary>
+/// リール管理クラス
+/// </summary>
+public class Reel
+{
+    static System.Random rnd = new System.Random(Environment.TickCount);
+    const int CHUSEN_LEN = 65536;       // 抽選のサイズ
+
+    /// <summary>
+    /// 0～65535のランダム値を返す
+    /// </summary>
+    static int RndFFFF
+    {
+        get
+        {
+            return rnd.Next(CHUSEN_LEN);
+        }
+    }
+
+    /// <summary>
+    /// 上段
+    /// </summary>
+    static List<ReelElement> reel1 = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="10",Sizi="4-1"},
+        new ReelElement(){ Tokuzu="*", Sizi="4-2"},
+        new ReelElement(){ Tokuzu="9", Sizi="4-3"},
+        new ReelElement(){ Tokuzu="*", Sizi="4-4"},
+        new ReelElement(){ Tokuzu="8", Sizi="4-5"},
+        new ReelElement(){ Tokuzu="*", Sizi="4-6"},
+        new ReelElement(){ Tokuzu="7", Sizi="4-7"},
+        new ReelElement(){ Tokuzu="*", Sizi="4-8"},
+        new ReelElement(){ Tokuzu="6", Sizi="4-9"},
+        new ReelElement(){ Tokuzu="*", Sizi="4-10"},
+        new ReelElement(){ Tokuzu="5", Sizi="4-11"},
+        new ReelElement(){ Tokuzu="*", Sizi="4-12"},
+        new ReelElement(){ Tokuzu="4", Sizi="4-13"},
+        new ReelElement(){ Tokuzu="*", Sizi="4-14"},
+        new ReelElement(){ Tokuzu="3", Sizi="4-15"},
+        new ReelElement(){ Tokuzu="*", Sizi="4-16"},
+        new ReelElement(){ Tokuzu="2", Sizi="4-17"},
+        new ReelElement(){ Tokuzu="*", Sizi="4-18"},
+        new ReelElement(){ Tokuzu="1", Sizi="4-19"},
+        new ReelElement(){ Tokuzu="*", Sizi="4-20"},
+    };
+
+    /// <summary>
+    /// 上段リールの無限シーケンス
+    /// </summary>
+    static CycleSequence<ReelElement> CyclicReel1 = new CycleSequence<ReelElement>(reel1);
+
+    /// <summary>
+    /// 上段リールの配列
+    /// </summary>
+    static ReelElement[] reel1array = reel1.ToArray();
+
+    /// <summary>
+    /// 中段リール
+    /// </summary>
+    static List<ReelElement> reel2 = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="1", Sizi="5-1"},
+        new ReelElement(){ Tokuzu="*", Sizi="5-2"},
+        new ReelElement(){ Tokuzu="2", Sizi="5-3"},
+        new ReelElement(){ Tokuzu="*", Sizi="5-4"},
+        new ReelElement(){ Tokuzu="3", Sizi="5-5"},
+        new ReelElement(){ Tokuzu="*", Sizi="5-6"},
+        new ReelElement(){ Tokuzu="4", Sizi="5-7"},
+        new ReelElement(){ Tokuzu="*", Sizi="5-8"},
+        new ReelElement(){ Tokuzu="5", Sizi="5-9"},
+        new ReelElement(){ Tokuzu="*", Sizi="5-10"},
+        new ReelElement(){ Tokuzu="6", Sizi="5-11"},
+        new ReelElement(){ Tokuzu="*", Sizi="5-12"},
+        new ReelElement(){ Tokuzu="7", Sizi="5-13"},
+        new ReelElement(){ Tokuzu="*", Sizi="5-14"},
+        new ReelElement(){ Tokuzu="8", Sizi="5-15"},
+        new ReelElement(){ Tokuzu="*", Sizi="5-16"},
+        new ReelElement(){ Tokuzu="9", Sizi="5-17"},
+        new ReelElement(){ Tokuzu="*", Sizi="5-18"},
+        new ReelElement(){ Tokuzu="10",Sizi="5-19"},
+        new ReelElement(){ Tokuzu="*", Sizi="5-20"},
+    };
+
+    /// <summary>
+    /// 中段リールの無限シーケンス
+    /// </summary>
+    static CycleSequence<ReelElement> CyclicReel2 = new CycleSequence<ReelElement>(reel2);
+
+    /// <summary>
+    /// 下段リール
+    /// </summary>
+    static List<ReelElement> reel3 = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="1", Sizi="6-1"},
+        new ReelElement(){ Tokuzu="*", Sizi="6-2"},
+        new ReelElement(){ Tokuzu="2", Sizi="6-3"},
+        new ReelElement(){ Tokuzu="*", Sizi="6-4"},
+        new ReelElement(){ Tokuzu="3", Sizi="6-5"},
+        new ReelElement(){ Tokuzu="*", Sizi="6-6"},
+        new ReelElement(){ Tokuzu="4", Sizi="6-7"},
+        new ReelElement(){ Tokuzu="*", Sizi="6-8"},
+        new ReelElement(){ Tokuzu="5", Sizi="6-9"},
+        new ReelElement(){ Tokuzu="*", Sizi="6-10"},
+        new ReelElement(){ Tokuzu="6", Sizi="6-11"},
+        new ReelElement(){ Tokuzu="*", Sizi="6-12"},
+        new ReelElement(){ Tokuzu="7", Sizi="6-13"},
+        new ReelElement(){ Tokuzu="*", Sizi="6-14"},
+        new ReelElement(){ Tokuzu="8", Sizi="6-15"},
+        new ReelElement(){ Tokuzu="*", Sizi="6-16"},
+        new ReelElement(){ Tokuzu="9", Sizi="6-17"},
+        new ReelElement(){ Tokuzu="*", Sizi="6-18"},
+        new ReelElement(){ Tokuzu="10",Sizi="6-19"},
+        new ReelElement(){ Tokuzu="*", Sizi="6-20"},
+    };
+
+    /// <summary>
+    /// 下段リールの無限シーケンス
+    /// </summary>
+    static CycleSequence<ReelElement> CyclicReel3 = new CycleSequence<ReelElement>(reel3);
+
+    struct BarakemePattern
+    {
+        public ReelElement elem;
+        public int chusenti;
+    };
+
+    /// <summary>
+    /// バラケ目（リーチ不成立時）停止テーブル
+    /// </summary>
+    static List<BarakemePattern> Barakeme = new List<BarakemePattern>()
+    {
+        new BarakemePattern {elem = reel1array[0], chusenti=3000},   // 10
+        new BarakemePattern {elem = reel1array[1], chusenti=3400},   // *
+        new BarakemePattern {elem = reel1array[2], chusenti=3000},   // 9
+        new BarakemePattern {elem = reel1array[3], chusenti=3400},   // *
+        new BarakemePattern {elem = reel1array[4], chusenti=3000},   // 8
+        new BarakemePattern {elem = reel1array[5], chusenti=3400},   // *
+        new BarakemePattern {elem = reel1array[6], chusenti=3000},   // 7
+        new BarakemePattern {elem = reel1array[7], chusenti=3400},   // *
+        new BarakemePattern {elem = reel1array[8], chusenti=3000},   // 6
+        new BarakemePattern {elem = reel1array[9], chusenti=3400},   // *
+        new BarakemePattern {elem = reel1array[10], chusenti=3000},   // 5
+        new BarakemePattern {elem = reel1array[11], chusenti=3868},   // *
+        new BarakemePattern {elem = reel1array[12], chusenti=3600},   // 4
+        new BarakemePattern {elem = reel1array[13], chusenti=3868},   // *
+        new BarakemePattern {elem = reel1array[14], chusenti=3000},   // 3
+        new BarakemePattern {elem = reel1array[15], chusenti=3400},   // *
+        new BarakemePattern {elem = reel1array[16], chusenti=3000},   // 2
+        new BarakemePattern {elem = reel1array[17], chusenti=3400},   // *
+        new BarakemePattern {elem = reel1array[18], chusenti=3000},   // 1
+        new BarakemePattern {elem = reel1array[19], chusenti=3400},   // *
+    };
+
+    /// <summary>
+    /// バラケ目抽選テーブル
+    /// </summary>
+    static BarakemePattern[] BarakemeChusen;
+
+    /// <summary>
+    /// static コンストラクタ
+    /// </summary>
+    static Reel()
+    {
+        // バラケ目テーブルの初期化(平坦化)
+        BarakemeChusen = Barakeme.Select(br => BR2Sequence(br)).SelectMany(brs => brs).ToArray();
+    }
+
+    /// <summary>
+    /// バラケ目テーブルを抽選値の数のシーケンスに変換
+    /// </summary>
+    /// <param name="br"></param>
+    /// <returns></returns>
+    static IEnumerable<BarakemePattern> BR2Sequence(BarakemePattern br)
+    {
+        return Enumerable.Range(0, br.chusenti).Select(count => new BarakemePattern()
+        {
+            elem = br.elem,
+            chusenti = br.chusenti
+        });
+    }
+
+    /// <summary>
+    /// リールを抽選（均等）
+    /// </summary>
+    /// <param name="reel"></param>
+    /// <returns></returns>
+    static ReelElement GetElement(List<ReelElement> reel)
+    {
+        return reel.ToArray()[UnityEngine.Random.Range(0, reel.Count)];
+    }
+
+    /// <summary>
+    /// 止まる位置を取得
+    /// </summary>
+    /// <returns>指示No 上段、中段、下段( 4-1 等 )</returns>
+    static public ReelElement[] Choose()
+    {
+        // 上段の止まる位置を抽選
+        var r1 = BarakemeChusen[RndFFFF].elem;
+
+        ReelElement r2, r3;
+
+        // 下段の止まる位置を抽選
+        r3 = GetElement(reel3);
+
+        // テンパイを避けて均等に停止させる
+        // テンパイすることになったら＋１してズラす
+        while (IsTenpai(r1, r3))
+        {
+            r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(r3.Tokuzu))
+                            .Take(2)
+                            .ToArray()[1];
+        }
+
+        // 中段を抽選
+        r2 = GetElement(reel2);
+
+        var reels = new ReelElement[] { r1, r2, r3 };
+
+        return reels;
+    }
+
+    /// <summary>
+    /// テンパイしているか返す
+    /// </summary>
+    /// <param name="r1">リール</param>
+    /// <param name="r3">リール</param>
+    /// <returns>true:テンパイしている false:テンパイしていない</returns>
+    static private bool IsTenpai( ReelElement r1, ReelElement r3 )
+    {
+        // テンパイしているか調査
+        if (r1.Tokuzu == r3.Tokuzu) return true;
+
+        // リール取得
+        var Jodan = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(r1.Tokuzu))
+                               .Take(3).ToArray();
+
+        var Gedan = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(r3.Tokuzu))
+                               .Take(3).ToArray();
+
+        // 垂直方向のチェック
+        if (Jodan[0].Tokuzu.Equals(Gedan[0].Tokuzu)) { return true; }
+        if (Jodan[1].Tokuzu.Equals(Gedan[1].Tokuzu)) { return true; }
+        if (Jodan[2].Tokuzu.Equals(Gedan[2].Tokuzu)) { return true; }
+
+        // ナナメのチェック
+        if (Jodan[0].Tokuzu.Equals(Gedan[2].Tokuzu)) { return true; }
+        if (Jodan[2].Tokuzu.Equals(Gedan[0].Tokuzu)) { return true; }
+
+        // テンパイしていないを返却
+        return false;
+    }
+}

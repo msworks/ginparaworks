@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// 賞球クラス
+/// </summary>
 public class Syokyu : MonoBehaviour {
 
     public GameObject Uchidashi;

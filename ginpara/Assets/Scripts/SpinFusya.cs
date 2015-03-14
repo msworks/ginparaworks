@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// 風車を回す
+/// </summary>
 public class SpinFusya : MonoBehaviour {
 
     public GameObject Fusya;

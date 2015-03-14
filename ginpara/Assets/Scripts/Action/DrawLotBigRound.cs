@@ -19,14 +19,25 @@ public class DrawLotBigRound : FsmStateAction
     public FsmInt ReachLine;
     public FsmInt ReachPattern;
 
-	// Code that runs on entering the state.
+    public GameObject ReelController;
+
 	public override void OnEnter()
 	{
-        DrawLotResult result = 
-        MainLogic.GetComponent<MainLogic>().DrawLot(
+        var result = MainLogic.GetComponent<MainLogic>().DrawLot(
             HoryuSu.Value,
             KenriKaisu.Value
         );
+
+        // TODO とりあえずバラケ目固定
+        var reels = Reel.Choose();
+
+        // エフェクトを通知
+        ReelController.GetComponent<ReelController>().EnqueueDirection("1", 0.5f);
+        ReelController.GetComponent<ReelController>().EnqueueDirection("2", 0.5f);
+        ReelController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
+        ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
+        ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+        ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 1f);
 
         IsOoatari.Value = result.isOOatari;
         ReachLine.Value = result.reachLine;

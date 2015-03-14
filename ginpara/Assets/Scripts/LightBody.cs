@@ -17,11 +17,17 @@ public class LightBody : MonoBehaviour {
     private float mPower = 0.0f;
     private float mCycle = 0.0f;
 
+    /// <summary>
+    /// 開始時処理
+    /// </summary>
 	void Start () {
         if (inside) insideSprite = inside.GetComponent<UISprite>();
         if (outside) outsideSprite = outside.GetComponent<UISprite>();
 	}
 	
+    /// <summary>
+    /// 筐体をてれこで光らせる
+    /// </summary>
 	void Update () {
         if (!LightFlg) return; 
         

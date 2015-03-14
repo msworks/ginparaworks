@@ -2,6 +2,9 @@
 using System;
 using System.Collections;
 
+/// <summary>
+/// テストという名前をつけてしまっているが本番
+/// </summary>
 public class ShootBallTest : MonoBehaviour {
 
     // TODO 動的にボールを生成するとメモリに負荷をかける。
