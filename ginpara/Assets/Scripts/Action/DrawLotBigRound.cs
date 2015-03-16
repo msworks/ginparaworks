@@ -32,12 +32,12 @@ public class DrawLotBigRound : FsmStateAction
         var reels = Reel.Choose();
 
         // エフェクトを通知
-        ReelController.GetComponent<ReelController>().EnqueueDirection("1", 0.5f);
-        ReelController.GetComponent<ReelController>().EnqueueDirection("2", 0.5f);
+        ReelController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
+        ReelController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
         ReelController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
         ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
         ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-        ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 1f);
+        ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
 
         IsOoatari.Value = result.isOOatari;
         ReachLine.Value = result.reachLine;
