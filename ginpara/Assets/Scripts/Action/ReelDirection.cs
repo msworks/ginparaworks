@@ -17,7 +17,7 @@ public class ReelDirection : FsmStateAction
 	{
         var data = (GPDirection)ReelController.GetComponent<ReelController>().Direction.Dequeue();
 
-        Debug.Log("指示ナンバー：" + data.sizi + " 待ち時間：" + data.time.ToString());
+        //Debug.Log("指示ナンバー：" + data.sizi + " 待ち時間：" + data.time.ToString());
 
         GinparaManager.GetComponent<GinparaManager>().Order(data.sizi);
 

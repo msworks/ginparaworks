@@ -63,7 +63,7 @@ public class MainLogic : MonoBehaviour {
 
     // リーチライン抽選リスト
     List<structReachLine> reachLines = new List<structReachLine> {
-        new structReachLine{ No= 1, Chusenti=1000, ReachLine=2, Tokuzu="１タコ" },
+        new structReachLine{ No= 1, Chusenti=1000, ReachLine=2, Tokuzu="1タコ" },
         new structReachLine{ No= 2, Chusenti=1500, ReachLine=1, Tokuzu="2ハリセンボン/1タコ" },
         new structReachLine{ No= 3, Chusenti=1500, ReachLine=3, Tokuzu="2ハリセンボン/1タコ" },
         new structReachLine{ No= 4, Chusenti=2500, ReachLine=4, Tokuzu="2ハリセンボン/1タコ" },
@@ -397,12 +397,18 @@ public class MainLogic : MonoBehaviour {
                 DrawLotHazure = DrawLotHazureH3;
             }
 
+            // リーチライン抽選
+            var rl = DrawLotReachLine(RndFFFF);
+
             // リーチ抽選
             var reach = DrawLotHazure(RndFFFF);
             structReachPattern rp = new structReachPattern();
 
-            if (reach)
+            // TODO むりやりハズレリーチ固定にする
+            //if (reach)
+            if (true)
             {
+
                 rp = DrawLotReachPatternHazure(RndFFFF);
 
                 // TODO ハズレリーチ
@@ -410,16 +416,17 @@ public class MainLogic : MonoBehaviour {
             }
             else
             {
-                // TODO ハズレ
+                // バラケ目
                 Debug.Log("ハズレ");
-                rp.No = -1;
+                rp.No = -1; // バラケ目時はリーチパターンNoをー１とする
+                rl.ReachLine = -1;
                 rp.Name = "ハズレ";
             }
 
             // 返却値をセット
             result.isOOatari = false;
-            result.reachLine = -1;
-            result.reachLineName = "ハズレ";
+            result.reachLine = rl.ReachLine;
+            result.reachLineName = rl.Tokuzu;
             result.reachPattern = rp.No;
             result.reachPatternName = rp.Name;
         }

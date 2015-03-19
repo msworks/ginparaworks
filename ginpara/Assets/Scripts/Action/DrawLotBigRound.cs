@@ -28,29 +28,69 @@ public class DrawLotBigRound : FsmStateAction
             KenriKaisu.Value
         );
 
-        // TODO とりあえずバラケ目固定
         var reels = Reel.Choose();
 
-        // エフェクトを通知
-        if (HoryuSu.Value < 3)
+        if (result.isOOatari)
         {
-            // 保留０、１、２のエフェクト
-            ReelController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
+            // TODO 大当たりしていてもバラケ目にしておく
         }
         else
         {
-            // 保留３，４のエフェクト
-            ReelController.GetComponent<ReelController>().EnqueueDirection("1", 0f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection("2", 0f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection("3", 0f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
+            // ハズレ
+            if (result.reachPattern == -1){
+                // バラケ目
+                // エフェクトを通知
+                if (HoryuSu.Value < 3)
+                {
+                    // 保留０、１、２のエフェクト
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
+                }
+                else
+                {
+                    // 保留３，４のエフェクト
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("1", 0f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("2", 0f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("3", 0f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
+                }
+            }
+            else
+            {
+                // ハズレリーチ
+                Debug.Log("リーチライン：" + result.reachLineName);
+                Debug.Log("リーチパターン："+result.reachPatternName);
+
+                // テストでバラケ目エフェクトを発行
+                // エフェクトを通知
+                if (HoryuSu.Value < 3)
+                {
+                    // 保留０、１、２のエフェクト
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
+                }
+                else
+                {
+                    // 保留３，４のエフェクト
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("1", 0f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("2", 0f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection("3", 0f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
+                }
+            }
+
         }
 
         IsOoatari.Value = result.isOOatari;
