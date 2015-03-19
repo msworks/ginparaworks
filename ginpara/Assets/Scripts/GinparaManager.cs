@@ -132,18 +132,48 @@ public class GinparaManager : MonoBehaviour {
 		string errorCode = null;
 		switch (patternNo) {
 		case "1":
+			this.Order ("39-1");
+			this.Order ("40-1");
+			this.Order ("41-1");
+			this.Order ("42-1");
+			this.Order ("43-1");
+			this.Order ("44-1");
+			this.Order ("45-1");
+			this.Order ("46-1");
+			this.Order ("47-1");
+			this.Order ("48-1");
 			StartCoroutine(this.topRail.RailStart(() => {
 				if(callback != null) callback();
 			}));
 			break;
 
 		case "2":
+			this.Order ("39-1");
+			this.Order ("40-1");
+			this.Order ("41-1");
+			this.Order ("42-1");
+			this.Order ("43-1");
+			this.Order ("44-1");
+			this.Order ("45-1");
+			this.Order ("46-1");
+			this.Order ("47-1");
+			this.Order ("48-1");
 			StartCoroutine(this.mediumRail.RailStart(() => {
 				if(callback != null) callback();
 			}));
 			break;
 
 		case "3":
+			this.Order ("39-1");
+			this.Order ("40-1");
+			this.Order ("41-1");
+			this.Order ("42-1");
+			this.Order ("43-1");
+			this.Order ("44-1");
+			this.Order ("45-1");
+			this.Order ("46-1");
+			this.Order ("47-1");
+			this.Order ("48-1");
 			StartCoroutine(this.belowRail.RailStart(() => {
 				if(callback != null) callback();
 			}));
