@@ -21,18 +21,22 @@ public class DrawLotBigRound : FsmStateAction
 
     public GameObject ReelController;
 
+    // DEBUG
+    public FsmBool ForceNormalReach;
+
 	public override void OnEnter()
 	{
         var result = MainLogic.GetComponent<MainLogic>().DrawLot(
             HoryuSu.Value,
-            KenriKaisu.Value
+            KenriKaisu.Value,
+            ForceNormalReach.Value
         );
 
         var reels = Reel.Choose();
 
         if (result.isOOatari)
         {
-            // TODO 大当たりしていてもバラケ目にしておく
+            // TODO 大当たり
         }
         else
         {
@@ -64,8 +68,13 @@ public class DrawLotBigRound : FsmStateAction
             else
             {
                 // ハズレリーチ
-                Debug.Log("リーチライン：" + result.reachLineName);
-                Debug.Log("リーチパターン："+result.reachPatternName);
+                Debug.Log("特図：" + result.tokuzu);
+                Debug.Log("特図：" + result.reachLineName);
+                Debug.Log("リーチライン"+result.reachLine);
+                Debug.Log("リーチパターン：" + result.reachPatternName);
+
+                // リーチラインに特図を置く
+                reels = Reel.Choose(result.reachLine, result.tokuzu);
 
                 // テストでバラケ目エフェクトを発行
                 // エフェクトを通知
@@ -99,6 +108,5 @@ public class DrawLotBigRound : FsmStateAction
 
 		Finish();
 	}
-
 
 }

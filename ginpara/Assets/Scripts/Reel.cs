@@ -98,6 +98,11 @@ public class Reel
     };
 
     /// <summary>
+    /// 中段リールの配列
+    /// </summary>
+    static ReelElement[] reel2array = reel2.ToArray();
+
+    /// <summary>
     /// 中段リールの無限シーケンス
     /// </summary>
     static CycleSequence<ReelElement> CyclicReel2 = new CycleSequence<ReelElement>(reel2);
@@ -173,12 +178,49 @@ public class Reel
     static BarakemePattern[] BarakemeChusen;
 
     /// <summary>
+    /// 中段リーチ外しリスト
+    /// </summary>
+    static List<BarakemePattern> ChudanReachHazushi= new List<BarakemePattern>()
+    {
+        new BarakemePattern {elem = reel2array[0], chusenti=0},      // *
+        new BarakemePattern {elem = reel2array[1], chusenti=409},    // 1
+        new BarakemePattern {elem = reel2array[2], chusenti=3276},   // *
+        new BarakemePattern {elem = reel2array[3], chusenti=3276},   // 2
+        new BarakemePattern {elem = reel2array[4], chusenti=3276},   // *
+        new BarakemePattern {elem = reel2array[5], chusenti=3276},   // 3
+        new BarakemePattern {elem = reel2array[6], chusenti=3276},   // *
+        new BarakemePattern {elem = reel2array[7], chusenti=3276},   // 4
+        new BarakemePattern {elem = reel2array[8], chusenti=3276},   // *
+        new BarakemePattern {elem = reel2array[9], chusenti=3276},   // 5
+        new BarakemePattern {elem = reel2array[10], chusenti=3276},  // *
+        new BarakemePattern {elem = reel2array[11], chusenti=3276},  // 6
+        new BarakemePattern {elem = reel2array[12], chusenti=3276},  // *
+        new BarakemePattern {elem = reel2array[13], chusenti=1638},  // 7
+        new BarakemePattern {elem = reel2array[14], chusenti=836},   // *
+        new BarakemePattern {elem = reel2array[15], chusenti=6552},  // 8
+        new BarakemePattern {elem = reel2array[16], chusenti=6552},  // *
+        new BarakemePattern {elem = reel2array[17], chusenti=6552},  // 9
+        new BarakemePattern {elem = reel2array[18], chusenti=3276},  // *
+        new BarakemePattern {elem = reel2array[19], chusenti=409},   // 10
+    };
+
+    /// <summary>
+    /// 中段リーチはずし抽選テーブル
+    /// </summary>
+    static BarakemePattern[] ChudanReachHazushiChusen;
+
+    /// <summary>
     /// static コンストラクタ
     /// </summary>
     static Reel()
     {
         // バラケ目テーブルの初期化(平坦化)
         BarakemeChusen = Barakeme.Select(br => BR2Sequence(br)).SelectMany(brs => brs).ToArray();
+
+        // 中段リーチはずしテーブルの初期化（平坦化）
+        ChudanReachHazushiChusen = ChudanReachHazushi.Select(br => BR2Sequence(br))
+                                                     .SelectMany(brs => brs)
+                                                     .ToArray();
     }
 
     /// <summary>
@@ -203,6 +245,65 @@ public class Reel
     static ReelElement GetElement(List<ReelElement> reel)
     {
         return reel.ToArray()[UnityEngine.Random.Range(0, reel.Count)];
+    }
+
+    /// <summary>
+    /// 止まる位置を取得
+    /// </summary>
+    /// <param name="ReachLine">リーチライン①～④</param>
+    /// <param name="Tokuzu">特図の番号１～１０</param>
+    /// <returns></returns>
+    static public ReelElement[] Choose(int ReachLine, int Tokuzu)
+    {
+        // 上段の止まる位置を決定
+        var Offset = 0;
+        var r1 = reel1.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
+        var r2 = reel2.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
+        var r3 = reel3.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
+
+        // リーチラインに応じて、上段の位置をずらす
+        if (ReachLine == 1)
+        {
+            // ずらさない
+        }
+        else if (ReachLine == 2)
+        {
+            // 上段ずらす
+            r1 = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(19)
+                            .First();
+
+            // 下段ずらす
+            r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(19)
+                            .First();
+
+        }else if(ReachLine == 3)
+        {
+            r1 = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(18)
+                            .First();
+
+            r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(18)
+                            .First();
+        }
+        else if (ReachLine == 4)
+        {
+            // 上段ずらさないで、下段ずらす
+            r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(18)
+                            .First();
+        }
+
+        // 中段を抽選してずらす
+        r2 = ChudanReachHazushiChusen[RndFFFF].elem;
+
+        // TODO 中段をさらにずらす
+
+        var reels = new ReelElement[] { r1, r2, r3 };
+
+        return reels;
     }
 
     /// <summary>

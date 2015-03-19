@@ -352,7 +352,7 @@ public class MainLogic : MonoBehaviour {
     /// <param name="HoryuSu">保留カウント</param>
     /// <param name="KenriKaisu">権利回数（０でなければ確変中）</param>
     /// <returns></returns>
-    public DrawLotResult DrawLot(int HoryuSu, int KenriKaisu)
+    public DrawLotResult DrawLot(int HoryuSu, int KenriKaisu, bool ForceNormalReach)
     {
         DrawLotResult result = new DrawLotResult();
 
@@ -404,9 +404,7 @@ public class MainLogic : MonoBehaviour {
             var reach = DrawLotHazure(RndFFFF);
             structReachPattern rp = new structReachPattern();
 
-            // TODO むりやりハズレリーチ固定にする
-            //if (reach)
-            if (true)
+            if (reach||ForceNormalReach)
             {
 
                 rp = DrawLotReachPatternHazure(RndFFFF);
@@ -431,8 +429,22 @@ public class MainLogic : MonoBehaviour {
             result.reachPatternName = rp.Name;
         }
 
+        // リーチパターン名から特図の番号を取得
+        result.tokuzu = GetTokuzu(result.reachPatternName);
+
         // 結果を返却する
         return result;
+    }
+
+    /// <summary>
+    /// 特図の番号を取得
+    /// </summary>
+    /// <param name="tokuzu"></param>
+    /// <returns></returns>
+    int GetTokuzu(String tokuzu)
+    {
+        // TODO 1固定
+        return 1;
     }
 
     /// <summary>
