@@ -108,6 +108,22 @@ public class Reel
     static CycleSequence<ReelElement> CyclicReel2 = new CycleSequence<ReelElement>(reel2);
 
     /// <summary>
+    /// 中段リールリーチはずし確率テーブル（リーチライン１，２，３）
+    /// </summary>
+    static List<int> Reel2ReachHazusiChusen123 = new List<int>()
+    {
+        0,409,3276,3276,3276,3276,3276,3276,3276,3276,3276,3276,1638,836,6552,6552,6552,6552,3276,409
+    };
+
+    /// <summary>
+    /// 中段リールリーチはずし確率テーブル（リーチライン４）
+    /// </summary>
+    static List<int> Reel2ReachHazusiChusen4 = new List<int>()
+    {
+        309,3276,3276,3276,3276,3276,3276,3276,1638,836,6552,6552,6552,6552,6552,6552,309,0,200,0
+    };
+
+    /// <summary>
     /// 下段リール
     /// </summary>
     static List<ReelElement> reel3 = new List<ReelElement>()
@@ -179,6 +195,9 @@ public class Reel
 
     /// <summary>
     /// 中段リーチ外しリスト
+    /// リーチライン２に１が来ない配列を基準にしている
+    /// リーチライン１に１が来ないようにするには、
+    /// 
     /// </summary>
     static List<BarakemePattern> ChudanReachHazushi= new List<BarakemePattern>()
     {
@@ -248,7 +267,7 @@ public class Reel
     }
 
     /// <summary>
-    /// 止まる位置を取得
+    /// 止まる位置を取得（リーチ）
     /// </summary>
     /// <param name="ReachLine">リーチライン①～④</param>
     /// <param name="Tokuzu">特図の番号１～１０</param>
@@ -256,12 +275,11 @@ public class Reel
     static public ReelElement[] Choose(int ReachLine, int Tokuzu)
     {
         // 上段の止まる位置を決定
-        var Offset = 0;
         var r1 = reel1.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
         var r2 = reel2.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
         var r3 = reel3.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
 
-        // リーチラインに応じて、上段の位置をずらす
+        // リーチラインに応じて、上段、下段の位置をずらす
         if (ReachLine == 1)
         {
             // ずらさない
@@ -280,10 +298,12 @@ public class Reel
 
         }else if(ReachLine == 3)
         {
+            // 上段ずらす
             r1 = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(18)
                             .First();
 
+            // 下段ずらす
             r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(18)
                             .First();
@@ -296,10 +316,45 @@ public class Reel
                             .First();
         }
 
-        // 中段を抽選してずらす
-        r2 = ChudanReachHazushiChusen[RndFFFF].elem;
+        // =========
+        // 中段を抽選
+        // =========
+        // 循環テーブルを停止特図分シフト（スキップ）し、
+        // リーチライン分シフト（スキップ）し、
+        // 抽選テーブルとZIP(統合)し、
+        // 抽選値の数だけ平坦化し、
+        // 乱数で抽選する。
+        // TODO 処理的に遅いかも。 とりあえず実装した
 
-        // TODO 中段をさらにずらす
+        var SkipReachLine = 20; // 一回転
+        var ChusenTable = Reel2ReachHazusiChusen123;
+
+        switch (ReachLine)
+        {
+            case 1:
+                break;
+            case 2:
+                SkipReachLine -= 1;
+                break;
+            case 3:
+                SkipReachLine -= 2;
+                break;
+            case 4:
+                ChusenTable = Reel2ReachHazusiChusen4;
+                break;
+        }
+
+        var Chudan = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                                .Skip(SkipReachLine)
+                                .Take(20)
+                                .Select((e, index) => new BarakemePattern() {
+                                    elem = e, chusenti = ChusenTable[index]
+                                 })
+                                .Select(br => BR2Sequence(br))
+                                .SelectMany(brs => brs)
+                                .ToArray();
+
+        r2 = Chudan[RndFFFF].elem;
 
         var reels = new ReelElement[] { r1, r2, r3 };
 
@@ -307,7 +362,7 @@ public class Reel
     }
 
     /// <summary>
-    /// 止まる位置を取得
+    /// 止まる位置を取得（バラケ目）
     /// </summary>
     /// <returns>指示No 上段、中段、下段( 4-1 等 )</returns>
     static public ReelElement[] Choose()
