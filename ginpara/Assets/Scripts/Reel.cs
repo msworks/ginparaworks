@@ -4,6 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Ginpara;
+
+namespace Ginpara { 
 
 /// <summary>
 /// リールテーブル
@@ -63,7 +66,7 @@ public class Reel
     /// <summary>
     /// 上段リールの無限シーケンス
     /// </summary>
-    static CycleSequence<ReelElement> CyclicReel1 = new CycleSequence<ReelElement>(reel1);
+    public static CycleSequence<ReelElement> CyclicReel1 = new CycleSequence<ReelElement>(reel1);
 
     /// <summary>
     /// 上段リールの配列
@@ -105,7 +108,7 @@ public class Reel
     /// <summary>
     /// 中段リールの無限シーケンス
     /// </summary>
-    static CycleSequence<ReelElement> CyclicReel2 = new CycleSequence<ReelElement>(reel2);
+    public static CycleSequence<ReelElement> CyclicReel2 = new CycleSequence<ReelElement>(reel2);
 
     /// <summary>
     /// 中段リールリーチはずし確率テーブル（リーチライン１，２，３）
@@ -153,7 +156,7 @@ public class Reel
     /// <summary>
     /// 下段リールの無限シーケンス
     /// </summary>
-    static CycleSequence<ReelElement> CyclicReel3 = new CycleSequence<ReelElement>(reel3);
+    public static CycleSequence<ReelElement> CyclicReel3 = new CycleSequence<ReelElement>(reel3);
 
     struct BarakemePattern
     {
@@ -224,22 +227,12 @@ public class Reel
     };
 
     /// <summary>
-    /// 中段リーチはずし抽選テーブル
-    /// </summary>
-    static BarakemePattern[] ChudanReachHazushiChusen;
-
-    /// <summary>
     /// static コンストラクタ
     /// </summary>
     static Reel()
     {
         // バラケ目テーブルの初期化(平坦化)
         BarakemeChusen = Barakeme.Select(br => BR2Sequence(br)).SelectMany(brs => brs).ToArray();
-
-        // 中段リーチはずしテーブルの初期化（平坦化）
-        ChudanReachHazushiChusen = ChudanReachHazushi.Select(br => BR2Sequence(br))
-                                                     .SelectMany(brs => brs)
-                                                     .ToArray();
     }
 
     /// <summary>
@@ -379,7 +372,7 @@ public class Reel
         // テンパイすることになったら＋１してズラす
         while (IsTenpai(r1, r3))
         {
-            r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(r3.Tokuzu))
+            r3 = CyclicReel3.SkipWhile(elem => !elem.Sizi.Equals(r3.Sizi))
                             .Take(2)
                             .ToArray()[1];
         }
@@ -404,10 +397,10 @@ public class Reel
         if (r1.Tokuzu == r3.Tokuzu) return true;
 
         // リール取得
-        var Jodan = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(r1.Tokuzu))
+        var Jodan = CyclicReel1.SkipWhile(elem => !elem.Sizi.Equals(r1.Sizi))
                                .Take(3).ToArray();
 
-        var Gedan = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(r3.Tokuzu))
+        var Gedan = CyclicReel3.SkipWhile(elem => !elem.Sizi.Equals(r3.Sizi))
                                .Take(3).ToArray();
 
         // 垂直方向のチェック
@@ -422,4 +415,6 @@ public class Reel
         // テンパイしていないを返却
         return false;
     }
+}
+
 }

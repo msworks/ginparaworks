@@ -6,8 +6,6 @@ using System.Collections;
 // 
 public class TouchKaitentai : MonoBehaviour {
 
-    private string msg = "TouchKaitentai";
-
     public GameObject TurnBallPrefab;
     public GameObject BodyPath;
 

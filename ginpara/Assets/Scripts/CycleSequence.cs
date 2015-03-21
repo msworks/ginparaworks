@@ -4,11 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+namespace Ginpara
+{
 /// <summary>
 /// 循環シーケンス
 /// </summary>
 /// <typeparam name="T"></typeparam>
-class CycleSequence<T> : IEnumerable<T>
+public class CycleSequence<T> : IEnumerable<T>
 {
     protected List<T> _reel;
 
@@ -29,4 +31,6 @@ class CycleSequence<T> : IEnumerable<T>
     {
         return this.GetEnumerator();
     }
+}
+
 }

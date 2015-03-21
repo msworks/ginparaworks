@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+namespace Ginpara
+{
+
 /// <summary>
 /// ‘å“–‚½‚è’Š‘I‚ğs‚¤
 /// </summary>
@@ -108,5 +111,7 @@ public class DrawLotBigRound : FsmStateAction
 
 		Finish();
 	}
+
+}
 
 }
