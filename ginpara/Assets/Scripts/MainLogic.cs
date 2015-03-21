@@ -380,6 +380,7 @@ public class MainLogic : MonoBehaviour {
             result.reachLineName = rl.Tokuzu;
             result.reachPattern = rp.No;
             result.reachPatternName = rp.Name;
+            result.tokuzu = GetTokuzu(rl.Tokuzu);
         }
         else
         {
@@ -404,11 +405,12 @@ public class MainLogic : MonoBehaviour {
             var reach = DrawLotHazure(RndFFFF);
             structReachPattern rp = new structReachPattern();
 
+            var tokuzu = GetTokuzu(rl.Tokuzu);
+
             if (reach||ForceNormalReach)
             {
 
                 rp = DrawLotReachPatternHazure(RndFFFF);
-
                 // TODO ハズレリーチ
                 Debug.Log("ハズレリーチ：" + rp.Name);
             }
@@ -427,10 +429,8 @@ public class MainLogic : MonoBehaviour {
             result.reachLineName = rl.Tokuzu;
             result.reachPattern = rp.No;
             result.reachPatternName = rp.Name;
+            result.tokuzu = tokuzu;
         }
-
-        // リーチパターン名から特図の番号を取得
-        result.tokuzu = GetTokuzu(result.reachPatternName);
 
         // 結果を返却する
         return result;
@@ -443,8 +443,13 @@ public class MainLogic : MonoBehaviour {
     /// <returns></returns>
     int GetTokuzu(String tokuzu)
     {
-        // TODO 1固定
-        return 1;
+        Debug.Log("TOKUZU" + tokuzu);
+
+        var ten = tokuzu.Substring(0, 2);
+        if (ten.Equals("10")) return 10;
+
+        var num = tokuzu.Substring(0, 1);
+        return Int16.Parse(num);
     }
 
     /// <summary>
