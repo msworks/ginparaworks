@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// Šm—¦•Ï“®ƒƒO
+/// </summary>
 [ActionCategory("Ginpara")]
 public class KakuhenLog : FsmStateAction
 {

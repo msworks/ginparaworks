@@ -411,7 +411,6 @@ public class MainLogic : MonoBehaviour {
             {
 
                 rp = DrawLotReachPatternHazure(RndFFFF);
-                // TODO ハズレリーチ
                 Debug.Log("ハズレリーチ：" + rp.Name);
             }
             else

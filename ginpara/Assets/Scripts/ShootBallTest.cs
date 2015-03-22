@@ -7,9 +7,6 @@ using System.Collections;
 /// </summary>
 public class ShootBallTest : MonoBehaviour {
 
-    // TODO 動的にボールを生成するとメモリに負荷をかける。
-    // 先にボールを十分な数確保しておいて、
-    // 回収→打ち出し　というループにできないか。
     public GameObject BallPrefab;
     public GameObject BodyPath;
     public GameObject ShootPosition;

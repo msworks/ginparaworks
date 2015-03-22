@@ -118,6 +118,45 @@ public class Reel
         0,409,3276,3276,3276,3276,3276,3276,3276,3276,3276,3276,1638,836,6552,6552,6552,6552,3276,409
     };
 
+
+    /// <summary>
+    /// 中段リールノーマルリーチリスト
+    /// </summary>
+    static List<ReelElement> reel2normal = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="1", Sizi="7-1"},
+        new ReelElement(){ Tokuzu="*", Sizi="7-2"},
+        new ReelElement(){ Tokuzu="2", Sizi="7-3"},
+        new ReelElement(){ Tokuzu="*", Sizi="7-4"},
+        new ReelElement(){ Tokuzu="3", Sizi="7-5"},
+        new ReelElement(){ Tokuzu="*", Sizi="7-6"},
+        new ReelElement(){ Tokuzu="4", Sizi="7-7"},
+        new ReelElement(){ Tokuzu="*", Sizi="7-8"},
+        new ReelElement(){ Tokuzu="5", Sizi="7-9"},
+        new ReelElement(){ Tokuzu="*", Sizi="7-10"},
+        new ReelElement(){ Tokuzu="6", Sizi="7-11"},
+        new ReelElement(){ Tokuzu="*", Sizi="7-12"},
+        new ReelElement(){ Tokuzu="7", Sizi="7-13"},
+        new ReelElement(){ Tokuzu="*", Sizi="7-14"},
+        new ReelElement(){ Tokuzu="8", Sizi="7-15"},
+        new ReelElement(){ Tokuzu="*", Sizi="7-16"},
+        new ReelElement(){ Tokuzu="9", Sizi="7-17"},
+        new ReelElement(){ Tokuzu="*", Sizi="7-18"},
+        new ReelElement(){ Tokuzu="10",Sizi="7-19"},
+        new ReelElement(){ Tokuzu="*", Sizi="7-20"},
+    };
+
+    /// <summary>
+    /// 中段リールの配列
+    /// </summary>
+    static ReelElement[] reel2normalarray = reel2normal.ToArray();
+
+    /// <summary>
+    /// 中段リールの無限シーケンス
+    /// </summary>
+    public static CycleSequence<ReelElement> CyclicReel2normal = new CycleSequence<ReelElement>(reel2normal);
+
+
     /// <summary>
     /// 中段リールリーチはずし確率テーブル（リーチライン４）
     /// </summary>
@@ -317,7 +356,6 @@ public class Reel
         // 抽選テーブルとZIP(統合)し、
         // 抽選値の数だけ平坦化し、
         // 乱数で抽選する。
-        // TODO 処理的に遅いかも。 とりあえず実装した
 
         var SkipReachLine = 20; // 一回転
         var ChusenTable = Reel2ReachHazusiChusen123;
@@ -337,7 +375,7 @@ public class Reel
                 break;
         }
 
-        var Chudan = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+        var Chudan = CyclicReel2normal.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                                 .Skip(SkipReachLine)
                                 .Take(20)
                                 .Select((e, index) => new BarakemePattern() {

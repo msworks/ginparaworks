@@ -60,7 +60,6 @@ public class LightBody : MonoBehaviour {
      */
     public void ON( float cycle, float power )
     {
-        // TODO 波形もいじれたほうがいいかもね
         LightFlg = true;
         Counter = 0;
         mCycle = cycle;

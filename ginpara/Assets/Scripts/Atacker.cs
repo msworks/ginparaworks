@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// アタッカー
+/// </summary>
 public class Atacker : MonoBehaviour {
 
     public GameObject MainLogic;
