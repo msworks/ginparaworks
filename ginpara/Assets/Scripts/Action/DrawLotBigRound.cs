@@ -76,8 +76,10 @@ public class DrawLotBigRound : FsmStateAction
                 Debug.Log("リーチライン"+result.reachLine);
                 Debug.Log("リーチパターン：" + result.reachPatternName);
 
-                // リーチラインに特図を置く
+                // リールの止まる位置を取得
                 reels = Reel.Choose(result.reachLine, result.tokuzu);
+
+                var pattern = GetReachPatternList(result.reachPatternName);
 
                 // テストでバラケ目エフェクトを発行
                 // エフェクトを通知
@@ -87,6 +89,10 @@ public class DrawLotBigRound : FsmStateAction
                     ReelController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
+                    pattern.ForEach(ptn =>
+                    {
+                        ReelController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
+                    });
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
@@ -97,6 +103,10 @@ public class DrawLotBigRound : FsmStateAction
                     ReelController.GetComponent<ReelController>().EnqueueDirection("1", 0f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection("2", 0f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection("3", 0f);
+                    pattern.ForEach(ptn =>
+                    {
+                        ReelController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
+                    }); 
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
@@ -112,6 +122,42 @@ public class DrawLotBigRound : FsmStateAction
 		Finish();
 	}
 
+    struct RP2Direction
+    {
+        public String Label;
+        public String Sizi;
+    };
+
+    static List<RP2Direction> RPDList = new List<RP2Direction>(){
+        new RP2Direction{ Label="ノーマル", Sizi="101" },
+        new RP2Direction{ Label="泡", Sizi="104" },
+        new RP2Direction{ Label="魚群", Sizi="105" },
+        //new RP2Direction{ Label="SP1", Sizi="101" },
+        //new RP2Direction{ Label="SP2", Sizi="101" },  
+        //new RP2Direction{ Label="SP3", Sizi="101" },  
+    };
+
+    /// <summary>
+    /// リーチパターン名から演出動作パターンのリストを取得
+    /// </summary>
+    /// <param name="ReachPattern"></param>
+    /// <returns></returns>
+    static public List<String> GetReachPatternList(String ReachPattern){
+
+        List<String> SiziList = new List<String>();
+
+        // 泡、ノーマル、魚群、SP1, SP2, SP3 が載っているか調査
+        RPDList.ForEach(RPD =>
+        {
+            if (ReachPattern.Contains(RPD.Label))
+            {
+                SiziList.Add(RPD.Sizi);
+            }
+        });
+
+
+        return SiziList;
+    }
 }
 
 }
