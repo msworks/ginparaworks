@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// 演出に演出Noを渡す
+/// </summary>
 [ActionCategory("Ginpara")]
 public class ReelDirection : FsmStateAction
 {
@@ -19,7 +22,7 @@ public class ReelDirection : FsmStateAction
 
         //Debug.Log("指示ナンバー：" + data.sizi + " 待ち時間：" + data.time.ToString());
 
-        GinparaManager.GetComponent<GinparaManager>().Order(data.sizi);
+        GinparaManager.GetComponent<GinparaManager>().Order(data.sizi, data.callback);
 
         // 待ち時間を取得
         WaitTime.Value = data.time;
@@ -29,6 +32,9 @@ public class ReelDirection : FsmStateAction
 
 }
 
+/// <summary>
+/// 演出データのキューが残っているかチェック
+/// </summary>
 [ActionCategory("Ginpara")]
 public class CheckReelDirection : FsmStateAction
 {

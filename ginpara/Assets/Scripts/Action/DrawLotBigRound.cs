@@ -37,6 +37,12 @@ public class DrawLotBigRound : FsmStateAction
 
         var reels = Reel.Choose();
 
+        // 演出完了コールバック
+        Action callback = () =>
+        {
+            ReelController.GetComponent<ReelController>().EndEvent();
+        };
+
         if (result.isOOatari)
         {
             // TODO 大当たり
@@ -55,7 +61,7 @@ public class DrawLotBigRound : FsmStateAction
                     ReelController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
                 }
                 else
                 {
@@ -65,8 +71,9 @@ public class DrawLotBigRound : FsmStateAction
                     ReelController.GetComponent<ReelController>().EnqueueDirection("3", 0f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
                 }
+                // ここまでバラケ目
             }
             else
             {
@@ -81,7 +88,6 @@ public class DrawLotBigRound : FsmStateAction
 
                 var pattern = GetReachPatternList(result.reachPatternName);
 
-                // テストでバラケ目エフェクトを発行
                 // エフェクトを通知
                 if (HoryuSu.Value < 3)
                 {
@@ -95,7 +101,7 @@ public class DrawLotBigRound : FsmStateAction
                     });
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
                 }
                 else
                 {
@@ -109,7 +115,7 @@ public class DrawLotBigRound : FsmStateAction
                     }); 
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 2f);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
                 }
             }
 
