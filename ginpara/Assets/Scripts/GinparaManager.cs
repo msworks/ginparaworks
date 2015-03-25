@@ -2,6 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// さんご礁の出現場所
+/// </summary>
+public enum CORAL_POSITION
+{
+    LEFT,   // 左 
+    CENTER, // 中央
+    RIGHT   // 右
+}
+
 public class GinparaManager : MonoBehaviour {
 	//====================================================================================================
 	// Field
@@ -84,6 +94,13 @@ public class GinparaManager : MonoBehaviour {
 			this.backgroundAnchor.relativeOffset = new Vector2(value, this.backgroundAnchor.relativeOffset.y);
 		}
 #if UNITY_EDITOR
+        if (Input.GetKeyUp(KeyCode.Backspace))
+        {
+            if (this.orderCode.Length > 0)
+            {
+                this.orderCode = this.orderCode.Substring(0, this.orderCode.Length - 1);
+            }
+        }
 		if(Input.GetKeyUp(KeyCode.Alpha0)){
 			this.orderCode += "0";
 		}
@@ -4259,14 +4276,38 @@ public class GinparaManager : MonoBehaviour {
 			
 		case "106-1":
 			this.coralReefNoticeAnchor.transform.gameObject.SetActive (true);
-			StartCoroutine (this.CoralReefNoticeIN (callback));
+            StartCoroutine(this.CoralReefNoticeIN(CORAL_POSITION.LEFT, callback));
 			break;
 			
 		case "106-2":
 			this.coralReefNoticeAnchor.transform.gameObject.SetActive (true);
-			StartCoroutine (this.CoralReefNoticeOUT (callback));
+            StartCoroutine(this.CoralReefNoticeOUT(CORAL_POSITION.LEFT, callback));
 			break;
-			
+
+        // さんご礁中央IN
+        case "106-3":
+            this.coralReefNoticeAnchor.transform.gameObject.SetActive(true);
+            StartCoroutine(this.CoralReefNoticeIN(CORAL_POSITION.CENTER, callback));
+            break;
+
+        // さんご礁中央OUT
+        case "106-4":
+            this.coralReefNoticeAnchor.transform.gameObject.SetActive(true);
+            StartCoroutine(this.CoralReefNoticeOUT(CORAL_POSITION.CENTER, callback));
+            break;
+
+        // さんご礁右IN
+        case "106-5":
+            this.coralReefNoticeAnchor.transform.gameObject.SetActive(true);
+            StartCoroutine(this.CoralReefNoticeIN(CORAL_POSITION.RIGHT, callback));
+            break;
+
+        // さんご礁右OUT
+        case "106-6":
+            this.coralReefNoticeAnchor.transform.gameObject.SetActive(true);
+            StartCoroutine(this.CoralReefNoticeOUT(CORAL_POSITION.RIGHT, callback));
+            break;
+
 		case "107-1":
 			this.marinNoticeCallAnchor.transform.gameObject.SetActive(true);
 			StartCoroutine (this.MarinNoticeIN(callback));
@@ -4763,15 +4804,32 @@ public class GinparaManager : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	private IEnumerator CoralReefNoticeIN(System.Action callback){
+    private IEnumerator CoralReefNoticeIN(CORAL_POSITION position, System.Action callback)
+    {
 		this.coralReefNoticeAnchor.relativeOffset = new Vector2(0, -1.2f);
-		int[] top = this.topRail.RecodePanelNum;
-		int[] below = this.belowRail.RecodePanelNum;
-		float anchorX = 0;
+		var top = this.topRail.RecodePanelNum;
+		var below = this.belowRail.RecodePanelNum;
+		var anchorX = 0f;
+
+        /*
 		if(top[0] != 0  &&  top[0] == below[0])
 			anchorX = -0.333f;
 		else if(top[2] != 0  &&  top[2] == below[2])
 			anchorX = 0.333f;
+         */
+
+        switch (position)
+        {
+            case CORAL_POSITION.LEFT:
+                anchorX = -0.333f;
+                break;
+            case CORAL_POSITION.CENTER:
+                anchorX = 0f;
+                break;
+            case CORAL_POSITION.RIGHT:
+                anchorX = 0.333f;
+                break;
+        }
 		this.coralReefNoticeAnchor.relativeOffset = new Vector2(anchorX, this.coralReefNoticeAnchor.relativeOffset.y);
 
 		float totalTime = 0;
@@ -4785,7 +4843,8 @@ public class GinparaManager : MonoBehaviour {
 	}
 	
 	//----------------------------------------------------------------------------------------------------
-	private IEnumerator CoralReefNoticeOUT(System.Action callback){
+    private IEnumerator CoralReefNoticeOUT(CORAL_POSITION position, System.Action callback)
+    {
 		this.coralReefNoticeAnchor.relativeOffset = new Vector2(this.coralReefNoticeAnchor.relativeOffset.x, 0);
 		float totalTime = 0;
 		while(totalTime < 2f){
