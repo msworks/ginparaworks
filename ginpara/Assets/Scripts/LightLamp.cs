@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// ランプを光らせる
+/// </summary>
 public class LightLamp : MonoBehaviour {
 
     public GameObject right;

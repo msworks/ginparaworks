@@ -36,6 +36,8 @@ public class Reel
         }
     }
 
+    #region <<上段>>
+
     /// <summary>
     /// 上段
     /// </summary>
@@ -72,6 +74,10 @@ public class Reel
     /// 上段リールの配列
     /// </summary>
     static ReelElement[] reel1array = reel1.ToArray();
+
+    #endregion
+
+    #region <<中段>>
 
     /// <summary>
     /// 中段リール
@@ -166,6 +172,157 @@ public class Reel
     };
 
     /// <summary>
+    /// 中段リールSPリーチリスト（－１）
+    /// </summary>
+    static List<ReelElement> reel2SP_RIGHT = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="1", Sizi="8-1"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-2"},
+        new ReelElement(){ Tokuzu="2", Sizi="8-3"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-4"},
+        new ReelElement(){ Tokuzu="3", Sizi="8-5"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-6"},
+        new ReelElement(){ Tokuzu="4", Sizi="8-7"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-8"},
+        new ReelElement(){ Tokuzu="5", Sizi="8-9"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-10"},
+        new ReelElement(){ Tokuzu="6", Sizi="8-11"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-12"},
+        new ReelElement(){ Tokuzu="7", Sizi="8-13"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-14"},
+        new ReelElement(){ Tokuzu="8", Sizi="8-15"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-16"},
+        new ReelElement(){ Tokuzu="9", Sizi="8-17"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-18"},
+        new ReelElement(){ Tokuzu="10",Sizi="8-19"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-20"},
+    };
+
+    /// <summary>
+    /// 中段リールSPリーチリスト（０）
+    /// </summary>
+    static List<ReelElement> reel2SP_CENTER = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="1", Sizi="8-21"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-22"},
+        new ReelElement(){ Tokuzu="2", Sizi="8-23"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-24"},
+        new ReelElement(){ Tokuzu="3", Sizi="8-25"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-26"},
+        new ReelElement(){ Tokuzu="4", Sizi="8-27"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-28"},
+        new ReelElement(){ Tokuzu="5", Sizi="8-29"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-30"},
+        new ReelElement(){ Tokuzu="6", Sizi="8-31"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-32"},
+        new ReelElement(){ Tokuzu="7", Sizi="8-33"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-34"},
+        new ReelElement(){ Tokuzu="8", Sizi="8-35"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-36"},
+        new ReelElement(){ Tokuzu="9", Sizi="8-37"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-38"},
+        new ReelElement(){ Tokuzu="10",Sizi="8-39"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-40"},
+    };
+
+    /// <summary>
+    /// 中段リールSPリーチリスト（－１）
+    /// </summary>
+    static List<ReelElement> reel2SP_LEFT = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="1", Sizi="8-41"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-42"},
+        new ReelElement(){ Tokuzu="2", Sizi="8-43"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-44"},
+        new ReelElement(){ Tokuzu="3", Sizi="8-45"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-46"},
+        new ReelElement(){ Tokuzu="4", Sizi="8-47"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-48"},
+        new ReelElement(){ Tokuzu="5", Sizi="8-49"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-50"},
+        new ReelElement(){ Tokuzu="6", Sizi="8-51"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-52"},
+        new ReelElement(){ Tokuzu="7", Sizi="8-53"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-54"},
+        new ReelElement(){ Tokuzu="8", Sizi="8-55"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-56"},
+        new ReelElement(){ Tokuzu="9", Sizi="8-57"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-58"},
+        new ReelElement(){ Tokuzu="10",Sizi="8-59"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-60"},
+    };
+
+    /// <summary>
+    /// 中段リールSPリーチリスト（－１）の無限シーケンス
+    /// </summary>
+    public static CycleSequence<ReelElement> CyclicReel2SP_RIGHT = new CycleSequence<ReelElement>(reel2SP_RIGHT);
+
+    /// <summary>
+    /// 中段リールSPリーチリスト（０）の無限シーケンス
+    /// </summary>
+    public static CycleSequence<ReelElement> CyclicReel2SP_CENTER = new CycleSequence<ReelElement>(reel2SP_CENTER);
+
+    /// <summary>
+    /// 中段リールSPリーチリスト（＋１）の無限シーケンス
+    /// </summary>
+    public static CycleSequence<ReelElement> CyclicReel2SP_LEFT = new CycleSequence<ReelElement>(reel2SP_LEFT);
+
+    /// <summary>
+    /// ＳＰリーチシフト数抽選構造体
+    /// </summary>
+    struct ShiftReel
+    {
+        public int ShiftNum;    // シフト数
+        public int Chusenti;    // 抽選値
+    }
+
+    /// <summary>
+    /// 泡確率テーブル（ＳＰ１、ＳＰ２）
+    /// </summary>
+    static List<ShiftReel> ChusenAwaSP12 = new List<ShiftReel>()
+    {
+        new ShiftReel { ShiftNum = -1, Chusenti= 49152},
+        new ShiftReel { ShiftNum = +1, Chusenti= 16384},
+    };
+
+    /// <summary>
+    /// 魚群確率テーブル（ＳＰ１、ＳＰ２）
+    /// </summary>
+    static List<ShiftReel> ChusenGyogunSP12 = new List<ShiftReel>()
+    {
+        new ShiftReel { ShiftNum = -1, Chusenti= 16384 },
+        new ShiftReel { ShiftNum = +1, Chusenti= 49152 },
+    };
+
+    /// <summary>
+    /// 確率テーブル（ＳＰ３）
+    /// </summary>
+    static List<ShiftReel> ChusenSP3 = new List<ShiftReel>()
+    {
+        new ShiftReel { ShiftNum = -1, Chusenti= 16384},
+        new ShiftReel { ShiftNum = +1, Chusenti= 16384},
+        new ShiftReel { ShiftNum = +3, Chusenti= 32768},
+    };
+
+    /// <summary>
+    /// 泡確率抽選テーブル（ＳＰ１、ＳＰ２）
+    /// </summary>
+    static ShiftReel[] ChusenAwaSP12Array = ChusenAwaSP12.Select(ca => SR2Sequence(ca)).SelectMany(cas => cas).ToArray();
+
+    /// <summary>
+    /// 泡確率抽選テーブル（ＳＰ１、ＳＰ２）
+    /// </summary>
+    static ShiftReel[] ChusenGyogunSP12Array = ChusenGyogunSP12.Select(ca => SR2Sequence(ca)).SelectMany(cas => cas).ToArray();
+
+    /// <summary>
+    /// 確率抽選テーブル（ＳＰ３）
+    /// </summary>
+    static ShiftReel[] ChusenSP3Array = ChusenSP3.Select(ca => SR2Sequence(ca)).SelectMany(cas => cas).ToArray();
+
+#endregion <<中段>>
+
+    #region <<下段>>
+    /// <summary>
     /// 下段リール
     /// </summary>
     static List<ReelElement> reel3 = new List<ReelElement>()
@@ -202,6 +359,7 @@ public class Reel
         public ReelElement elem;
         public int chusenti;
     };
+    #endregion <<下段>>
 
     /// <summary>
     /// バラケ目（リーチ不成立時）停止テーブル
@@ -233,7 +391,7 @@ public class Reel
     /// <summary>
     /// バラケ目抽選テーブル
     /// </summary>
-    static BarakemePattern[] BarakemeChusen;
+    static BarakemePattern[] BarakemeChusen = Barakeme.Select(br => BR2Sequence(br)).SelectMany(brs => brs).ToArray();
 
     /// <summary>
     /// 中段リーチ外しリスト
@@ -270,8 +428,6 @@ public class Reel
     /// </summary>
     static Reel()
     {
-        // バラケ目テーブルの初期化(平坦化)
-        BarakemeChusen = Barakeme.Select(br => BR2Sequence(br)).SelectMany(brs => brs).ToArray();
     }
 
     /// <summary>
@@ -289,6 +445,20 @@ public class Reel
     }
 
     /// <summary>
+    /// 確率抽選テーブルを抽選値の数のシーケンスに変換
+    /// </summary>
+    /// <param name="br"></param>
+    /// <returns></returns>
+    static IEnumerable<ShiftReel> SR2Sequence(ShiftReel sr)
+    {
+        return Enumerable.Range(0, sr.Chusenti).Select(count => new ShiftReel()
+        {
+            ShiftNum = sr.ShiftNum,
+            Chusenti = sr.Chusenti
+        });
+    }
+
+    /// <summary>
     /// リールを抽選（均等）
     /// </summary>
     /// <param name="reel"></param>
@@ -298,6 +468,123 @@ public class Reel
         return reel.ToArray()[UnityEngine.Random.Range(0, reel.Count)];
     }
 
+    /// <summary>
+    /// 止まる位置を取得（ＳＰリーチ）
+    /// </summary>
+    /// <param name="ReachLine">リーチライン①～④</param>
+    /// <param name="Tokuzu">特図の番号１～１０</param>
+    /// <returns></returns>
+    static public ReelElement[] ChooseSP(int ReachLine, int Tokuzu, string ReachPatternName)
+    {
+        // 上段、中段、下段の止まる位置を仮固定
+        var r1 = reel1.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
+        var r2 = reel2.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
+        var r3 = reel3.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
+
+        // リーチラインに応じて、上段、下段の位置をずらす
+        if (ReachLine == 1)
+        {
+            // ずらさない
+        }
+        else if (ReachLine == 2)
+        {
+            // 上段ずらす
+            r1 = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(19)
+                            .First();
+
+            // 下段ずらす
+            r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(19)
+                            .First();
+
+        }
+        else if (ReachLine == 3)
+        {
+            // 上段ずらす
+            r1 = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(18)
+                            .First();
+
+            // 下段ずらす
+            r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(18)
+                            .First();
+        }
+        else if (ReachLine == 4)
+        {
+            // 上段ずらさないで、下段ずらす
+            r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(18)
+                            .First();
+        }
+
+        // =========
+        // 中段を抽選
+        // =========
+        // -1, +1, +3の抽選を行い、（-1が右側、+1が左側）
+        // 循環テーブルを停止特図分シフト（スキップ）し、
+        // リーチライン分シフト（スキップ）し、
+        var CyclicReel = CyclicReel2SP_RIGHT;
+
+        var SkipReachLine = 20; // 一回転
+
+        switch (ReachLine)
+        {
+            case 1:
+                break;
+            case 2:
+                SkipReachLine -= 1;
+                break;
+            case 3:
+                SkipReachLine -= 2;
+                break;
+            case 4:
+                break;
+        }
+
+        var shiftnum = 0;
+        if (ReachPatternName.Contains("SP1") || ReachPatternName.Contains("SP2"))
+        {
+            if (ReachPatternName.Contains("泡"))
+            {
+                shiftnum = ChusenAwaSP12Array[RndFFFF].ShiftNum;
+            }
+            else
+            {
+                shiftnum = ChusenGyogunSP12Array[RndFFFF].ShiftNum;
+            }
+        }
+        else
+        {
+            // SP3
+            shiftnum += ChusenSP3Array[RndFFFF].ShiftNum;
+        }
+
+        SkipReachLine += shiftnum;
+
+        var CyclicReel2 = CyclicReel2SP_CENTER;
+        if (shiftnum < 0)
+        {
+            CyclicReel2 = CyclicReel2SP_RIGHT;
+        }
+        else if( shiftnum > 0)
+        {
+            CyclicReel2 = CyclicReel2SP_LEFT;
+        }
+
+        var Chudan = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                                .Skip(SkipReachLine)
+                                .First();
+
+        r2 = Chudan;
+
+        var reels = new ReelElement[] { r1, r2, r3 };
+
+        return reels;
+    }
+
+    #region <<ノーマルリーチ>>
     /// <summary>
     /// 止まる位置を取得（リーチ）
     /// </summary>
@@ -391,7 +678,9 @@ public class Reel
 
         return reels;
     }
+    #endregion <<ノーマルリーチ>>
 
+    #region <<バラケ目>>
     /// <summary>
     /// 止まる位置を取得（バラケ目）
     /// </summary>
@@ -453,6 +742,8 @@ public class Reel
         // テンパイしていないを返却
         return false;
     }
+    #endregion <<バラケ目>>
+
 }
 
 }

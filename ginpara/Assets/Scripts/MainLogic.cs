@@ -352,7 +352,10 @@ public class MainLogic : MonoBehaviour {
     /// <param name="HoryuSu">保留カウント</param>
     /// <param name="KenriKaisu">権利回数（０でなければ確変中）</param>
     /// <returns></returns>
-    public DrawLotResult DrawLot(int HoryuSu, int KenriKaisu, bool ForceNormalReach)
+    public DrawLotResult DrawLot(int HoryuSu, int KenriKaisu, 
+        bool ForceNormalReach,
+        bool ForceSPReach
+    )
     {
         DrawLotResult result = new DrawLotResult();
 
@@ -407,10 +410,18 @@ public class MainLogic : MonoBehaviour {
 
             var tokuzu = GetTokuzu(rl.Tokuzu);
 
-            if (reach||ForceNormalReach)
+            if (reach || ForceNormalReach || ForceSPReach)
             {
-
                 rp = DrawLotReachPatternHazure(RndFFFF);
+
+                if (ForceSPReach)
+                {
+                    while (!rp.Name.Contains("SP"))
+                    {
+                        rp = DrawLotReachPatternHazure(RndFFFF);
+                    }
+                }
+
                 Debug.Log("ハズレリーチ：" + rp.Name);
             }
             else

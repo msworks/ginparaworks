@@ -26,13 +26,15 @@ public class DrawLotBigRound : FsmStateAction
 
     // DEBUG
     public FsmBool ForceNormalReach;
+    public FsmBool ForceSPReach;
 
 	public override void OnEnter()
 	{
         var result = MainLogic.GetComponent<MainLogic>().DrawLot(
             HoryuSu.Value,
             KenriKaisu.Value,
-            ForceNormalReach.Value
+            ForceNormalReach.Value,
+            ForceSPReach.Value
         );
 
         var reels = Reel.Choose();
@@ -84,7 +86,14 @@ public class DrawLotBigRound : FsmStateAction
                 Debug.Log("リーチパターン：" + result.reachPatternName);
 
                 // リールの止まる位置を取得
-                reels = Reel.Choose(result.reachLine, result.tokuzu);
+                if (result.reachPatternName.Contains("SP"))
+                {
+                    reels = Reel.ChooseSP(result.reachLine, result.tokuzu, result.reachPatternName);
+                }
+                else
+                {
+                    reels = Reel.Choose(result.reachLine, result.tokuzu);
+                }
 
                 var pattern = GetReachPatternList(result.reachPatternName);
 
@@ -138,9 +147,9 @@ public class DrawLotBigRound : FsmStateAction
         new RP2Direction{ Label="ノーマル", Sizi="101" },
         new RP2Direction{ Label="泡", Sizi="104" },
         new RP2Direction{ Label="魚群", Sizi="105" },
-        //new RP2Direction{ Label="SP1", Sizi="101" },
-        //new RP2Direction{ Label="SP2", Sizi="101" },  
-        //new RP2Direction{ Label="SP3", Sizi="101" },  
+        new RP2Direction{ Label="SP1", Sizi="102" },
+        new RP2Direction{ Label="SP2", Sizi="106-1" },  
+        new RP2Direction{ Label="SP3", Sizi="107-1" },  
     };
 
     /// <summary>
