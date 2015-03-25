@@ -80,10 +80,12 @@ public class DrawLotBigRound : FsmStateAction
             else
             {
                 // ハズレリーチ
+                /*
                 Debug.Log("特図：" + result.tokuzu);
                 Debug.Log("特図：" + result.reachLineName);
                 Debug.Log("リーチライン"+result.reachLine);
                 Debug.Log("リーチパターン：" + result.reachPatternName);
+                 */
 
                 // リールの止まる位置を取得
                 if (result.reachPatternName.Contains("SP"))
@@ -95,7 +97,9 @@ public class DrawLotBigRound : FsmStateAction
                     reels = Reel.Choose(result.reachLine, result.tokuzu);
                 }
 
-                var pattern = GetReachPatternList(result.reachPatternName);
+                var pattern = GetReachPatternList(result.reachPatternName, result.reachLine);
+
+                var ExitPtn = GetReachPatternExitList(result.reachPatternName, result.reachLine);
 
                 // エフェクトを通知
                 if (HoryuSu.Value < 3)
@@ -110,7 +114,13 @@ public class DrawLotBigRound : FsmStateAction
                     });
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, ()=>{
+                        ExitPtn.ForEach(ptn =>
+                        {
+                            ReelController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
+                        });
+                        ReelController.GetComponent<ReelController>().EndEvent();
+                    });
                 }
                 else
                 {
@@ -124,7 +134,14 @@ public class DrawLotBigRound : FsmStateAction
                     }); 
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
+                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, () =>
+                    {
+                        ExitPtn.ForEach(ptn =>
+                        {
+                            ReelController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
+                        });
+                        ReelController.GetComponent<ReelController>().EndEvent();
+                    });
                 }
             }
 
@@ -143,13 +160,41 @@ public class DrawLotBigRound : FsmStateAction
         public String Sizi;
     };
 
+    struct RPRL2Direction
+    {
+        public int ReachLine;
+        public String Label;
+        public String Sizi;
+    };
+
     static List<RP2Direction> RPDList = new List<RP2Direction>(){
         new RP2Direction{ Label="ノーマル", Sizi="101" },
         new RP2Direction{ Label="泡", Sizi="104" },
         new RP2Direction{ Label="魚群", Sizi="105" },
         new RP2Direction{ Label="SP1", Sizi="102" },
-        new RP2Direction{ Label="SP2", Sizi="106-1" },  
+        new RP2Direction{ Label="SP3", Sizi="107-2" },  
+    };
+
+    static List<RP2Direction> RPDExitList = new List<RP2Direction>(){
+        new RP2Direction{ Label="ノーマル", Sizi="101" },
+        new RP2Direction{ Label="泡", Sizi="101" },
+        new RP2Direction{ Label="魚群", Sizi="101" },
+        new RP2Direction{ Label="SP1", Sizi="101" },
         new RP2Direction{ Label="SP3", Sizi="107-1" },  
+    };
+
+    static List<RPRL2Direction> RPRLDList = new List<RPRL2Direction>(){
+        new RPRL2Direction{ ReachLine=1, Label="SP2", Sizi="106-1" },  
+        new RPRL2Direction{ ReachLine=2, Label="SP2", Sizi="106-3" },  
+        new RPRL2Direction{ ReachLine=3, Label="SP2", Sizi="106-5" },  
+        new RPRL2Direction{ ReachLine=4, Label="SP2", Sizi="106-3" },  
+    };
+
+    static List<RPRL2Direction> RPRLDExitList = new List<RPRL2Direction>(){
+        new RPRL2Direction{ ReachLine=1, Label="SP2", Sizi="106-2" },  
+        new RPRL2Direction{ ReachLine=2, Label="SP2", Sizi="106-4" },  
+        new RPRL2Direction{ ReachLine=3, Label="SP2", Sizi="106-6" },  
+        new RPRL2Direction{ ReachLine=4, Label="SP2", Sizi="106-4" },  
     };
 
     /// <summary>
@@ -157,12 +202,15 @@ public class DrawLotBigRound : FsmStateAction
     /// </summary>
     /// <param name="ReachPattern"></param>
     /// <returns></returns>
-    static public List<String> GetReachPatternList(String ReachPattern){
+    static public List<String> GetReachPatternList(
+        String ReachPattern,
+        int ReachLine
+    ){
 
         List<String> SiziList = new List<String>();
 
         // 泡、ノーマル、魚群、SP1, SP2, SP3 が載っているか調査
-        RPDList.ForEach(RPD =>
+        RPDExitList.ForEach(RPD =>
         {
             if (ReachPattern.Contains(RPD.Label))
             {
@@ -170,6 +218,47 @@ public class DrawLotBigRound : FsmStateAction
             }
         });
 
+        // さんご礁
+        RPRLDList.ForEach(RPRLD =>
+        {
+            if (ReachLine==RPRLD.ReachLine&&ReachPattern.Contains(RPRLD.Label))
+            {
+                SiziList.Add(RPRLD.Sizi);
+            }
+        });
+
+        return SiziList;
+    }
+
+    /// <summary>
+    /// リーチパターン名から演出動作終了パターンのリストを取得
+    /// </summary>
+    /// <param name="ReachPattern"></param>
+    /// <returns></returns>
+    static public List<String> GetReachPatternExitList(
+        String ReachPattern,
+        int ReachLine
+    ){
+
+        List<String> SiziList = new List<String>();
+
+        // 泡、ノーマル、魚群、SP1, SP2, SP3 が載っているか調査
+        RPDExitList.ForEach(RPD =>
+        {
+            if (ReachPattern.Contains(RPD.Label))
+            {
+                SiziList.Add(RPD.Sizi);
+            }
+        });
+
+        // さんご礁
+        RPRLDExitList.ForEach(RPRLD =>
+        {
+            if (ReachLine==RPRLD.ReachLine&&ReachPattern.Contains(RPRLD.Label))
+            {
+                SiziList.Add(RPRLD.Sizi);
+            }
+        });
 
         return SiziList;
     }
