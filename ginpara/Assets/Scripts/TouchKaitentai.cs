@@ -12,6 +12,7 @@ public class TouchKaitentai : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(collision.gameObject);
+        this.gameObject.GetComponent<PlayMakerFSM>().SendEvent("玉通過");
     }
 
 }
