@@ -11,6 +11,7 @@ public class WebButton : MonoBehaviour {
     /// </summary>
     public void OnClick()
     {
+        Debug.Log("Request Web View");
         var url = "http://www.yahoo.co.jp/";
         var webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
         webViewObject.Init((msg) =>
