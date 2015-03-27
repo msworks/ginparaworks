@@ -10,13 +10,11 @@ public class Shoot : FsmStateAction
 {
     public GameObject Handle;
     public FsmFloat power;
-	
-	// Code that runs on entering the state.
-	public override void OnEnter()
-	{
+
+    // Code that runs on entering the state.
+    public override void OnEnter()
+    {
         Handle.GetComponent<ShootBallTest>().ShootBall(power.Value);
-		Finish();
-	}
-
-
+        Finish();
+    }
 }
