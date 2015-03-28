@@ -42,12 +42,20 @@ public class DrawLotBigRound : FsmStateAction
         // 演出完了コールバック
         Action callback = () =>
         {
+            Debug.Log("CALLBACK");
             ReelController.GetComponent<ReelController>().EndEvent();
         };
 
         if (result.isOOatari)
         {
-            // TODO 大当たり
+            // TODO 大当たり実装
+            Debug.Log("*** 大当たり ***");
+            ReelController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
+            ReelController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
+            ReelController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
+            ReelController.GetComponent<ReelController>().EnqueueDirection("4-1", 0.5f);
+            ReelController.GetComponent<ReelController>().EnqueueDirection("5-1", 0.5f);
+            ReelController.GetComponent<ReelController>().EnqueueDirection("6-1", 0.5f, callback);
         }
         else
         {
@@ -115,6 +123,7 @@ public class DrawLotBigRound : FsmStateAction
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, ()=>{
+                        Debug.Log("CALLBACK 012");
                         ExitPtn.ForEach(ptn =>
                         {
                             ReelController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
@@ -136,6 +145,7 @@ public class DrawLotBigRound : FsmStateAction
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
                     ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, () =>
                     {
+                        Debug.Log("CALLBACK 34");
                         ExitPtn.ForEach(ptn =>
                         {
                             ReelController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
