@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using HutongGames.PlayMaker;
 using System;
 using System.Collections;
@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// ‰‰o‚É‰‰oNo‚ğ“n‚·
+/// æ¼”å‡ºã«æ¼”å‡ºNoã‚’æ¸¡ã™
 /// </summary>
 [ActionCategory("Ginpara")]
 public class ReelDirection : FsmStateAction
 {
-    public GameObject GinparaManager;   // o—Íæ
-    public GameObject ReelController;   // “ü—ÍŒ³
+    public GameObject GinparaManager;   // å‡ºåŠ›å…ˆ
+    public GameObject ReelController;   // å…¥åŠ›å…ƒ
     public FsmFloat WaitTime;
 
 	// Code that runs on entering the state.
@@ -20,11 +20,11 @@ public class ReelDirection : FsmStateAction
 	{
         var data = (GPDirection)ReelController.GetComponent<ReelController>().Direction.Dequeue();
 
-        //Debug.Log("w¦ƒiƒ“ƒo[F" + data.sizi + " ‘Ò‚¿ŠÔF" + data.time.ToString());
+        Debug.Log("æŒ‡ç¤ºãƒŠãƒ³ãƒãƒ¼ï¼š" + data.sizi + " å¾…ã¡æ™‚é–“ï¼š" + data.time.ToString());
 
         GinparaManager.GetComponent<GinparaManager>().Order(data.sizi, data.callback);
 
-        // ‘Ò‚¿ŠÔ‚ğæ“¾
+        // å¾…ã¡æ™‚é–“ã‚’å–å¾—
         WaitTime.Value = data.time;
 
         Finish();
@@ -33,20 +33,26 @@ public class ReelDirection : FsmStateAction
 }
 
 /// <summary>
-/// ‰‰oƒf[ƒ^‚ÌƒLƒ…[‚ªc‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+/// æ¼”å‡ºãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ¥ãƒ¼ãŒæ®‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 /// </summary>
 [ActionCategory("Ginpara")]
 public class CheckReelDirection : FsmStateAction
 {
-    public GameObject ReelController;   // “ü—ÍŒ³
+    public GameObject ReelController;   // å…¥åŠ›å…ƒ
     public FsmEvent ari;
     public FsmEvent nasi;
 
-    // ‰‰oƒf[ƒ^‚ª‚ ‚ê‚Î‚ ‚èƒCƒxƒ“ƒg‚ğA‚È‚¯‚ê‚Î‚È‚µƒCƒxƒ“ƒg‚ğ”­s
+    // æ¼”å‡ºãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Œã°ã‚ã‚Šã‚¤ãƒ™ãƒ³ãƒˆã‚’ã€ãªã‘ã‚Œã°ãªã—ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºè¡Œ
     public override void OnEnter()
     {
         var data = ReelController.GetComponent<ReelController>().Direction.Count;
         Fsm.Event(data != 0 ? ari : nasi);
     }
 
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+        var data = ReelController.GetComponent<ReelController>().Direction.Count;
+        Fsm.Event(data != 0 ? ari : nasi);
+    }
 }

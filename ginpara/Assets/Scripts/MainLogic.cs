@@ -265,6 +265,7 @@ public class MainLogic : MonoBehaviour {
 
     // リーチパターン抽選（ハズレ）テーブル関係
     structReachPattern[] H_Reach_Chusen;
+
     List<structReachPattern> reachPatternHazure = new List<structReachPattern>
     {
         new structReachPattern{ No= 1, Chusenti=33500, Name="ノーマル" },

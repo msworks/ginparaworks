@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using HutongGames.PlayMaker;
 using System;
 using System.Collections;
@@ -9,7 +9,7 @@ namespace Ginpara
 {
 
 /// <summary>
-/// ‘å“–‚½‚è’Š‘I‚ğs‚¤
+/// å¤§å½“ãŸã‚ŠæŠ½é¸ã‚’è¡Œã†
 /// </summary>
 [ActionCategory("Ginpara")]
 public class DrawLotBigRound : FsmStateAction
@@ -23,6 +23,7 @@ public class DrawLotBigRound : FsmStateAction
     public FsmInt ReachPattern;
 
     public GameObject ReelController;
+    public GameObject DirectionController;
 
     // DEBUG
     public FsmBool ForceNormalReach;
@@ -39,63 +40,65 @@ public class DrawLotBigRound : FsmStateAction
 
         var reels = Reel.Choose();
 
-        // ‰‰oŠ®—¹ƒR[ƒ‹ƒoƒbƒN
+        // æ¼”å‡ºå®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
         Action callback = () =>
         {
-            Debug.Log("CALLBACK");
             ReelController.GetComponent<ReelController>().EndEvent();
         };
 
+        // æ¼”å‡ºå®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ï¼ˆä½•ã‚‚é€šçŸ¥ã—ãªã„ï¼‰
+        Action NoReaction = () => { };
+
         if (result.isOOatari)
         {
-            // TODO ‘å“–‚½‚èÀ‘•
-            Debug.Log("*** ‘å“–‚½‚è ***");
-            ReelController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection("4-1", 0.5f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection("5-1", 0.5f);
-            ReelController.GetComponent<ReelController>().EnqueueDirection("6-1", 0.5f, callback);
+            // TODO å¤§å½“ãŸã‚Šå®Ÿè£…
+            Debug.Log("*** å¤§å½“ãŸã‚Š ***");
+            DirectionController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
+            DirectionController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
+            DirectionController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
+            DirectionController.GetComponent<ReelController>().EnqueueDirection("4-1", 0.5f);
+            DirectionController.GetComponent<ReelController>().EnqueueDirection("5-1", 0.5f);
+            DirectionController.GetComponent<ReelController>().EnqueueDirection("6-1", 0.5f, callback);
         }
         else
         {
-            // ƒnƒYƒŒ
+            // ãƒã‚ºãƒ¬
             if (result.reachPattern == -1){
-                // ƒoƒ‰ƒP–Ú
-                // ƒGƒtƒFƒNƒg‚ğ’Ê’m
+                // ãƒãƒ©ã‚±ç›®
+                // ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’é€šçŸ¥
                 if (HoryuSu.Value < 3)
                 {
-                    // •Û—¯‚OA‚PA‚Q‚ÌƒGƒtƒFƒNƒg
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
+                    // ä¿ç•™ï¼ã€ï¼‘ã€ï¼’ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
                 }
                 else
                 {
-                    // •Û—¯‚RC‚S‚ÌƒGƒtƒFƒNƒg
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("1", 0f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("2", 0f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("3", 0f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
+                    // ä¿ç•™ï¼“ï¼Œï¼”ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("1", 0f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("2", 0f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("3", 0f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
                 }
-                // ‚±‚±‚Ü‚Åƒoƒ‰ƒP–Ú
+                // ã“ã“ã¾ã§ãƒãƒ©ã‚±ç›®
             }
             else
             {
-                // ƒnƒYƒŒƒŠ[ƒ`
+                // ãƒã‚ºãƒ¬ãƒªãƒ¼ãƒ
                 /*
-                Debug.Log("“Á}F" + result.tokuzu);
-                Debug.Log("“Á}F" + result.reachLineName);
-                Debug.Log("ƒŠ[ƒ`ƒ‰ƒCƒ“"+result.reachLine);
-                Debug.Log("ƒŠ[ƒ`ƒpƒ^[ƒ“F" + result.reachPatternName);
+                Debug.Log("ç‰¹å›³ï¼š" + result.tokuzu);
+                Debug.Log("ç‰¹å›³ï¼š" + result.reachLineName);
+                Debug.Log("ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³"+result.reachLine);
+                Debug.Log("ãƒªãƒ¼ãƒãƒ‘ã‚¿ãƒ¼ãƒ³ï¼š" + result.reachPatternName);
                  */
 
-                // ƒŠ[ƒ‹‚Ì~‚Ü‚éˆÊ’u‚ğæ“¾
+                // ãƒªãƒ¼ãƒ«ã®æ­¢ã¾ã‚‹ä½ç½®ã‚’å–å¾—
                 if (result.reachPatternName.Contains("SP"))
                 {
                     reels = Reel.ChooseSP(result.reachLine, result.tokuzu, result.reachPatternName);
@@ -109,48 +112,54 @@ public class DrawLotBigRound : FsmStateAction
 
                 var ExitPtn = GetReachPatternExitList(result.reachPatternName, result.reachLine);
 
-                // ƒGƒtƒFƒNƒg‚ğ’Ê’m
+                // ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’é€šçŸ¥
                 if (HoryuSu.Value < 3)
                 {
-                    // •Û—¯‚OA‚PA‚Q‚ÌƒGƒtƒFƒNƒg
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
+                    // ä¿ç•™ï¼ã€ï¼‘ã€ï¼’ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
                     pattern.ForEach(ptn =>
                     {
-                        ReelController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
+                        DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
                     });
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, ()=>{
-                        Debug.Log("CALLBACK 012");
-                        ExitPtn.ForEach(ptn =>
-                        {
-                            ReelController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
-                        });
-                        ReelController.GetComponent<ReelController>().EndEvent();
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, ()=>{
+                        foreach(var ptn in ExitPtn){
+                            var cb = NoReaction;
+                            if (ptn == ExitPtn.Last())
+                            {
+                                cb = callback;
+                            }
+                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f, cb);
+                        }
                     });
+
                 }
                 else
                 {
-                    // •Û—¯‚RC‚S‚ÌƒGƒtƒFƒNƒg
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("1", 0f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("2", 0f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection("3", 0f);
+                    // ä¿ç•™ï¼“ï¼Œï¼”ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("1", 0f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("2", 0f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection("3", 0f);
                     pattern.ForEach(ptn =>
                     {
-                        ReelController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
+                        DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
                     }); 
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    ReelController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, () =>
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, () =>
                     {
-                        Debug.Log("CALLBACK 34");
-                        ExitPtn.ForEach(ptn =>
+                        foreach (var ptn in ExitPtn)
                         {
-                            ReelController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
-                        });
-                        ReelController.GetComponent<ReelController>().EndEvent();
+                            var cb = NoReaction;
+                            if (ptn == ExitPtn.Last())
+                            {
+                                cb = callback;
+                            }
+                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f, cb);
+                        }
                     });
                 }
             }
@@ -178,19 +187,20 @@ public class DrawLotBigRound : FsmStateAction
     };
 
     static List<RP2Direction> RPDList = new List<RP2Direction>(){
-        new RP2Direction{ Label="ƒm[ƒ}ƒ‹", Sizi="101" },
-        new RP2Direction{ Label="–A", Sizi="104" },
-        new RP2Direction{ Label="‹›ŒQ", Sizi="105" },
+        new RP2Direction{ Label="ãƒãƒ¼ãƒãƒ«", Sizi="101" },
+        new RP2Direction{ Label="æ³¡", Sizi="104" },
+        new RP2Direction{ Label="é­šç¾¤", Sizi="105" },
         new RP2Direction{ Label="SP1", Sizi="102" },
-        new RP2Direction{ Label="SP3", Sizi="107-2" },  
+        new RP2Direction{ Label="SP1", Sizi="901" },
+        new RP2Direction{ Label="SP3", Sizi="107-1" },  
     };
 
     static List<RP2Direction> RPDExitList = new List<RP2Direction>(){
-        new RP2Direction{ Label="ƒm[ƒ}ƒ‹", Sizi="101" },
-        new RP2Direction{ Label="–A", Sizi="101" },
-        new RP2Direction{ Label="‹›ŒQ", Sizi="101" },
+        new RP2Direction{ Label="ãƒãƒ¼ãƒãƒ«", Sizi="101" },
+        new RP2Direction{ Label="æ³¡", Sizi="101" },
+        new RP2Direction{ Label="é­šç¾¤", Sizi="101" },
         new RP2Direction{ Label="SP1", Sizi="101" },
-        new RP2Direction{ Label="SP3", Sizi="107-1" },  
+        new RP2Direction{ Label="SP3", Sizi="107-3" },  
     };
 
     static List<RPRL2Direction> RPRLDList = new List<RPRL2Direction>(){
@@ -208,7 +218,7 @@ public class DrawLotBigRound : FsmStateAction
     };
 
     /// <summary>
-    /// ƒŠ[ƒ`ƒpƒ^[ƒ“–¼‚©‚ç‰‰o“®ìƒpƒ^[ƒ“‚ÌƒŠƒXƒg‚ğæ“¾
+    /// ãƒªãƒ¼ãƒãƒ‘ã‚¿ãƒ¼ãƒ³åã‹ã‚‰æ¼”å‡ºå‹•ä½œãƒ‘ã‚¿ãƒ¼ãƒ³ã®ãƒªã‚¹ãƒˆã‚’å–å¾—
     /// </summary>
     /// <param name="ReachPattern"></param>
     /// <returns></returns>
@@ -219,8 +229,8 @@ public class DrawLotBigRound : FsmStateAction
 
         List<String> SiziList = new List<String>();
 
-        // –AAƒm[ƒ}ƒ‹A‹›ŒQASP1, SP2, SP3 ‚ªÚ‚Á‚Ä‚¢‚é‚©’²¸
-        RPDExitList.ForEach(RPD =>
+        // æ³¡ã€ãƒãƒ¼ãƒãƒ«ã€é­šç¾¤ã€SP1, SP2, SP3 ãŒè¼‰ã£ã¦ã„ã‚‹ã‹èª¿æŸ»
+        RPDList.ForEach(RPD =>
         {
             if (ReachPattern.Contains(RPD.Label))
             {
@@ -228,7 +238,7 @@ public class DrawLotBigRound : FsmStateAction
             }
         });
 
-        // ‚³‚ñ‚²Ê
+        // ã•ã‚“ã”ç¤
         RPRLDList.ForEach(RPRLD =>
         {
             if (ReachLine==RPRLD.ReachLine&&ReachPattern.Contains(RPRLD.Label))
@@ -241,7 +251,7 @@ public class DrawLotBigRound : FsmStateAction
     }
 
     /// <summary>
-    /// ƒŠ[ƒ`ƒpƒ^[ƒ“–¼‚©‚ç‰‰o“®ìI—¹ƒpƒ^[ƒ“‚ÌƒŠƒXƒg‚ğæ“¾
+    /// ãƒªãƒ¼ãƒãƒ‘ã‚¿ãƒ¼ãƒ³åã‹ã‚‰æ¼”å‡ºå‹•ä½œçµ‚äº†ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ãƒªã‚¹ãƒˆã‚’å–å¾—
     /// </summary>
     /// <param name="ReachPattern"></param>
     /// <returns></returns>
@@ -252,7 +262,7 @@ public class DrawLotBigRound : FsmStateAction
 
         List<String> SiziList = new List<String>();
 
-        // –AAƒm[ƒ}ƒ‹A‹›ŒQASP1, SP2, SP3 ‚ªÚ‚Á‚Ä‚¢‚é‚©’²¸
+        // æ³¡ã€ãƒãƒ¼ãƒãƒ«ã€é­šç¾¤ã€SP1, SP2, SP3 ãŒè¼‰ã£ã¦ã„ã‚‹ã‹èª¿æŸ»
         RPDExitList.ForEach(RPD =>
         {
             if (ReachPattern.Contains(RPD.Label))
@@ -261,11 +271,12 @@ public class DrawLotBigRound : FsmStateAction
             }
         });
 
-        // ‚³‚ñ‚²Ê
+        // ã•ã‚“ã”ç¤
         RPRLDExitList.ForEach(RPRLD =>
         {
             if (ReachLine==RPRLD.ReachLine&&ReachPattern.Contains(RPRLD.Label))
             {
+                Debug.Log("ADD SIZI" + RPRLD.Sizi);
                 SiziList.Add(RPRLD.Sizi);
             }
         });

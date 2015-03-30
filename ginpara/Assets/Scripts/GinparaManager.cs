@@ -73,6 +73,7 @@ public class GinparaManager : MonoBehaviour {
 	public UIAnchor marinFinishAnchor = null;
 	public GameObject bonusFinishBackground = null;
 	public GameObject bonusFinishLabel = null;
+    public GameObject WhiteScreen = null;
 	private bool isBackgroundLoop = false;
 	private float deltaTime = 0;
 #if UNITY_EDITOR
@@ -4757,6 +4758,12 @@ public class GinparaManager : MonoBehaviour {
 			
 			if(callback != null) callback();
 			break;
+
+        case "901":
+            // ホワイトアウト
+            WhiteScreen.GetComponent<PlayMakerFSM>().SendEvent("ホワイトアウト");
+            if (callback != null) callback();
+            break;
 
 		default:
 			errorCode = "指定コードが間違えています";
