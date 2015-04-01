@@ -4349,7 +4349,12 @@ public class GinparaManager : MonoBehaviour {
 		case "201":
 			StartCoroutine (this.DisplayUpper (callback));
 			break;
-			
+
+        // リールが下がった状態から元に戻す
+        case "201-2":
+			StartCoroutine (this.DisplayDowner (callback));
+			break;
+
 		case "202":
 			this.marinShakeHandAnchor.transform.gameObject.SetActive (true);
 			StartCoroutine (this.MarinShakeHand (callback));
@@ -4767,7 +4772,7 @@ public class GinparaManager : MonoBehaviour {
 
 		default:
 			errorCode = "指定コードが間違えています";
-			Debug.LogWarning ("指定コードが間違えています");
+            Debug.LogWarning("指定コードが間違えています　要求されたコード:" + patternNo);
 			break;
 		}
 
@@ -4940,6 +4945,23 @@ public class GinparaManager : MonoBehaviour {
 
 		if(callback != null) callback();
 	}
+
+    //----------------------------------------------------------------------------------------------------
+    // 液晶を大当たりから通常に戻す
+    private IEnumerator DisplayDowner(System.Action callback)
+    {
+        float totalTime = 0;
+        while (totalTime < 5f)
+        {
+            float time = Time.deltaTime;
+            totalTime += time;
+            float value = this.railAreaAnchor.relativeOffset.y + (this.deltaTime / 5f);
+            this.railAreaAnchor.relativeOffset = new Vector2(this.railAreaAnchor.relativeOffset.x, value);
+            yield return null;
+        }
+
+        if (callback != null) callback();
+    }
 	
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator MarinShakeHand(System.Action callback){

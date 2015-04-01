@@ -218,8 +218,6 @@
       <Project>{C39D17D1-2DEC-F93C-CB71-361735DB4160}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
       <Project>{A00B57DA-A859-465B-A620-F2D3F832754B}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{3391D336-725B-F33D-D23B-212FFE1A4476}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
       <Project>{A0EA5C20-2729-F6F4-BBD1-6AB2241F5F6B}</Project>      <Name>Assembly-CSharp-Editor-firstpass</Name>    </ProjectReference>
   </ItemGroup>

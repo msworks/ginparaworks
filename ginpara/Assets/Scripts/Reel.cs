@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using HutongGames.PlayMaker;
 using System;
 using System.Collections;
@@ -9,24 +9,24 @@ using Ginpara;
 namespace Ginpara { 
 
 /// <summary>
-/// ƒŠ[ƒ‹ƒe[ƒuƒ‹
+/// ãƒªãƒ¼ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«
 /// </summary>
 public struct ReelElement
 {
-    public String Tokuzu;   // ”š‚©ŠL
-    public String Sizi;     // w¦No( 4-1 “™ )
+    public String Tokuzu;   // æ•°å­—ã‹è²
+    public String Sizi;     // æŒ‡ç¤ºNo( 4-1 ç­‰ )
 };
 
 /// <summary>
-/// ƒŠ[ƒ‹ŠÇ—ƒNƒ‰ƒX
+/// ãƒªãƒ¼ãƒ«ç®¡ç†ã‚¯ãƒ©ã‚¹
 /// </summary>
 public class Reel
 {
     static System.Random rnd = new System.Random(Environment.TickCount);
-    const int CHUSEN_LEN = 65536;       // ’Š‘I‚ÌƒTƒCƒY
+    const int CHUSEN_LEN = 65536;       // æŠ½é¸ã®ã‚µã‚¤ã‚º
 
     /// <summary>
-    /// 0`65535‚Ìƒ‰ƒ“ƒ_ƒ€’l‚ğ•Ô‚·
+    /// 0ï½65535ã®ãƒ©ãƒ³ãƒ€ãƒ å€¤ã‚’è¿”ã™
     /// </summary>
     static int RndFFFF
     {
@@ -36,10 +36,10 @@ public class Reel
         }
     }
 
-    #region <<ã’i>>
+    #region <<ä¸Šæ®µ>>
 
     /// <summary>
-    /// ã’i
+    /// ä¸Šæ®µ
     /// </summary>
     static List<ReelElement> reel1 = new List<ReelElement>()
     {
@@ -66,21 +66,21 @@ public class Reel
     };
 
     /// <summary>
-    /// ã’iƒŠ[ƒ‹‚Ì–³ŒÀƒV[ƒPƒ“ƒX
+    /// ä¸Šæ®µãƒªãƒ¼ãƒ«ã®ç„¡é™ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
     /// </summary>
     public static CycleSequence<ReelElement> CyclicReel1 = new CycleSequence<ReelElement>(reel1);
 
     /// <summary>
-    /// ã’iƒŠ[ƒ‹‚Ì”z—ñ
+    /// ä¸Šæ®µãƒªãƒ¼ãƒ«ã®é…åˆ—
     /// </summary>
     static ReelElement[] reel1array = reel1.ToArray();
 
     #endregion
 
-    #region <<’†’i>>
+    #region <<ä¸­æ®µ>>
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«
     /// </summary>
     static List<ReelElement> reel2 = new List<ReelElement>()
     {
@@ -107,17 +107,17 @@ public class Reel
     };
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹‚Ì”z—ñ
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«ã®é…åˆ—
     /// </summary>
     static ReelElement[] reel2array = reel2.ToArray();
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹‚Ì–³ŒÀƒV[ƒPƒ“ƒX
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«ã®ç„¡é™ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
     /// </summary>
     public static CycleSequence<ReelElement> CyclicReel2 = new CycleSequence<ReelElement>(reel2);
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹ƒŠ[ƒ`‚Í‚¸‚µŠm—¦ƒe[ƒuƒ‹iƒŠ[ƒ`ƒ‰ƒCƒ“‚PC‚QC‚Rj
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«ãƒªãƒ¼ãƒã¯ãšã—ç¢ºç‡ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³ï¼‘ï¼Œï¼’ï¼Œï¼“ï¼‰
     /// </summary>
     static List<int> Reel2ReachHazusiChusen123 = new List<int>()
     {
@@ -126,7 +126,7 @@ public class Reel
 
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹ƒm[ƒ}ƒ‹ƒŠ[ƒ`ƒŠƒXƒg
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«ãƒãƒ¼ãƒãƒ«ãƒªãƒ¼ãƒãƒªã‚¹ãƒˆ
     /// </summary>
     static List<ReelElement> reel2normal = new List<ReelElement>()
     {
@@ -153,18 +153,18 @@ public class Reel
     };
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹‚Ì”z—ñ
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«ã®é…åˆ—
     /// </summary>
     static ReelElement[] reel2normalarray = reel2normal.ToArray();
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹‚Ì–³ŒÀƒV[ƒPƒ“ƒX
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«ã®ç„¡é™ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
     /// </summary>
     public static CycleSequence<ReelElement> CyclicReel2normal = new CycleSequence<ReelElement>(reel2normal);
 
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹ƒŠ[ƒ`‚Í‚¸‚µŠm—¦ƒe[ƒuƒ‹iƒŠ[ƒ`ƒ‰ƒCƒ“‚Sj
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«ãƒªãƒ¼ãƒã¯ãšã—ç¢ºç‡ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³ï¼”ï¼‰
     /// </summary>
     static List<int> Reel2ReachHazusiChusen4 = new List<int>()
     {
@@ -172,7 +172,7 @@ public class Reel
     };
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹SPƒŠ[ƒ`ƒŠƒXƒgi|‚Pj
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«SPãƒªãƒ¼ãƒãƒªã‚¹ãƒˆï¼ˆï¼ï¼‘ï¼‰
     /// </summary>
     static List<ReelElement> reel2SP_RIGHT = new List<ReelElement>()
     {
@@ -199,7 +199,7 @@ public class Reel
     };
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹SPƒŠ[ƒ`ƒŠƒXƒgi‚Oj
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«SPãƒªãƒ¼ãƒãƒªã‚¹ãƒˆï¼ˆï¼ï¼‰
     /// </summary>
     static List<ReelElement> reel2SP_CENTER = new List<ReelElement>()
     {
@@ -226,7 +226,7 @@ public class Reel
     };
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹SPƒŠ[ƒ`ƒŠƒXƒgi|‚Pj
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«SPãƒªãƒ¼ãƒãƒªã‚¹ãƒˆï¼ˆï¼ï¼‘ï¼‰
     /// </summary>
     static List<ReelElement> reel2SP_LEFT = new List<ReelElement>()
     {
@@ -253,31 +253,31 @@ public class Reel
     };
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹SPƒŠ[ƒ`ƒŠƒXƒgi|‚Pj‚Ì–³ŒÀƒV[ƒPƒ“ƒX
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«SPãƒªãƒ¼ãƒãƒªã‚¹ãƒˆï¼ˆï¼ï¼‘ï¼‰ã®ç„¡é™ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
     /// </summary>
     public static CycleSequence<ReelElement> CyclicReel2SP_RIGHT = new CycleSequence<ReelElement>(reel2SP_RIGHT);
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹SPƒŠ[ƒ`ƒŠƒXƒgi‚Oj‚Ì–³ŒÀƒV[ƒPƒ“ƒX
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«SPãƒªãƒ¼ãƒãƒªã‚¹ãƒˆï¼ˆï¼ï¼‰ã®ç„¡é™ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
     /// </summary>
     public static CycleSequence<ReelElement> CyclicReel2SP_CENTER = new CycleSequence<ReelElement>(reel2SP_CENTER);
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ‹SPƒŠ[ƒ`ƒŠƒXƒgi{‚Pj‚Ì–³ŒÀƒV[ƒPƒ“ƒX
+    /// ä¸­æ®µãƒªãƒ¼ãƒ«SPãƒªãƒ¼ãƒãƒªã‚¹ãƒˆï¼ˆï¼‹ï¼‘ï¼‰ã®ç„¡é™ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
     /// </summary>
     public static CycleSequence<ReelElement> CyclicReel2SP_LEFT = new CycleSequence<ReelElement>(reel2SP_LEFT);
 
     /// <summary>
-    /// ‚r‚oƒŠ[ƒ`ƒVƒtƒg”’Š‘I\‘¢‘Ì
+    /// ï¼³ï¼°ãƒªãƒ¼ãƒã‚·ãƒ•ãƒˆæ•°æŠ½é¸æ§‹é€ ä½“
     /// </summary>
     struct ShiftReel
     {
-        public int ShiftNum;    // ƒVƒtƒg”
-        public int Chusenti;    // ’Š‘I’l
+        public int ShiftNum;    // ã‚·ãƒ•ãƒˆæ•°
+        public int Chusenti;    // æŠ½é¸å€¤
     }
 
     /// <summary>
-    /// –AŠm—¦ƒe[ƒuƒ‹i‚r‚o‚PA‚r‚o‚Qj
+    /// æ³¡ç¢ºç‡ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆï¼³ï¼°ï¼‘ã€ï¼³ï¼°ï¼’ï¼‰
     /// </summary>
     static List<ShiftReel> ChusenAwaSP12 = new List<ShiftReel>()
     {
@@ -286,7 +286,7 @@ public class Reel
     };
 
     /// <summary>
-    /// ‹›ŒQŠm—¦ƒe[ƒuƒ‹i‚r‚o‚PA‚r‚o‚Qj
+    /// é­šç¾¤ç¢ºç‡ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆï¼³ï¼°ï¼‘ã€ï¼³ï¼°ï¼’ï¼‰
     /// </summary>
     static List<ShiftReel> ChusenGyogunSP12 = new List<ShiftReel>()
     {
@@ -295,7 +295,7 @@ public class Reel
     };
 
     /// <summary>
-    /// Šm—¦ƒe[ƒuƒ‹i‚r‚o‚Rj
+    /// ç¢ºç‡ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆï¼³ï¼°ï¼“ï¼‰
     /// </summary>
     static List<ShiftReel> ChusenSP3 = new List<ShiftReel>()
     {
@@ -305,25 +305,25 @@ public class Reel
     };
 
     /// <summary>
-    /// –AŠm—¦’Š‘Iƒe[ƒuƒ‹i‚r‚o‚PA‚r‚o‚Qj
+    /// æ³¡ç¢ºç‡æŠ½é¸ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆï¼³ï¼°ï¼‘ã€ï¼³ï¼°ï¼’ï¼‰
     /// </summary>
     static ShiftReel[] ChusenAwaSP12Array = ChusenAwaSP12.Select(ca => SR2Sequence(ca)).SelectMany(cas => cas).ToArray();
 
     /// <summary>
-    /// –AŠm—¦’Š‘Iƒe[ƒuƒ‹i‚r‚o‚PA‚r‚o‚Qj
+    /// æ³¡ç¢ºç‡æŠ½é¸ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆï¼³ï¼°ï¼‘ã€ï¼³ï¼°ï¼’ï¼‰
     /// </summary>
     static ShiftReel[] ChusenGyogunSP12Array = ChusenGyogunSP12.Select(ca => SR2Sequence(ca)).SelectMany(cas => cas).ToArray();
 
     /// <summary>
-    /// Šm—¦’Š‘Iƒe[ƒuƒ‹i‚r‚o‚Rj
+    /// ç¢ºç‡æŠ½é¸ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆï¼³ï¼°ï¼“ï¼‰
     /// </summary>
     static ShiftReel[] ChusenSP3Array = ChusenSP3.Select(ca => SR2Sequence(ca)).SelectMany(cas => cas).ToArray();
 
-#endregion <<’†’i>>
+#endregion <<ä¸­æ®µ>>
 
-    #region <<‰º’i>>
+    #region <<ä¸‹æ®µ>>
     /// <summary>
-    /// ‰º’iƒŠ[ƒ‹
+    /// ä¸‹æ®µãƒªãƒ¼ãƒ«
     /// </summary>
     static List<ReelElement> reel3 = new List<ReelElement>()
     {
@@ -350,7 +350,7 @@ public class Reel
     };
 
     /// <summary>
-    /// ‰º’iƒŠ[ƒ‹‚Ì–³ŒÀƒV[ƒPƒ“ƒX
+    /// ä¸‹æ®µãƒªãƒ¼ãƒ«ã®ç„¡é™ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
     /// </summary>
     public static CycleSequence<ReelElement> CyclicReel3 = new CycleSequence<ReelElement>(reel3);
 
@@ -359,10 +359,10 @@ public class Reel
         public ReelElement elem;
         public int chusenti;
     };
-    #endregion <<‰º’i>>
+    #endregion <<ä¸‹æ®µ>>
 
     /// <summary>
-    /// ƒoƒ‰ƒP–ÚiƒŠ[ƒ`•s¬—§j’â~ƒe[ƒuƒ‹
+    /// ãƒãƒ©ã‚±ç›®ï¼ˆãƒªãƒ¼ãƒä¸æˆç«‹æ™‚ï¼‰åœæ­¢ãƒ†ãƒ¼ãƒ–ãƒ«
     /// </summary>
     static List<BarakemePattern> Barakeme = new List<BarakemePattern>()
     {
@@ -389,14 +389,14 @@ public class Reel
     };
 
     /// <summary>
-    /// ƒoƒ‰ƒP–Ú’Š‘Iƒe[ƒuƒ‹
+    /// ãƒãƒ©ã‚±ç›®æŠ½é¸ãƒ†ãƒ¼ãƒ–ãƒ«
     /// </summary>
     static BarakemePattern[] BarakemeChusen = Barakeme.Select(br => BR2Sequence(br)).SelectMany(brs => brs).ToArray();
 
     /// <summary>
-    /// ’†’iƒŠ[ƒ`ŠO‚µƒŠƒXƒg
-    /// ƒŠ[ƒ`ƒ‰ƒCƒ“‚Q‚É‚P‚ª—ˆ‚È‚¢”z—ñ‚ğŠî€‚É‚µ‚Ä‚¢‚é
-    /// ƒŠ[ƒ`ƒ‰ƒCƒ“‚P‚É‚P‚ª—ˆ‚È‚¢‚æ‚¤‚É‚·‚é‚É‚ÍA
+    /// ä¸­æ®µãƒªãƒ¼ãƒå¤–ã—ãƒªã‚¹ãƒˆ
+    /// ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³ï¼’ã«ï¼‘ãŒæ¥ãªã„é…åˆ—ã‚’åŸºæº–ã«ã—ã¦ã„ã‚‹
+    /// ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³ï¼‘ã«ï¼‘ãŒæ¥ãªã„ã‚ˆã†ã«ã™ã‚‹ã«ã¯ã€
     /// 
     /// </summary>
     static List<BarakemePattern> ChudanReachHazushi= new List<BarakemePattern>()
@@ -424,14 +424,14 @@ public class Reel
     };
 
     /// <summary>
-    /// static ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+    /// static ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     /// </summary>
     static Reel()
     {
     }
 
     /// <summary>
-    /// ƒoƒ‰ƒP–Úƒe[ƒuƒ‹‚ğ’Š‘I’l‚Ì”‚ÌƒV[ƒPƒ“ƒX‚É•ÏŠ·
+    /// ãƒãƒ©ã‚±ç›®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æŠ½é¸å€¤ã®æ•°ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«å¤‰æ›
     /// </summary>
     /// <param name="br"></param>
     /// <returns></returns>
@@ -445,7 +445,7 @@ public class Reel
     }
 
     /// <summary>
-    /// Šm—¦’Š‘Iƒe[ƒuƒ‹‚ğ’Š‘I’l‚Ì”‚ÌƒV[ƒPƒ“ƒX‚É•ÏŠ·
+    /// ç¢ºç‡æŠ½é¸ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æŠ½é¸å€¤ã®æ•°ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«å¤‰æ›
     /// </summary>
     /// <param name="br"></param>
     /// <returns></returns>
@@ -459,7 +459,7 @@ public class Reel
     }
 
     /// <summary>
-    /// ƒŠ[ƒ‹‚ğ’Š‘Ii‹Ï“™j
+    /// ãƒªãƒ¼ãƒ«ã‚’æŠ½é¸ï¼ˆå‡ç­‰ï¼‰
     /// </summary>
     /// <param name="reel"></param>
     /// <returns></returns>
@@ -469,31 +469,31 @@ public class Reel
     }
 
     /// <summary>
-    /// ~‚Ü‚éˆÊ’u‚ğæ“¾i‚r‚oƒŠ[ƒ`j
+    /// æ­¢ã¾ã‚‹ä½ç½®ã‚’å–å¾—ï¼ˆï¼³ï¼°ãƒªãƒ¼ãƒï¼‰
     /// </summary>
-    /// <param name="ReachLine">ƒŠ[ƒ`ƒ‰ƒCƒ“‡@`‡C</param>
-    /// <param name="Tokuzu">“Á}‚Ì”Ô†‚P`‚P‚O</param>
+    /// <param name="ReachLine">ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³â‘ ï½â‘£</param>
+    /// <param name="Tokuzu">ç‰¹å›³ã®ç•ªå·ï¼‘ï½ï¼‘ï¼</param>
     /// <returns></returns>
     static public ReelElement[] ChooseSP(int ReachLine, int Tokuzu, string ReachPatternName)
     {
-        // ã’iA’†’iA‰º’i‚Ì~‚Ü‚éˆÊ’u‚ğ‰¼ŒÅ’è
+        // ä¸Šæ®µã€ä¸­æ®µã€ä¸‹æ®µã®æ­¢ã¾ã‚‹ä½ç½®ã‚’ä»®å›ºå®š
         var r1 = reel1.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
         var r2 = reel2.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
         var r3 = reel3.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
 
-        // ƒŠ[ƒ`ƒ‰ƒCƒ“‚É‰‚¶‚ÄAã’iA‰º’i‚ÌˆÊ’u‚ğ‚¸‚ç‚·
+        // ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³ã«å¿œã˜ã¦ã€ä¸Šæ®µã€ä¸‹æ®µã®ä½ç½®ã‚’ãšã‚‰ã™
         if (ReachLine == 1)
         {
-            // ‚¸‚ç‚³‚È‚¢
+            // ãšã‚‰ã•ãªã„
         }
         else if (ReachLine == 2)
         {
-            // ã’i‚¸‚ç‚·
+            // ä¸Šæ®µãšã‚‰ã™
             r1 = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(19)
                             .First();
 
-            // ‰º’i‚¸‚ç‚·
+            // ä¸‹æ®µãšã‚‰ã™
             r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(19)
                             .First();
@@ -501,33 +501,33 @@ public class Reel
         }
         else if (ReachLine == 3)
         {
-            // ã’i‚¸‚ç‚·
+            // ä¸Šæ®µãšã‚‰ã™
             r1 = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(18)
                             .First();
 
-            // ‰º’i‚¸‚ç‚·
+            // ä¸‹æ®µãšã‚‰ã™
             r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(18)
                             .First();
         }
         else if (ReachLine == 4)
         {
-            // ã’i‚¸‚ç‚³‚È‚¢‚ÅA‰º’i‚¸‚ç‚·
+            // ä¸Šæ®µãšã‚‰ã•ãªã„ã§ã€ä¸‹æ®µãšã‚‰ã™
             r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(18)
                             .First();
         }
 
         // =========
-        // ’†’i‚ğ’Š‘I
+        // ä¸­æ®µã‚’æŠ½é¸
         // =========
-        // -1, +1, +3‚Ì’Š‘I‚ğs‚¢Ai-1‚ª‰E‘¤A+1‚ª¶‘¤j
-        // zŠÂƒe[ƒuƒ‹‚ğ’â~“Á}•ªƒVƒtƒgiƒXƒLƒbƒvj‚µA
-        // ƒŠ[ƒ`ƒ‰ƒCƒ“•ªƒVƒtƒgiƒXƒLƒbƒvj‚µA
+        // -1, +1, +3ã®æŠ½é¸ã‚’è¡Œã„ã€ï¼ˆ-1ãŒå³å´ã€+1ãŒå·¦å´ï¼‰
+        // å¾ªç’°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åœæ­¢ç‰¹å›³åˆ†ã‚·ãƒ•ãƒˆï¼ˆã‚¹ã‚­ãƒƒãƒ—ï¼‰ã—ã€
+        // ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³åˆ†ã‚·ãƒ•ãƒˆï¼ˆã‚¹ã‚­ãƒƒãƒ—ï¼‰ã—ã€
         var CyclicReel = CyclicReel2SP_RIGHT;
 
-        var SkipReachLine = 20; // ˆê‰ñ“]
+        var SkipReachLine = 20; // ä¸€å›è»¢
 
         switch (ReachLine)
         {
@@ -543,10 +543,12 @@ public class Reel
                 break;
         }
 
+        // SP1, SP2ã¯æ³¡ã€é­šç¾¤ã«å¿œã˜ã¦ï¼‹ï¼‘ã€ï¼ï¼‘ã‚’æŠ½é¸ã™ã‚‹
+        // SP3ã¯ï¼‹ï¼‘ã€ï¼ï¼‘ã€ï¼‹ï¼“ã‚’æŠ½é¸ã™ã‚‹
         var shiftnum = 0;
         if (ReachPatternName.Contains("SP1") || ReachPatternName.Contains("SP2"))
         {
-            if (ReachPatternName.Contains("–A"))
+            if (ReachPatternName.Contains("æ³¡"))
             {
                 shiftnum = ChusenAwaSP12Array[RndFFFF].ShiftNum;
             }
@@ -584,67 +586,67 @@ public class Reel
         return reels;
     }
 
-    #region <<ƒm[ƒ}ƒ‹ƒŠ[ƒ`>>
+    #region <<ãƒãƒ¼ãƒãƒ«ãƒªãƒ¼ãƒ>>
     /// <summary>
-    /// ~‚Ü‚éˆÊ’u‚ğæ“¾iƒŠ[ƒ`j
+    /// æ­¢ã¾ã‚‹ä½ç½®ã‚’å–å¾—ï¼ˆãƒªãƒ¼ãƒï¼‰
     /// </summary>
-    /// <param name="ReachLine">ƒŠ[ƒ`ƒ‰ƒCƒ“‡@`‡C</param>
-    /// <param name="Tokuzu">“Á}‚Ì”Ô†‚P`‚P‚O</param>
+    /// <param name="ReachLine">ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³â‘ ï½â‘£</param>
+    /// <param name="Tokuzu">ç‰¹å›³ã®ç•ªå·ï¼‘ï½ï¼‘ï¼</param>
     /// <returns></returns>
     static public ReelElement[] Choose(int ReachLine, int Tokuzu)
     {
-        // ã’i‚Ì~‚Ü‚éˆÊ’u‚ğŒˆ’è
+        // ä¸Šæ®µã®æ­¢ã¾ã‚‹ä½ç½®ã‚’æ±ºå®š
         var r1 = reel1.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
         var r2 = reel2.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
         var r3 = reel3.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
 
-        // ƒŠ[ƒ`ƒ‰ƒCƒ“‚É‰‚¶‚ÄAã’iA‰º’i‚ÌˆÊ’u‚ğ‚¸‚ç‚·
+        // ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³ã«å¿œã˜ã¦ã€ä¸Šæ®µã€ä¸‹æ®µã®ä½ç½®ã‚’ãšã‚‰ã™
         if (ReachLine == 1)
         {
-            // ‚¸‚ç‚³‚È‚¢
+            // ãšã‚‰ã•ãªã„
         }
         else if (ReachLine == 2)
         {
-            // ã’i‚¸‚ç‚·
+            // ä¸Šæ®µãšã‚‰ã™
             r1 = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(19)
                             .First();
 
-            // ‰º’i‚¸‚ç‚·
+            // ä¸‹æ®µãšã‚‰ã™
             r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(19)
                             .First();
 
         }else if(ReachLine == 3)
         {
-            // ã’i‚¸‚ç‚·
+            // ä¸Šæ®µãšã‚‰ã™
             r1 = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(18)
                             .First();
 
-            // ‰º’i‚¸‚ç‚·
+            // ä¸‹æ®µãšã‚‰ã™
             r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(18)
                             .First();
         }
         else if (ReachLine == 4)
         {
-            // ã’i‚¸‚ç‚³‚È‚¢‚ÅA‰º’i‚¸‚ç‚·
+            // ä¸Šæ®µãšã‚‰ã•ãªã„ã§ã€ä¸‹æ®µãšã‚‰ã™
             r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(18)
                             .First();
         }
 
         // =========
-        // ’†’i‚ğ’Š‘I
+        // ä¸­æ®µã‚’æŠ½é¸
         // =========
-        // zŠÂƒe[ƒuƒ‹‚ğ’â~“Á}•ªƒVƒtƒgiƒXƒLƒbƒvj‚µA
-        // ƒŠ[ƒ`ƒ‰ƒCƒ“•ªƒVƒtƒgiƒXƒLƒbƒvj‚µA
-        // ’Š‘Iƒe[ƒuƒ‹‚ÆZIP(“‡)‚µA
-        // ’Š‘I’l‚Ì”‚¾‚¯•½’R‰»‚µA
-        // —”‚Å’Š‘I‚·‚éB
+        // å¾ªç’°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åœæ­¢ç‰¹å›³åˆ†ã‚·ãƒ•ãƒˆï¼ˆã‚¹ã‚­ãƒƒãƒ—ï¼‰ã—ã€
+        // ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³åˆ†ã‚·ãƒ•ãƒˆï¼ˆã‚¹ã‚­ãƒƒãƒ—ï¼‰ã—ã€
+        // æŠ½é¸ãƒ†ãƒ¼ãƒ–ãƒ«ã¨ZIP(çµ±åˆ)ã—ã€
+        // æŠ½é¸å€¤ã®æ•°ã ã‘å¹³å¦åŒ–ã—ã€
+        // ä¹±æ•°ã§æŠ½é¸ã™ã‚‹ã€‚
 
-        var SkipReachLine = 20; // ˆê‰ñ“]
+        var SkipReachLine = 20; // ä¸€å›è»¢
         var ChusenTable = Reel2ReachHazusiChusen123;
 
         switch (ReachLine)
@@ -678,25 +680,25 @@ public class Reel
 
         return reels;
     }
-    #endregion <<ƒm[ƒ}ƒ‹ƒŠ[ƒ`>>
+    #endregion <<ãƒãƒ¼ãƒãƒ«ãƒªãƒ¼ãƒ>>
 
-    #region <<ƒoƒ‰ƒP–Ú>>
+    #region <<ãƒãƒ©ã‚±ç›®>>
     /// <summary>
-    /// ~‚Ü‚éˆÊ’u‚ğæ“¾iƒoƒ‰ƒP–Új
+    /// æ­¢ã¾ã‚‹ä½ç½®ã‚’å–å¾—ï¼ˆãƒãƒ©ã‚±ç›®ï¼‰
     /// </summary>
-    /// <returns>w¦No ã’iA’†’iA‰º’i( 4-1 “™ )</returns>
+    /// <returns>æŒ‡ç¤ºNo ä¸Šæ®µã€ä¸­æ®µã€ä¸‹æ®µ( 4-1 ç­‰ )</returns>
     static public ReelElement[] Choose()
     {
-        // ã’i‚Ì~‚Ü‚éˆÊ’u‚ğ’Š‘I
+        // ä¸Šæ®µã®æ­¢ã¾ã‚‹ä½ç½®ã‚’æŠ½é¸
         var r1 = BarakemeChusen[RndFFFF].elem;
 
         ReelElement r2, r3;
 
-        // ‰º’i‚Ì~‚Ü‚éˆÊ’u‚ğ’Š‘I
+        // ä¸‹æ®µã®æ­¢ã¾ã‚‹ä½ç½®ã‚’æŠ½é¸
         r3 = GetElement(reel3);
 
-        // ƒeƒ“ƒpƒC‚ğ”ğ‚¯‚Ä‹Ï“™‚É’â~‚³‚¹‚é
-        // ƒeƒ“ƒpƒC‚·‚é‚±‚Æ‚É‚È‚Á‚½‚ç{‚P‚µ‚ÄƒYƒ‰‚·
+        // ãƒ†ãƒ³ãƒ‘ã‚¤ã‚’é¿ã‘ã¦å‡ç­‰ã«åœæ­¢ã•ã›ã‚‹
+        // ãƒ†ãƒ³ãƒ‘ã‚¤ã™ã‚‹ã“ã¨ã«ãªã£ãŸã‚‰ï¼‹ï¼‘ã—ã¦ã‚ºãƒ©ã™
         while (IsTenpai(r1, r3))
         {
             r3 = CyclicReel3.SkipWhile(elem => !elem.Sizi.Equals(r3.Sizi))
@@ -704,7 +706,7 @@ public class Reel
                             .ToArray()[1];
         }
 
-        // ’†’i‚ğ’Š‘I
+        // ä¸­æ®µã‚’æŠ½é¸
         r2 = GetElement(reel2);
 
         var reels = new ReelElement[] { r1, r2, r3 };
@@ -713,36 +715,129 @@ public class Reel
     }
 
     /// <summary>
-    /// ƒeƒ“ƒpƒC‚µ‚Ä‚¢‚é‚©•Ô‚·
+    /// ãƒ†ãƒ³ãƒ‘ã‚¤ã—ã¦ã„ã‚‹ã‹è¿”ã™
     /// </summary>
-    /// <param name="r1">ƒŠ[ƒ‹</param>
-    /// <param name="r3">ƒŠ[ƒ‹</param>
-    /// <returns>true:ƒeƒ“ƒpƒC‚µ‚Ä‚¢‚é false:ƒeƒ“ƒpƒC‚µ‚Ä‚¢‚È‚¢</returns>
+    /// <param name="r1">ãƒªãƒ¼ãƒ«</param>
+    /// <param name="r3">ãƒªãƒ¼ãƒ«</param>
+    /// <returns>true:ãƒ†ãƒ³ãƒ‘ã‚¤ã—ã¦ã„ã‚‹ false:ãƒ†ãƒ³ãƒ‘ã‚¤ã—ã¦ã„ãªã„</returns>
     static private bool IsTenpai( ReelElement r1, ReelElement r3 )
     {
-        // ƒeƒ“ƒpƒC‚µ‚Ä‚¢‚é‚©’²¸
+        // ãƒ†ãƒ³ãƒ‘ã‚¤ã—ã¦ã„ã‚‹ã‹èª¿æŸ»
         if (r1.Tokuzu == r3.Tokuzu) return true;
 
-        // ƒŠ[ƒ‹æ“¾
+        // ãƒªãƒ¼ãƒ«å–å¾—
         var Jodan = CyclicReel1.SkipWhile(elem => !elem.Sizi.Equals(r1.Sizi))
                                .Take(3).ToArray();
 
         var Gedan = CyclicReel3.SkipWhile(elem => !elem.Sizi.Equals(r3.Sizi))
                                .Take(3).ToArray();
 
-        // ‚’¼•ûŒü‚Ìƒ`ƒFƒbƒN
+        // å‚ç›´æ–¹å‘ã®ãƒã‚§ãƒƒã‚¯
         if (Jodan[0].Tokuzu.Equals(Gedan[0].Tokuzu)) { return true; }
         if (Jodan[1].Tokuzu.Equals(Gedan[1].Tokuzu)) { return true; }
         if (Jodan[2].Tokuzu.Equals(Gedan[2].Tokuzu)) { return true; }
 
-        // ƒiƒiƒ‚Ìƒ`ƒFƒbƒN
+        // ãƒŠãƒŠãƒ¡ã®ãƒã‚§ãƒƒã‚¯
         if (Jodan[0].Tokuzu.Equals(Gedan[2].Tokuzu)) { return true; }
         if (Jodan[2].Tokuzu.Equals(Gedan[0].Tokuzu)) { return true; }
 
-        // ƒeƒ“ƒpƒC‚µ‚Ä‚¢‚È‚¢‚ğ•Ô‹p
+        // ãƒ†ãƒ³ãƒ‘ã‚¤ã—ã¦ã„ãªã„ã‚’è¿”å´
         return false;
     }
-    #endregion <<ƒoƒ‰ƒP–Ú>>
+    #endregion <<ãƒãƒ©ã‚±ç›®>>
+
+    /// <summary>
+    /// å¤§å½“ãŸã‚Šã®æ­¢ã¾ã‚‹ä½ç½®ã‚’å–å¾—
+    /// </summary>
+    /// <param name="result"></param>
+    /// <returns></returns>
+    static public ReelElement[] ChooseOoatari(DrawLotResult result)
+    {
+        var Tokuzu = result.tokuzu;
+        var ReachLine = result.reachLine;
+
+        Debug.Log("ç‰¹å›³ï¼š" + Tokuzu);
+        Debug.Log("ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³ï¼š" + ReachLine);
+
+        // ä¸Šæ®µã€ä¸­æ®µã€ä¸‹æ®µã®æ­¢ã¾ã‚‹ä½ç½®ã‚’ä»®å›ºå®š
+        var r1 = reel1.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
+        var r2 = reel2.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
+        var r3 = reel3.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
+
+        // ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³ã«å¿œã˜ã¦ã€ä¸Šæ®µã€ä¸‹æ®µã®ä½ç½®ã‚’ãšã‚‰ã™
+        if (ReachLine == 1)
+        {
+            // ãšã‚‰ã•ãªã„
+        }
+        else if (ReachLine == 2)
+        {
+            // ä¸Šæ®µãšã‚‰ã™
+            r1 = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(19)
+                            .First();
+
+            // ä¸‹æ®µãšã‚‰ã™
+            r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(19)
+                            .First();
+
+        }
+        else if (ReachLine == 3)
+        {
+            // ä¸Šæ®µãšã‚‰ã™
+            r1 = CyclicReel1.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(18)
+                            .First();
+
+            // ä¸‹æ®µãšã‚‰ã™
+            r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(18)
+                            .First();
+        }
+        else if (ReachLine == 4)
+        {
+            // ä¸Šæ®µãšã‚‰ã•ãªã„ã§ã€ä¸‹æ®µãšã‚‰ã™
+            r3 = CyclicReel3.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(18)
+                            .First();
+        }
+
+        //--------------------------------------------------------------------
+        // ä¸­æ®µã‚’æ±ºã‚ã‚‹
+        // TODO
+        // 9-1 ï½ 28-19 ã‚’ä½¿ã†ã¯ãšãªã®ã ãŒã€ã©ã†ã„ã†åŸºæº–ã§ä½¿ã†ã®ã‹ãŒã‚ˆãåˆ†ã‹ã‚‰ãªã„ã€‚
+        // ã¨ã‚Šã‚ãˆãšã¯ã¯ãšã‚Œã¡ã‚ƒã£ãŸçµµã‚’å‡ºã™
+        // ã¨æ€ã£ãŸã‘ã©å‘³æ°—ãªã•ã™ããªã®ã§ã€å½“ãŸã£ãŸçµµé¢ã¯å‡ºã™
+        //--------------------------------------------------------------------
+
+        // ãƒªãƒ¼ãƒãƒ©ã‚¤ãƒ³ã«å¿œã˜ã¦ã€ä¸­æ®µã®ä½ç½®ã‚’ãšã‚‰ã™
+        if (ReachLine == 1)
+        {
+            // ãšã‚‰ã•ãªã„
+        }
+        else if (ReachLine == 2)
+        {
+            r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(19)
+                            .First();
+        }
+        else if (ReachLine == 3)
+        {
+            r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(18)
+                            .First();
+        }
+        else if (ReachLine == 4)
+        {
+            r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(19)
+                            .First();
+        }
+
+        var reels = new ReelElement[] { r1, r2, r3 };
+
+        return reels;
+    }
 
 }
 

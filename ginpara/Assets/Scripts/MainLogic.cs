@@ -233,14 +233,15 @@ public class MainLogic : MonoBehaviour {
     /// <returns></returns>
     public DrawLotResult DrawLot(int HoryuSu, int KenriKaisu, 
         bool ForceNormalReach,
-        bool ForceSPReach
+        bool ForceSPReach,
+        bool ForceOoatari
     )
     {
         DrawLotResult result = new DrawLotResult();
 
         var IsKakuhen = (KenriKaisu == 0) ? false : true;
 
-        if (IsAtari(RndFFFF, IsKakuhen))
+        if (IsAtari(RndFFFF, IsKakuhen) || ForceOoatari)
         {
             //---------//
             // 大当たり //

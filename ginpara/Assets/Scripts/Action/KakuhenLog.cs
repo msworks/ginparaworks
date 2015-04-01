@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using HutongGames.PlayMaker;
 using System;
 using System.Collections;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// Šm—¦•Ï“®ƒƒO
+/// ç¢ºç‡å¤‰å‹•ãƒ­ã‚°
 /// </summary>
 [ActionCategory("Ginpara")]
 public class KakuhenLog : FsmStateAction
@@ -16,7 +16,7 @@ public class KakuhenLog : FsmStateAction
 	// Code that runs on entering the state.
 	public override void OnEnter()
 	{
-        Debug.Log("*** Šm•Ï c‚è " + Kakuhen.Value + " ***");
+        Debug.Log("*** ç¢ºå¤‰ æ®‹ã‚Š " + Kakuhen.Value + " ***");
 		Finish();
 	}
 

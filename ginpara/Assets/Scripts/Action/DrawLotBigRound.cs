@@ -25,9 +25,14 @@ public class DrawLotBigRound : FsmStateAction
     public GameObject ReelController;
     public GameObject DirectionController;
 
+    public GameObject Atacker;
+
     // DEBUG
     public FsmBool ForceNormalReach;
     public FsmBool ForceSPReach;
+    public FsmBool ForceOoatari;
+
+    string msg = "大当たり";
 
 	public override void OnEnter()
 	{
@@ -35,7 +40,8 @@ public class DrawLotBigRound : FsmStateAction
             HoryuSu.Value,
             KenriKaisu.Value,
             ForceNormalReach.Value,
-            ForceSPReach.Value
+            ForceSPReach.Value,
+            ForceOoatari.Value
         );
 
         var reels = Reel.Choose();
@@ -51,14 +57,18 @@ public class DrawLotBigRound : FsmStateAction
 
         if (result.isOOatari)
         {
-            // TODO 大当たり実装
             Debug.Log("*** 大当たり ***");
+            reels = Reel.ChooseOoatari(result);
             DirectionController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
             DirectionController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
             DirectionController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
-            DirectionController.GetComponent<ReelController>().EnqueueDirection("4-1", 0.5f);
-            DirectionController.GetComponent<ReelController>().EnqueueDirection("5-1", 0.5f);
-            DirectionController.GetComponent<ReelController>().EnqueueDirection("6-1", 0.5f, callback);
+            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
+            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, () =>
+            {
+                Atacker.GetComponent<PlayMakerFSM>().SendEvent(msg);
+                DirectionController.GetComponent<ReelController>().EnqueueDirection("201", 0f);
+            });
         }
         else
         {
