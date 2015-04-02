@@ -27,10 +27,13 @@ public class DrawLotBigRound : FsmStateAction
 
     public GameObject Atacker;
 
+    public GameObject MarinController;
+
     // DEBUG
     public FsmBool ForceNormalReach;
     public FsmBool ForceSPReach;
     public FsmBool ForceOoatari;
+    public FsmBool ForceSP3;
 
     string msg = "大当たり";
 
@@ -41,7 +44,8 @@ public class DrawLotBigRound : FsmStateAction
             KenriKaisu.Value,
             ForceNormalReach.Value,
             ForceSPReach.Value,
-            ForceOoatari.Value
+            ForceOoatari.Value,
+            ForceSP3.Value
         );
 
         var reels = Reel.Choose();
@@ -107,6 +111,18 @@ public class DrawLotBigRound : FsmStateAction
                 Debug.Log("リーチライン"+result.reachLine);
                 Debug.Log("リーチパターン：" + result.reachPatternName);
                  */
+
+                // SP3ハズレリーチならマリンコントローラーに通知
+                if( result.reachPatternName.Contains("SP3")){
+                    if (HoryuSu.Value < 3)
+                    {
+                        MarinController.GetComponent<PlayMakerFSM>().SendEvent("HazureH012");
+                    }
+                    else
+                    {
+                        MarinController.GetComponent<PlayMakerFSM>().SendEvent("HazureH34");
+                    }
+                }
 
                 // リールの止まる位置を取得
                 if (result.reachPatternName.Contains("SP"))
@@ -202,7 +218,8 @@ public class DrawLotBigRound : FsmStateAction
         new RP2Direction{ Label="魚群", Sizi="105" },
         new RP2Direction{ Label="SP1", Sizi="102" },
         new RP2Direction{ Label="SP1", Sizi="901" },
-        new RP2Direction{ Label="SP3", Sizi="107-1" },  
+// マリンの制御はマリンコントローラーに任せる
+//        new RP2Direction{ Label="SP3", Sizi="107-1" },  
     };
 
     static List<RP2Direction> RPDExitList = new List<RP2Direction>(){
@@ -210,7 +227,9 @@ public class DrawLotBigRound : FsmStateAction
         new RP2Direction{ Label="泡", Sizi="101" },
         new RP2Direction{ Label="魚群", Sizi="101" },
         new RP2Direction{ Label="SP1", Sizi="101" },
-        new RP2Direction{ Label="SP3", Sizi="107-3" },  
+// マリンの制御はマリンコントローラーに任せる
+//        new RP2Direction{ Label="SP3", Sizi="108-1" },  
+//        new RP2Direction{ Label="SP3", Sizi="108-2" },  
     };
 
     static List<RPRL2Direction> RPRLDList = new List<RPRL2Direction>(){

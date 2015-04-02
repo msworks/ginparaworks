@@ -79,11 +79,23 @@ public class GinparaManager : MonoBehaviour {
 #if UNITY_EDITOR
 	private string orderCode = string.Empty;
 #endif
-	
+
+    static GinparaManager _instance;
+
+    /// <summary>
+    /// インスタンス取得メソッド
+    /// </summary>
+    /// <returns>ギンパラマネージャー</returns>
+    public static GinparaManager GetInstance()
+    {
+        return _instance;
+    }
+
 	//====================================================================================================
 	// Method
 	//====================================================================================================
 	void Start(){
+        _instance = this.gameObject.GetComponent<GinparaManager>();
 	}
 	
 	//----------------------------------------------------------------------------------------------------

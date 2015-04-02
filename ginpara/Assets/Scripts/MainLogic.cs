@@ -234,7 +234,8 @@ public class MainLogic : MonoBehaviour {
     public DrawLotResult DrawLot(int HoryuSu, int KenriKaisu, 
         bool ForceNormalReach,
         bool ForceSPReach,
-        bool ForceOoatari
+        bool ForceOoatari,
+        bool ForceSP3
     )
     {
         DrawLotResult result = new DrawLotResult();
@@ -284,6 +285,11 @@ public class MainLogic : MonoBehaviour {
             // リーチライン抽選
             var rl = DrawLotReachLine(RndFFFF);
 
+            if (ForceSP3)
+            {
+                rl.ReachLine = 4;
+            }
+
             // リーチ抽選
             var reach = DrawLotHazure(RndFFFF);
             structReachPattern rp = new structReachPattern();
@@ -305,6 +311,14 @@ public class MainLogic : MonoBehaviour {
                 if (ForceSPReach)
                 {
                     while (!rp.Name.Contains("SP"))
+                    {
+                        rp = DrawLotReachPattern(RndFFFF);
+                    }
+                }
+
+                if (ForceSP3)
+                {
+                    while (!rp.Name.Contains("SP3"))
                     {
                         rp = DrawLotReachPattern(RndFFFF);
                     }
