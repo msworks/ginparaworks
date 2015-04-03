@@ -4346,6 +4346,7 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "108-1":
+            this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 0);
 			this.marinNoticeLoseAnchor.transform.gameObject.SetActive(true);
 			this.marinNoticeCallAnime.StopAllCoroutines ();
 			this.marinNoticeCallAnchor.relativeOffset = new Vector2(0, 2);
@@ -4356,6 +4357,7 @@ public class GinparaManager : MonoBehaviour {
 		case "108-2":
 			this.marinNoticeLoseAnchor.transform.gameObject.SetActive(true);
 			StartCoroutine (this.MarinNoticeDownOUT(callback));
+            this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 0);
 			break;
 			
 		case "201":
@@ -4914,7 +4916,11 @@ public class GinparaManager : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator MarinNoticeDownOUT(System.Action callback){
-		float totalTime = 0;
+
+        //
+        this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 0);
+        
+        float totalTime = 0;
 		while(totalTime < 2f){
 			float time = Time.deltaTime;
 			totalTime += time;
@@ -4925,12 +4931,17 @@ public class GinparaManager : MonoBehaviour {
 		this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 2);
 		this.marinNoticeLoseAnime.StopAllCoroutines ();
 		this.marinNoticeLoseAnchor.transform.gameObject.SetActive (false);
+
 		if(callback != null) callback();
 	}
 	
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator MarinNoticeLose(System.Action callback){
-		float totalTime = 0;
+
+        //
+        this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 0);
+        
+        float totalTime = 0;
 		while(totalTime < 1f){
 			float time = Time.deltaTime;
 			totalTime += time;
@@ -4941,7 +4952,8 @@ public class GinparaManager : MonoBehaviour {
 		this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 2);
 		this.marinNoticeLoseAnchor.StopAllCoroutines();
 		this.marinNoticeLoseAnchor.transform.gameObject.SetActive (false);
-		if(callback != null) callback();
+        this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 0);
+        if (callback != null) callback();
 	}
 	
 	//----------------------------------------------------------------------------------------------------

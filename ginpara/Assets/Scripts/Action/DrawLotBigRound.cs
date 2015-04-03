@@ -154,11 +154,16 @@ public class DrawLotBigRound : FsmStateAction
                     DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, ()=>{
                         foreach(var ptn in ExitPtn){
                             var cb = NoReaction;
-                            if (ptn == ExitPtn.Last())
+                            if (ptn == ExitPtn.First())
                             {
                                 cb = callback;
                             }
-                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f, cb);
+                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 2f, cb);
+
+                            if (result.reachPatternName.Contains("SP3"))
+                            {
+                                MarinController.GetComponent<PlayMakerFSM>().SendEvent("Out");
+                            }
                         }
                     });
 
@@ -180,11 +185,16 @@ public class DrawLotBigRound : FsmStateAction
                         foreach (var ptn in ExitPtn)
                         {
                             var cb = NoReaction;
-                            if (ptn == ExitPtn.Last())
+                            if (ptn == ExitPtn.First())
                             {
                                 cb = callback;
                             }
-                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f, cb);
+                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 2f, cb);
+
+                            if (result.reachPatternName.Contains("SP3"))
+                            {
+                                MarinController.GetComponent<PlayMakerFSM>().SendEvent("Out");
+                            }
                         }
                     });
                 }
@@ -218,8 +228,7 @@ public class DrawLotBigRound : FsmStateAction
         new RP2Direction{ Label="魚群", Sizi="105" },
         new RP2Direction{ Label="SP1", Sizi="102" },
         new RP2Direction{ Label="SP1", Sizi="901" },
-// マリンの制御はマリンコントローラーに任せる
-//        new RP2Direction{ Label="SP3", Sizi="107-1" },  
+        new RP2Direction{ Label="SP3", Sizi="107-2" },  // マリン呼び込み
     };
 
     static List<RP2Direction> RPDExitList = new List<RP2Direction>(){
@@ -227,9 +236,6 @@ public class DrawLotBigRound : FsmStateAction
         new RP2Direction{ Label="泡", Sizi="101" },
         new RP2Direction{ Label="魚群", Sizi="101" },
         new RP2Direction{ Label="SP1", Sizi="101" },
-// マリンの制御はマリンコントローラーに任せる
-//        new RP2Direction{ Label="SP3", Sizi="108-1" },  
-//        new RP2Direction{ Label="SP3", Sizi="108-2" },  
     };
 
     static List<RPRL2Direction> RPRLDList = new List<RPRL2Direction>(){
