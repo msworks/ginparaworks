@@ -128,7 +128,7 @@ public class Reel
     /// <summary>
     /// 中段リールノーマルリーチリスト
     /// </summary>
-    static List<ReelElement> reel2normal = new List<ReelElement>()
+    public static List<ReelElement> reel2normal = new List<ReelElement>()
     {
         new ReelElement(){ Tokuzu="1", Sizi="7-1"},
         new ReelElement(){ Tokuzu="*", Sizi="7-2"},
@@ -174,7 +174,7 @@ public class Reel
     /// <summary>
     /// 中段リールSPリーチリスト（－１）
     /// </summary>
-    static List<ReelElement> reel2SP_RIGHT = new List<ReelElement>()
+    public static List<ReelElement> reel2SP_RIGHT = new List<ReelElement>()
     {
         new ReelElement(){ Tokuzu="1", Sizi="8-1"},
         new ReelElement(){ Tokuzu="*", Sizi="8-2"},
@@ -201,7 +201,7 @@ public class Reel
     /// <summary>
     /// 中段リールSPリーチリスト（０）
     /// </summary>
-    static List<ReelElement> reel2SP_CENTER = new List<ReelElement>()
+    public static List<ReelElement> reel2SP_CENTER = new List<ReelElement>()
     {
         new ReelElement(){ Tokuzu="1", Sizi="8-21"},
         new ReelElement(){ Tokuzu="*", Sizi="8-22"},
@@ -228,7 +228,7 @@ public class Reel
     /// <summary>
     /// 中段リールSPリーチリスト（－１）
     /// </summary>
-    static List<ReelElement> reel2SP_LEFT = new List<ReelElement>()
+    public static List<ReelElement> reel2SP_LEFT = new List<ReelElement>()
     {
         new ReelElement(){ Tokuzu="1", Sizi="8-41"},
         new ReelElement(){ Tokuzu="*", Sizi="8-42"},
@@ -529,19 +529,22 @@ public class Reel
 
         var SkipReachLine = 20; // 一回転
 
-        switch (ReachLine)
+        if (ReachLine == 1)
         {
-            case 1:
-                break;
-            case 2:
-                SkipReachLine -= 1;
-                break;
-            case 3:
-                SkipReachLine -= 2;
-                break;
-            case 4:
-                break;
         }
+        else if( ReachLine == 2 )
+        {
+            SkipReachLine -= 1;
+        }
+        else if (ReachLine == 3)
+        {
+            SkipReachLine -= 2;
+        }
+        else if (ReachLine == 4)
+        {
+            SkipReachLine -= 1;
+        }
+
 
         // SP1, SP2は泡、魚群に応じて＋１、－１を抽選する
         // SP3は＋１、－１、＋３を抽選する
