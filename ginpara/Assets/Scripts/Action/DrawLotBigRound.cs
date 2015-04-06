@@ -154,11 +154,11 @@ public class DrawLotBigRound : FsmStateAction
                     DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, ()=>{
                         foreach(var ptn in ExitPtn){
                             var cb = NoReaction;
-                            if (ptn == ExitPtn.First())
+                            if (ptn == ExitPtn.Last())
                             {
                                 cb = callback;
                             }
-                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 2f, cb);
+                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0.5f, cb);
 
                             if (result.reachPatternName.Contains("SP3"))
                             {
@@ -185,11 +185,11 @@ public class DrawLotBigRound : FsmStateAction
                         foreach (var ptn in ExitPtn)
                         {
                             var cb = NoReaction;
-                            if (ptn == ExitPtn.First())
+                            if (ptn == ExitPtn.Last())
                             {
                                 cb = callback;
                             }
-                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 2f, cb);
+                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0.5f, cb);
 
                             if (result.reachPatternName.Contains("SP3"))
                             {
