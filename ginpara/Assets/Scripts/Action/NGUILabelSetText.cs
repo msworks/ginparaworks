@@ -17,6 +17,18 @@ public class NGUILabelSetText : FsmStateAction
         Label.GetComponent<UILabel>().text = msg.Value;
 		Finish();
 	}
+}
 
+[ActionCategory("Ginpara")]
+public class NGUISetSpriteName : FsmStateAction
+{
+    public GameObject Sprite;
+    public FsmString SpriteName;
 
+    // Code that runs on entering the state.
+    public override void OnEnter()
+    {
+        Sprite.GetComponent<UISprite>().spriteName = SpriteName.Value;
+        Finish();
+    }
 }

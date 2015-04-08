@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TapTest : MonoBehaviour {
 
-    public void OnTap()
+    public void OnClick()
     {
         this.GetComponent<PlayMakerFSM>().SendEvent("Tap");
     }

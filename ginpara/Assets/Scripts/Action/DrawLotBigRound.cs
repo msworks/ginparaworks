@@ -14,7 +14,6 @@ namespace Ginpara
 [ActionCategory("Ginpara")]
 public class DrawLotBigRound : FsmStateAction
 {
-    public GameObject MainLogic;
     public FsmInt     HoryuSu;
     public FsmInt     KenriKaisu;
 
@@ -24,9 +23,7 @@ public class DrawLotBigRound : FsmStateAction
 
     public GameObject ReelController;
     public GameObject DirectionController;
-
     public GameObject Atacker;
-
     public GameObject MarinController;
 
     // DEBUG
@@ -37,9 +34,29 @@ public class DrawLotBigRound : FsmStateAction
 
     string msg = "大当たり";
 
+    struct Sizi
+    {
+        public string EnsyutuNo;
+        public float waitTime;
+    }
+
+    List<Sizi> H012Start = new List<Sizi>()
+    {
+        new Sizi{ EnsyutuNo="1", waitTime=1f },
+        new Sizi{ EnsyutuNo="2", waitTime=1f },
+        new Sizi{ EnsyutuNo="3", waitTime=8f },
+    };
+
+    List<Sizi> H34Start = new List<Sizi>()
+    {
+        new Sizi{ EnsyutuNo="1", waitTime=0f },
+        new Sizi{ EnsyutuNo="2", waitTime=0f },
+        new Sizi{ EnsyutuNo="3", waitTime=0f },
+    };
+
 	public override void OnEnter()
 	{
-        var result = MainLogic.GetComponent<MainLogic>().DrawLot(
+        var result = MainLogic.Instance.DrawLot(
             HoryuSu.Value,
             KenriKaisu.Value,
             ForceNormalReach.Value,
@@ -47,8 +64,6 @@ public class DrawLotBigRound : FsmStateAction
             ForceOoatari.Value,
             ForceSP3.Value
         );
-
-        var reels = Reel.Choose();
 
         // 演出完了コールバック
         Action callback = () =>
@@ -59,147 +74,92 @@ public class DrawLotBigRound : FsmStateAction
         // 演出完了コールバック（何も通知しない）
         Action NoReaction = () => { };
 
-        if (result.isOOatari)
+        List<Sizi> StartList;
+        if (HoryuSu.Value < 3)
         {
-            Debug.Log("*** 大当たり ***");
-            reels = Reel.ChooseOoatari(result);
-            DirectionController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
-            DirectionController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
-            DirectionController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
+            StartList = H012Start;
+        }
+        else
+        {
+            StartList = H34Start;
+        }
+
+        // スタート演出
+        StartList.ForEach(s =>
+        {
+            DirectionController.GetComponent<ReelController>().EnqueueDirection(s.EnsyutuNo, s.waitTime);
+        });
+
+        // 停止演出
+        if (result.reachPattern == -1){
+            // バラケ目
+            var reels = Reel.ChooseBarakeme();
+            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
+            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
+        }
+        else
+        {
+            // SP3演出ならマリンコントローラーに通知
+            if( result.reachPatternName.Contains("SP3")){
+                if (HoryuSu.Value < 3)
+                {
+                    MarinController.GetComponent<PlayMakerFSM>().SendEvent("HazureH012");
+                }
+                else
+                {
+                    MarinController.GetComponent<PlayMakerFSM>().SendEvent("HazureH34");
+                }
+            }
+
+            // リールの止まる位置を取得
+            ReelElement[] reels;
+            if (result.isOOatari)
+            {
+                reels = Reel.ChooseOoatari(result);
+            }
+            else if (result.reachPatternName.Contains("SP"))
+            {
+                reels = Reel.ChooseSP(result.reachLine, result.tokuzu, result.reachPatternName);
+            }
+            else
+            {
+                reels = Reel.Choose(result.reachLine, result.tokuzu);
+            }
+
+            var pattern = GetReachPatternList(result.reachPatternName, result.reachLine);
+            var ExitPtn = GetReachPatternExitList(result.reachPatternName, result.reachLine);
+
+            // 保留３，４のエフェクト
+            pattern.ForEach(ptn =>
+            {
+                DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
+            }); 
             DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
             DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
             DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, () =>
             {
-                Atacker.GetComponent<PlayMakerFSM>().SendEvent(msg);
-                DirectionController.GetComponent<ReelController>().EnqueueDirection("201", 0f);
+                foreach (var ptn in ExitPtn)
+                {
+                    var cb = NoReaction;
+                    if (ptn == ExitPtn.Last())
+                    {
+                        cb = callback;
+                    }
+                    DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0.5f, cb);
+
+                    if (result.reachPatternName.Contains("SP3"))
+                    {
+                        MarinController.GetComponent<PlayMakerFSM>().SendEvent("Out");
+                    }
+
+                    if (result.isOOatari)
+                    {
+                        Atacker.GetComponent<PlayMakerFSM>().SendEvent(msg);
+                        DirectionController.GetComponent<ReelController>().EnqueueDirection("201", 0f);
+                    }
+                }
             });
-        }
-        else
-        {
-            // ハズレ
-            if (result.reachPattern == -1){
-                // バラケ目
-                // エフェクトを通知
-                if (HoryuSu.Value < 3)
-                {
-                    // 保留０、１、２のエフェクト
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
-                }
-                else
-                {
-                    // 保留３，４のエフェクト
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("1", 0f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("2", 0f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("3", 0f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
-                }
-                // ここまでバラケ目
-            }
-            else
-            {
-                // ハズレリーチ
-                /*
-                Debug.Log("特図：" + result.tokuzu);
-                Debug.Log("特図：" + result.reachLineName);
-                Debug.Log("リーチライン"+result.reachLine);
-                Debug.Log("リーチパターン：" + result.reachPatternName);
-                 */
-
-                // SP3ハズレリーチならマリンコントローラーに通知
-                if( result.reachPatternName.Contains("SP3")){
-                    if (HoryuSu.Value < 3)
-                    {
-                        MarinController.GetComponent<PlayMakerFSM>().SendEvent("HazureH012");
-                    }
-                    else
-                    {
-                        MarinController.GetComponent<PlayMakerFSM>().SendEvent("HazureH34");
-                    }
-                }
-
-                // リールの止まる位置を取得
-                if (result.reachPatternName.Contains("SP"))
-                {
-                    reels = Reel.ChooseSP(result.reachLine, result.tokuzu, result.reachPatternName);
-                }
-                else
-                {
-                    reels = Reel.Choose(result.reachLine, result.tokuzu);
-                }
-
-                var pattern = GetReachPatternList(result.reachPatternName, result.reachLine);
-
-                var ExitPtn = GetReachPatternExitList(result.reachPatternName, result.reachLine);
-
-                // エフェクトを通知
-                if (HoryuSu.Value < 3)
-                {
-                    // 保留０、１、２のエフェクト
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("1", 1f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("2", 1f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("3", 8f);
-                    pattern.ForEach(ptn =>
-                    {
-                        DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
-                    });
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, ()=>{
-                        foreach(var ptn in ExitPtn){
-                            var cb = NoReaction;
-                            if (ptn == ExitPtn.Last())
-                            {
-                                cb = callback;
-                            }
-                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0.5f, cb);
-
-                            if (result.reachPatternName.Contains("SP3"))
-                            {
-                                MarinController.GetComponent<PlayMakerFSM>().SendEvent("Out");
-                            }
-                        }
-                    });
-
-                }
-                else
-                {
-                    // 保留３，４のエフェクト
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("1", 0f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("2", 0f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection("3", 0f);
-                    pattern.ForEach(ptn =>
-                    {
-                        DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
-                    }); 
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, () =>
-                    {
-                        foreach (var ptn in ExitPtn)
-                        {
-                            var cb = NoReaction;
-                            if (ptn == ExitPtn.Last())
-                            {
-                                cb = callback;
-                            }
-                            DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0.5f, cb);
-
-                            if (result.reachPatternName.Contains("SP3"))
-                            {
-                                MarinController.GetComponent<PlayMakerFSM>().SendEvent("Out");
-                            }
-                        }
-                    });
-                }
-            }
-
         }
 
         IsOoatari.Value = result.isOOatari;

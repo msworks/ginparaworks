@@ -268,6 +268,167 @@ public class Reel
     public static CycleSequence<ReelElement> CyclicReel2SP_LEFT = new CycleSequence<ReelElement>(reel2SP_LEFT);
 
     /// <summary>
+    /// 中段リールSP3ダブルリーチリスト（－１コマハズレ用）
+    /// </summary>
+    public static List<ReelElement> reel2SP3_LEFT = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="1", Sizi="8-61"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-62"},
+        new ReelElement(){ Tokuzu="2", Sizi="8-63"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-64"},
+        new ReelElement(){ Tokuzu="3", Sizi="8-65"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-66"},
+        new ReelElement(){ Tokuzu="4", Sizi="8-67"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-68"},
+        new ReelElement(){ Tokuzu="5", Sizi="8-69"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-70"},
+        new ReelElement(){ Tokuzu="6", Sizi="8-71"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-72"},
+        new ReelElement(){ Tokuzu="7", Sizi="8-73"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-74"},
+        new ReelElement(){ Tokuzu="8", Sizi="8-75"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-76"},
+        new ReelElement(){ Tokuzu="9", Sizi="8-77"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-78"},
+        new ReelElement(){ Tokuzu="10",Sizi="8-79"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-80"},
+    };
+
+    /// <summary>
+    /// 中段リールSP3ダブルリーチリスト（－１コマハズレ用）の無限シーケンス
+    /// </summary>
+    public static CycleSequence<ReelElement> CyclicReel2SP3_LEFT = new CycleSequence<ReelElement>(reel2SP3_LEFT);
+
+
+    /// <summary>
+    /// 中段リールSP3ダブルリーチリスト（前図柄大当たり用）
+    /// </summary>
+    public static List<ReelElement> reel2SP3_MaeOoatari = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="1", Sizi="8-81"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-82"},
+        new ReelElement(){ Tokuzu="2", Sizi="8-83"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-84"},
+        new ReelElement(){ Tokuzu="3", Sizi="8-85"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-86"},
+        new ReelElement(){ Tokuzu="4", Sizi="8-87"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-88"},
+        new ReelElement(){ Tokuzu="5", Sizi="8-89"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-90"},
+        new ReelElement(){ Tokuzu="6", Sizi="8-91"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-92"},
+        new ReelElement(){ Tokuzu="7", Sizi="8-93"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-94"},
+        new ReelElement(){ Tokuzu="8", Sizi="8-95"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-96"},
+        new ReelElement(){ Tokuzu="9", Sizi="8-97"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-98"},
+        new ReelElement(){ Tokuzu="10",Sizi="8-99"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-100"},
+    };
+
+    /// <summary>
+    /// 中段リールSP3ダブルリーチリスト（前図柄大当たり用）の無限シーケンス
+    /// </summary>
+    public static CycleSequence<ReelElement> CyclicReel2SP3_MaeOoatari = new CycleSequence<ReelElement>(reel2SP3_MaeOoatari);
+
+    /// <summary>
+    /// 中段リールSP3ダブルリーチリスト（前図柄+1コマハズレ用）
+    /// </summary>
+    public static List<ReelElement> reel2SP3_MaePlus1 = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="1", Sizi="8-101"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-102"},
+        new ReelElement(){ Tokuzu="2", Sizi="8-103"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-104"},
+        new ReelElement(){ Tokuzu="3", Sizi="8-105"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-106"},
+        new ReelElement(){ Tokuzu="4", Sizi="8-107"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-108"},
+        new ReelElement(){ Tokuzu="5", Sizi="8-109"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-110"},
+        new ReelElement(){ Tokuzu="6", Sizi="8-111"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-112"},
+        new ReelElement(){ Tokuzu="7", Sizi="8-113"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-114"},
+        new ReelElement(){ Tokuzu="8", Sizi="8-115"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-116"},
+        new ReelElement(){ Tokuzu="9", Sizi="8-117"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-118"},
+        new ReelElement(){ Tokuzu="10",Sizi="8-119"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-120"},
+    };
+
+    /// <summary>
+    /// 中段リールSP3ダブルリーチリスト（前図柄+1コマハズレ用）の無限シーケンス
+    /// </summary>
+    public static CycleSequence<ReelElement> CyclicReel2SP3_MaePlus1 = new CycleSequence<ReelElement>(reel2SP3_MaePlus1);
+
+    /// <summary>
+    /// 中段リールSP3ダブルリーチリスト（後ろ図柄大当たり用）
+    /// </summary>
+    public static List<ReelElement> reel2SP3_UshiroOoatari = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="1", Sizi="8-121"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-122"},
+        new ReelElement(){ Tokuzu="2", Sizi="8-123"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-124"},
+        new ReelElement(){ Tokuzu="3", Sizi="8-125"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-126"},
+        new ReelElement(){ Tokuzu="4", Sizi="8-127"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-128"},
+        new ReelElement(){ Tokuzu="5", Sizi="8-129"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-130"},
+        new ReelElement(){ Tokuzu="6", Sizi="8-131"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-132"},
+        new ReelElement(){ Tokuzu="7", Sizi="8-133"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-134"},
+        new ReelElement(){ Tokuzu="8", Sizi="8-135"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-136"},
+        new ReelElement(){ Tokuzu="9", Sizi="8-137"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-138"},
+        new ReelElement(){ Tokuzu="10",Sizi="8-139"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-140"},
+    };
+
+    /// <summary>
+    /// 中段リールSP3ダブルリーチリスト（後ろ図柄大当たり用）の無限シーケンス
+    /// </summary>
+    public static CycleSequence<ReelElement> CyclicReel2SP3_UshiroOoatari = new CycleSequence<ReelElement>(reel2SP3_UshiroOoatari);
+
+    /// <summary>
+    /// 中段リールSP3ダブルリーチリスト（後ろ図柄+1コマハズレ用）
+    /// </summary>
+    public static List<ReelElement> reel2SP3_UshiroPlus1 = new List<ReelElement>()
+    {
+        new ReelElement(){ Tokuzu="1", Sizi="8-141"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-142"},
+        new ReelElement(){ Tokuzu="2", Sizi="8-143"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-144"},
+        new ReelElement(){ Tokuzu="3", Sizi="8-145"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-146"},
+        new ReelElement(){ Tokuzu="4", Sizi="8-147"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-148"},
+        new ReelElement(){ Tokuzu="5", Sizi="8-149"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-150"},
+        new ReelElement(){ Tokuzu="6", Sizi="8-151"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-152"},
+        new ReelElement(){ Tokuzu="7", Sizi="8-153"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-154"},
+        new ReelElement(){ Tokuzu="8", Sizi="8-155"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-156"},
+        new ReelElement(){ Tokuzu="9", Sizi="8-157"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-158"},
+        new ReelElement(){ Tokuzu="10",Sizi="8-159"},
+        new ReelElement(){ Tokuzu="*", Sizi="8-160"},
+    };
+
+    /// <summary>
+    /// 中段リールSP3ダブルリーチリスト（後ろ図柄+1コマハズレ用）の無限シーケンス
+    /// </summary>
+    public static CycleSequence<ReelElement> CyclicReel2SP3_UshiroPlus1 = new CycleSequence<ReelElement>(reel2SP3_UshiroPlus1);
+
+    /// <summary>
     /// ＳＰリーチシフト数抽選構造体
     /// </summary>
     struct ShiftReel
@@ -578,6 +739,25 @@ public class Reel
             CyclicReel2 = CyclicReel2SP_LEFT;
         }
 
+        // SP3の場合はまた違うテーブルを使う
+        if (ReachPatternName.Contains("SP3"))
+        {
+            switch(shiftnum){
+                case -1:
+                    // －１コマハズレ用
+                    CyclicReel2 = CyclicReel2SP3_LEFT;
+                    break;
+                case 1:
+                    // 前図柄＋１コマハズレ用
+                    CyclicReel2 = CyclicReel2SP3_MaePlus1;
+                    break;
+                case 3:
+                    // 後ろ図柄＋１コマハズレ用
+                    CyclicReel2 = CyclicReel2SP3_UshiroPlus1;
+                    break;
+            }
+        }
+
         var Chudan = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                                 .Skip(SkipReachLine)
                                 .First();
@@ -690,7 +870,7 @@ public class Reel
     /// 止まる位置を取得（バラケ目）
     /// </summary>
     /// <returns>指示No 上段、中段、下段( 4-1 等 )</returns>
-    static public ReelElement[] Choose()
+    static public ReelElement[] ChooseBarakeme()
     {
         // 上段の止まる位置を抽選
         var r1 = BarakemeChusen[RndFFFF].elem;
@@ -811,6 +991,8 @@ public class Reel
         // 9-1 ～ 28-19 を使うはずなのだが、どういう基準で使うのかがよく分からない。
         // とりあえずははずれちゃった絵を出す
         // と思ったけど味気なさすぎなので、当たった絵面は出す
+        // リーチライン４の場合は、ダブルリーチだが、どちらで当てるかは
+        // プログラム側で１／２の確率で決める
         //--------------------------------------------------------------------
 
         // リーチラインに応じて、中段の位置をずらす
@@ -832,8 +1014,11 @@ public class Reel
         }
         else if (ReachLine == 4)
         {
+            // 1/2 の確率で抽選
+            var rnd = UnityEngine.Random.Range(0, 2);
+
             r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
-                            .Skip(19)
+                            .Skip(19+rnd)
                             .First();
         }
 

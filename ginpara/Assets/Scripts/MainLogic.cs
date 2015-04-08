@@ -15,6 +15,16 @@ public class MainLogic : MonoBehaviour {
 
     System.Random rnd = new System.Random(Environment.TickCount);
 
+    private static MainLogic instance;
+
+    public static MainLogic Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
     /// <summary>
     /// 0～65535のランダム値を返す
     /// </summary>
@@ -158,6 +168,8 @@ public class MainLogic : MonoBehaviour {
 
 	// 初期化
 	void Start () {
+
+        instance = this;
 
         // 大当たり抽選テーブルの初期化
         var ATARI = Enumerable.Range(0, ATARI_NUM).Select(v => true);
