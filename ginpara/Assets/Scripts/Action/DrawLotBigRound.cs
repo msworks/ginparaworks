@@ -32,7 +32,7 @@ public class DrawLotBigRound : FsmStateAction
     public FsmBool ForceOoatari;
     public FsmBool ForceSP3;
 
-    string msg = "大当たり";
+    string Ooatari = "大当たり";
 
     struct Sizi
     {
@@ -142,20 +142,28 @@ public class DrawLotBigRound : FsmStateAction
                 foreach (var ptn in ExitPtn)
                 {
                     var cb = NoReaction;
-                    if (ptn == ExitPtn.Last())
+                    if (ptn == ExitPtn.Last() && !result.isOOatari)
                     {
                         cb = callback;
                     }
+
                     DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0.5f, cb);
 
                     if (result.reachPatternName.Contains("SP3"))
                     {
-                        MarinController.GetComponent<PlayMakerFSM>().SendEvent("Out");
+                        if (result.isOOatari)
+                        {
+                            MarinController.GetComponent<PlayMakerFSM>().SendEvent("Atari");
+                        }
+                        else
+                        {
+                            MarinController.GetComponent<PlayMakerFSM>().SendEvent("Out");
+                        }
                     }
 
                     if (result.isOOatari)
                     {
-                        Atacker.GetComponent<PlayMakerFSM>().SendEvent(msg);
+                        Atacker.GetComponent<PlayMakerFSM>().SendEvent(Ooatari);
                         DirectionController.GetComponent<ReelController>().EnqueueDirection("201", 0f);
                     }
                 }

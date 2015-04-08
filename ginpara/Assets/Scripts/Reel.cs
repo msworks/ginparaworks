@@ -987,39 +987,72 @@ public class Reel
 
         //--------------------------------------------------------------------
         // 中段を決める
-        // TODO
-        // 9-1 ～ 28-19 を使うはずなのだが、どういう基準で使うのかがよく分からない。
-        // とりあえずははずれちゃった絵を出す
-        // と思ったけど味気なさすぎなので、当たった絵面は出す
         // リーチライン４の場合は、ダブルリーチだが、どちらで当てるかは
         // プログラム側で１／２の確率で決める
         //--------------------------------------------------------------------
 
-        // リーチラインに応じて、中段の位置をずらす
-        if (ReachLine == 1)
+        if (result.reachPatternName.Contains("SP"))
         {
-            // ずらさない
-        }
-        else if (ReachLine == 2)
-        {
-            r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
-                            .Skip(19)
-                            .First();
-        }
-        else if (ReachLine == 3)
-        {
-            r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
-                            .Skip(18)
-                            .First();
-        }
-        else if (ReachLine == 4)
-        {
-            // 1/2 の確率で抽選
-            var rnd = UnityEngine.Random.Range(0, 2);
+            var cyclicReel2SP = CyclicReel2SP3_MaeOoatari;
 
-            r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
-                            .Skip(19+rnd)
-                            .First();
+            if (ReachLine == 1)
+            {
+
+            }
+            else if (ReachLine == 2)
+            {
+                r2 = cyclicReel2SP.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                                .Skip(19)
+                                .First();
+            }
+            else if (ReachLine == 3)
+            {
+                r2 = cyclicReel2SP.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                                .Skip(18)
+                                .First();
+            }
+            else if (ReachLine == 4)
+            {
+                // 1/2 の確率で抽選
+                var rnd = UnityEngine.Random.Range(0, 2);
+
+                r2 = cyclicReel2SP.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                                .Skip(19 + rnd)
+                                .First();
+            }
+        }
+        else if (result.reachPatternName.Contains("再始動"))
+        {
+            // TODO 再始動
+        }
+        else
+        {
+            // ノーマル
+            if (ReachLine == 1)
+            {
+
+            }
+            else if (ReachLine == 2)
+            {
+                r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                                .Skip(19)
+                                .First();
+            }
+            else if (ReachLine == 3)
+            {
+                r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                                .Skip(18)
+                                .First();
+            }
+            else if (ReachLine == 4)
+            {
+                // 1/2 の確率で抽選
+                var rnd = UnityEngine.Random.Range(0, 2);
+
+                r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                                .Skip(19 + rnd)
+                                .First();
+            }
         }
 
         var reels = new ReelElement[] { r1, r2, r3 };
