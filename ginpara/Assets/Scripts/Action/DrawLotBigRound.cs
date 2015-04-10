@@ -139,32 +139,32 @@ public class DrawLotBigRound : FsmStateAction
             DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
             DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, () =>
             {
-                foreach (var ptn in ExitPtn)
+                if(result.isOOatari){
+
+                    // さんご下げる
+                    SangoExit(result.reachPatternName, result.reachLine).ForEach(ptn =>
+                    {
+                        DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
+                    });
+                    MarinController.GetComponent<PlayMakerFSM>().SendEvent("Atari");
+                    OoatariController.Instance.Ooatari();
+                }
+                else
                 {
-                    var cb = NoReaction;
-                    if (ptn == ExitPtn.Last() && !result.isOOatari)
+                    foreach (var ptn in ExitPtn)
                     {
-                        cb = callback;
-                    }
-
-                    DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0.5f, cb);
-
-                    if (result.reachPatternName.Contains("SP3"))
-                    {
-                        if (result.isOOatari)
+                        var cb = NoReaction;
+                        if (ptn == ExitPtn.Last())
                         {
-                            MarinController.GetComponent<PlayMakerFSM>().SendEvent("Atari");
+                            cb = callback;
                         }
-                        else
+
+                        DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0.5f, cb);
+
+                        if (result.reachPatternName.Contains("SP3"))
                         {
                             MarinController.GetComponent<PlayMakerFSM>().SendEvent("Out");
                         }
-                    }
-
-                    if (result.isOOatari)
-                    {
-                        Atacker.GetComponent<PlayMakerFSM>().SendEvent(Ooatari);
-                        DirectionController.GetComponent<ReelController>().EnqueueDirection("201", 0f);
                     }
                 }
             });
@@ -246,6 +246,27 @@ public class DrawLotBigRound : FsmStateAction
         {
             if (ReachLine==RPRLD.ReachLine&&ReachPattern.Contains(RPRLD.Label))
             {
+                SiziList.Add(RPRLD.Sizi);
+            }
+        });
+
+        return SiziList;
+    }
+
+    static public List<String> SangoExit(
+        String ReachPattern,
+        int ReachLine
+    )
+    {
+
+        List<String> SiziList = new List<String>();
+
+        // さんご礁
+        RPRLDExitList.ForEach(RPRLD =>
+        {
+            if (ReachLine == RPRLD.ReachLine && ReachPattern.Contains(RPRLD.Label))
+            {
+                Debug.Log("ADD SIZI" + RPRLD.Sizi);
                 SiziList.Add(RPRLD.Sizi);
             }
         });
