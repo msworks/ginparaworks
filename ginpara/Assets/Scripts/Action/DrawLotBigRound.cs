@@ -31,6 +31,7 @@ public class DrawLotBigRound : FsmStateAction
     public FsmBool ForceSPReach;
     public FsmBool ForceOoatari;
     public FsmBool ForceSP3;
+    public FsmBool ForceSaishidou;
 
     string Ooatari = "大当たり";
 
@@ -62,7 +63,8 @@ public class DrawLotBigRound : FsmStateAction
             ForceNormalReach.Value,
             ForceSPReach.Value,
             ForceOoatari.Value,
-            ForceSP3.Value
+            ForceSP3.Value,
+            ForceSaishidou.Value
         );
 
         // 演出完了コールバック

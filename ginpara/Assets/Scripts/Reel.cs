@@ -36,6 +36,33 @@ public class Reel
         }
     }
 
+    // リール
+    static List<String> reelunder = new List<string>(){
+        "1",
+        "*",
+        "2",
+        "*",
+        "3",
+        "*",
+        "4",
+        "*",
+        "5",
+        "*",
+        "6",
+        "*",
+        "7",
+        "*",
+        "8",
+        "*",
+        "9",
+        "*",
+        "10",
+        "*",
+    };
+
+    // リールの無限シーケンス
+    public static CycleSequence<String> CyclicReelUnder = new CycleSequence<String>(reelunder);
+
     #region <<上段>>
 
     /// <summary>
@@ -929,6 +956,62 @@ public class Reel
     }
     #endregion <<バラケ目>>
 
+    static Dictionary<int, String> RL1 = new Dictionary<int, string>()
+    {
+        {  1,  "9" },
+        {  2, "11" },
+        {  3, "13" },
+        {  4, "15" },
+        {  5, "17" },
+        {  6, "19" },
+        {  7, "21" },
+        {  8, "23" },
+        {  9, "25" },
+        { 10, "27" },
+    };
+
+    static Dictionary<int, String> RL2 = new Dictionary<int, string>()
+    {
+        {  1, "28" },
+        {  2, "10" },
+        {  3, "12" },
+        {  4, "14" },
+        {  5, "16" },
+        {  6, "18" },
+        {  7, "20" },
+        {  8, "22" },
+        {  9, "24" },
+        { 10, "26" },
+    };
+
+    static Dictionary<int, String> RL3 = new Dictionary<int, string>()
+    {
+        {  1, "27" },
+        {  2,  "9" },
+        {  3, "11" },
+        {  4, "13" },
+        {  5, "15" },
+        {  6, "17" },
+        {  7, "19" },
+        {  8, "21" },
+        {  9, "23" },
+        { 10, "25" },
+    };
+
+    static Dictionary<int, String> RL4B = new Dictionary<int, string>()
+    {
+        {  1, "26" },
+        {  2, "28" },
+        {  3, "10" },
+        {  4, "12" },
+        {  5, "14" },
+        {  6, "16" },
+        {  7, "18" },
+        {  8, "20" },
+        {  9, "22" },
+        { 10, "24" },
+    };
+
     /// <summary>
     /// 大当たりの止まる位置を取得
     /// </summary>
@@ -991,8 +1074,26 @@ public class Reel
         // プログラム側で１／２の確率で決める
         //--------------------------------------------------------------------
 
-        if (result.reachPatternName.Contains("SP"))
+        if (result.reachPatternName.Contains("SP3"))
         {
+            // SP3はダブルリーチ固定
+            CycleSequence<ReelElement> cyclicReel2SP;
+            
+            var rnd = UnityEngine.Random.Range(0, 2);
+
+            if( rnd == 0 ){
+                cyclicReel2SP = CyclicReel2SP3_MaeOoatari;
+            } else {
+                cyclicReel2SP = CyclicReel2SP3_UshiroOoatari;
+            }
+
+            r2 = cyclicReel2SP.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                            .Skip(19 + rnd)
+                            .First();
+        }
+        else if (result.reachPatternName.Contains("SP"))
+        {
+            // SP1, SP2
             var cyclicReel2SP = CyclicReel2SP3_MaeOoatari;
 
             if (ReachLine == 1)
@@ -1011,19 +1112,36 @@ public class Reel
                                 .Skip(18)
                                 .First();
             }
-            else if (ReachLine == 4)
-            {
-                // 1/2 の確率で抽選
-                var rnd = UnityEngine.Random.Range(0, 2);
-
-                r2 = cyclicReel2SP.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
-                                .Skip(19 + rnd)
-                                .First();
-            }
         }
         else if (result.reachPatternName.Contains("再始動"))
         {
-            // TODO 再始動
+            // 再始動ビタどまり
+            // +20の場合は+1にしておく
+            // TODO 仕様を確認
+            var delmitChars = new Char[] { '（', '）' };
+            var split = result.reachPatternName.Split(delmitChars);
+            var num = int.Parse(split[1]);
+            if (num == 20) num = 1;
+
+            var t = "";
+            if (ReachLine == 1) { t = RL1[Tokuzu]; }
+            else if (ReachLine == 2) { t = RL2[Tokuzu]; }
+            else if (ReachLine == 3) { t = RL3[Tokuzu]; }
+            else {
+                var rnd = UnityEngine.Random.Range(0, 2);
+                if (rnd == 0)
+                {
+                    t = RL2[Tokuzu];
+                }
+                else
+                {
+                    t = RL4B[Tokuzu];
+                }
+            }
+
+            var s = t + "-" + num.ToString();
+
+            r2 = new ReelElement() { Tokuzu = t, Sizi = s };
         }
         else
         {

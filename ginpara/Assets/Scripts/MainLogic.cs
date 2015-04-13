@@ -361,7 +361,8 @@ public class MainLogic : MonoBehaviour {
         bool ForceNormalReach,
         bool ForceSPReach,
         bool ForceOoatari,
-        bool ForceSP3
+        bool ForceSP3,
+        bool ForceSaishidou
     )
     {
         DrawLotResult result = new DrawLotResult();
@@ -384,6 +385,14 @@ public class MainLogic : MonoBehaviour {
 
             var rp = RP[RndFFFF];
 
+            if (ForceSaishidou)
+            {
+                while (!rp.Name.Contains("再始動"))
+                {
+                    rp = RP[RndFFFF];
+                }
+            }
+            
             // 返却値をセット
             result.isOOatari = true;
             result.reachLine = rl.ReachLine;
