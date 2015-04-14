@@ -1016,11 +1016,14 @@ public class Reel
     /// 大当たりの止まる位置を取得
     /// </summary>
     /// <param name="result"></param>
+    /// <param name="AtariZugara"></param>
     /// <returns></returns>
-    static public ReelElement[] ChooseOoatari(DrawLotResult result)
+    static public ReelElement[] ChooseOoatari(DrawLotResult result, out int AtariZugara)
     {
         var Tokuzu = result.tokuzu;
         var ReachLine = result.reachLine;
+
+        AtariZugara = Tokuzu;
 
         Debug.Log("特図：" + Tokuzu);
         Debug.Log("リーチライン：" + ReachLine);
@@ -1085,11 +1088,17 @@ public class Reel
                 cyclicReel2SP = CyclicReel2SP3_MaeOoatari;
             } else {
                 cyclicReel2SP = CyclicReel2SP3_UshiroOoatari;
+
+                var Zugara = CyclicReelUnder.SkipWhile(e => !e.Equals(Tokuzu.ToString()))
+                                             .Skip(2)
+                                             .First();
+                AtariZugara = int.Parse(Zugara);
             }
 
             r2 = cyclicReel2SP.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                             .Skip(19 + rnd)
                             .First();
+
         }
         else if (result.reachPatternName.Contains("SP"))
         {
@@ -1136,6 +1145,10 @@ public class Reel
                 else
                 {
                     t = RL4B[Tokuzu];
+                    var Zugara = CyclicReelUnder.SkipWhile(e => !e.Equals(Tokuzu.ToString()))
+                             .Skip(2)
+                             .First();
+                    AtariZugara = int.Parse(Zugara);
                 }
             }
 
@@ -1166,6 +1179,14 @@ public class Reel
             {
                 // 1/2 の確率で抽選
                 var rnd = UnityEngine.Random.Range(0, 2);
+
+                if (rnd == 1)
+                {
+                    var Zugara = CyclicReelUnder.SkipWhile(e => !e.Equals(Tokuzu.ToString()))
+                             .Skip(2)
+                             .First();
+                    AtariZugara = int.Parse(Zugara);
+                }
 
                 r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                                 .Skip(19 + rnd)

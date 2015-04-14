@@ -14,8 +14,8 @@ namespace Ginpara
 [ActionCategory("Ginpara")]
 public class DrawLotBigRound : FsmStateAction
 {
-    public FsmInt     HoryuSu;
-    public FsmInt     KenriKaisu;
+    public FsmInt HoryuSu;
+    public FsmInt KenriKaisu;
 
     public FsmBool IsOoatari;
     public FsmInt ReachLine;
@@ -57,6 +57,8 @@ public class DrawLotBigRound : FsmStateAction
 
 	public override void OnEnter()
 	{
+        int atariZugara = -1;
+
         var result = MainLogic.Instance.DrawLot(
             HoryuSu.Value,
             KenriKaisu.Value,
@@ -118,7 +120,8 @@ public class DrawLotBigRound : FsmStateAction
             ReelElement[] reels;
             if (result.isOOatari)
             {
-                reels = Reel.ChooseOoatari(result);
+
+                reels = Reel.ChooseOoatari(result, out atariZugara);
             }
             else if (result.reachPatternName.Contains("SP"))
             {
@@ -142,14 +145,13 @@ public class DrawLotBigRound : FsmStateAction
             DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, () =>
             {
                 if(result.isOOatari){
-
                     // さんご下げる
                     SangoExit(result.reachPatternName, result.reachLine).ForEach(ptn =>
                     {
                         DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
                     });
                     MarinController.GetComponent<PlayMakerFSM>().SendEvent("Atari");
-                    OoatariController.Instance.Ooatari();
+                    OoatariController.Instance.Ooatari(atariZugara);
                 }
                 else
                 {
@@ -268,7 +270,6 @@ public class DrawLotBigRound : FsmStateAction
         {
             if (ReachLine == RPRLD.ReachLine && ReachPattern.Contains(RPRLD.Label))
             {
-                Debug.Log("ADD SIZI" + RPRLD.Sizi);
                 SiziList.Add(RPRLD.Sizi);
             }
         });
@@ -302,7 +303,6 @@ public class DrawLotBigRound : FsmStateAction
         {
             if (ReachLine==RPRLD.ReachLine&&ReachPattern.Contains(RPRLD.Label))
             {
-                Debug.Log("ADD SIZI" + RPRLD.Sizi);
                 SiziList.Add(RPRLD.Sizi);
             }
         });

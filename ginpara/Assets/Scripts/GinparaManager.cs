@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// さんご礁の出現場所
@@ -297,11 +298,18 @@ public class GinparaManager : MonoBehaviour {
             EnsyutuNo = int.Parse(patternNo);
         }
 
-        // ダブルリーチ用演出8-61～160
+        // ダブルリーチ用演出8-61～8-160
         if (EnsyutuNo == 8 && (61 <= SubNo) && (SubNo <= 160))
         {
             var dr = DoubleReach[patternNo];
             StartCoroutine(this.mediumRail.RailSuperReach(dr.certainNum, dr.lowNum, callback));
+            return errorCode;
+        }
+
+        // 魚が喜ぶ演出 902-1 ～ 902-10
+        if (EnsyutuNo == 902)
+        {
+            StartCoroutine(HappyFish(SubNo, callback));
             return errorCode;
         }
 
@@ -5241,6 +5249,30 @@ public class GinparaManager : MonoBehaviour {
 			yield return null;
 		}
 	}
+
+    /// <summary>
+    /// 魚が喜ぶ演出
+    /// </summary>
+    /// <param name="Tokuzu">特図（１～１０）</param>
+    /// <param name="callback">演出完了コールバック</param>
+    /// <returns></returns>
+    private IEnumerator HappyFish( int Tokuzu, System.Action callback )
+    {
+        // 演出No29→１図柄 No38→10図柄
+        var EnsyutuMainNo = (Tokuzu + 28).ToString();
+
+        foreach (var count in Enumerable.Range(0, 3))
+        {
+            foreach (var subNo in Enumerable.Range(1, 5))
+            {
+                var EnsyutuNo = EnsyutuMainNo + "-" + subNo.ToString();
+                this.Order(EnsyutuNo);
+                yield return new WaitForSeconds(0.25f);
+            }
+        }
+        if (callback != null) callback();
+        yield return null;
+    }
 
 	//----------------------------------------------------------------------------------------------------
 	#if UNITY_EDITOR
