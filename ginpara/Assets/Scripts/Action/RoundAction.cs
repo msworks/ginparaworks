@@ -37,9 +37,37 @@ public class ExitRound : FsmStateAction
     public override void OnEnter()
     {
         DirectionController.GetComponent<ReelController>().EnqueueDirection("403", 1f);
-        DirectionController.GetComponent<ReelController>().EnqueueDirection("201-2", 1f);
+        //DirectionController.GetComponent<ReelController>().EnqueueDirection("201-2", 1f);
 
         Finish();
     }
 }
 
+
+/// <summary>
+/// ÉâÉEÉìÉhèIóπ
+/// </summary>
+[ActionCategory("Ginpara")]
+public class  ReturnDisplay : FsmStateAction
+{
+    public GameObject DirectionController;
+
+    // Code that runs on entering the state.
+    public override void OnEnter()
+    {
+        var KenriKaisu = MainLogic.Instance.KenriKaisu;
+
+        if (KenriKaisu != 0)
+        {
+            // ämó¶ïœìÆîwåi
+            DirectionController.GetComponent<ReelController>().EnqueueDirection("103", 1f );
+        }
+        else
+        {
+            // í èÌîwåi
+            DirectionController.GetComponent<ReelController>().EnqueueDirection("101", 1f);
+        }
+
+        Finish();
+    }
+}

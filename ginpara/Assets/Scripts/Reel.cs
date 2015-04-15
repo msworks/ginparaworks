@@ -1184,16 +1184,17 @@ public class Reel
                 // 1/2 の確率で抽選
                 var rnd = UnityEngine.Random.Range(0, 2);
 
+                var Zugara = Tokuzu.ToString();
                 if (rnd == 1)
                 {
-                    var Zugara = CyclicReelUnder.SkipWhile(e => !e.Equals(Tokuzu.ToString()))
-                             .Skip(2)
+                    Zugara = CyclicReelUnder.SkipWhile(e => !e.Equals(Tokuzu.ToString()))
+                             .Skip(18)
                              .First();
                     AtariZugara = int.Parse(Zugara);
                 }
 
-                r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
-                                .Skip(19 + rnd)
+                r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Zugara))
+                                .Skip(19)
                                 .First();
             }
         }

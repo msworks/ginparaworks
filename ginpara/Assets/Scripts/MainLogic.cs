@@ -26,6 +26,16 @@ public class MainLogic : MonoBehaviour {
     }
 
     /// <summary>
+    /// 権利回数を返す
+    /// </summary>
+    /// <returns></returns>
+    public int KenriKaisu {
+        get {
+            return this.gameObject.GetComponent<PlayMakerFSM>().FsmVariables.FindFsmInt("権利回数").Value;
+        }
+    }
+
+    /// <summary>
     /// 0～65535のランダム値を返す
     /// </summary>
     int RndFFFF

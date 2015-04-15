@@ -90,6 +90,18 @@ public class CasinoData : MonoBehaviour {
     /// UI-Exchangeを操作する.2桁を超える数字は99に置換し,小数点は第1位のみを表示.
     public float ExchangeRate { get { return this.exchangeRateNum; } set { this.exchangeRateNum = (value > 99.9f) ? 99.9f : value; this.UpdateExchangeRate(); } }
 
+    static private CasinoData _instance;
+
+    static public CasinoData Instance
+    {
+        get { return _instance; }
+    }
+
+    void Awake()
+    {
+        _instance = this;
+    }
+
     //====================================================================================================
     //Method
     //====================================================================================================

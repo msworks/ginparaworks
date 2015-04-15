@@ -241,6 +241,9 @@ public class DrawLotBigRound : FsmStateAction
         {
             if (ReachPattern.Contains(RPD.Label))
             {
+                if (MainLogic.Instance.KenriKaisu != 0 && RPD.Sizi.Equals("101")){
+                    RPD.Sizi = "103";
+                }
                 SiziList.Add(RPD.Sizi);
             }
         });
@@ -250,6 +253,11 @@ public class DrawLotBigRound : FsmStateAction
         {
             if (ReachLine==RPRLD.ReachLine&&ReachPattern.Contains(RPRLD.Label))
             {
+                if (MainLogic.Instance.KenriKaisu != 0 && RPRLD.Sizi.Equals("101"))
+                {
+                    RPRLD.Sizi = "103";
+                }
+
                 SiziList.Add(RPRLD.Sizi);
             }
         });
