@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using HutongGames.PlayMaker;
 using System;
 using System.Collections;
@@ -13,8 +13,9 @@ public class AddGameCount : FsmStateAction
         CasinoData.Instance.BB++;
 
         var KakuhenKaisu = MainLogic.Instance.KenriKaisu;
+        Debug.Log("権利回数：" + KakuhenKaisu);
 
-        if (KakuhenKaisu != 0 && KakuhenKaisu != 3)
+        if (KakuhenKaisu != 0)
         {
             CasinoData.Instance.RB++;
         }
