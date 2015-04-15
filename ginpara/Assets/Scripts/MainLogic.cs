@@ -385,6 +385,26 @@ public class MainLogic : MonoBehaviour {
 
             var rp = RP[RndFFFF];
 
+            if (ForceSPReach)
+            {
+                while (!rp.Name.Contains("SP"))
+                {
+                    rp = RP[RndFFFF];
+                }
+            }
+
+            if (ForceSP3)
+            {
+                while( rl.ReachLine != 4 ){
+                    rl = DrawLotReachLine(RndFFFF);
+                }
+
+                while (!rp.Name.Contains("SP3"))
+                {
+                    rp = Atari4_Chusen[RndFFFF];
+                }
+            }
+
             if (ForceSaishidou)
             {
                 while (!rp.Name.Contains("再始動"))

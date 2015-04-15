@@ -1084,19 +1084,23 @@ public class Reel
             
             var rnd = UnityEngine.Random.Range(0, 2);
 
+            Debug.Log("rnd:" + rnd);
+            Debug.Log(rnd == 0 ? "前図柄" : "後図柄");
+
+            var Zugara = Tokuzu.ToString();
             if( rnd == 0 ){
                 cyclicReel2SP = CyclicReel2SP3_MaeOoatari;
             } else {
                 cyclicReel2SP = CyclicReel2SP3_UshiroOoatari;
 
-                var Zugara = CyclicReelUnder.SkipWhile(e => !e.Equals(Tokuzu.ToString()))
-                                             .Skip(2)
+                Zugara = CyclicReelUnder.SkipWhile(e => !e.Equals(Tokuzu.ToString()))
+                                             .Skip(18)
                                              .First();
                 AtariZugara = int.Parse(Zugara);
             }
 
-            r2 = cyclicReel2SP.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
-                            .Skip(19 + rnd)
+            r2 = cyclicReel2SP.SkipWhile(elem => !elem.Tokuzu.Equals(Zugara))
+                            .Skip(19)
                             .First();
 
         }
