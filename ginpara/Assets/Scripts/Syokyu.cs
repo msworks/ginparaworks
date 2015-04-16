@@ -16,6 +16,8 @@ public class Syokyu : MonoBehaviour {
             Destroy(collision.gameObject);
 
             Uchidashi.GetComponent<PlayMakerFSM>().FsmVariables.GetFsmInt("tama").Value += Syokyusu;
+
+
         }
     }
 }
