@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// オーディオ管理クラス
+/// </summary>
 public class AudioManager : MonoBehaviour {
 
     static private AudioManager _instance;
@@ -66,6 +69,11 @@ public class AudioManager : MonoBehaviour {
         PlayBGM(index);
     }
 
+    public void StopBGM()
+    {
+        BGMsource.Stop();
+    }
+
     public void PlaySE(int index)
     {
         var waitingSource = SEsources.Where(source => !source.isPlaying).First();
@@ -79,5 +87,16 @@ public class AudioManager : MonoBehaviour {
         waitingSource.clip = clips[index];
         waitingSource.Play();
 
+    }
+
+    public void PlaySE(int index, float delayTime)
+    {
+        StartCoroutine(PlaySELate(index, delayTime));
+    }
+
+    private IEnumerator PlaySELate(int index, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        PlaySE(index);
     }
 }

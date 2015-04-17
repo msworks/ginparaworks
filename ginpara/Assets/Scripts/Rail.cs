@@ -189,6 +189,9 @@ public class Rail : MonoBehaviour {
 			yield return null;
 		}
 
+        // 煽り音発声
+        AudioManager.Instance.PlaySE(11);
+
 		totalTime = (float)lowNum * 2f;
 		while(totalTime > 0){
 			float deltaTime = Time.deltaTime;
@@ -205,6 +208,10 @@ public class Rail : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	public IEnumerator RailVitaStop(int moveNum, System.Action callback){
+
+        // ハズレ→再始動の発声
+        AudioManager.Instance.PlaySE(12);
+
 		while(this.isAct){
 			yield return null;
 		}

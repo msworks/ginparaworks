@@ -17,6 +17,8 @@ public class Syokyu : MonoBehaviour {
 
             Uchidashi.GetComponent<PlayMakerFSM>().FsmVariables.GetFsmInt("tama").Value += Syokyusu;
 
+            // 払い出し音
+            AudioManager.Instance.PlaySE(19);
 
         }
     }

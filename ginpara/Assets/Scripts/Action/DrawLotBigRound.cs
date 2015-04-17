@@ -73,6 +73,7 @@ public class DrawLotBigRound : FsmStateAction
         Action callback = () =>
         {
             ReelController.GetComponent<ReelController>().EndEvent();
+            AudioManager.Instance.PlaySE(14);
         };
 
         // 演出完了コールバック（何も通知しない）
@@ -141,9 +142,30 @@ public class DrawLotBigRound : FsmStateAction
                 DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
             }); 
             DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
+            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f, () =>
+            {
+                AudioManager.Instance.PlaySE(20);
+
+                var se = 5; // Sリーチ
+                if (result.reachLine == 4) se = 8;  // Wリーチ
+                if (result.reachPatternName.Contains("SP1") ||
+                    result.reachPatternName.Contains("SP2"))
+                {
+                    se = 9; // SリーチSP
+                }
+                if (result.reachPatternName.Contains("SP3"))
+                {
+                    se = 10;
+                }
+                AudioManager.Instance.PlayBGMLoop(se);
+
+            });
             DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, () =>
             {
+                // 停止音
+                AudioManager.Instance.PlaySE(14);
+                AudioManager.Instance.StopBGM();
+
                 if(result.isOOatari){
                     // さんご下げる
                     SangoExit(result.reachPatternName, result.reachLine).ForEach(ptn =>
