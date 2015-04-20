@@ -24,9 +24,21 @@ public struct GPDirection
 /// </summary>
 public class ReelController : MonoBehaviour {
 
+    static private ReelController _instance;
+
+    static public ReelController Instance
+    {
+        get { return _instance; }
+    }
+
     public GameObject GinparaManager;
 
     Queue _Direction = new Queue();
+
+    void Awake()
+    {
+        _instance = this;
+    }
 
     public Queue Direction { get { return _Direction; } }
 

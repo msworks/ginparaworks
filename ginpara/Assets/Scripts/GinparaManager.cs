@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +91,11 @@ public class GinparaManager : MonoBehaviour {
     public static GinparaManager GetInstance()
     {
         return _instance;
+    }
+
+    public static GinparaManager Instance
+    {
+        get { return _instance; }
     }
 
 	//====================================================================================================
@@ -5272,6 +5278,28 @@ public class GinparaManager : MonoBehaviour {
         }
         if (callback != null) callback();
         yield return null;
+    }
+
+    Queue<Action> gensokuQueue = new Queue<Action>();
+
+    public void RegistGensokuAction(Action action)
+    {
+        gensokuQueue.Enqueue(action);
+    }
+
+    public Action DequeueGensokuAction()
+    {
+        if (gensokuQueue.Count == 0)
+        {
+            return null;
+        }
+
+        Action action;
+        while ((action = gensokuQueue.Dequeue()) != null)
+        {
+            return action;
+        }
+        return null;
     }
 
 	//----------------------------------------------------------------------------------------------------

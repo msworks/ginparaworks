@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -157,6 +158,13 @@ public class Rail : MonoBehaviour {
 			yield return null;
 		}
 
+        // 泡、魚群があれば演出
+        Action action;
+        while ((action = GinparaManager.Instance.DequeueGensokuAction()) != null)
+        {
+            action();
+        }
+
 		totalTime = 1;
 		while(totalTime > 0){
 			float deltaTime = Time.deltaTime;
@@ -191,6 +199,13 @@ public class Rail : MonoBehaviour {
 
         // 煽り音発声
         AudioManager.Instance.PlaySE(11);
+
+        // 泡、魚群があれば演出
+        Action action;
+        while ((action = GinparaManager.Instance.DequeueGensokuAction()) != null)
+        {
+            action();
+        }
 
 		totalTime = (float)lowNum * 2f;
 		while(totalTime > 0){

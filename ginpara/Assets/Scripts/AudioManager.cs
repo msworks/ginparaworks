@@ -47,8 +47,9 @@ public class AudioManager : MonoBehaviour {
 
     private void PlayBGM(int index)
     {
-        if (BGMsource.clip == clips[index])
+        if (BGMsource.clip == clips[index] && BGMsource.isPlaying == true)
         {
+            // 同一音声が再生中であれば何もしない
             return;
         }
 

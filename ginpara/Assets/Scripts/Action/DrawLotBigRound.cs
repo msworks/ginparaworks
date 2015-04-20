@@ -8,337 +8,297 @@ using System.Linq;
 namespace Ginpara
 {
 
-/// <summary>
-/// 大当たり抽選を行う
-/// </summary>
-[ActionCategory("Ginpara")]
-public class DrawLotBigRound : FsmStateAction
-{
-    public FsmInt HoryuSu;
-    public FsmInt KenriKaisu;
-
-    public FsmBool IsOoatari;
-    public FsmInt ReachLine;
-    public FsmInt ReachPattern;
-
-    public GameObject ReelController;
-    public GameObject DirectionController;
-    public GameObject Atacker;
-    public GameObject MarinController;
-
-    // DEBUG
-    public FsmBool ForceNormalReach;
-    public FsmBool ForceSPReach;
-    public FsmBool ForceOoatari;
-    public FsmBool ForceSP3;
-    public FsmBool ForceSaishidou;
-
-    string Ooatari = "大当たり";
-
-    struct Sizi
+    /// <summary>
+    /// 大当たり抽選を行う
+    /// </summary>
+    [ActionCategory("Ginpara")]
+    public class DrawLotBigRound : FsmStateAction
     {
-        public string EnsyutuNo;
-        public float waitTime;
-    }
+        public FsmInt HoryuSu;
+        public FsmInt KenriKaisu;
 
-    List<Sizi> H012Start = new List<Sizi>()
-    {
-        new Sizi{ EnsyutuNo="1", waitTime=1f },
-        new Sizi{ EnsyutuNo="2", waitTime=1f },
-        new Sizi{ EnsyutuNo="3", waitTime=8f },
-    };
+        public FsmBool IsOoatari;
+        public FsmInt ReachLine;
+        public FsmInt ReachPattern;
 
-    List<Sizi> H34Start = new List<Sizi>()
-    {
-        new Sizi{ EnsyutuNo="1", waitTime=0f },
-        new Sizi{ EnsyutuNo="2", waitTime=0f },
-        new Sizi{ EnsyutuNo="3", waitTime=0f },
-    };
+        public GameObject ReelController;
+        public GameObject DirectionController;
+        public GameObject Atacker;
+        public GameObject MarinController;
 
-	public override void OnEnter()
-	{
-        int atariZugara = -1;
+        // DEBUG
+        public FsmBool ForceNormalReach;
+        public FsmBool ForceSPReach;
+        public FsmBool ForceOoatari;
+        public FsmBool ForceSP3;
+        public FsmBool ForceSaishidou;
 
-        var result = MainLogic.Instance.DrawLot(
-            HoryuSu.Value,
-            KenriKaisu.Value,
-            ForceNormalReach.Value,
-            ForceSPReach.Value,
-            ForceOoatari.Value,
-            ForceSP3.Value,
-            ForceSaishidou.Value
-        );
+        string Ooatari = "大当たり";
 
-        // 演出完了コールバック
-        Action callback = () =>
+        struct Sizi
         {
-            ReelController.GetComponent<ReelController>().EndEvent();
-            AudioManager.Instance.PlaySE(14);
+            public string EnsyutuNo;
+            public float waitTime;
+        }
+
+        List<Sizi> H012Start = new List<Sizi>()
+        {
+            new Sizi{ EnsyutuNo="1", waitTime=0f },
+            new Sizi{ EnsyutuNo="2", waitTime=0f },
+            new Sizi{ EnsyutuNo="3", waitTime=8f },
         };
 
-        // 演出完了コールバック（何も通知しない）
-        Action NoReaction = () => { };
-
-        List<Sizi> StartList;
-        if (HoryuSu.Value < 3)
+        List<Sizi> H34Start = new List<Sizi>()
         {
-            StartList = H012Start;
-        }
-        else
-        {
-            StartList = H34Start;
-        }
+            new Sizi{ EnsyutuNo="1", waitTime=0f },
+            new Sizi{ EnsyutuNo="2", waitTime=0f },
+            new Sizi{ EnsyutuNo="3", waitTime=2f },
+        };
 
-        // スタート演出
-        StartList.ForEach(s =>
-        {
-            DirectionController.GetComponent<ReelController>().EnqueueDirection(s.EnsyutuNo, s.waitTime);
-        });
+	    public override void OnEnter()
+	    {
+            int atariZugara = -1;
 
-        // 停止演出
-        if (result.reachPattern == -1){
-            // バラケ目
-            var reels = Reel.ChooseBarakeme();
-            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f);
-            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
-        }
-        else
-        {
-            // SP3演出ならマリンコントローラーに通知
-            if( result.reachPatternName.Contains("SP3")){
-                if (HoryuSu.Value < 3)
-                {
-                    MarinController.GetComponent<PlayMakerFSM>().SendEvent("HazureH012");
-                }
-                else
-                {
-                    MarinController.GetComponent<PlayMakerFSM>().SendEvent("HazureH34");
-                }
-            }
+            var result = MainLogic.Instance.DrawLot(
+                HoryuSu.Value,
+                KenriKaisu.Value,
+                ForceNormalReach.Value,
+                ForceSPReach.Value,
+                ForceOoatari.Value,
+                ForceSP3.Value,
+                ForceSaishidou.Value
+            );
 
-            // リールの止まる位置を取得
-            ReelElement[] reels;
-            if (result.isOOatari)
+            // 演出完了コールバック
+            Action callback = () =>
             {
+                ReelController.GetComponent<ReelController>().EndEvent();
+                AudioManager.Instance.PlaySE(14);   // 停止音
+                AudioManager.Instance.StopBGM();
+            };
 
-                reels = Reel.ChooseOoatari(result, out atariZugara);
-            }
-            else if (result.reachPatternName.Contains("SP"))
+            // 演出完了コールバック（何も通知しない）
+            Action NoReaction = () => { };
+
+            List<Sizi> StartList;
+            if (HoryuSu.Value < 3)
             {
-                reels = Reel.ChooseSP(result.reachLine, result.tokuzu, result.reachPatternName);
+                StartList = H012Start;
             }
             else
             {
-                reels = Reel.Choose(result.reachLine, result.tokuzu);
+                StartList = H34Start;
             }
 
-            var pattern = GetReachPatternList(result.reachPatternName, result.reachLine);
-            var ExitPtn = GetReachPatternExitList(result.reachPatternName, result.reachLine);
-
-            // 保留３，４のエフェクト
-            pattern.ForEach(ptn =>
+            // スタート演出
+            StartList.ForEach(s =>
             {
-                DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
-            }); 
-            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 0.5f);
-            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 0.5f, () =>
-            {
-                AudioManager.Instance.PlaySE(20);
-
-                var se = 5; // Sリーチ
-                if (result.reachLine == 4) se = 8;  // Wリーチ
-                if (result.reachPatternName.Contains("SP1") ||
-                    result.reachPatternName.Contains("SP2"))
-                {
-                    se = 9; // SリーチSP
-                }
-                if (result.reachPatternName.Contains("SP3"))
-                {
-                    se = 10;
-                }
-                AudioManager.Instance.PlayBGMLoop(se);
-
+                DirectionController.GetComponent<ReelController>().EnqueueDirection(s.EnsyutuNo, s.waitTime);
             });
-            DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, () =>
-            {
-                // 停止音
-                AudioManager.Instance.PlaySE(14);
-                AudioManager.Instance.StopBGM();
 
-                if(result.isOOatari){
-                    // さんご下げる
-                    SangoExit(result.reachPatternName, result.reachLine).ForEach(ptn =>
+            // 停止演出
+            if (result.reachPattern == -1){
+                // バラケ目
+                var reels = Reel.ChooseBarakeme();
+                DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 1f);
+                DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 1f);
+                DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 0.5f, callback);
+            }
+            else
+            {
+                // リールの止まる位置を取得
+                ReelElement[] reels;
+                if (result.isOOatari)
+                {
+
+                    reels = Reel.ChooseOoatari(result, out atariZugara);
+                }
+                else if (result.reachPatternName.Contains("SP"))
+                {
+                    var startTime = 0f;
+                    if (HoryuSu.Value < 3)
                     {
-                        DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0f);
-                    });
-                    MarinController.GetComponent<PlayMakerFSM>().SendEvent("Atari");
-                    OoatariController.Instance.Ooatari(atariZugara);
+                        startTime = 12f;
+                    }
+                    else
+                    {
+                        startTime = 6f;
+                    }
+
+                    if (result.reachPatternName.Contains("SP1"))
+                    {
+                        GinparaManager.Instance.StartCoroutine(SP1Start(startTime, result.reachLine));
+                    }
+                    else if (result.reachPatternName.Contains("SP2"))
+                    {
+                        GinparaManager.Instance.StartCoroutine(SP2Start(startTime, result.reachLine));
+                    }
+                    else if (result.reachPatternName.Contains("SP3"))
+                    {
+                        GinparaManager.Instance.StartCoroutine(SP3Start(startTime, result.reachLine));
+                    }
+
+                    reels = Reel.ChooseSP(result.reachLine, result.tokuzu, result.reachPatternName);
                 }
                 else
                 {
-                    foreach (var ptn in ExitPtn)
-                    {
-                        var cb = NoReaction;
-                        if (ptn == ExitPtn.Last())
-                        {
-                            cb = callback;
-                        }
-
-                        DirectionController.GetComponent<ReelController>().EnqueueDirection(ptn, 0.5f, cb);
-
-                        if (result.reachPatternName.Contains("SP3"))
-                        {
-                            MarinController.GetComponent<PlayMakerFSM>().SendEvent("Out");
-                        }
-                    }
+                    reels = Reel.Choose(result.reachLine, result.tokuzu);
                 }
-            });
+
+                // 上段停止
+                DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[0].Sizi, 1f);
+
+                // 下段停止
+                DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[2].Sizi, 1f, () =>
+                {
+                    // 下段停止後
+                    // リーチ（掛け声）発声
+                    AudioManager.Instance.PlaySE(20);
+
+                    if (result.reachPatternName.Contains("泡"))
+                    {
+                        GinparaManager.Instance.Order("104");
+                    }
+
+                    if (result.reachPatternName.Contains("魚群"))
+                    {
+                        GinparaManager.Instance.Order("105");
+                    }
+                });
+
+                // 中段停止
+                DirectionController.GetComponent<ReelController>().EnqueueDirection(reels[1].Sizi, 1f, () =>
+                {
+                    // 中段停止後
+                    if (result.reachPatternName.Contains("SP1"))
+                    {
+                        SP1Stop(result.reachLine, KenriKaisu.Value);
+                    }
+                    else if (result.reachPatternName.Contains("SP2"))
+                    {
+                        SP2Stop(result.reachLine);
+                    }
+                    else if (result.reachPatternName.Contains("SP3"))
+                    {
+                        SP3Stop(result.reachLine);
+                    }
+
+                    // 停止音
+                    AudioManager.Instance.PlaySE(14);
+                    AudioManager.Instance.StopBGM();
+
+                    if(result.isOOatari){
+                        MarinController.GetComponent<PlayMakerFSM>().SendEvent("Atari");
+                        OoatariController.Instance.Ooatari(atariZugara);
+                    }
+                    else
+                    {
+                        callback();
+                    }
+                });
+            }
+
+            IsOoatari.Value = result.isOOatari;
+            ReachLine.Value = result.reachLine;
+            ReachPattern.Value = result.reachPattern;
+
+		    Finish();
+	    }
+
+        IEnumerator SP1Start(float time, int ReachLine)
+        {
+            var count = 0f;
+            while (count < time)
+            {
+                count += Time.deltaTime;
+                yield return null;
+            }
+
+            var se = 9; // SリーチSP
+            AudioManager.Instance.PlayBGMLoop(se);
+
+            GinparaManager.Instance.Order("102");
+            GinparaManager.Instance.Order("901");
+
+            yield return null;
+
         }
 
-        IsOoatari.Value = result.isOOatari;
-        ReachLine.Value = result.reachLine;
-        ReachPattern.Value = result.reachPattern;
-
-		Finish();
-	}
-
-    struct RP2Direction
-    {
-        public String Label;
-        public String Sizi;
-    };
-
-    struct RPRL2Direction
-    {
-        public int ReachLine;
-        public String Label;
-        public String Sizi;
-    };
-
-    static List<RP2Direction> RPDList = new List<RP2Direction>(){
-        new RP2Direction{ Label="ノーマル", Sizi="101" },
-        new RP2Direction{ Label="泡", Sizi="104" },
-        new RP2Direction{ Label="魚群", Sizi="105" },
-        new RP2Direction{ Label="SP1", Sizi="102" },
-        new RP2Direction{ Label="SP1", Sizi="901" },
-        new RP2Direction{ Label="SP3", Sizi="107-2" },  // マリン呼び込み
-    };
-
-    static List<RP2Direction> RPDExitList = new List<RP2Direction>(){
-        new RP2Direction{ Label="ノーマル", Sizi="101" },
-        new RP2Direction{ Label="泡", Sizi="101" },
-        new RP2Direction{ Label="魚群", Sizi="101" },
-        new RP2Direction{ Label="SP1", Sizi="101" },
-    };
-
-    static List<RPRL2Direction> RPRLDList = new List<RPRL2Direction>(){
-        new RPRL2Direction{ ReachLine=1, Label="SP2", Sizi="106-1" },  
-        new RPRL2Direction{ ReachLine=2, Label="SP2", Sizi="106-3" },  
-        new RPRL2Direction{ ReachLine=3, Label="SP2", Sizi="106-5" },  
-        new RPRL2Direction{ ReachLine=4, Label="SP2", Sizi="106-3" },  
-    };
-
-    static List<RPRL2Direction> RPRLDExitList = new List<RPRL2Direction>(){
-        new RPRL2Direction{ ReachLine=1, Label="SP2", Sizi="106-2" },  
-        new RPRL2Direction{ ReachLine=2, Label="SP2", Sizi="106-4" },  
-        new RPRL2Direction{ ReachLine=3, Label="SP2", Sizi="106-6" },  
-        new RPRL2Direction{ ReachLine=4, Label="SP2", Sizi="106-4" },  
-    };
-
-    /// <summary>
-    /// リーチパターン名から演出動作パターンのリストを取得
-    /// </summary>
-    /// <param name="ReachPattern"></param>
-    /// <returns></returns>
-    static public List<String> GetReachPatternList(
-        String ReachPattern,
-        int ReachLine
-    ){
-
-        List<String> SiziList = new List<String>();
-
-        // 泡、ノーマル、魚群、SP1, SP2, SP3 が載っているか調査
-        RPDList.ForEach(RPD =>
+        IEnumerator SP2Start(float time, int ReachLine)
         {
-            if (ReachPattern.Contains(RPD.Label))
+            var count = 0f;
+            while (count < time)
             {
-                if (MainLogic.Instance.KenriKaisu != 0 && RPD.Sizi.Equals("101")){
-                    RPD.Sizi = "103";
-                }
-                SiziList.Add(RPD.Sizi);
+                count += Time.deltaTime;
+                yield return null;
             }
-        });
 
-        // さんご礁
-        RPRLDList.ForEach(RPRLD =>
+            var se = 9; // SリーチSP
+            AudioManager.Instance.PlayBGMLoop(se);
+
+            switch(ReachLine){
+                case 1:
+                    GinparaManager.Instance.Order("106-1");
+                    break;
+                case 2:
+                    GinparaManager.Instance.Order("106-3");
+                    break;
+                case 3:
+                    GinparaManager.Instance.Order("106-5");
+                    break;
+                case 4:
+                    GinparaManager.Instance.Order("106-3");
+                    break;
+            }
+
+            yield return null;
+        }
+
+        IEnumerator SP3Start(float time, int ReachLine)
         {
-            if (ReachLine==RPRLD.ReachLine&&ReachPattern.Contains(RPRLD.Label))
+            var se = 10; // WリーチSP
+            AudioManager.Instance.PlayBGMLoop(se);
+
+            MarinController.GetComponent<PlayMakerFSM>().SendEvent("Display");
+
+            yield return null;
+        }
+
+        void SP1Stop(int ReachLine, int KenriKaisu)
+        {
+            if (KenriKaisu == 0)
             {
-                if (MainLogic.Instance.KenriKaisu != 0 && RPRLD.Sizi.Equals("101"))
-                {
-                    RPRLD.Sizi = "103";
-                }
-
-                SiziList.Add(RPRLD.Sizi);
+                GinparaManager.Instance.Order("101");
             }
-        });
+            else
+            {
+                GinparaManager.Instance.Order("103");
+            }
+        }
 
-        return SiziList;
+        void SP2Stop(int ReachLine)
+        {
+            switch (ReachLine)
+            {
+                case 1:
+                    GinparaManager.Instance.Order("106-2");
+                    break;
+                case 2:
+                    GinparaManager.Instance.Order("106-4");
+                    break;
+                case 3:
+                    GinparaManager.Instance.Order("106-6");
+                    break;
+                case 4:
+                    GinparaManager.Instance.Order("106-2");
+                    break;
+            }
+        }
+
+        void SP3Stop(int ReachLine)
+        {
+            MarinController.GetComponent<PlayMakerFSM>().SendEvent("Out");
+        }
     }
-
-    static public List<String> SangoExit(
-        String ReachPattern,
-        int ReachLine
-    )
-    {
-
-        List<String> SiziList = new List<String>();
-
-        // さんご礁
-        RPRLDExitList.ForEach(RPRLD =>
-        {
-            if (ReachLine == RPRLD.ReachLine && ReachPattern.Contains(RPRLD.Label))
-            {
-                SiziList.Add(RPRLD.Sizi);
-            }
-        });
-
-        return SiziList;
-    }
-
-    /// <summary>
-    /// リーチパターン名から演出動作終了パターンのリストを取得
-    /// </summary>
-    /// <param name="ReachPattern"></param>
-    /// <returns></returns>
-    static public List<String> GetReachPatternExitList(
-        String ReachPattern,
-        int ReachLine
-    ){
-
-        List<String> SiziList = new List<String>();
-
-        // 泡、ノーマル、魚群、SP1, SP2, SP3 が載っているか調査
-        RPDExitList.ForEach(RPD =>
-        {
-            if (ReachPattern.Contains(RPD.Label))
-            {
-                SiziList.Add(RPD.Sizi);
-            }
-        });
-
-        // さんご礁
-        RPRLDExitList.ForEach(RPRLD =>
-        {
-            if (ReachLine==RPRLD.ReachLine&&ReachPattern.Contains(RPRLD.Label))
-            {
-                SiziList.Add(RPRLD.Sizi);
-            }
-        });
-
-        return SiziList;
-    }
-}
 
 }
