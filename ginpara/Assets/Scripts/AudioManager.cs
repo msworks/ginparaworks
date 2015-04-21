@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour {
     private AudioSource[] SEsources = new AudioSource[16];
 
     public AudioClip[] clips;
+    public float[] volumes;
 
     void Awake()
     {
@@ -86,6 +87,7 @@ public class AudioManager : MonoBehaviour {
         }
 
         waitingSource.clip = clips[index];
+        waitingSource.volume = volumes[index];
         waitingSource.Play();
 
     }

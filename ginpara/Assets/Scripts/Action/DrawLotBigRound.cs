@@ -77,9 +77,6 @@ namespace Ginpara
                 AudioManager.Instance.StopBGM();
             };
 
-            // 演出完了コールバック（何も通知しない）
-            Action NoReaction = () => { };
-
             List<Sizi> StartList;
             if (HoryuSu.Value < 3)
             {

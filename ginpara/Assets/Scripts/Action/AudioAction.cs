@@ -43,3 +43,20 @@ public class PlaySE : FsmStateAction
         Finish();
     }
 }
+
+[ActionCategory("Ginpara")]
+public class PlayHoryuon : FsmStateAction
+{
+    public FsmInt HoryuCount;
+    public FsmInt SoundNo;
+
+    public override void OnEnter()
+    {
+        if (HoryuCount.Value <= 4)
+        {
+            AudioManager.Instance.PlaySE(SoundNo.Value);
+        }
+
+        Finish();
+    }
+}
