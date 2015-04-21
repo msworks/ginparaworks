@@ -118,11 +118,11 @@ namespace Ginpara
                     var startTime = 0f;
                     if (HoryuSu.Value < 3)
                     {
-                        startTime = 12f;
+                        startTime = 14f;
                     }
                     else
                     {
-                        startTime = 6f;
+                        startTime = 8f;
                     }
 
                     if (result.reachPatternName.Contains("SP1"))
@@ -154,6 +154,7 @@ namespace Ginpara
                     // 下段停止後
                     // リーチ（掛け声）発声
                     AudioManager.Instance.PlaySE(20);
+                    AudioManager.Instance.PlayBGMLoop(5);
 
                     if (result.reachPatternName.Contains("泡"))
                     {
@@ -256,6 +257,13 @@ namespace Ginpara
 
         IEnumerator SP3Start(float time, int ReachLine)
         {
+            var count = 0f;
+            while (count < time)
+            {
+                count += Time.deltaTime;
+                yield return null;
+            }
+
             var se = 10; // WリーチSP
             AudioManager.Instance.PlayBGMLoop(se);
 
