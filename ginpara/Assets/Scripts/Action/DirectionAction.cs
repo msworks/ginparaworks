@@ -13,7 +13,6 @@ public class DirectionGM : FsmStateAction
     // Code that runs on entering the state.
     public override void OnEnter()
     {
-        Debug.Log("指示ナンバー：" + Sizi.Value);
         GinparaManager.GetInstance().Order(Sizi.Value);
         Finish();
     }
@@ -27,7 +26,6 @@ public class DirectionGMCallBack : FsmStateAction
     // Code that runs on entering the state.
     public override void OnEnter()
     {
-        Debug.Log("指示ナンバー：" + Sizi.Value);
         GinparaManager.GetInstance().Order(Sizi.Value, Finish);
     }
 }

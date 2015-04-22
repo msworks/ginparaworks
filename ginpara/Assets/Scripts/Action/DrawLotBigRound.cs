@@ -69,6 +69,10 @@ namespace Ginpara
                 ForceSaishidou.Value
             );
 
+            Debug.Log("リーチライン:" + result.reachLine);
+            Debug.Log("リーチパターン:" + result.reachPattern);
+            Debug.Log("リーチパターン名:" + result.reachPatternName);
+
             // 演出完了コールバック
             Action callback = () =>
             {
@@ -107,10 +111,18 @@ namespace Ginpara
                 ReelElement[] reels;
                 if (result.isOOatari)
                 {
-
                     reels = Reel.ChooseOoatari(result, out atariZugara);
                 }
                 else if (result.reachPatternName.Contains("SP"))
+                {
+                    reels = Reel.ChooseSP(result.reachLine, result.tokuzu, result.reachPatternName);
+                }
+                else
+                {
+                    reels = Reel.Choose(result.reachLine, result.tokuzu);
+                }
+
+                if (result.reachPatternName.Contains("SP"))
                 {
                     var startTime = 0f;
                     if (HoryuSu.Value < 3)
@@ -134,12 +146,6 @@ namespace Ginpara
                     {
                         GinparaManager.Instance.StartCoroutine(SP3Start(startTime, result.reachLine));
                     }
-
-                    reels = Reel.ChooseSP(result.reachLine, result.tokuzu, result.reachPatternName);
-                }
-                else
-                {
-                    reels = Reel.Choose(result.reachLine, result.tokuzu);
                 }
 
                 // 上段停止
@@ -151,7 +157,16 @@ namespace Ginpara
                     // 下段停止後
                     // リーチ（掛け声）発声
                     AudioManager.Instance.PlaySE(20);
-                    AudioManager.Instance.PlayBGMLoop(5);
+
+                    // リーチライン
+                    if (result.reachLine == 4)
+                    {
+                        AudioManager.Instance.PlayBGMLoop(8);
+                    }
+                    else
+                    {
+                        AudioManager.Instance.PlayBGMLoop(5);
+                    }
 
                     if (result.reachPatternName.Contains("泡"))
                     {

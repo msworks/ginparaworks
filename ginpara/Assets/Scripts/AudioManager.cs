@@ -55,6 +55,7 @@ public class AudioManager : MonoBehaviour {
         }
 
         BGMsource.clip = clips[index];
+        BGMsource.volume = volumes[index];
         BGMsource.Play();
 
     }

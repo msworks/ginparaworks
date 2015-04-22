@@ -399,7 +399,7 @@ public class MainLogic : MonoBehaviour {
             {
                 while (!rp.Name.Contains("SP"))
                 {
-                    rp = RP[RndFFFF];
+                    rp = Atari123_Chusen[RndFFFF];
                 }
             }
 

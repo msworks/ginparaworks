@@ -1111,7 +1111,9 @@ public class Reel
 
             if (ReachLine == 1)
             {
-
+                r2 = cyclicReel2SP.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                                .Skip(20)
+                                .First();
             }
             else if (ReachLine == 2)
             {

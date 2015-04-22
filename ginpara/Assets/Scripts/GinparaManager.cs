@@ -287,6 +287,8 @@ public class GinparaManager : MonoBehaviour {
 	/// <para>【戻り値】発生したエラー内容を返します（普通は null が返ります）</para>
 	public string Order(string patternNo, System.Action callback = null){
 
+        Debug.Log("演出No." + patternNo);
+
         string errorCode = null;
         int EnsyutuNo = -1;  // 演出No
         int SubNo = -1;      // 演出Noサブ
@@ -4450,11 +4452,13 @@ public class GinparaManager : MonoBehaviour {
 			StartCoroutine (this.ShoalNotice (callback));
 			break;
 			
+        // さんご礁左IN
 		case "106-1":
 			this.coralReefNoticeAnchor.transform.gameObject.SetActive (true);
             StartCoroutine(this.CoralReefNoticeIN(CORAL_POSITION.LEFT, callback));
 			break;
-			
+
+        // さんご礁左OUT
 		case "106-2":
 			this.coralReefNoticeAnchor.transform.gameObject.SetActive (true);
             StartCoroutine(this.CoralReefNoticeOUT(CORAL_POSITION.LEFT, callback));
@@ -4542,10 +4546,21 @@ public class GinparaManager : MonoBehaviour {
 			this.loseBubbleAnchor.transform.gameObject.SetActive (true);
 			StartCoroutine(this.MarinBrown(callback));
 			break;
-			
+		
+        case "203-2":
+			this.marinBrownAnchor.transform.gameObject.SetActive (false);
+			this.loseBubbleAnchor.transform.gameObject.SetActive (false);
+			if(callback!=null){callback();};
+			break;
+
 		case "204":
 			this.lostStringAnchor.transform.gameObject.SetActive (true);
 			StartCoroutine(this.LostString(callback));
+			break;
+
+        case "204-2":
+			this.lostStringAnchor.transform.gameObject.SetActive (false);
+			if(callback!=null){callback();};
 			break;
 			
 		case "301":
