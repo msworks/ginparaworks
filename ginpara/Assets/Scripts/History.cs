@@ -7,9 +7,19 @@ using System.Collections.Generic;
 /// </summary>
 public class History : MonoBehaviour {
 
-    public CasinoData cd;
     public UISprite[] Sprites;
     public UISprite[] LabelSprites;
+
+    private static History _instance;
+    public static History Instance
+    {
+        get { return _instance; }
+    }
+
+    void Awake()
+    {
+        _instance = this;
+    }
 
     int[] data = new int[10];
 
@@ -34,7 +44,7 @@ public class History : MonoBehaviour {
     /// </summary>
     public void DisplayGameRound()
     {
-        cd.GameCount = data[current];
+        CasinoData.Instance.GameCount = data[current];
     }
 
     /// <summary>
@@ -66,11 +76,12 @@ public class History : MonoBehaviour {
     /// </summary>
     public void Shift()
     {
-        for (int i = 9; i > 0; i--)
+        for (int i = 8; i > 0; i--)
         {
             data[i + 1] = data[i];
         }
         data[0] = 0;
+        DisplayGameRound();
     }
 
     /// <summary>

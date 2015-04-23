@@ -108,7 +108,7 @@ public class CasinoData : MonoBehaviour {
     void Start()
     {
         this.UpdateGameCounter();
-        this.Update1Per();
+        //this.Update1Per();
         this.ChangeExchangeMark(EXCHANGE.dl);
     }
 

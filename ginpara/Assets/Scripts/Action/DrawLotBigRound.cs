@@ -33,7 +33,7 @@ namespace Ginpara
         public FsmBool ForceSP3;
         public FsmBool ForceSaishidou;
 
-        string Ooatari = "大当たり";
+        //string Ooatari = "大当たり";
 
         struct Sizi
         {

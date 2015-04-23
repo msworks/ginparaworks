@@ -13,7 +13,7 @@ public class AddHistory : FsmStateAction
 {
     public override void OnEnter()
     {
-        Fsm.GameObject.GetComponent<History>().Add();
+        History.Instance.Add();
         Finish();
     }
 }
@@ -26,7 +26,7 @@ public class ShiftHistory : FsmStateAction
 {
     public override void OnEnter()
     {
-        Fsm.GameObject.GetComponent<History>().Shift();
+        History.Instance.Shift();
         Finish();
     }
 }

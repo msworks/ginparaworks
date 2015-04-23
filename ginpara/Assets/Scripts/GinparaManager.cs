@@ -5011,7 +5011,7 @@ public class GinparaManager : MonoBehaviour {
     private IEnumerator CoralReefNoticeIN(CORAL_POSITION position, System.Action callback)
     {
 		this.coralReefNoticeAnchor.relativeOffset = new Vector2(0, -1.2f);
-		var top = this.topRail.RecodePanelNum;
+		//var top = this.topRail.RecodePanelNum;
 		//var below = this.belowRail.RecodePanelNum;
 		var anchorX = 0f;
 
