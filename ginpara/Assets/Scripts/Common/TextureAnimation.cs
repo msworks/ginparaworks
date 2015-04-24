@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -41,7 +42,13 @@ public class TextureAnimation : MonoBehaviour {
 		this.isAnimating = true;
 		StartCoroutine (this.TextureAnimating (callback));
 	}
-	
+
+    public void Stop(Action callback)
+    {
+        this.isAnimating = false;
+        if (callback != null) { callback(); }
+    }
+
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator TextureAnimating(System.Action callback){
 		if(this.textureList[this.currentNum] != null) this.uiTexture.mainTexture = this.textureList[this.currentNum];
@@ -50,6 +57,12 @@ public class TextureAnimation : MonoBehaviour {
 		float recodeTime = 0;
 
 		while(timeElapsed < this.totalTime  ||  this.totalTime == -1){
+
+            if (this.isAnimating == false)
+            {
+                break;
+            }
+
 			if(timeElapsed - recodeTime > this.intervalTime){
 				recodeTime = timeElapsed;
 				if(this.textureList.Count != this.currentNum  &&  this.textureList[this.currentNum] != null) this.uiTexture.mainTexture = this.textureList[this.currentNum];

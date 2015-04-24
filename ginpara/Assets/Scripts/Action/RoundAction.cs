@@ -14,16 +14,46 @@ public class Round : FsmStateAction
     public FsmInt round;
     public GameObject DirectionController;
 
-    // Code that runs on entering the state.
     public override void OnEnter()
     {
-        var sizi = "402-" + round.Value.ToString();
-        DirectionController.GetComponent<ReelController>().EnqueueDirection(sizi, 1f);
-        //DirectionController.GetComponent<ReelController>().EnqueueDirection("403", 1f);
+        Syokyu.Syokyu15Count = 0;
+
+        var siziList = new List<String> {
+            "402-" + round.Value.ToString(),
+            "401-" + OoatariController.Instance.AtariZugara,
+        };
+
+        foreach( var sizi in siziList ){
+            GinparaManager.Instance.Order(sizi);
+        }
 
         Finish();
     }
 }
+
+/// <summary>
+/// ラウンド開始
+/// </summary>
+[ActionCategory("Ginpara")]
+public class WaitRound : FsmStateAction
+{
+    public override void OnEnter()
+    {
+        var siziList = new List<String> {
+            "301",
+            "401-0",
+            "402-0",
+        };
+
+        foreach (var sizi in siziList)
+        {
+            GinparaManager.Instance.Order(sizi);
+        }
+
+        Finish();
+    }
+}
+
 
 /// <summary>
 /// ラウンド終了
@@ -33,11 +63,11 @@ public class ExitRound : FsmStateAction
 {
     public GameObject DirectionController;
 
-    // Code that runs on entering the state.
     public override void OnEnter()
     {
-        DirectionController.GetComponent<ReelController>().EnqueueDirection("403", 1f);
-        //DirectionController.GetComponent<ReelController>().EnqueueDirection("201-2", 1f);
+        DirectionController.GetComponent<ReelController>().EnqueueDirection("401-0", 0f);
+        DirectionController.GetComponent<ReelController>().EnqueueDirection("402-0", 0f);
+        DirectionController.GetComponent<ReelController>().EnqueueDirection("403", 0f);
 
         Finish();
     }

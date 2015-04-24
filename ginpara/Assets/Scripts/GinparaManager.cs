@@ -4562,19 +4562,38 @@ public class GinparaManager : MonoBehaviour {
 			this.lostStringAnchor.transform.gameObject.SetActive (false);
 			if(callback!=null){callback();};
 			break;
-			
+
+		// マリンピース開始
 		case "301":
 			this.marinPeaceAnchor.transform.gameObject.SetActive (true);
 			this.rollBubble.transform.gameObject.SetActive (true);
-			StartCoroutine(this.MarinPeace(callback));
-			StartCoroutine(this.RollBubble(callback));
+			StartCoroutine(this.MarinPeaceStart(callback));
+			StartCoroutine(this.RollBubbleStart(callback));
 			break;
-			
+		
+        // マリンピース終了
+        case "301-2":
+            this.marinPeaceAnchor.transform.gameObject.SetActive (false);
+			this.rollBubble.transform.gameObject.SetActive (false);
+			this.MarinPeaceStop(callback);
+			this.RollBubbleStop(callback);
+            break;
+
+        // ラッキー
 		case "302":
 			this.luckyStringAnime.transform.gameObject.SetActive (true);
 			this.luckyStringAnime.Play(null);
 			break;
-			
+
+        // 図柄表示消す
+        case "401-0":
+   			this.bonusPicture.transform.gameObject.SetActive(false);
+			this.bonusPictureNum.transform.gameObject.SetActive(false);
+			this.bonusPictureBase.transform.gameObject.SetActive(false);
+			if(callback != null) callback();
+            break;
+
+	    // 図柄１
 		case "401-1":
 			this.bonusPicture.TextureList.Clear ();
 			this.bonusPicture.StopAllCoroutines();
@@ -4718,7 +4737,8 @@ public class GinparaManager : MonoBehaviour {
 			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
 			if(callback != null) callback();
 			break;
-			
+
+        // 図柄１０
 		case "401-10":
 			this.bonusPicture.TextureList.Clear ();
 			this.bonusPicture.StopAllCoroutines();
@@ -4734,7 +4754,13 @@ public class GinparaManager : MonoBehaviour {
 			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
 			if(callback != null) callback();
 			break;
-			
+
+        case "402-0":
+			this.bonusRoundBase.transform.gameObject.SetActive(false);
+			this.bonusRound.transform.gameObject.SetActive(false);
+			if(callback != null) callback();
+			break;
+
 		case "402-1":
 			this.bonusRound.mainTexture = this.roundtexture[0];
 			this.bonusRoundBase.transform.gameObject.SetActive(true);
@@ -5228,9 +5254,15 @@ public class GinparaManager : MonoBehaviour {
 		this.lostStringAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
-	
-	//----------------------------------------------------------------------------------------------------
-	private IEnumerator MarinPeace(System.Action callback){
+
+	/// <summary>
+	/// マリンピース開始
+	/// </summary>
+	/// <param name="callback"></param>
+	/// <returns></returns>
+	private IEnumerator MarinPeaceStart(Action callback){
+        this.marinPeaceAnime.TotalTime = -1f;
+        this.marinPeaceAnime.IsLoop = true;
 		this.marinPeaceAnime.Play (null);
 		
 		while(this.marinPeaceAnime.IsAnimating  ||  this.loseBubbleAnime.IsAnimating)
@@ -5240,10 +5272,25 @@ public class GinparaManager : MonoBehaviour {
 		this.marinPeaceAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
-	
-	//----------------------------------------------------------------------------------------------------
-	private IEnumerator RollBubble(System.Action callback){
-		this.rollBubble.Play (null);
+
+    /// <summary>
+    /// マリンピース停止
+    /// </summary>
+    /// <param name="callback"></param>
+    private void MarinPeaceStop(Action callback)
+    {
+        this.marinPeaceAnime.Stop(null);
+    }
+
+    /// <summary>
+    /// 泡回転開始
+    /// </summary>
+    /// <param name="callback"></param>
+    /// <returns></returns>
+	private IEnumerator RollBubbleStart(Action callback){
+        this.rollBubble.TotalTime = -1f;
+        this.rollBubble.IsLoop = true;
+        this.rollBubble.Play(null);
 		
 		while(this.rollBubble.IsAnimating  ||  this.loseBubbleAnime.IsAnimating){
 			this.rollBubble.transform.Rotate (0, 0, -90f * this.deltaTime);
@@ -5254,7 +5301,16 @@ public class GinparaManager : MonoBehaviour {
 		this.rollBubble.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
-	
+
+    /// <summary>
+    /// 泡回転終了
+    /// </summary>
+    /// <param name="callback"></param>
+    private void RollBubbleStop(Action callback)
+    {
+        this.rollBubble.Stop(null);
+    }
+
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator BonusFinish(System.Action callback){
 		this.marinFinishAnime.Play( ()=> {
