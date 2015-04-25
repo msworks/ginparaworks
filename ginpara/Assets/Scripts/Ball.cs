@@ -31,4 +31,24 @@ public class Ball : MonoBehaviour {
     {
         _count--;
     }
+
+    // 玉が重ならないようにする
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ball")
+        {
+            var delta = ( col.gameObject.transform.position - this.gameObject.transform.position ).normalized;
+            this.gameObject.rigidbody2D.AddForce(delta/30);
+        }
+    }
+
+    // 玉が重ならないようにする
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ball")
+        {
+            var delta = (col.gameObject.transform.position - this.gameObject.transform.position).normalized;
+            this.gameObject.rigidbody2D.AddForce(delta / 30);
+        }
+    }
 }
