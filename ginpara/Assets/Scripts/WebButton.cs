@@ -6,11 +6,15 @@ using System.Collections;
 /// </summary>
 public class WebButton : MonoBehaviour {
 
+    public UISprite lightButton;
+
     /// <summary>
     /// タップ時処理
     /// </summary>
     public void OnClick()
     {
+        StartCoroutine(light());
+
         Debug.Log("Request Web View");
         var url = "http://www.yahoo.co.jp/";
         var webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
@@ -31,5 +35,23 @@ public class WebButton : MonoBehaviour {
             "   }, false);" +
             "}, false);");
     }
-	
+
+    IEnumerator light()
+    {
+        var totalTime = 0.5f;
+        var count = 0.0f;
+        lightButton.alpha = 1.0f;
+
+        while (count < totalTime)
+        {
+            count += Time.deltaTime;
+            lightButton.alpha = 1.0f - count / totalTime;
+            yield return null;
+        }
+
+        lightButton.alpha = 0.0f;
+
+        yield return null;
+    }
+
 }
