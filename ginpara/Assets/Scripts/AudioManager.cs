@@ -77,7 +77,12 @@ public class AudioManager : MonoBehaviour {
         BGMsource.Stop();
     }
 
-    public void PlaySE(int index)
+    public void PlaySELoop(int index)
+    {
+        PlaySE(index, true);
+    }
+
+    public void PlaySE(int index, bool loop=false)
     {
         var waitingSource = SEsources.Where(source => !source.isPlaying).First();
 
@@ -87,10 +92,24 @@ public class AudioManager : MonoBehaviour {
             return;
         }
 
+        if (loop == true)
+        {
+            waitingSource.loop = true;
+        }
+        else
+        {
+            waitingSource.loop = false;
+        }
+
         waitingSource.clip = clips[index];
         waitingSource.volume = volumes[index];
         waitingSource.Play();
+    }
 
+    public void StopSE(int index)
+    {
+        var playingSource = SEsources.Where(source => source.clip == clips[index]).First();
+        playingSource.Stop();
     }
 
     public void PlaySE(int index, float delayTime)

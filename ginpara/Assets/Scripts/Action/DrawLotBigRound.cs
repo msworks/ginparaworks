@@ -158,6 +158,15 @@ namespace Ginpara
                     // リーチ（掛け声）発声
                     AudioManager.Instance.PlaySE(20);
 
+                    if (result.reachPatternName.Contains("SP"))
+                    {
+                        Effect.Instance.SendEvent("SPリーチ中");
+                    }
+                    else
+                    {
+                        Effect.Instance.SendEvent("ノーマルリーチ中");
+                    }
+
                     // リーチライン
                     if (result.reachLine == 4)
                     {

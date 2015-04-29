@@ -96,7 +96,7 @@ public class CasinoData : MonoBehaviour {
     
     //----------------------------------------------------------------------------------------------------
     /// UI-RBを操作する.3桁を超える数字は999に置換して表示.
-    public int AT { get { return this.atNum; } set { this.atNum = (value > 999) ? 999 : value; this.UpdateAT(); } }
+//    public int AT { get { return this.atNum; } set { this.atNum = (value > 999) ? 999 : value; this.UpdateAT(); } }
     
     //----------------------------------------------------------------------------------------------------
     /// UI-Exchangeを操作する.5桁を超える数字は99999に置換し,小数点は第1位のみを表示.
@@ -257,50 +257,34 @@ public class CasinoData : MonoBehaviour {
         Update7Seg(rbSprites, rbNum);
     }
     
-    private void UpdateAT()
+    /// <summary>
+    /// 回転数をシフト
+    /// 今回→前回にシフト、前回→前々回にシフト、今回→クリア
+    /// </summary>
+    public void ShiftKaitensu()
     {
-        Update7Seg(atSprites, atNum);
-    }
-    
-    //----------------------------------------------------------------------------------------------------
-    /// <para>ボーナス状態過去（BB）を表示</para>
-    /// <para>【第1引数】前日データ</para>
-    /// <para>【第2引数】前々日データ</para>
-    public void UpdatePastBB(int ago1, int ago2)
-    {
+        pre2BbNum = pre1BbNum;
+        pre1BbNum = bbNum;
+        bbNum = 0;
+
+        pre2RbNum = pre1RbNum;
+        pre1RbNum = rbNum;
+        rbNum = 0;
+
+        Update7Seg(bbSprites, bbNum);
         Update7Seg(pre1BbSprites, pre1BbNum);
         Update7Seg(pre2BbSprites, pre2BbNum);
-    }
-    
-    //----------------------------------------------------------------------------------------------------
-    /// <para>ボーナス状態過去（RB）を表示</para>
-    /// <para>【第1引数】前日データ</para>
-    /// <para>【第2引数】前々日データ</para>
-    public void UpdatePastRB(int ago1, int ago2)
-    {
+
+        Update7Seg(rbSprites, rbNum);
         Update7Seg(pre1RbSprites, pre1RbNum);
         Update7Seg(pre2RbSprites, pre2RbNum);
     }
     
-    //----------------------------------------------------------------------------------------------------
-    /// <para>ボーナス状態過去（AT/ART）を表示</para>
-    /// <para>【第1引数】前日データ</para>
-    /// <para>【第2引数】前々日データ</para>
-    public void UpdatePastAT(int ago1, int ago2)
-    {
-        Update7Seg(pre1AtSprites, pre1AtNum);
-        Update7Seg(pre2AtSprites, pre2AtNum);
-    }
-    
-    //----------------------------------------------------------------------------------------------------
-    /// Exchangeのマークを変更.
     public void ChangeExchangeMark(EXCHANGE exchange)
     {
         this.exchangeMark.spriteName = exchange.ToString();
     }
     
-    //----------------------------------------------------------------------------------------------------
-    /// Dispボタン押下時の処理.
     public void PushDispButton()
     {
         if ((int)this.exchange == 3)
@@ -412,4 +396,5 @@ public class CasinoData : MonoBehaviour {
             this.historySprites[i].spriteName = this.historySpriteName[this.history[i]];
         }
     }
+
 }

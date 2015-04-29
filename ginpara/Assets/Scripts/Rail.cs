@@ -198,7 +198,10 @@ public class Rail : MonoBehaviour {
 		}
 
         // 煽り音発声
-        AudioManager.Instance.PlaySE(11);
+        AudioManager.Instance.PlaySELoop(11);
+
+        // SPリーチ（最終煽り中）エフェクト
+        Effect.Instance.SendEvent("SPリーチ（最終煽り中）");
 
         // 泡、魚群があれば演出
         Action action;
@@ -215,6 +218,9 @@ public class Rail : MonoBehaviour {
 			else this.anchorValue += (totalTime + deltaTime) / 2f;
 			yield return null;
 		}
+
+        // 煽り音停止
+        AudioManager.Instance.StopSE(11);
 
 		this.isAct = false;
 		if(callback != null) callback();
