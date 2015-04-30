@@ -6,7 +6,7 @@ using System.Collections;
 /// </summary>
 public class KaitentaiInnerRotation : MonoBehaviour {
 
-    private float Hz = 1f / 12f;        // 1/12ヘルツ
+    private float Hz = 1f / 12f * 3.14f;        // 1/12ヘルツ
 
 	/// <summary>
 	/// 更新
