@@ -145,7 +145,7 @@ public class History : MonoBehaviour {
                 Sprites[i].GetComponent<UISprite>().spriteName = "level" + level.ToString();
             }
 
-            // ラベルを点灯
+            // ラベルを点滅
             if (current == i)
             {
                 if (sw)
@@ -161,6 +161,21 @@ public class History : MonoBehaviour {
             {
                 LabelSprites[i].GetComponent<UISprite>().spriteName = "level_num_r_" + string.Format("{0:00}", i + 1);
             }
+
+            // ０を指している場合は全ての数字を点滅
+            if (current == 0)
+            {
+                if (sw)
+                {
+                    LabelSprites[i].GetComponent<UISprite>().spriteName = "level_num_r_" + string.Format("{0:00}", i + 1);
+                }
+                else
+                {
+                    LabelSprites[i].GetComponent<UISprite>().spriteName = "nothing";
+                }
+            }
+
         }
+
     }
 }
