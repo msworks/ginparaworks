@@ -11,13 +11,14 @@ public class LightPartsOn : FsmStateAction
     public GameObject[] Parts;
     public FsmFloat   cycle;
     public FsmFloat   power;
+    public FsmBool outer;
 	
 	// Code that runs on entering the state.
 	public override void OnEnter()
 	{
         Parts.ToList().ForEach(part =>
         {
-            part.GetComponent<LightBody>().ON(cycle.Value, power.Value);
+            part.GetComponent<LightBody>().ON(cycle.Value, power.Value, outer.Value);
         });
         Finish();
 	}

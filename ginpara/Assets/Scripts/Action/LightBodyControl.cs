@@ -11,11 +11,12 @@ public class LightBodyOn : FsmStateAction
     public GameObject Body;
     public FsmFloat   cycle;
     public FsmFloat   power;
+    public FsmBool    outer;
 	
 	// Code that runs on entering the state.
 	public override void OnEnter()
 	{
-        Body.GetComponent<LightBody>().ON(cycle.Value, power.Value);
+        Body.GetComponent<LightBody>().ON(cycle.Value, power.Value, outer.Value);
         Finish();
 	}
 }

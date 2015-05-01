@@ -17,6 +17,8 @@ public class LightBody : MonoBehaviour {
     private float mPower = 0.0f;
     private float mCycle = 0.0f;
 
+    private bool outerFlg = false;
+
     /// <summary>
     /// 開始時処理
     /// </summary>
@@ -50,7 +52,14 @@ public class LightBody : MonoBehaviour {
         v2 = Mathf.Abs(v2);
 
         if(insideSprite) insideSprite.GetComponent<UISprite>().alpha = v;
-        if(outsideSprite) outsideSprite.GetComponent<UISprite>().alpha = v2;
+
+        if (!outerFlg)
+        {
+            v2 = 0.0f;
+        }
+
+        if (outsideSprite) outsideSprite.GetComponent<UISprite>().alpha = v2;
+
 	}
 
     /***
@@ -58,12 +67,13 @@ public class LightBody : MonoBehaviour {
      * cycle : 何ヘルツで光るか
      * power : 光る強さ（１：最高　０：消灯）
      */
-    public void ON( float cycle, float power )
+    public void ON( float cycle, float power, bool outer=true )
     {
         LightFlg = true;
         Counter = 0;
         mCycle = cycle;
         mPower = power;
+        outerFlg = outer;
     }
 
     /// <summary>
