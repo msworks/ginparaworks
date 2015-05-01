@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 
 /// <summary>
 /// ヒストリー管理クラス
@@ -76,11 +78,10 @@ public class History : MonoBehaviour {
     /// </summary>
     public void Shift()
     {
-        for (int i = 8; i > 0; i--)
-        {
-            data[i + 1] = data[i];
-        }
-        data[0] = 0;
+        var list = data.ToList();
+        list.Insert(0, 0);
+        data = list.Take(10).ToArray();
+
         DisplayGameRound();
     }
 
