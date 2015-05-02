@@ -12,6 +12,8 @@ public class History : MonoBehaviour {
     public UISprite[] Sprites;
     public UISprite[] LabelSprites;
 
+    private int[] data = new int[10];
+
     private static History _instance;
     public static History Instance
     {
@@ -22,8 +24,6 @@ public class History : MonoBehaviour {
     {
         _instance = this;
     }
-
-    int[] data = new int[10];
 
     /// <summary>
     /// 表示中のヒストリーのインデックス（０～９）
@@ -38,6 +38,10 @@ public class History : MonoBehaviour {
         get
         {
             return data;
+        }
+        set
+        {
+            data = value;
         }
     }
 

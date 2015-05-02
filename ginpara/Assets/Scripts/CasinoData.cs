@@ -75,7 +75,12 @@ public class CasinoData : MonoBehaviour {
     [SerializeField] private UISprite[] historySprites = null;
     private List<int> history = new List<int>();
     private string[] historySpriteName = new string[]{"level0", "level1", "level2", "level3", "level4", "level5", "level6", "level7", "level8", "level9"};
-    
+
+    public int PreBB { get { return pre1BbNum; } }
+    public int PrePreBB { get { return pre2BbNum; } }
+    public int PreRB { get { return pre1RbNum; } }
+    public int PrePreRB { get { return pre2RbNum; } }
+
     //====================================================================================================
     //Property
     //====================================================================================================
