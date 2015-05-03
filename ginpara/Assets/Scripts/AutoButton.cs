@@ -7,6 +7,8 @@ using System.Linq;
 
 public class AutoButton : MonoBehaviour {
 
+    public float LeftPower = 0.415f;
+
     public GameObject Horyu;
     public GameObject Kenri;
     public GameObject OoatariController;
@@ -118,7 +120,7 @@ public class AutoButton : MonoBehaviour {
 
     private void ToHidariuti()
     {
-        Slider.value = 0.3f;
+        Slider.value = LeftPower;
     }
 
     [ActionCategory("Ginpara")]

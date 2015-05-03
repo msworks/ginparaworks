@@ -8,6 +8,8 @@ public class WebButton : MonoBehaviour {
 
     public UISprite lightButton;
 
+    private WebViewObject webView;
+
     /// <summary>
     /// タップ時処理
     /// </summary>
