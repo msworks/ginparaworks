@@ -27,8 +27,9 @@ public class History : MonoBehaviour {
 
     /// <summary>
     /// 表示中のヒストリーのインデックス（０～９）
+    /// －１では全点灯
     /// </summary>
-    int current = 0;
+    int current = -1;
 
     /// <summary>
     /// データ取得プロパティ
@@ -50,7 +51,14 @@ public class History : MonoBehaviour {
     /// </summary>
     public void DisplayGameRound()
     {
-        CasinoData.Instance.GameCount = data[current];
+        if (current == -1)
+        {
+            CasinoData.Instance.GameCount = data[0];
+        }
+        else
+        {
+            CasinoData.Instance.GameCount = data[current];
+        }
     }
 
     /// <summary>
@@ -62,7 +70,7 @@ public class History : MonoBehaviour {
         current++;
         if (current >= 10)
         {
-            current = 0;
+            current = -1;
         }
 
         DisplayGameRound();
@@ -166,17 +174,10 @@ public class History : MonoBehaviour {
                 LabelSprites[i].GetComponent<UISprite>().spriteName = "level_num_r_" + string.Format("{0:00}", i + 1);
             }
 
-            // ０を指している場合は全ての数字を点滅
-            if (current == 0)
+            // -1を指している場合は全ての数字を＊点灯＊
+            if (current == -1)
             {
-                if (sw)
-                {
-                    LabelSprites[i].GetComponent<UISprite>().spriteName = "level_num_r_" + string.Format("{0:00}", i + 1);
-                }
-                else
-                {
-                    LabelSprites[i].GetComponent<UISprite>().spriteName = "nothing";
-                }
+                LabelSprites[i].GetComponent<UISprite>().spriteName = "level_num_r_" + string.Format("{0:00}", i + 1);
             }
 
         }
