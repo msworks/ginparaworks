@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using HutongGames.PlayMaker;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
 
 /// <summary>
 /// ヒストリー管理クラス
@@ -97,6 +98,17 @@ public class History : MonoBehaviour {
         DisplayGameRound();
     }
 
+    public void Rireki1001()
+    {
+        if(current==-1){
+            data = Enumerable.Repeat(1001, 10).ToArray();
+        }
+        else
+        {
+            data[current] = 1001;
+        }
+    }
+
     /// <summary>
     /// ヒストリーを１増加する
     /// </summary>
@@ -182,5 +194,15 @@ public class History : MonoBehaviour {
 
         }
 
+    }
+
+    [ActionCategory("Ginpara")]
+    public class SetRireki1001 : FsmStateAction
+    {
+        public override void OnEnter()
+        {
+            History.Instance.Rireki1001();
+            Finish();
+        }
     }
 }

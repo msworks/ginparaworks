@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
+using HutongGames.PlayMaker;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// テストという名前をつけてしまっているが本番
@@ -47,5 +50,20 @@ public class ShootBallTest : MonoBehaviour {
         var ball = NGUITools.AddChild(BodyPath, BallPrefab);
         ball.transform.position = ShootPosition.transform.position;
         ball.rigidbody2D.velocity = ShootPower * rndp;
+    }
+
+    [ActionCategory("Ginpara")]
+    public class DisplaySadama : FsmStateAction
+    {
+        public UILabel sadama;
+
+        public override void OnEnter()
+        {
+            var tama = Fsm.GetFsmInt("tama").Value - 2500;
+
+            sadama.text = "差玉：" + tama.ToString();
+            
+            Finish();
+        }
     }
 }
