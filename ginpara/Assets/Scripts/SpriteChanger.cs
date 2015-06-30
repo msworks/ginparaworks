@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class SpriteChanger : MonoBehaviour{
-	[SerializeField] private UISprite uiSprite;
+    [SerializeField]
+    private UISprite uiSprite;
 	[SerializeField] private string[] spriteNames;
 	public float spriteNum = 0;
 	private int currentNum = 0;

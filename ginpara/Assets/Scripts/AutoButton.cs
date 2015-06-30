@@ -7,6 +7,12 @@ using System.Linq;
 
 public class AutoButton : MonoBehaviour {
 
+    public enum MODE
+    {
+        SEMI_AUTO,
+        FULL_AUTO,
+    }
+
     public float LeftPower = 0.415f;
 
     public GameObject Horyu;
@@ -18,6 +24,7 @@ public class AutoButton : MonoBehaviour {
     private static AutoButton _instance;
 
     private bool autoSwitch = false;
+    private MODE mode = MODE.SEMI_AUTO;
 
     public static AutoButton Instance
     {
@@ -34,9 +41,10 @@ public class AutoButton : MonoBehaviour {
         StartCoroutine(routine());
     }
 
-    public void On()
+    public void On(MODE mode)
     {
         autoSwitch = true;
+        this.mode = mode;
     }
 
     public void Off()
@@ -74,6 +82,12 @@ public class AutoButton : MonoBehaviour {
                 if (!isShoot)
                 {
                     isShoot = horyusu <= 3 ? true : false;
+                }
+
+                // セミオートではぶっぱ
+                if (mode == MODE.SEMI_AUTO)
+                {
+                    isShoot = true;
                 }
 
                 if (isShoot)
@@ -124,11 +138,21 @@ public class AutoButton : MonoBehaviour {
     }
 
     [ActionCategory("Ginpara")]
-    public class OnAutoButton : FsmStateAction
+    public class OnSemiAutoButton : FsmStateAction
     {
         public override void OnEnter()
         {
-            AutoButton.Instance.On();
+            AutoButton.Instance.On(MODE.SEMI_AUTO);
+            Finish();
+        }
+    }
+
+    [ActionCategory("Ginpara")]
+    public class OnFullAutoButton : FsmStateAction
+    {
+        public override void OnEnter()
+        {
+            AutoButton.Instance.On(MODE.FULL_AUTO);
             Finish();
         }
     }

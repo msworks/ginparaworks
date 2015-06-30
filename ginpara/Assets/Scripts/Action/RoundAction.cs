@@ -27,6 +27,8 @@ public class Round : FsmStateAction
             GinparaManager.Instance.Order(sizi);
         }
 
+        RoundDisplay.Instance.display(round.Value);
+
         Finish();
     }
 }
@@ -68,6 +70,8 @@ public class ExitRound : FsmStateAction
         DirectionController.GetComponent<ReelController>().EnqueueDirection("401-0", 0f);
         DirectionController.GetComponent<ReelController>().EnqueueDirection("402-0", 0f);
         DirectionController.GetComponent<ReelController>().EnqueueDirection("403", 0f);
+
+        RoundDisplay.Instance.hide();
 
         Finish();
     }

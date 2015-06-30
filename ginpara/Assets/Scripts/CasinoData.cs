@@ -37,9 +37,11 @@ public class CasinoData : MonoBehaviour {
     private AVG_STATE avgState = AVG_STATE.BB;
     [SerializeField] private UISprite onePerLabel = null;
     private string[] onePerSpriteName = new string[]{"1perR", "1perO", "1perG"};
-    [SerializeField] private UISprite[] avgSprites = null;
+    [SerializeField]
+    private UISprite[] avgSprites = null;
     private int avg = 0;
-    [SerializeField] private UISprite exchangeMark = null;
+    [SerializeField]
+    private UISprite exchangeMark = null;
     public enum EXCHANGE
     {
         yen,
@@ -48,31 +50,45 @@ public class CasinoData : MonoBehaviour {
         dl
     }
     private EXCHANGE exchange;
-    [SerializeField] private UISprite[] exchangeSprites = null;
-    [SerializeField] private UISprite exchangeDotSprites = null;
+    [SerializeField]
+    private UISprite[] exchangeSprites = null;
+    [SerializeField]
+    private UISprite exchangeDotSprites = null;
     private float exchangeNum = 0;
-    [SerializeField] private UISprite[] exchangeRateSprites = null;
-    [SerializeField] private UISprite exchangeRateDotSprites = null;
+    [SerializeField]
+    private UISprite[] exchangeRateSprites = null;
+    [SerializeField]
+    private UISprite exchangeRateDotSprites = null;
     private float exchangeRateNum = 0;
-    [SerializeField] private UISprite[] bbSprites = null;
+    [SerializeField]
+    private UISprite[] bbSprites = null;
     private int bbNum = 0;
-    [SerializeField] private UISprite[] rbSprites = null;
+    [SerializeField]
+    private UISprite[] rbSprites = null;
     private int rbNum = 0;
-    [SerializeField] private UISprite[] atSprites = null;
+    [SerializeField]
+    private UISprite[] atSprites = null;
     private int atNum = 0;
-    [SerializeField] private UISprite[] pre1BbSprites = null;
+    [SerializeField]
+    private UISprite[] pre1BbSprites = null;
     private int pre1BbNum = 0;
-    [SerializeField] private UISprite[] pre2BbSprites = null;
+    [SerializeField]
+    private UISprite[] pre2BbSprites = null;
     private int pre2BbNum = 0;
-    [SerializeField] private UISprite[] pre1RbSprites = null;
+    [SerializeField]
+    private UISprite[] pre1RbSprites = null;
     private int pre1RbNum = 0;
-    [SerializeField] private UISprite[] pre2RbSprites = null;
+    [SerializeField]
+    private UISprite[] pre2RbSprites = null;
     private int pre2RbNum = 0;
-    [SerializeField] private UISprite[] pre1AtSprites = null;
+    [SerializeField]
+    private UISprite[] pre1AtSprites = null;
     private int pre1AtNum = 0;
-    [SerializeField] private UISprite[] pre2AtSprites = null;
+    [SerializeField]
+    private UISprite[] pre2AtSprites = null;
     private int pre2AtNum = 0;
-    [SerializeField] private UISprite[] historySprites = null;
+    [SerializeField]
+    private UISprite[] historySprites = null;
     private List<int> history = new List<int>();
     private string[] historySpriteName = new string[]{"level0", "level1", "level2", "level3", "level4", "level5", "level6", "level7", "level8", "level9"};
 

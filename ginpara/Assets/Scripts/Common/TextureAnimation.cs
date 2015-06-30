@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+// 
+
 public class TextureAnimation : MonoBehaviour {
 	//====================================================================================================
 	// Field
@@ -51,7 +53,18 @@ public class TextureAnimation : MonoBehaviour {
 
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator TextureAnimating(System.Action callback){
-		if(this.textureList[this.currentNum] != null) this.uiTexture.mainTexture = this.textureList[this.currentNum];
+
+        if (this.textureList.Count <= this.currentNum)
+        {
+            Debug.LogWarning("textureList index error");
+            this.currentNum = this.textureList.Count - 1;
+        }
+
+        if (this.textureList[this.currentNum] != null)
+        {
+            this.uiTexture.mainTexture = this.textureList[this.currentNum];
+        }
+
 		++this.currentNum;
 		float timeElapsed = 0;
 		float recodeTime = 0;

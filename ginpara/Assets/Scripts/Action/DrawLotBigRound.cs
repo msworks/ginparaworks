@@ -215,6 +215,12 @@ namespace Ginpara
                     }
                     else
                     {
+                        // SPリーチハズレの場合は背景をスワップ
+                        if (result.reachPatternName.Contains("SP"))
+                        {
+                            BodyDisplay.Instance.Swap();
+                        }
+
                         callback();
                     }
                 });
@@ -239,7 +245,8 @@ namespace Ginpara
             var se = 9; // SリーチSP
             AudioManager.Instance.PlayBGMLoop(se);
 
-            GinparaManager.Instance.Order("102");
+            // SPリーチで紫にしない
+            //GinparaManager.Instance.Order("102");
             GinparaManager.Instance.Order("901");
 
             yield return null;

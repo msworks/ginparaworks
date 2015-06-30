@@ -60,7 +60,7 @@ public class GinparaManager : MonoBehaviour {
 	public UITexture bonusRound = null;
 	public UITexture bonusRoundBase = null;
 	public List<Texture> picture1 = null;
-	public List<Texture> picture2	 = null;
+	public List<Texture> picture2 = null;
 	public List<Texture> picture3 = null;
 	public List<Texture> picture4 = null;
 	public List<Texture> picture5 = null;
@@ -107,7 +107,7 @@ public class GinparaManager : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	void Update(){
-			this.deltaTime = Time.deltaTime;
+		this.deltaTime = Time.deltaTime;
 		if(this.isBackgroundLoop){
 			float value = this.backgroundAnchor.relativeOffset.x + (this.deltaTime / 22.5f);
 			if(value > 1) value -= 2;
@@ -281,13 +281,15 @@ public class GinparaManager : MonoBehaviour {
         {"8-160", new SP{ certainNum=30, lowNum=7}},
     };
 
-	//----------------------------------------------------------------------------------------------------
-	/// <para>【第1引数】実行するパターンNo</para>
-	/// <para>【第2引数】実行完了後（またはループ開始時）に呼ばれるコールバック</para>
-	/// <para>【戻り値】発生したエラー内容を返します（普通は null が返ります）</para>
-	public string Order(string patternNo, System.Action callback = null){
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="patternNo">実行するパターンNo</param>
+    /// <param name="callback">実行完了後（またはループ開始時）に呼ばれるコールバック</param>
+    /// <returns>発生したエラー内容を返します（普通は null が返ります）</returns>
+    public string Order(string patternNo, System.Action callback = null){
 
-        Debug.Log("演出No." + patternNo);
+        //Debug.Log("演出No." + patternNo);
 
         string errorCode = null;
         int EnsyutuNo = -1;  // 演出No
@@ -323,6 +325,7 @@ public class GinparaManager : MonoBehaviour {
 
 		switch (patternNo) {
 		case "1":
+			this.Order ("39-0");
 			this.Order ("39-1");
 			this.Order ("40-1");
 			this.Order ("41-1");
@@ -339,6 +342,7 @@ public class GinparaManager : MonoBehaviour {
 			break;
 
 		case "2":
+			this.Order ("39-0");
 			this.Order ("39-1");
 			this.Order ("40-1");
 			this.Order ("41-1");
@@ -355,6 +359,7 @@ public class GinparaManager : MonoBehaviour {
 			break;
 
 		case "3":
+			this.Order ("39-0");
 			this.Order ("39-1");
 			this.Order ("40-1");
 			this.Order ("41-1");
@@ -4355,6 +4360,12 @@ public class GinparaManager : MonoBehaviour {
 			this.belowRail.ChangeHitPicture(10);
 			break;
 
+        case "39-0":
+			this.topRail.StartAnime (0);
+			this.mediumRail.StartAnime (0);
+			this.belowRail.StartAnime (0);
+			break;
+
 		case "39-1":
 			this.topRail.StartAnime (1);
 			this.mediumRail.StartAnime (1);
@@ -4418,27 +4429,21 @@ public class GinparaManager : MonoBehaviour {
 		case "101":
 			this.isBackgroundLoop = true;
 			this.background.depth = -1;
-			this.backgroundAnchor.relativeOffset = new Vector2(this.backgroundAnchor.relativeOffset.x, 0.5f);
 			this.background.mainTexture = this.backgroundTexture[0];
-			this.railAreaAnchor.relativeOffset = new Vector2(0, 0);
 			if(callback != null) callback();
 			break;
 			
 		case "102":
 			this.isBackgroundLoop = true;
 			this.background.depth = -1;
-			this.backgroundAnchor.relativeOffset = new Vector2(this.backgroundAnchor.relativeOffset.x, 0.5f);
 			this.background.mainTexture = this.backgroundTexture[1];
-			this.railAreaAnchor.relativeOffset = new Vector2(0, 0);
 			if(callback != null) callback();
 			break;
 			
 		case "103":
 			this.isBackgroundLoop = true;
 			this.background.depth = -1;
-			this.backgroundAnchor.relativeOffset = new Vector2(this.backgroundAnchor.relativeOffset.x, 0.5f);
 			this.background.mainTexture = this.backgroundTexture[2];
-			this.railAreaAnchor.relativeOffset = new Vector2(0, 0);
 			if(callback != null) callback();
 			break;
 			
@@ -4488,43 +4493,26 @@ public class GinparaManager : MonoBehaviour {
             StartCoroutine(this.CoralReefNoticeOUT(CORAL_POSITION.RIGHT, callback));
             break;
 
+        // マリン降臨
 		case "107-1":
-			this.marinNoticeCallAnchor.transform.gameObject.SetActive(true);
 			StartCoroutine (this.MarinNoticeIN(callback));
 			break;
 			
 		case "107-2":
-			this.marinNoticeCallAnchor.transform.gameObject.SetActive(true);
-			this.marinNoticeCallAnime.Play (null);
-			if(callback != null) callback();
 			break;
 			
 		case "107-3":
-			this.marinNoticeWinAnchor.transform.gameObject.SetActive(true);
-			this.marinNoticeCallAnime.StopAllCoroutines ();
-			this.marinNoticeCallAnchor.relativeOffset = new Vector2(0, 2);
-			this.marinNoticeCallAnchor.transform.gameObject.SetActive (false);
-			this.marinNoticeWinAnime.Play (callback);
 			break;
-			
+		
+	    // マリン上昇
 		case "107-4":
-			this.marinNoticeWinAnchor.transform.gameObject.SetActive(true);
 			StartCoroutine (this.MarinNoticeUpOUT(callback));
 			break;
 			
 		case "108-1":
-            this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 0);
-			this.marinNoticeLoseAnchor.transform.gameObject.SetActive(true);
-			this.marinNoticeCallAnime.StopAllCoroutines ();
-			this.marinNoticeCallAnchor.relativeOffset = new Vector2(0, 2);
-			this.marinNoticeCallAnchor.transform.gameObject.SetActive (false);
-			this.marinNoticeLoseAnime.Play (callback);
 			break;
 			
 		case "108-2":
-			this.marinNoticeLoseAnchor.transform.gameObject.SetActive(true);
-			StartCoroutine (this.MarinNoticeDownOUT(callback));
-            this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 0);
 			break;
 			
 		case "201":
@@ -4537,18 +4525,15 @@ public class GinparaManager : MonoBehaviour {
 			break;
 
 		case "202":
-			this.marinShakeHandAnchor.transform.gameObject.SetActive (true);
 			StartCoroutine (this.MarinShakeHand (callback));
 			break;
 			
 		case "203":
-			this.marinBrownAnchor.transform.gameObject.SetActive (true);
 			this.loseBubbleAnchor.transform.gameObject.SetActive (true);
 			StartCoroutine(this.MarinBrown(callback));
 			break;
 		
         case "203-2":
-			this.marinBrownAnchor.transform.gameObject.SetActive (false);
 			this.loseBubbleAnchor.transform.gameObject.SetActive (false);
 			if(callback!=null){callback();};
 			break;
@@ -4565,7 +4550,6 @@ public class GinparaManager : MonoBehaviour {
 
 		// マリンピース開始
 		case "301":
-			this.marinPeaceAnchor.transform.gameObject.SetActive (true);
 			this.rollBubble.transform.gameObject.SetActive (true);
 			StartCoroutine(this.MarinPeaceStart(callback));
 			StartCoroutine(this.RollBubbleStart(callback));
@@ -4573,7 +4557,6 @@ public class GinparaManager : MonoBehaviour {
 		
         // マリンピース終了
         case "301-2":
-            this.marinPeaceAnchor.transform.gameObject.SetActive (false);
 			this.rollBubble.transform.gameObject.SetActive (false);
 			this.MarinPeaceStop(callback);
 			this.RollBubbleStop(callback);
@@ -4756,120 +4739,87 @@ public class GinparaManager : MonoBehaviour {
 			break;
 
         case "402-0":
-			this.bonusRoundBase.transform.gameObject.SetActive(false);
-			this.bonusRound.transform.gameObject.SetActive(false);
+            RoundDisplay.Instance.hide();
 			if(callback != null) callback();
 			break;
 
 		case "402-1":
-			this.bonusRound.mainTexture = this.roundtexture[0];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(1);
 			if(callback != null) callback();
 			break;
 			
 		case "402-2":
-			this.bonusRound.mainTexture = this.roundtexture[1];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(2);
 			if(callback != null) callback();
 			break;
 			
 		case "402-3":
-			this.bonusRound.mainTexture = this.roundtexture[2];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(3);
 			if(callback != null) callback();
 			break;
 			
 		case "402-4":
-			this.bonusRound.mainTexture = this.roundtexture[3];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(4);
 			if(callback != null) callback();
 			break;
 			
 		case "402-5":
-			this.bonusRound.mainTexture = this.roundtexture[4];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(5);
 			if(callback != null) callback();
 			break;
 			
 		case "402-6":
-			this.bonusRound.mainTexture = this.roundtexture[5];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(6);
 			if(callback != null) callback();
 			break;
 			
 		case "402-7":
-			this.bonusRound.mainTexture = this.roundtexture[6];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(7);
 			if(callback != null) callback();
 			break;
 			
 		case "402-8":
-			this.bonusRound.mainTexture = this.roundtexture[7];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(8);
 			if(callback != null) callback();
 			break;
 			
 		case "402-9":
-			this.bonusRound.mainTexture = this.roundtexture[8];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(9);
 			if(callback != null) callback();
 			break;
 			
 		case "402-10":
-			this.bonusRound.mainTexture = this.roundtexture[9];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(10);
 			if(callback != null) callback();
 			break;
 			
 		case "402-11":
-			this.bonusRound.mainTexture = this.roundtexture[10];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(11);
 			if(callback != null) callback();
 			break;
 			
 		case "402-12":
-			this.bonusRound.mainTexture = this.roundtexture[11];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(12);
 			if(callback != null) callback();
 			break;
 			
 		case "402-13":
-			this.bonusRound.mainTexture = this.roundtexture[12];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(13);
 			if(callback != null) callback();
 			break;
 			
 		case "402-14":
-			this.bonusRound.mainTexture = this.roundtexture[13];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(14);
 			if(callback != null) callback();
 			break;
 			
 		case "402-15":
-			this.bonusRound.mainTexture = this.roundtexture[14];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(15);
 			if(callback != null) callback();
 			break;
 			
 		case "402-16":
-			this.bonusRound.mainTexture = this.roundtexture[15];
-			this.bonusRoundBase.transform.gameObject.SetActive(true);
-			this.bonusRound.transform.gameObject.SetActive(true);
+            RoundDisplay.Instance.display(16);
 			if(callback != null) callback();
 			break;
 			
@@ -4877,8 +4827,8 @@ public class GinparaManager : MonoBehaviour {
 			this.bonusPicture.transform.gameObject.SetActive (false);
 			this.bonusPictureNum.transform.gameObject.SetActive(false);
 			this.bonusPictureBase.transform.gameObject.SetActive (false);
-			this.bonusRound.transform.gameObject.SetActive(false);
-			this.bonusRoundBase.transform.gameObject.SetActive(false);
+			//this.bonusRound.transform.gameObject.SetActive(false);
+			//this.bonusRoundBase.transform.gameObject.SetActive(false);
 			
 			this.bonusFinishBackground.transform.gameObject.SetActive (true);
 			this.bonusFinishLabel.transform.gameObject.SetActive (true);
@@ -5032,21 +4982,17 @@ public class GinparaManager : MonoBehaviour {
 		this.shoalNoticeAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
-	
-	//----------------------------------------------------------------------------------------------------
+
+	/// <summary>
+	/// さんご礁イン
+	/// </summary>
+	/// <param name="position"></param>
+	/// <param name="callback"></param>
+	/// <returns></returns>
     private IEnumerator CoralReefNoticeIN(CORAL_POSITION position, System.Action callback)
     {
-		this.coralReefNoticeAnchor.relativeOffset = new Vector2(0, -1.2f);
-		//var top = this.topRail.RecodePanelNum;
-		//var below = this.belowRail.RecodePanelNum;
+		this.coralReefNoticeAnchor.relativeOffset = new Vector2(0, -1.7f);
 		var anchorX = 0f;
-
-        /*
-		if(top[0] != 0  &&  top[0] == below[0])
-			anchorX = -0.333f;
-		else if(top[2] != 0  &&  top[2] == below[2])
-			anchorX = 0.333f;
-         */
 
         switch (position)
         {
@@ -5072,10 +5018,14 @@ public class GinparaManager : MonoBehaviour {
 		if(callback != null) callback();
 	}
 	
-	//----------------------------------------------------------------------------------------------------
+    /// <summary>
+    /// さんご礁アウト
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="callback"></param>
+    /// <returns></returns>
     private IEnumerator CoralReefNoticeOUT(CORAL_POSITION position, System.Action callback)
     {
-		this.coralReefNoticeAnchor.relativeOffset = new Vector2(this.coralReefNoticeAnchor.relativeOffset.x, 0);
 		float totalTime = 0;
 		while(totalTime < 2f){
 			float time = Time.deltaTime;
@@ -5088,53 +5038,40 @@ public class GinparaManager : MonoBehaviour {
 		this.coralReefNoticeAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
-	
-	//----------------------------------------------------------------------------------------------------
-	private IEnumerator MarinNoticeIN(System.Action callback){
-		float totalTime = 0;
-		while(totalTime < 2f){
-			float time = Time.deltaTime;
-			totalTime += time;
-			this.marinNoticeCallAnchor.relativeOffset -= new Vector2(0, time * 1.5f);
-			yield return null;
-		}
 
+	/// <summary>
+	/// マリン降臨
+	/// </summary>
+	/// <param name="callback"></param>
+	/// <returns></returns>
+	private IEnumerator MarinNoticeIN(System.Action callback){
+
+        this.marinNoticeCallAnime.Play(null);
+        Marin.Instance.display();
 		if(callback != null) callback();
+
+        yield return null;
 	}
-	
-	//----------------------------------------------------------------------------------------------------
+
+	/// <summary>
+	/// マリン上昇
+	/// </summary>
+	/// <param name="callback"></param>
+	/// <returns></returns>
 	private IEnumerator MarinNoticeUpOUT(System.Action callback){
-		float totalTime = 0;
-		while(totalTime < 2f){
-			float time = Time.deltaTime;
-			totalTime += time;
-			this.marinNoticeWinAnchor.relativeOffset += new Vector2(0, time * 1.5f);
-			yield return null;
-		}
-		
-		this.marinNoticeWinAnchor.relativeOffset = new Vector2(0, 2);
-		this.marinNoticeWinAnime.StopAllCoroutines ();
-		this.marinNoticeWinAnchor.transform.gameObject.SetActive (false);
+
+        //this.marinNoticeCallAnime.Stop(null);
+        Marin.Instance.hide();
 		if(callback != null) callback();
-	}
+
+        yield return null;
+
+    }
 	
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator MarinNoticeDownOUT(System.Action callback){
 
-        //
-        this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 0);
-        
-        float totalTime = 0;
-		while(totalTime < 2f){
-			float time = Time.deltaTime;
-			totalTime += time;
-			this.marinNoticeLoseAnchor.relativeOffset -= new Vector2(0, time * 1.5f);
-			yield return null;
-		}
-		
-		this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 2);
-		this.marinNoticeLoseAnime.StopAllCoroutines ();
-		this.marinNoticeLoseAnchor.transform.gameObject.SetActive (false);
+        yield return null;
 
 		if(callback != null) callback();
 	}
@@ -5142,21 +5079,7 @@ public class GinparaManager : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator MarinNoticeLose(System.Action callback){
 
-        //
-        this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 0);
-        
-        float totalTime = 0;
-		while(totalTime < 1f){
-			float time = Time.deltaTime;
-			totalTime += time;
-			this.marinNoticeLoseAnchor.relativeOffset -= new Vector2(0, time);
-			yield return null;
-		}
-		
-		this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 2);
-		this.marinNoticeLoseAnchor.StopAllCoroutines();
-		this.marinNoticeLoseAnchor.transform.gameObject.SetActive (false);
-        this.marinNoticeLoseAnchor.relativeOffset = new Vector2(0, 0);
+        yield return null;
         if (callback != null) callback();
 	}
 	
@@ -5193,6 +5116,7 @@ public class GinparaManager : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator MarinShakeHand(System.Action callback){
+        /*
 		float totalTime = 0;
 		while(totalTime < 2f){
 			float time = Time.deltaTime;
@@ -5209,10 +5133,14 @@ public class GinparaManager : MonoBehaviour {
 		this.marinShakeHandAnchor.relativeOffset = new Vector2(0, 0);
 		this.marinShakeHandAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
+         */
+
+        yield return null;
 	}
 	
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator MarinBrown(System.Action callback){
+        /*
 		this.marinSBrownAnime.Play (null);
 		this.loseBubbleAnime.Play (null);
 		
@@ -5233,6 +5161,9 @@ public class GinparaManager : MonoBehaviour {
 		this.loseBubbleAnchor.transform.gameObject.SetActive (false);
 		this.marinBrownAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
+         */
+
+        yield return null;
 	}
 	
 	//----------------------------------------------------------------------------------------------------
@@ -5261,6 +5192,7 @@ public class GinparaManager : MonoBehaviour {
 	/// <param name="callback"></param>
 	/// <returns></returns>
 	private IEnumerator MarinPeaceStart(Action callback){
+        /*
         this.marinPeaceAnime.TotalTime = -1f;
         this.marinPeaceAnime.IsLoop = true;
 		this.marinPeaceAnime.Play (null);
@@ -5268,9 +5200,11 @@ public class GinparaManager : MonoBehaviour {
 		while(this.marinPeaceAnime.IsAnimating  ||  this.loseBubbleAnime.IsAnimating)
 			yield return null;
 		
-		this.marinPeaceAnchor.relativeOffset = new Vector2(0, 0);
+		//this.marinPeaceAnchor.relativeOffset = new Vector2(0, 0);
 		this.marinPeaceAnchor.transform.gameObject.SetActive (false);
+         */
 		if(callback != null) callback();
+        yield return null;
 	}
 
     /// <summary>

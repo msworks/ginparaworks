@@ -51,11 +51,11 @@ public class LightBody : MonoBehaviour {
         v = Mathf.Abs(v);
         v2 = Mathf.Abs(v2);
 
-        if(insideSprite) insideSprite.GetComponent<UISprite>().alpha = v;
+        if (insideSprite) insideSprite.GetComponent<UISprite>().alpha = v;
 
         if (!outerFlg)
         {
-            v2 = 0.0f;
+            //v2 = 0.0f;
         }
 
         if (outsideSprite) outsideSprite.GetComponent<UISprite>().alpha = v2;

@@ -1,6 +1,6 @@
 //----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -149,8 +149,6 @@ public class UIPanel : UIRect
 
 	[SerializeField] Vector2 mClipOffset = Vector2.zero;
 
-	float mCullTime = 0f;
-	float mUpdateTime = 0f;
 	int mMatrixFrame = -1;
 	int mAlphaFrameID = 0;
 	int mLayer = -1;
@@ -291,7 +289,11 @@ public class UIPanel : UIRect
 	/// Whether the camera is used to draw UI geometry.
 	/// </summary>
 
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 	public bool usedForUI { get { return (anchorCamera != null && mCam.isOrthoGraphic); } }
+#else
+	public bool usedForUI { get { return (anchorCamera != null && mCam.orthographic); } }
+#endif
 
 	/// <summary>
 	/// Directx9 pixel offset, used for drawing.
@@ -301,11 +303,23 @@ public class UIPanel : UIRect
 	{
 		get
 		{
-			if (mHalfPixelOffset && anchorCamera != null && mCam.isOrthoGraphic)
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
+			if (anchorCamera != null && mCam.isOrthoGraphic)
+#else
+			if (anchorCamera != null && mCam.orthographic)
+#endif
 			{
 				Vector2 size = GetWindowSize();
-				float mod = (1f / size.y) / mCam.orthographicSize;
-				return new Vector3(-mod, mod);
+				float pixelSize = (root != null) ? root.pixelSizeAdjustment : 1f;
+				float mod = (pixelSize / size.y) / mCam.orthographicSize;
+
+				bool x = mHalfPixelOffset;
+				bool y = mHalfPixelOffset;
+
+				if ((Mathf.RoundToInt(size.x) & 1) == 1) x = !x;
+				if ((Mathf.RoundToInt(size.y) & 1) == 1) y = !y;
+
+				return new Vector3(x ? -mod : 0f, y ? mod : 0f);
 			}
 			return Vector3.zero;
 		}
@@ -415,7 +429,6 @@ public class UIPanel : UIRect
 	{
 		mResized = true;
 		mMatrixFrame = -1;
-		mCullTime = (mCullTime == 0f) ? 0.001f : RealTime.time + 0.15f;
 
 		for (int i = 0, imax = list.Count; i < imax; ++i)
 		{
@@ -484,7 +497,6 @@ public class UIPanel : UIRect
 				Mathf.Abs(mClipRange.w - value.w) > 0.001f)
 			{
 				mResized = true;
-				mCullTime = (mCullTime == 0f) ? 0.001f : RealTime.time + 0.15f;
 				mClipRange = value;
 				mMatrixFrame = -1;
 
@@ -620,7 +632,7 @@ public class UIPanel : UIRect
 				mCorners[2] = new Vector3(x1, y1);
 				mCorners[3] = new Vector3(x1, y0);
 
-				if (anchorOffset && mCam == null || mCam.transform.parent != cachedTransform)
+				if (anchorOffset && (mCam == null || mCam.transform.parent != cachedTransform))
 				{
 					Vector3 off = cachedTransform.position;
 					for (int i = 0; i < 4; ++i)
@@ -892,8 +904,8 @@ public class UIPanel : UIRect
 			Application.platform == RuntimePlatform.WindowsEditor);
 
 		// Only DirectX 9 needs the half-pixel offset
-		if (mHalfPixelOffset) mHalfPixelOffset = (SystemInfo.graphicsShaderLevel < 40 &&
-		                                          SystemInfo.graphicsDeviceVersion.Contains("Direct3D"));
+		if (mHalfPixelOffset && SystemInfo.graphicsDeviceVersion.Contains("Direct3D"))
+			mHalfPixelOffset = (SystemInfo.graphicsShaderLevel < 40);
 	}
 
 	/// <summary>
@@ -945,11 +957,16 @@ public class UIPanel : UIRect
 
 	protected override void OnInit ()
 	{
+		if (list.Contains(this)) return;
 		base.OnInit();
 		FindParent();
 
 		// Apparently having a rigidbody helps
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 		if (rigidbody == null && mParentPanel == null)
+#else
+		if (GetComponent<Rigidbody>() == null && mParentPanel == null)
+#endif
 		{
 			UICamera uic = (anchorCamera != null) ? mCam.GetComponent<UICamera>() : null;
 
@@ -1215,8 +1232,6 @@ public class UIPanel : UIRect
 
 	void UpdateSelf ()
 	{
-		mUpdateTime = RealTime.time;
-
 		UpdateTransformMatrix();
 		UpdateLayers();
 		UpdateWidgets();
@@ -1420,9 +1435,12 @@ public class UIPanel : UIRect
 		}
 		else drawCallClipRange = Vector4.zero;
 
+		int w = Screen.width;
+		int h = Screen.height;
+
 		// Legacy functionality
-		if (drawCallClipRange.z == 0f) drawCallClipRange.z = Screen.width * 0.5f;
-		if (drawCallClipRange.w == 0f) drawCallClipRange.w = Screen.height * 0.5f;
+		if (drawCallClipRange.z == 0f) drawCallClipRange.z = w * 0.5f;
+		if (drawCallClipRange.w == 0f) drawCallClipRange.w = h * 0.5f;
 
 		// DirectX 9 half-pixel offset
 		if (halfPixelOffset)
@@ -1479,7 +1497,13 @@ public class UIPanel : UIRect
 		if (mLayer != cachedGameObject.layer)
 		{
 			mLayer = mGo.layer;
-			NGUITools.SetChildLayer(cachedTransform, mLayer);
+
+			for (int i = 0, imax = widgets.Count; i < imax; ++i)
+			{
+				UIWidget w = widgets[i];
+				if (w && w.parent == this) w.gameObject.layer = mLayer;
+			}
+
 			ResetAnchors();
 
 			for (int i = 0; i < drawCalls.Count; ++i)
@@ -1495,12 +1519,18 @@ public class UIPanel : UIRect
 
 	void UpdateWidgets()
 	{
-#if UNITY_EDITOR
-		bool forceVisible = cullWhileDragging ? false : (Application.isPlaying && mCullTime > mUpdateTime);
-#else
-		bool forceVisible = cullWhileDragging ? false : (mCullTime > mUpdateTime);
-#endif
 		bool changed = false;
+		bool forceVisible = false;
+		bool clipped = hasCumulativeClipping;
+
+		if (!cullWhileDragging)
+		{
+			for (int i = 0; i < UIScrollView.list.size; ++i)
+			{
+				UIScrollView sv = UIScrollView.list[i];
+				if (sv.panel == this && sv.isDragging) forceVisible = true;
+			}
+		}
 
 		if (mForced != forceVisible)
 		{
@@ -1508,9 +1538,8 @@ public class UIPanel : UIRect
 			mResized = true;
 		}
 
-		bool clipped = hasCumulativeClipping;
-
 		// Update all widgets
+		int frame = Time.frameCount;
 		for (int i = 0, imax = widgets.Count; i < imax; ++i)
 		{
 			UIWidget w = widgets[i];
@@ -1553,7 +1582,7 @@ public class UIPanel : UIRect
 					}
 				}
 #endif
-				int frame = Time.frameCount;
+				
 
 				// First update the widget's transform
 				if (w.UpdateTransform(frame) || mResized)
@@ -1567,18 +1596,13 @@ public class UIPanel : UIRect
 				if (w.UpdateGeometry(frame))
 				{
 					changed = true;
+					//Debug.Log("Geometry changed: " + w.name + " " + frame, w);
 
 					if (!mRebuild)
 					{
-						if (w.drawCall != null)
-						{
-							w.drawCall.isDirty = true;
-						}
-						else
-						{
-							// Find an existing draw call, if possible
-							FindDrawCall(w);
-						}
+						// Find an existing draw call, if possible
+						if (w.drawCall != null) w.drawCall.isDirty = true;
+						else FindDrawCall(w);
 					}
 				}
 			}
@@ -1689,7 +1713,7 @@ public class UIPanel : UIRect
 
 	
 
-	// <summary>
+	/// <summary>
 	/// Calculate the offset needed to be constrained within the panel's bounds.
 	/// </summary>
 
@@ -1790,6 +1814,7 @@ public class UIPanel : UIRect
 	{
 		UIPanel panel = NGUITools.FindInParents<UIPanel>(trans);
 		if (panel != null) return panel;
+		while (trans.parent != null) trans = trans.parent;
 		return createIfMissing ? NGUITools.CreateUI(trans, false, layer) : null;
 	}
 
@@ -1797,7 +1822,7 @@ public class UIPanel : UIRect
 	/// Get the size of the game window in pixels.
 	/// </summary>
 
-	Vector2 GetWindowSize ()
+	public Vector2 GetWindowSize ()
 	{
 		UIRoot rt = root;
 		Vector2 size = NGUITools.screenSize;
@@ -1845,7 +1870,11 @@ public class UIPanel : UIRect
 
 		Gizmos.matrix = t.localToWorldMatrix;
 
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 		if (isUsingThisPanel && !clip && mCam.isOrthoGraphic)
+#else
+		if (isUsingThisPanel && !clip && mCam.orthographic)
+#endif
 		{
 			UIRoot rt = root;
 

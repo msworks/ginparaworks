@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PictureManager : MonoBehaviour {
-	//====================================================================================================
-	// Field
-	//====================================================================================================
-	[SerializeField] private bool isTop = false;
+
+    [SerializeField] private bool isTop = false;
 	public List<Texture> picture0 = new List<Texture>();
 	public List<Texture> picture1 = new List<Texture>();
 	public List<Texture> picture2 = new List<Texture>();
@@ -19,23 +17,37 @@ public class PictureManager : MonoBehaviour {
 	public List<Texture> picture9 = new List<Texture>();
 	public List<Texture> picture10 = new List<Texture>();
 	public Texture[] pictureHit = new Texture[10];
-	public float animeIntervalTime = 0.25f;
-	private bool[] isAnime = new bool[11];
+	public float animeIntervalTime = 0.001f;
+
+    public int PictureNum { get { return this.pictureNum; } }
+    public int[] RecodePanelNum { get { return new int[3] { this.recodePanel[1].pictureNum, this.recodePanel[2].pictureNum, this.recodePanel[3].pictureNum }; } }
+
+	private bool[] isAnimationNow = new bool[11];
 	private float[] animeTimeElapsed = new float[11];
 	private int[] currentNum = new int[11];
 	private List<List<Texture>> pictures = new List<List<Texture>>();
 	private int pictureNum = 1;
 	private List<RecodePanel> recodePanel = new List<RecodePanel>();
 
-	//====================================================================================================
-	// Property
-	//====================================================================================================
-	public int PictureNum { get { return this.pictureNum; } }
-	public int[] RecodePanelNum { get { return new int[3]{ this.recodePanel[1].pictureNum, this.recodePanel[2].pictureNum, this.recodePanel[3].pictureNum }; } }
+    private float[] animeIntervalTimes = new float[] {
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+        0.02f,
+    };
 
-	//====================================================================================================
-	// Method
-	//====================================================================================================
 	void Awake(){
 		this.picture0.Add (this.picture0[0]);
 		this.picture1.Add (this.picture1[0]);
@@ -63,31 +75,33 @@ public class PictureManager : MonoBehaviour {
 	
 	//----------------------------------------------------------------------------------------------------
 	void Update(){
-		for(int i = 0; i < this.isAnime.Length; ++i){
-			if(this.isAnime[i]){
-				this.animeTimeElapsed[i] += Time.deltaTime;
-				if(this.animeTimeElapsed[i] > this.animeIntervalTime){
-					this.animeTimeElapsed[i] = 0;
-					this.currentNum[i] = (this.currentNum[i] == this.pictures[i].Count - 1) ? 0 : this.currentNum[i] + 1;
-					foreach(RecodePanel recode in this.recodePanel){
-						if(recode.pictureNum == i) recode.railPanel.MainTexture = this.pictures[i][this.currentNum[i]];
-					}
+		for(int i = 0; i < this.isAnimationNow.Length; ++i){
+
+            if (!this.isAnimationNow[i])
+            {
+                continue;
+            }
+
+			this.animeTimeElapsed[i] += Time.deltaTime;
+			if(this.animeTimeElapsed[i] > this.animeIntervalTimes[this.currentNum[i]]){
+				this.animeTimeElapsed[i] = 0;
+
+                if (this.currentNum[i] == this.pictures[i].Count - 1)
+                {
+                    this.currentNum[i] = 0;
+                }
+                else
+                {
+                    this.currentNum[i] ++;
+                }
+
+				foreach(RecodePanel recode in this.recodePanel){
+					if(recode.pictureNum == i) recode.railPanel.MainTexture = this.pictures[i][this.currentNum[i]];
 				}
 			}
 		}
 	}
 	
-	//----------------------------------------------------------------------------------------------------
-	public void SetPicture(int pictureNum, int patternNum){
-		if(pictureNum > this.pictures.Count  ||  patternNum > this.pictures[pictureNum].Count){
-			Debug.LogError("指定範囲がオーバー！");
-			return;
-		}
-
-		this.pictures[pictureNum][this.pictures[pictureNum].Count - 1] = this.pictures[pictureNum][patternNum];
-	}
-	
-	//----------------------------------------------------------------------------------------------------
 	public Texture GetTexture(RailPanel railPanel){
 		int index = 0;
 		if(!this.isTop){
@@ -129,7 +143,6 @@ public class PictureManager : MonoBehaviour {
 		}
 	}
 	
-	//----------------------------------------------------------------------------------------------------
 	public Dictionary<int, Texture> Initialize(int pictureNum, RailPanel[] panelList){
 		if(pictureNum > this.pictures.Count){
 			Debug.LogError("指定範囲がオーバー！【指定値："+pictureNum+"】");
@@ -197,7 +210,6 @@ public class PictureManager : MonoBehaviour {
 		return dic;
 	}
 	
-	//----------------------------------------------------------------------------------------------------
 	public int StopStartNum(int targetNum){
 		if(!this.isTop){
 			if(targetNum == 1)
@@ -220,19 +232,16 @@ public class PictureManager : MonoBehaviour {
 		}
 	}
 	
-	//----------------------------------------------------------------------------------------------------
 	public void StartAnime(int pictureNum){
-		this.isAnime[pictureNum] = true;
+		this.isAnimationNow[pictureNum] = true;
 		this.currentNum[pictureNum] = 0;
 		this.animeTimeElapsed[pictureNum] = 0;
 	}
 	
-	//----------------------------------------------------------------------------------------------------
 	public void StopAnime(int pictureNum){
-		this.isAnime[pictureNum] = false;
+		this.isAnimationNow[pictureNum] = false;
 	}
 	
-	//----------------------------------------------------------------------------------------------------
 	public void ChangeHitPicture(int pictureNum){
 		this.StopAnime(pictureNum);
 		foreach(RecodePanel recode in this.recodePanel){

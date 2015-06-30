@@ -8,7 +8,7 @@ public class Kokuti : MonoBehaviour {
 
     private static Kokuti _instance;
 
-    private UISprite flash;
+    private UITexture flash;
 
     public static Kokuti Instance
     {
@@ -21,7 +21,7 @@ public class Kokuti : MonoBehaviour {
     void Awake()
     {
         _instance = this;
-        flash = this.gameObject.transform.FindChild("TaiyoFlash").GetComponent<UISprite>();
+        flash = this.gameObject.transform.FindChild("TaiyoFlash").GetComponent<UITexture>();
     }
 
     public void KokutiActionA()

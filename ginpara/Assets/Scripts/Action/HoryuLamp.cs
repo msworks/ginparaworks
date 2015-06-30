@@ -27,7 +27,7 @@ public class HoryuLamp : FsmStateAction
         // Á“”
         Lamps.ToList().Skip(num.Value).ToList().ForEach(lamp =>
         {
-            lamp.GetComponent<UISprite>().alpha = 0.3f;
+            lamp.GetComponent<UISprite>().alpha = 0f;
         });
 
         Finish();

@@ -6,7 +6,7 @@ using System.Collections;
 /// </summary>
 public class WebButton : MonoBehaviour {
 
-    public UISprite lightButton;
+    public UITexture lightButton;
     public GameObject CloseButton;
 
     public WebViewObject webView;
