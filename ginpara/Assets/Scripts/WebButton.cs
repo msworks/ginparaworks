@@ -6,7 +6,7 @@ using System.Collections;
 /// </summary>
 public class WebButton : MonoBehaviour {
 
-    public UITexture lightButton;
+    public UISprite lightButton;
     public GameObject CloseButton;
 
     public WebViewObject webView;
@@ -14,17 +14,23 @@ public class WebButton : MonoBehaviour {
     void Start()
     {
         Debug.Log("Request Web View");
-        var url = "http://www.yahoo.co.jp/";
+        var url = "http://web.ee-gaming.net/game/menu1.html";
         var webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
         webViewObject.Init((msg) =>
         {
             if (msg == "clicked")
             {
-                webViewObject.SetVisibility(false);
+                // webViewObject.SetVisibility(false);
+            }
+
+            if (msg.Contains("submit"))
+            {
+                Application.LoadLevel("Main");
             }
         });
+
         webViewObject.LoadURL(url);
-        webViewObject.SetMargins(50, 100, 50, 50);
+        webViewObject.SetMargins(0, 100, 100, 50);
         webViewObject.EvaluateJS(
             "window.addEventListener('load', function() {" +
             "   window.addEventListener('click', function() {" +
@@ -41,9 +47,16 @@ public class WebButton : MonoBehaviour {
     /// </summary>
     public void OnClick()
     {
+        // アプリをポーズ状態にする
+        //GameManager.Instance.PauseState = GameManager.PAUSE_STATE.PAUSE;
+
         CloseButton.SetActive(true);
         StartCoroutine(light());
-        webView.SetVisibility(true);
+
+        if (webView != null)
+        {
+            webView.SetVisibility(true);
+        }
     }
 
     IEnumerator light()

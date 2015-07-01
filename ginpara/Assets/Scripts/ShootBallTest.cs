@@ -20,7 +20,7 @@ public class ShootBallTest : MonoBehaviour {
     private float yureMax;
 
     // テスト用
-    Vector2 ShootPower = new Vector2(-7.5f, 7.5f);
+    Vector2 ShootPower = new Vector2(7.5f, 7.5f);
 
 	// 初期化
 	void Start () {
@@ -38,7 +38,7 @@ public class ShootBallTest : MonoBehaviour {
         // パワーを変換
         power = uchi.Power_MIN + power * (uchi.Power_MAX-uchi.Power_MIN);
 
-        ShootPower = new Vector2(-power, power);
+        ShootPower = new Vector2(power, power);
 
         yureMin = 1 - uchi.Yure;
         yureMax = 1 + uchi.Yure;
