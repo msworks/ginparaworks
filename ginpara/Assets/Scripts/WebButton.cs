@@ -11,10 +11,12 @@ public class WebButton : MonoBehaviour {
 
     public WebViewObject webView;
 
-    void Start()
+    /// <summary>
+    /// ページをロードする
+    /// </summary>
+    /// <param name="url"></param>
+    void Load(string url)
     {
-        Debug.Log("Request Web View");
-        var url = "http://web.ee-gaming.net/game/menu1.html";
         var webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
         webViewObject.Init((msg) =>
         {
@@ -39,7 +41,20 @@ public class WebButton : MonoBehaviour {
             "}, false);");
 
         webView = webViewObject;
+    }
 
+    void Start()
+    {
+        var url = "http://www.google.co.jp/";
+        Load(url);
+
+        CloseButton.SetActive(true);
+        StartCoroutine(light());
+
+        if (webView != null)
+        {
+            webView.SetVisibility(true);
+        }
     }
 
     /// <summary>
@@ -49,6 +64,9 @@ public class WebButton : MonoBehaviour {
     {
         // アプリをポーズ状態にする
         //GameManager.Instance.PauseState = GameManager.PAUSE_STATE.PAUSE;
+
+        var url = "http://web.ee-gaming.net/game/menu1.html";
+        Load(url);
 
         CloseButton.SetActive(true);
         StartCoroutine(light());

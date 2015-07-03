@@ -4445,13 +4445,15 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "104":
+            Bubble.Instance.Rise();
 			this.bubbleNoticeAnchor.transform.gameObject.SetActive (true);
 			StartCoroutine (this.BubbleNotice (callback));
 			break;
 			
 		case "105":
+            Gyogun.Instance.Flow();
 			this.shoalNoticeAnchor.transform.gameObject.SetActive (true);
-			StartCoroutine (this.Gyogun (callback));
+			StartCoroutine (this.GyogunInDisplay (callback));
 			break;
 			
         // さんご礁左IN
@@ -4865,7 +4867,7 @@ public class GinparaManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="callback"></param>
 	/// <returns></returns>
-	private IEnumerator Gyogun(System.Action callback){
+	private IEnumerator GyogunInDisplay(System.Action callback){
 		float totalTime = 0;
 		while(totalTime < 2f){
 			float time = Time.deltaTime;
