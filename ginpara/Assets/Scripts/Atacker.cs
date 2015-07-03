@@ -22,6 +22,8 @@ public class Atacker : MonoBehaviour {
 
             // アタッカーに入った→権利獲得
             MainLogic.GetComponent<PlayMakerFSM>().SendEvent(msg);
+
+            GetComponent<PlayMakerFSM>().SendEvent("入賞");
         }
     }
 }

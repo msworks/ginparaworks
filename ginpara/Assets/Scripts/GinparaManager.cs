@@ -108,11 +108,14 @@ public class GinparaManager : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	void Update(){
 		this.deltaTime = Time.deltaTime;
+
+        /*
 		if(this.isBackgroundLoop){
 			float value = this.backgroundAnchor.relativeOffset.x + (this.deltaTime / 22.5f);
 			if(value > 1) value -= 2;
 			this.backgroundAnchor.relativeOffset = new Vector2(value, this.backgroundAnchor.relativeOffset.y);
 		}
+         */
 #if UNITY_EDITOR
         if (Input.GetKeyUp(KeyCode.Backspace))
         {
@@ -4427,23 +4430,17 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "101":
-			this.isBackgroundLoop = true;
-			this.background.depth = -1;
-			this.background.mainTexture = this.backgroundTexture[0];
+            Background.Instance.ChangeTexture(this.backgroundTexture[0]);
 			if(callback != null) callback();
 			break;
 			
 		case "102":
-			this.isBackgroundLoop = true;
-			this.background.depth = -1;
-			this.background.mainTexture = this.backgroundTexture[1];
+            Background.Instance.ChangeTexture(this.backgroundTexture[1]);
 			if(callback != null) callback();
 			break;
 			
 		case "103":
-			this.isBackgroundLoop = true;
-			this.background.depth = -1;
-			this.background.mainTexture = this.backgroundTexture[2];
+            Background.Instance.ChangeTexture(this.backgroundTexture[2]);
 			if(callback != null) callback();
 			break;
 			
@@ -4454,7 +4451,7 @@ public class GinparaManager : MonoBehaviour {
 			
 		case "105":
 			this.shoalNoticeAnchor.transform.gameObject.SetActive (true);
-			StartCoroutine (this.ShoalNotice (callback));
+			StartCoroutine (this.Gyogun (callback));
 			break;
 			
         // さんご礁左IN
@@ -4516,11 +4513,13 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "201":
+            Background.Instance.up();
 			StartCoroutine (this.DisplayUpper (callback));
 			break;
 
         // リールが下がった状態から元に戻す
         case "201-2":
+            Background.Instance.down();
 			StartCoroutine (this.DisplayDowner (callback));
 			break;
 
@@ -4529,11 +4528,13 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "203":
+            MarinLose.Instance.Display();
 			this.loseBubbleAnchor.transform.gameObject.SetActive (true);
 			StartCoroutine(this.MarinBrown(callback));
 			break;
 		
         case "203-2":
+            MarinLose.Instance.Hide();
 			this.loseBubbleAnchor.transform.gameObject.SetActive (false);
 			if(callback!=null){callback();};
 			break;
@@ -4551,6 +4552,7 @@ public class GinparaManager : MonoBehaviour {
 		// マリンピース開始
 		case "301":
 			this.rollBubble.transform.gameObject.SetActive (true);
+            BataashiMarin.Instance.Display();
 			StartCoroutine(this.MarinPeaceStart(callback));
 			StartCoroutine(this.RollBubbleStart(callback));
 			break;
@@ -4558,6 +4560,7 @@ public class GinparaManager : MonoBehaviour {
         // マリンピース終了
         case "301-2":
 			this.rollBubble.transform.gameObject.SetActive (false);
+            BataashiMarin.Instance.Hide();
 			this.MarinPeaceStop(callback);
 			this.RollBubbleStop(callback);
             break;
@@ -4570,171 +4573,59 @@ public class GinparaManager : MonoBehaviour {
 
         // 図柄表示消す
         case "401-0":
-   			this.bonusPicture.transform.gameObject.SetActive(false);
-			this.bonusPictureNum.transform.gameObject.SetActive(false);
-			this.bonusPictureBase.transform.gameObject.SetActive(false);
+            AtariZugara.Instance.Hide();
 			if(callback != null) callback();
             break;
 
 	    // 図柄１
 		case "401-1":
-			this.bonusPicture.TextureList.Clear ();
-			this.bonusPicture.StopAllCoroutines();
-			for(int i = 0; i < this.picture1.Count; ++i){
-				this.bonusPicture.TextureList.Add(this.picture1[i]);
-			}
-			this.bonusPictureNum.mainTexture = this.numTexture[0];
-			
-			this.bonusPicture.transform.gameObject.SetActive(true);
-			this.bonusPictureNum.transform.gameObject.SetActive(true);
-			this.bonusPictureBase.transform.gameObject.SetActive(true);
-			this.bonusPicture.Play (null);
-			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+            AtariZugara.Instance.Display(AtariZugara.Kind.z1);
 			if(callback != null) callback();
 			break;
 			
 		case "401-2":
-			this.bonusPicture.TextureList.Clear ();
-			this.bonusPicture.StopAllCoroutines();
-			for(int i = 0; i < this.picture1.Count; ++i){
-				this.bonusPicture.TextureList.Add(this.picture2[i]);
-			}
-			this.bonusPictureNum.mainTexture = this.numTexture[0];
-			
-			this.bonusPicture.transform.gameObject.SetActive(true);
-			this.bonusPictureNum.transform.gameObject.SetActive(true);
-			this.bonusPictureBase.transform.gameObject.SetActive(true);
-			this.bonusPicture.Play (null);
-			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+            AtariZugara.Instance.Display(AtariZugara.Kind.z2);
 			if(callback != null) callback();
 			break;
 			
 		case "401-3":
-			this.bonusPicture.TextureList.Clear ();
-			this.bonusPicture.StopAllCoroutines();
-			for(int i = 0; i < this.picture1.Count; ++i){
-				this.bonusPicture.TextureList.Add(this.picture3[i]);
-			}
-			this.bonusPictureNum.mainTexture = this.numTexture[0];
-			
-			this.bonusPicture.transform.gameObject.SetActive(true);
-			this.bonusPictureNum.transform.gameObject.SetActive(true);
-			this.bonusPictureBase.transform.gameObject.SetActive(true);
-			this.bonusPicture.Play (null);
-			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+            AtariZugara.Instance.Display(AtariZugara.Kind.z3);
 			if(callback != null) callback();
 			break;
 			
 		case "401-4":
-			this.bonusPicture.TextureList.Clear ();
-			this.bonusPicture.StopAllCoroutines();
-			for(int i = 0; i < this.picture1.Count; ++i){
-				this.bonusPicture.TextureList.Add(this.picture4[i]);
-			}
-			this.bonusPictureNum.mainTexture = this.numTexture[0];
-			
-			this.bonusPicture.transform.gameObject.SetActive(true);
-			this.bonusPictureNum.transform.gameObject.SetActive(true);
-			this.bonusPictureBase.transform.gameObject.SetActive(true);
-			this.bonusPicture.Play (null);
-			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+            AtariZugara.Instance.Display(AtariZugara.Kind.z4);
 			if(callback != null) callback();
 			break;
 			
 		case "401-5":
-			this.bonusPicture.TextureList.Clear ();
-			this.bonusPicture.StopAllCoroutines();
-			for(int i = 0; i < this.picture1.Count; ++i){
-				this.bonusPicture.TextureList.Add(this.picture5[i]);
-			}
-			this.bonusPictureNum.mainTexture = this.numTexture[0];
-			
-			this.bonusPicture.transform.gameObject.SetActive(true);
-			this.bonusPictureNum.transform.gameObject.SetActive(true);
-			this.bonusPictureBase.transform.gameObject.SetActive(true);
-			this.bonusPicture.Play (null);
-			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+            AtariZugara.Instance.Display(AtariZugara.Kind.z5);
 			if(callback != null) callback();
 			break;
 			
 		case "401-6":
-			this.bonusPicture.TextureList.Clear ();
-			this.bonusPicture.StopAllCoroutines();
-			for(int i = 0; i < this.picture1.Count; ++i){
-				this.bonusPicture.TextureList.Add(this.picture6[i]);
-			}
-			this.bonusPictureNum.mainTexture = this.numTexture[0];
-			
-			this.bonusPicture.transform.gameObject.SetActive(true);
-			this.bonusPictureNum.transform.gameObject.SetActive(true);
-			this.bonusPictureBase.transform.gameObject.SetActive(true);
-			this.bonusPicture.Play (null);
-			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+            AtariZugara.Instance.Display(AtariZugara.Kind.z6);
 			if(callback != null) callback();
 			break;
 			
 		case "401-7":
-			this.bonusPicture.TextureList.Clear ();
-			this.bonusPicture.StopAllCoroutines();
-			for(int i = 0; i < this.picture1.Count; ++i){
-				this.bonusPicture.TextureList.Add(this.picture7[i]);
-			}
-			this.bonusPictureNum.mainTexture = this.numTexture[0];
-			
-			this.bonusPicture.transform.gameObject.SetActive(true);
-			this.bonusPictureNum.transform.gameObject.SetActive(true);
-			this.bonusPictureBase.transform.gameObject.SetActive(true);
-			this.bonusPicture.Play (null);
-			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+            AtariZugara.Instance.Display(AtariZugara.Kind.z7);
 			if(callback != null) callback();
 			break;
 			
 		case "401-8":
-			this.bonusPicture.TextureList.Clear ();
-			this.bonusPicture.StopAllCoroutines();
-			for(int i = 0; i < this.picture1.Count; ++i){
-				this.bonusPicture.TextureList.Add(this.picture8[i]);
-			}
-			this.bonusPictureNum.mainTexture = this.numTexture[0];
-			
-			this.bonusPicture.transform.gameObject.SetActive(true);
-			this.bonusPictureNum.transform.gameObject.SetActive(true);
-			this.bonusPictureBase.transform.gameObject.SetActive(true);
-			this.bonusPicture.Play (null);
-			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+            AtariZugara.Instance.Display(AtariZugara.Kind.z8);
 			if(callback != null) callback();
 			break;
 			
 		case "401-9":
-			this.bonusPicture.TextureList.Clear ();
-			this.bonusPicture.StopAllCoroutines();
-			for(int i = 0; i < this.picture1.Count; ++i){
-				this.bonusPicture.TextureList.Add(this.picture9[i]);
-			}
-			this.bonusPictureNum.mainTexture = this.numTexture[0];
-			
-			this.bonusPicture.transform.gameObject.SetActive(true);
-			this.bonusPictureNum.transform.gameObject.SetActive(true);
-			this.bonusPictureBase.transform.gameObject.SetActive(true);
-			this.bonusPicture.Play (null);
-			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+            AtariZugara.Instance.Display(AtariZugara.Kind.z9);
 			if(callback != null) callback();
 			break;
 
-        // 図柄１０
+        // 当たり図柄１０表示
 		case "401-10":
-			this.bonusPicture.TextureList.Clear ();
-			this.bonusPicture.StopAllCoroutines();
-			for(int i = 0; i < this.picture1.Count; ++i){
-				this.bonusPicture.TextureList.Add(this.picture10[i]);
-			}
-			this.bonusPictureNum.mainTexture = this.numTexture[0];
-			
-			this.bonusPicture.transform.gameObject.SetActive(true);
-			this.bonusPictureNum.transform.gameObject.SetActive(true);
-			this.bonusPictureBase.transform.gameObject.SetActive(true);
-			this.bonusPicture.Play (null);
-			Debug.Log ("大当たりUIの準備が完了.ラウンド数を表示するにはorderCode「402-」を実行.");
+            AtariZugara.Instance.Display(AtariZugara.Kind.z10);
 			if(callback != null) callback();
 			break;
 
@@ -4968,9 +4859,13 @@ public class GinparaManager : MonoBehaviour {
 		this.bubbleNoticeAnchor.transform.gameObject.SetActive (false);
 		if(callback != null) callback();
 	}
-	
-	//----------------------------------------------------------------------------------------------------
-	private IEnumerator ShoalNotice(System.Action callback){
+
+	/// <summary>
+	/// 魚群
+	/// </summary>
+	/// <param name="callback"></param>
+	/// <returns></returns>
+	private IEnumerator Gyogun(System.Action callback){
 		float totalTime = 0;
 		while(totalTime < 2f){
 			float time = Time.deltaTime;
@@ -5067,26 +4962,11 @@ public class GinparaManager : MonoBehaviour {
         yield return null;
 
     }
-	
-	//----------------------------------------------------------------------------------------------------
-	private IEnumerator MarinNoticeDownOUT(System.Action callback){
 
-        yield return null;
-
-		if(callback != null) callback();
-	}
-	
-	//----------------------------------------------------------------------------------------------------
-	private IEnumerator MarinNoticeLose(System.Action callback){
-
-        yield return null;
-        if (callback != null) callback();
-	}
-	
 	//----------------------------------------------------------------------------------------------------
 	private IEnumerator DisplayUpper(System.Action callback){
 		float totalTime = 0;
-		while(totalTime < 5f){
+		while(totalTime < 6f){
 			float time = Time.deltaTime;
 			totalTime += time;
 			float value = this.railAreaAnchor.relativeOffset.y - (this.deltaTime / 5f);
@@ -5102,7 +4982,7 @@ public class GinparaManager : MonoBehaviour {
     private IEnumerator DisplayDowner(System.Action callback)
     {
         float totalTime = 0;
-        while (totalTime < 5f)
+        while (totalTime < 6f)
         {
             float time = Time.deltaTime;
             totalTime += time;

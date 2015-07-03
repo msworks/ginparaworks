@@ -30,22 +30,22 @@ public class PictureManager : MonoBehaviour {
 	private List<RecodePanel> recodePanel = new List<RecodePanel>();
 
     private float[] animeIntervalTimes = new float[] {
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
-        0.02f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
+        0.06f,
     };
 
 	void Awake(){
@@ -83,6 +83,7 @@ public class PictureManager : MonoBehaviour {
             }
 
 			this.animeTimeElapsed[i] += Time.deltaTime;
+
 			if(this.animeTimeElapsed[i] > this.animeIntervalTimes[this.currentNum[i]]){
 				this.animeTimeElapsed[i] = 0;
 
@@ -96,7 +97,14 @@ public class PictureManager : MonoBehaviour {
                 }
 
 				foreach(RecodePanel recode in this.recodePanel){
-					if(recode.pictureNum == i) recode.railPanel.MainTexture = this.pictures[i][this.currentNum[i]];
+                    if (recode.pictureNum == i)
+                    {
+                        if (this.pictures[i][this.currentNum[i]] != null)
+                        {
+                            recode.railPanel.MainTexture = this.pictures[i][this.currentNum[i]];
+                        }
+                        //recode.railPanel.MainTexture = this.pictures[1][this.currentNum[1]];
+                    }
 				}
 			}
 		}

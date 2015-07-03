@@ -38,7 +38,8 @@ public class Ball : MonoBehaviour {
         if (col.gameObject.tag == "Ball")
         {
             var delta = ( col.gameObject.transform.position - this.gameObject.transform.position ).normalized;
-            this.gameObject.rigidbody2D.AddForce(delta/30);
+            GetComponent<Rigidbody2D>().AddForce(delta / 30);
+            //this.gameObject.rigidbody2D.AddForce(delta/30);
         }
     }
 
@@ -48,7 +49,8 @@ public class Ball : MonoBehaviour {
         if (col.gameObject.tag == "Ball")
         {
             var delta = (col.gameObject.transform.position - this.gameObject.transform.position).normalized;
-            this.gameObject.rigidbody2D.AddForce(delta / 30);
+            GetComponent<Rigidbody2D>().AddForce(delta / 30);
+            //this.gameObject.rigidbody2D.AddForce(delta / 30);
         }
     }
 }

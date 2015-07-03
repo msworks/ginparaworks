@@ -32,3 +32,30 @@ public class NGUISetSpriteName : FsmStateAction
         Finish();
     }
 }
+
+[ActionCategory("Ginpara")]
+public class NGUIHideAlpha : FsmStateAction
+{
+    public GameObject Sprite;
+
+    // Code that runs on entering the state.
+    public override void OnEnter()
+    {
+        Sprite.GetComponent<UISprite>().alpha = 0.0f;
+        Finish();
+    }
+}
+
+[ActionCategory("Ginpara")]
+public class NGUIDisplayAlpha : FsmStateAction
+{
+    public GameObject Sprite;
+
+    // Code that runs on entering the state.
+    public override void OnEnter()
+    {
+        Sprite.GetComponent<UISprite>().alpha = 1.0f;
+        Finish();
+    }
+}
+

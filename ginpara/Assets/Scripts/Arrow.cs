@@ -17,8 +17,9 @@ public class Arrow : MonoBehaviour {
     static Arrow _instance;
     static public Arrow Instance { get { return _instance; } }
 
-    ArrowState state;
+    ArrowState state = ArrowState.Hide;
     UITexture texture;
+    Vector3 originalPosition;
 
     // インスペクタから設定
     public Texture LeftTexture;
@@ -29,6 +30,7 @@ public class Arrow : MonoBehaviour {
     {
         public float Alpha;
         public Texture texture;
+        public Vector3 moveTo;
     }
 
     public enum ArrowState
@@ -43,13 +45,6 @@ public class Arrow : MonoBehaviour {
     {
         set
         {
-            var hash = new Dictionary<ArrowState, StateMapElement>(){
-                { ArrowState.Hide, new StateMapElement(){ Alpha=0.0f, texture=LeftTexture } },
-                { ArrowState.Left, new StateMapElement(){ Alpha=1.0f, texture=LeftTexture } },
-                { ArrowState.Right, new StateMapElement(){ Alpha=1.0f, texture=RightTexture } },
-                { ArrowState.Down, new StateMapElement(){ Alpha=1.0f, texture=DownTexture } },
-            };
-
             var element = hash[value];
 
             if (element == null)
@@ -59,6 +54,9 @@ public class Arrow : MonoBehaviour {
 
             texture.alpha = element.Alpha;
             texture.mainTexture = element.texture;
+            texture.gameObject.transform.position = originalPosition;
+
+            state = value;
         }
     }
 
@@ -73,11 +71,41 @@ public class Arrow : MonoBehaviour {
         this.State = ArrowState.Hide;
     }
 
-    void Start () {
+    Dictionary<ArrowState, StateMapElement> hash;
+    Hashtable origin;
+
+    void Start ()
+    {
         _instance = this;
         texture = this.GetComponent<UITexture>();
+        originalPosition = this.transform.position;
+
+        hash = new Dictionary<ArrowState, StateMapElement>(){
+            { ArrowState.Hide, new StateMapElement(){ Alpha=0.0f, texture=LeftTexture, moveTo = Vector3.zero } },
+            { ArrowState.Left, new StateMapElement(){ Alpha=1.0f, texture=LeftTexture, moveTo = Vector3.left } },
+            { ArrowState.Right, new StateMapElement(){ Alpha=1.0f, texture=RightTexture, moveTo = Vector3.right } },
+            { ArrowState.Down, new StateMapElement(){ Alpha=1.0f, texture=DownTexture, moveTo = Vector3.down } },
+        };
+
         this.State = ArrowState.Hide;
 	}
+
+    float time;
+    float hz = 0.5f;
+    float length = 0.03f;
+
+    void Update()
+    {
+        time += Time.deltaTime;
+
+        var delta = length * Mathf.Sin(Mathf.PI * time / hz);
+        gameObject.transform.position = originalPosition + hash[state].moveTo * delta;
+
+        if (time > hz)
+        {
+            time = 0;
+        }
+    }
 
     [ActionCategory("Ginpara")]
     public class Down : FsmStateAction

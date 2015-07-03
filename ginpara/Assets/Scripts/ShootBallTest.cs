@@ -49,7 +49,8 @@ public class ShootBallTest : MonoBehaviour {
 
         var ball = NGUITools.AddChild(BodyPath, BallPrefab);
         ball.transform.position = ShootPosition.transform.position;
-        ball.rigidbody2D.velocity = ShootPower * rndp;
+        ball.GetComponent<Rigidbody2D>().velocity = ShootPower * rndp;
+        //ball.rigidbody2D.velocity = ShootPower * rndp;
 
         ball.GetComponent<UISprite>().depth = 5;
     }
