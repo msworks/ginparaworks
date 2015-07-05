@@ -78,13 +78,11 @@ public class TextureAnimation : MonoBehaviour {
 
 			if(timeElapsed - recodeTime > this.intervalTime){
 				recodeTime = timeElapsed;
-                /*
 				if(this.textureList.Count != this.currentNum  &&  this.textureList[this.currentNum] != null) this.uiTexture.mainTexture = this.textureList[this.currentNum];
 				if((this.textureList.Count - 1) > this.currentNum)
 					++this.currentNum;
 				else if(this.isLoop)
 					this.currentNum = 0;
-                 */
 			}
 			timeElapsed += Time.deltaTime;
 			yield return null;
