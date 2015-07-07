@@ -489,13 +489,13 @@ public class MainLogic : MonoBehaviour {
                     }
                 }
 
-                Debug.Log("ハズレリーチ：" + rp.Name);
-                Debug.Log("リーチライン：" + rl.ReachLine.ToString());
+                //Debug.Log("ハズレリーチ：" + rp.Name);
+                //Debug.Log("リーチライン：" + rl.ReachLine.ToString());
             }
             else
             {
                 // バラケ目
-                Debug.Log("ハズレ");
+                //Debug.Log("ハズレ");
                 rp.No = -1; // バラケ目時はリーチパターンNoをー１とする
                 rl.ReachLine = -1;
                 rp.Name = "ハズレ";
@@ -521,7 +521,7 @@ public class MainLogic : MonoBehaviour {
     /// <returns></returns>
     int GetTokuzu(String tokuzu)
     {
-        Debug.Log("TOKUZU" + tokuzu);
+        //Debug.Log("TOKUZU" + tokuzu);
 
         var ten = tokuzu.Substring(0, 2);
         if (ten.Equals("10")) return 10;

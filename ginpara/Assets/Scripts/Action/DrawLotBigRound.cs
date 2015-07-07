@@ -69,9 +69,9 @@ namespace Ginpara
                 ForceSaishidou.Value
             );
 
-            Debug.Log("リーチライン:" + result.reachLine);
-            Debug.Log("リーチパターン:" + result.reachPattern);
-            Debug.Log("リーチパターン名:" + result.reachPatternName);
+            //Debug.Log("リーチライン:" + result.reachLine);
+            //Debug.Log("リーチパターン:" + result.reachPattern);
+            //Debug.Log("リーチパターン名:" + result.reachPatternName);
 
             // 演出完了コールバック
             Action callback = () =>

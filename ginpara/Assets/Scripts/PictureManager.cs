@@ -4,20 +4,8 @@ using System.Collections.Generic;
 
 public class PictureManager : MonoBehaviour {
 
-    [SerializeField] private bool isTop = false;
-	public List<Texture> picture0 = new List<Texture>();
-	public List<Texture> picture1 = new List<Texture>();
-	public List<Texture> picture2 = new List<Texture>();
-	public List<Texture> picture3 = new List<Texture>();
-	public List<Texture> picture4 = new List<Texture>();
-	public List<Texture> picture5 = new List<Texture>();
-	public List<Texture> picture6 = new List<Texture>();
-	public List<Texture> picture7 = new List<Texture>();
-	public List<Texture> picture8 = new List<Texture>();
-	public List<Texture> picture9 = new List<Texture>();
-	public List<Texture> picture10 = new List<Texture>();
-	public Texture[] pictureHit = new Texture[10];
-	public float animeIntervalTime = 0.001f;
+    [SerializeField]
+    private bool isTop = false;
 
     public int PictureNum { get { return this.pictureNum; } }
     public int[] RecodePanelNum { get { return new int[3] { this.recodePanel[1].pictureNum, this.recodePanel[2].pictureNum, this.recodePanel[3].pictureNum }; } }
@@ -25,7 +13,10 @@ public class PictureManager : MonoBehaviour {
 	private bool[] isAnimationNow = new bool[11];
 	private float[] animeTimeElapsed = new float[11];
 	private int[] currentNum = new int[11];
-	private List<List<Texture>> pictures = new List<List<Texture>>();
+
+    private List<List<string>> spriteNameListList = new List<List<string>>();
+    private List<string> hitSpriteNameList = new List<string>();
+
 	private int pictureNum = 1;
 	private List<RecodePanel> recodePanel = new List<RecodePanel>();
 
@@ -49,28 +40,32 @@ public class PictureManager : MonoBehaviour {
     };
 
 	void Awake(){
-		this.picture0.Add (this.picture0[0]);
-		this.picture1.Add (this.picture1[0]);
-		this.picture2.Add (this.picture2[0]);
-		this.picture3.Add (this.picture3[0]);
-		this.picture4.Add (this.picture4[0]);
-		this.picture5.Add (this.picture5[0]);
-		this.picture6.Add (this.picture6[0]);
-		this.picture7.Add (this.picture7[0]);
-		this.picture8.Add (this.picture8[0]);
-		this.picture9.Add (this.picture9[0]);
-		this.picture10.Add (this.picture10[0]);
-		this.pictures.Add (this.picture0);
-		this.pictures.Add (this.picture1);
-		this.pictures.Add (this.picture2);
-		this.pictures.Add (this.picture3);
-		this.pictures.Add (this.picture4);
-		this.pictures.Add (this.picture5);
-		this.pictures.Add (this.picture6);
-		this.pictures.Add (this.picture7);
-		this.pictures.Add (this.picture8);
-		this.pictures.Add (this.picture9);
-		this.pictures.Add (this.picture10);
+        this.spriteNameListList = new List<List<string>>(){
+            new List<string>(){ "b_a","b_a","b_a","b_a","b_a","b_a","b_b","b_b","b_b","b_b","b_b","b_b", },
+            new List<string>(){ "1_a","1_b","1_c","1_d","1_e","1_f","1_g","1_f","1_e","1_d","1_c","1_b", },
+            new List<string>(){ "2_a","2_b","2_c","2_d","2_e","2_f","2_g","2_f","2_e","2_d","2_c","2_b", },
+            new List<string>(){ "3_a","3_b","3_c","3_d","3_e","3_f","3_g","3_f","3_e","3_d","3_c","3_b", },
+            new List<string>(){ "4_a","4_b","4_c","4_d","4_e","4_f","4_g","4_f","4_e","4_d","4_c","4_b", },
+            new List<string>(){ "5_a","5_b","5_c","5_d","5_e","5_f","5_g","5_f","5_e","5_d","5_c","5_b", },
+            new List<string>(){ "6_a","6_b","6_c","6_d","6_e","6_f","6_g","6_f","6_e","6_d","6_c","6_b", },
+            new List<string>(){ "7_a","7_b","7_c","7_d","7_e","7_f","7_g","7_f","7_e","7_d","7_c","7_b", },
+            new List<string>(){ "8_a","8_b","8_c","8_d","8_e","8_f","8_g","8_f","8_e","8_d","8_c","8_b", },
+            new List<string>(){ "9_a","9_b","9_c","9_d","9_e","9_f","9_g","9_f","9_e","9_d","9_c","9_b", },
+            new List<string>(){ "10_a","10_b","10_c","10_d","10_e","10_f","10_g","10_f","10_e","10_d","10_c","10_b", },
+        };
+
+        this.hitSpriteNameList = new List<string>(){
+            "1_wow",
+            "2_wow",
+            "3_wow",
+            "4_wow",
+            "5_wow",
+            "6_wow",
+            "7_wow",
+            "8_wow",
+            "9_wow",
+            "10_wow",
+        };
 	}
 	
 	//----------------------------------------------------------------------------------------------------
@@ -87,7 +82,7 @@ public class PictureManager : MonoBehaviour {
 			if(this.animeTimeElapsed[i] > this.animeIntervalTimes[this.currentNum[i]]){
 				this.animeTimeElapsed[i] = 0;
 
-                if (this.currentNum[i] == this.pictures[i].Count - 1)
+                if (this.currentNum[i] == this.spriteNameListList[i].Count - 1)
                 {
                     this.currentNum[i] = 0;
                 }
@@ -99,9 +94,9 @@ public class PictureManager : MonoBehaviour {
 				foreach(RecodePanel recode in this.recodePanel){
                     if (recode.pictureNum == i)
                     {
-                        if (this.pictures[i][this.currentNum[i]] != null)
+                        if (this.spriteNameListList[i][this.currentNum[i]] != null)
                         {
-                            recode.railPanel.MainTexture = this.pictures[i][this.currentNum[i]];
+                            recode.railPanel.spriteName = this.spriteNameListList[i][this.currentNum[i]];
                         }
                         //recode.railPanel.MainTexture = this.pictures[1][this.currentNum[1]];
                     }
@@ -110,7 +105,7 @@ public class PictureManager : MonoBehaviour {
 		}
 	}
 	
-	public Texture GetTexture(RailPanel railPanel){
+	public string GetSpriteName(RailPanel railPanel){
 		int index = 0;
 		if(!this.isTop){
 			if(this.pictureNum == -10)
@@ -143,23 +138,31 @@ public class PictureManager : MonoBehaviour {
 		if(index > 0){
 			this.recodePanel.Add(new RecodePanel(index, railPanel));
 			if(this.recodePanel.Count > 6) this.recodePanel.RemoveAt(0);
-			return this.pictures[index][this.pictures[index].Count - 1];
+            return this.spriteNameListList[index][this.spriteNameListList[index].Count - 1];
 		} else {
 			this.recodePanel.Add(new RecodePanel(0, railPanel));
 			if(this.recodePanel.Count > 6) this.recodePanel.RemoveAt(0);
-			return this.pictures[0][this.pictures[0].Count - 1];
+            return this.spriteNameListList[0][this.spriteNameListList[0].Count - 1];
 		}
 	}
 	
-	public Dictionary<int, Texture> Initialize(int pictureNum, RailPanel[] panelList){
-		if(pictureNum > this.pictures.Count){
+    /// <summary>
+    /// initializeでDictionaryを返却すべきではない。
+    /// initializeは初期化をすべき。カテゴリーエラー。
+    /// </summary>
+    /// <param name="pictureNum"></param>
+    /// <param name="panelList"></param>
+    /// <returns></returns>
+	public Dictionary<int, string> Initialize(int pictureNum, RailPanel[] panelList)
+    {
+		if(pictureNum > this.spriteNameListList.Count){
 			Debug.LogError("指定範囲がオーバー！【指定値："+pictureNum+"】");
 			return null;
 		}
 
-		this.pictureNum = pictureNum;
+        var dic = new Dictionary<int, string>();
 
-		Dictionary<int, Texture> dic = new Dictionary<int, Texture>();
+		this.pictureNum = pictureNum;
 		int index = this.pictureNum;
 
 		this.recodePanel.Clear ();
@@ -177,19 +180,25 @@ public class PictureManager : MonoBehaviour {
 		}
 		if(index > 0){
 			this.recodePanel.Add(new RecodePanel(index, panelList[0]));
-			dic.Add (0, this.pictures[index][this.pictures[index].Count - 1]);
+			//dic.Add (0, this.pictures[index][this.pictures[index].Count - 1]);
+            dic.Add(0, this.spriteNameListList[index][this.spriteNameListList[index].Count - 1]);
 		} else {
 			this.recodePanel.Add(new RecodePanel(0, panelList[0]));
-			dic.Add (0, this.pictures[0][this.pictures[0].Count - 1]);
-		}
+            //dic.Add(0, this.pictures[0][this.pictures[0].Count - 1]);
+            dic.Add(0, this.spriteNameListList[0][this.spriteNameListList[0].Count - 1]);
+        }
 
 		if(this.pictureNum > 0){
 			this.recodePanel.Add(new RecodePanel(pictureNum, panelList[1]));
-			dic.Add (1, this.pictures[this.pictureNum][this.pictures[this.pictureNum].Count - 1]);
-		} else {
+            //dic.Add(1, this.pictures[this.pictureNum][this.pictures[this.pictureNum].Count - 1]);
+            dic.Add(1, this.spriteNameListList[this.pictureNum][this.spriteNameListList[this.pictureNum].Count - 1]);
+        }
+        else
+        {
 			this.recodePanel.Add(new RecodePanel(0, panelList[1]));
-			dic.Add (1, this.pictures[0][this.pictures[0].Count - 1]);
-		}
+            //dic.Add(1, this.pictures[0][this.pictures[0].Count - 1]);
+            dic.Add(1, this.spriteNameListList[0][this.spriteNameListList[0].Count - 1]);
+        }
 		
 		index = this.pictureNum;
 
@@ -208,11 +217,15 @@ public class PictureManager : MonoBehaviour {
 			
 			if(index > 0){
 				this.recodePanel.Add(new RecodePanel(index, panelList[i]));
-				dic.Add (i, this.pictures[index][this.pictures[index].Count - 1]);
-			} else {
+                //dic.Add(i, this.pictures[index][this.pictures[index].Count - 1]);
+                dic.Add(i, this.spriteNameListList[index][this.spriteNameListList[index].Count - 1]);
+            }
+            else
+            {
 				this.recodePanel.Add(new RecodePanel(0, panelList[i]));
-				dic.Add (i, this.pictures[0][this.pictures[0].Count - 1]);
-			}
+                //dic.Add(i, this.pictures[0][this.pictures[0].Count - 1]);
+                dic.Add(i, this.spriteNameListList[0][this.spriteNameListList[0].Count - 1]);
+            }
 		}
 
 		return dic;
@@ -250,10 +263,15 @@ public class PictureManager : MonoBehaviour {
 		this.isAnimationNow[pictureNum] = false;
 	}
 	
-	public void ChangeHitPicture(int pictureNum){
+	public void ChangeHitPicture(int pictureNum)
+    {
 		this.StopAnime(pictureNum);
-		foreach(RecodePanel recode in this.recodePanel){
-			if(recode.pictureNum == pictureNum) recode.railPanel.MainTexture = this.pictureHit[pictureNum - 1];
+		foreach(RecodePanel recode in this.recodePanel)
+        {
+            if (recode.pictureNum == pictureNum)
+            {
+                recode.railPanel.spriteName = this.hitSpriteNameList[pictureNum - 1];
+            }
 		}
 	}
 	

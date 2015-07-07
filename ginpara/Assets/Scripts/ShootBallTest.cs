@@ -52,7 +52,7 @@ public class ShootBallTest : MonoBehaviour {
         ball.GetComponent<Rigidbody2D>().velocity = ShootPower * rndp;
         //ball.rigidbody2D.velocity = ShootPower * rndp;
 
-        ball.GetComponent<UISprite>().depth = 5;
+        ball.GetComponent<UISprite>().depth = 980;
     }
 
     [ActionCategory("Ginpara")]

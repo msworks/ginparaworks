@@ -14,6 +14,7 @@ public class AutoButton : MonoBehaviour {
     }
 
     public float LeftPower = 0.415f;
+    public float rightPower = 1.0f;
 
     public GameObject Horyu;
     public GameObject Kenri;
@@ -129,7 +130,7 @@ public class AutoButton : MonoBehaviour {
 
     private void ToMigiuti()
     {
-        Slider.value = 0.9f;
+        Slider.value = rightPower;
     }
 
     private void ToHidariuti()

@@ -1,12 +1,15 @@
-﻿using UnityEngine;
+﻿using HutongGames.PlayMaker;
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// </summary>
 public class CasinoData : MonoBehaviour {
 
-    private string[,] sevenSegSpriteName = new string[,]{
+    string[,] sevenSegSpriteName = new string[,]{
         {"7segR0", "7segR1", "7segR2", "7segR3", "7segR4", "7segR5", "7segR6", "7segR7", "7segR8", "7segR9", "7segNone"},
         {"7segO0", "7segO1", "7segO2", "7segO3", "7segO4", "7segO5", "7segO6", "7segO7", "7segO8", "7segO9", "7segNone"},
         {
@@ -22,26 +25,26 @@ public class CasinoData : MonoBehaviour {
             "seg_34px_g_09",
             "seg_34px_g_blank",
         },
-//        {"7segG0", "7segG1", "7segG2", "7segG3", "7segG4", "7segG5", "7segG6", "7segG7", "7segG8", "7segG9", "7segNone"},
     };
-
     
-    [SerializeField] private UISprite[] gameCounterSprites = null;
-    private int gameCount = 0;
-    private enum AVG_STATE
+    [SerializeField]
+    UISprite[] gameCounterSprites = null;
+
+    int gameCount = 0;
+    enum AVG_STATE
     {
         BB,
         RB,
         ATART
     }
-    private AVG_STATE avgState = AVG_STATE.BB;
-    [SerializeField] private UISprite onePerLabel = null;
-    private string[] onePerSpriteName = new string[]{"1perR", "1perO", "1perG"};
+     AVG_STATE avgState = AVG_STATE.BB;
+    [SerializeField] UISprite onePerLabel = null;
+    string[] onePerSpriteName = new string[]{"1perR", "1perO", "1perG"};
     [SerializeField]
-    private UISprite[] avgSprites = null;
-    private int avg = 0;
+    UISprite[] avgSprites = null;
+    int avg = 0;
     [SerializeField]
-    private UISprite exchangeMark = null;
+    UISprite exchangeMark = null;
     public enum EXCHANGE
     {
         yen,
@@ -49,81 +52,78 @@ public class CasinoData : MonoBehaviour {
         euro,
         dl
     }
-    private EXCHANGE exchange;
+    EXCHANGE exchange;
     [SerializeField]
-    private UISprite[] exchangeSprites = null;
+    UISprite[] exchangeSprites = null;
+
     [SerializeField]
-    private UISprite exchangeDotSprites = null;
-    private float exchangeNum = 0;
+    UISprite exchangeDotSprites = null;
+
+    float exchangeNum = 0;
+
     [SerializeField]
-    private UISprite[] exchangeRateSprites = null;
+    UISprite[] exchangeRateSprites = null;
     [SerializeField]
-    private UISprite exchangeRateDotSprites = null;
-    private float exchangeRateNum = 0;
+    UISprite exchangeRateDotSprites = null;
+    float exchangeRateNum = 0;
     [SerializeField]
-    private UISprite[] bbSprites = null;
-    private int bbNum = 0;
+    UISprite[] bbSprites = null;
+    int bbNum = 0;
     [SerializeField]
-    private UISprite[] rbSprites = null;
-    private int rbNum = 0;
+    UISprite[] rbSprites = null;
+    int rbNum = 0;
     [SerializeField]
-    private UISprite[] atSprites = null;
-    private int atNum = 0;
+    UISprite[] atSprites = null;
+    int atNum = 0;
     [SerializeField]
-    private UISprite[] pre1BbSprites = null;
-    private int pre1BbNum = 0;
+    UISprite[] pre1BbSprites = null;
+    int pre1BbNum = 0;
     [SerializeField]
-    private UISprite[] pre2BbSprites = null;
-    private int pre2BbNum = 0;
+    UISprite[] pre2BbSprites = null;
+    int pre2BbNum = 0;
     [SerializeField]
-    private UISprite[] pre1RbSprites = null;
-    private int pre1RbNum = 0;
+    UISprite[] pre1RbSprites = null;
+    int pre1RbNum = 0;
     [SerializeField]
-    private UISprite[] pre2RbSprites = null;
-    private int pre2RbNum = 0;
+    UISprite[] pre2RbSprites = null;
+    int pre2RbNum = 0;
     [SerializeField]
-    private UISprite[] pre1AtSprites = null;
-    private int pre1AtNum = 0;
+    UISprite[] pre1AtSprites = null;
+    int pre1AtNum = 0;
     [SerializeField]
-    private UISprite[] pre2AtSprites = null;
-    private int pre2AtNum = 0;
+    UISprite[] pre2AtSprites = null;
+    int pre2AtNum = 0;
     [SerializeField]
-    private UISprite[] historySprites = null;
-    private List<int> history = new List<int>();
-    private string[] historySpriteName = new string[]{"level0", "level1", "level2", "level3", "level4", "level5", "level6", "level7", "level8", "level9"};
+    UISprite[] historySprites = null;
+    List<int> history = new List<int>();
+    string[] historySpriteName = new string[]{"level0", "level1", "level2", "level3", "level4", "level5", "level6", "level7", "level8", "level9"};
+
+    int _SouKaitensu;
+    int _OoatariKaisu;
+
+    public int SouKaitensu { get; set; }
+    public int OoatariKaisu { get; set; }
 
     public int PreBB { get { return pre1BbNum; } }
     public int PrePreBB { get { return pre2BbNum; } }
     public int PreRB { get { return pre1RbNum; } }
     public int PrePreRB { get { return pre2RbNum; } }
 
-    //====================================================================================================
-    //Property
-    //====================================================================================================
     /// UI-ゲームカウンターを操作する.4桁を超える数字は9999に置換して表示.
     public int GameCount { get { return this.gameCount; } set { this.gameCount = (value > 9999) ? 9999 : value; this.UpdateGameCounter(); } }
     
-    //----------------------------------------------------------------------------------------------------
     /// UI-AVGを操作する.4桁を超える数字は9999に置換して表示.
     public int AVG { get { return this.avg; } set { this.avg = (value > 9999) ? 9999 : value; this.UpdateAVG(); } }
     
-    //----------------------------------------------------------------------------------------------------
     /// UI-BBを操作する.3桁を超える数字は999に置換して表示.
     public int BB { get { return this.bbNum; } set { this.bbNum = (value > 999) ? 999 : value; this.UpdateBB(); } }
     
-    //----------------------------------------------------------------------------------------------------
     /// UI-RBを操作する.3桁を超える数字は999に置換して表示.
     public int RB { get { return this.rbNum; } set { this.rbNum = (value > 999) ? 999 : value; this.UpdateRB(); } }
     
-    //----------------------------------------------------------------------------------------------------
-    /// UI-RBを操作する.3桁を超える数字は999に置換して表示.
-//    public int AT { get { return this.atNum; } set { this.atNum = (value > 999) ? 999 : value; this.UpdateAT(); } }
-    
-    //----------------------------------------------------------------------------------------------------
     /// UI-Exchangeを操作する.5桁を超える数字は99999に置換し,小数点は第1位のみを表示.
     public float Exchange { get { return this.exchangeNum; } set { this.exchangeNum = (value > 999999.99f) ? 999999.99f : value; this.UpdateExchange(); } }
     
-    //----------------------------------------------------------------------------------------------------
     /// UI-Exchangeを操作する.2桁を超える数字は99に置換し,小数点は第1位のみを表示.
     public float ExchangeRate { get { return this.exchangeRateNum; } set { this.exchangeRateNum = (value > 99.9f) ? 99.9f : value; this.UpdateExchangeRate(); } }
 
@@ -139,44 +139,13 @@ public class CasinoData : MonoBehaviour {
         _instance = this;
     }
 
-    //====================================================================================================
-    //Method
-    //====================================================================================================
     void Start()
     {
         this.UpdateGameCounter();
-        //this.Update1Per();
         this.ChangeExchangeMark(EXCHANGE.dl);
     }
 
-    //----------------------------------------------------------------------------------------------------
-	void Update()
-	{
-        /*
-        GameCount += 1;
-        AVG += 1;
-        ExchangeRate += 0.1f;
-        PushDataButton();
-        PushDispButton();
-         */
-        /*
-        Exchange += 0.01f;
-        BB += 1;
-        RB += 1;
-         */
-        //AT += 1;
-        /*
-        UpdatePastBB(BB, BB);
-        UpdatePastRB(BB, BB);
-        */
-        //UpdatePastAT(BB, BB);
-        /*
-        AddHistory(GameCount % 10);
-*/
-    }
-
-    //----------------------------------------------------------------------------------------------------
-    private void UpdateGameCounter()
+    void UpdateGameCounter()
     {
         string count = string.Empty;
         int digit = this.gameCount.ToString().Length;
@@ -196,13 +165,11 @@ public class CasinoData : MonoBehaviour {
         }
     }
 
-    //----------------------------------------------------------------------------------------------------
-    private void Update1Per()
+    void Update1Per()
     {
         this.onePerLabel.spriteName = this.onePerSpriteName [(int)this.avgState];
     }
     
-    //----------------------------------------------------------------------------------------------------
     /// Dataボタン押下時の処理.
     public void PushDataButton()
     {
@@ -215,8 +182,7 @@ public class CasinoData : MonoBehaviour {
         this.UpdateAVG();
     }
     
-    //----------------------------------------------------------------------------------------------------
-    private void UpdateAVG()
+    void UpdateAVG()
     {
         string count = string.Empty;
         int digit = this.avg.ToString().Length;
@@ -265,7 +231,7 @@ public class CasinoData : MonoBehaviour {
     /// <summary>
     /// 大当たり回数
     /// </summary>
-    private void UpdateBB()
+    void UpdateBB()
     {
         Update7Seg(bbSprites, bbNum);
     }
@@ -273,7 +239,7 @@ public class CasinoData : MonoBehaviour {
     /// <summary>
     /// 確変回数
     /// </summary>
-    private void UpdateRB()
+    void UpdateRB()
     {
         Update7Seg(rbSprites, rbNum);
     }
@@ -319,7 +285,7 @@ public class CasinoData : MonoBehaviour {
     /// <summary>
     /// Exchangeを表示
     /// </summary>
-    private void UpdateExchange()
+    void UpdateExchange()
     {
         var str = string.Format("{0, 8}", (int)(exchangeNum*100)).Reverse();
         var i = 0;
@@ -341,8 +307,7 @@ public class CasinoData : MonoBehaviour {
     
     }
     
-    //----------------------------------------------------------------------------------------------------
-    private void UpdateExchangeRate()
+    void UpdateExchangeRate()
     {
         if (this.exchangeRateNum == 0)
         {
@@ -400,7 +365,6 @@ public class CasinoData : MonoBehaviour {
         }
     }
 
-    //----------------------------------------------------------------------------------------------------
     /// UI-履歴を追加する.
     public void AddHistory (int num)
     {
@@ -418,4 +382,47 @@ public class CasinoData : MonoBehaviour {
         }
     }
 
+    [ActionCategory("Ginpara")]
+    public class IncrementOoatariKaisu : FsmStateAction
+    {
+        public override void OnEnter()
+        {
+            CasinoData.Instance.OoatariKaisu++;
+            Finish();
+        }
+    }
+
+    [ActionCategory("Ginpara")]
+    public class AddSouKaitensu : FsmStateAction
+    {
+        public override void OnEnter()
+        {
+            CasinoData.Instance.SouKaitensu += History.Instance.Data[0];
+            Finish();
+        }
+    }
+
+    [ActionCategory("Ginpara")]
+    public class GetOoatariKaisu : FsmStateAction
+    {
+        public FsmInt OoatariKaisu;
+
+        public override void OnEnter()
+        {
+            OoatariKaisu.Value = CasinoData.Instance.OoatariKaisu;
+            Finish();
+        }
+    }
+
+    [ActionCategory("Ginpara")]
+    public class GetSouKaitensu : FsmStateAction
+    {
+        public FsmInt SouKaitensu;
+
+        public override void OnEnter()
+        {
+            SouKaitensu.Value = CasinoData.Instance.SouKaitensu;
+            Finish();
+        }
+    }
 }

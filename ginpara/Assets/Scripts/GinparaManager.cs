@@ -76,7 +76,6 @@ public class GinparaManager : MonoBehaviour {
 	public GameObject bonusFinishBackground = null;
 	public GameObject bonusFinishLabel = null;
     public GameObject WhiteScreen = null;
-	private bool isBackgroundLoop = false;
 	private float deltaTime = 0;
 #if UNITY_EDITOR
 	private string orderCode = string.Empty;
@@ -4446,13 +4445,13 @@ public class GinparaManager : MonoBehaviour {
 			
 		case "104":
             Bubble.Instance.Rise();
-			this.bubbleNoticeAnchor.transform.gameObject.SetActive (true);
+			//this.bubbleNoticeAnchor.transform.gameObject.SetActive (true);
 			StartCoroutine (this.BubbleNotice (callback));
 			break;
 			
 		case "105":
             Gyogun.Instance.Flow();
-			this.shoalNoticeAnchor.transform.gameObject.SetActive (true);
+			//this.shoalNoticeAnchor.transform.gameObject.SetActive (true);
 			StartCoroutine (this.GyogunInDisplay (callback));
 			break;
 			
@@ -4542,13 +4541,15 @@ public class GinparaManager : MonoBehaviour {
 			break;
 
 		case "204":
-			this.lostStringAnchor.transform.gameObject.SetActive (true);
-			StartCoroutine(this.LostString(callback));
+			//this.lostStringAnchor.transform.gameObject.SetActive (true);
+            LostSprite.Instance.Show();
+			//StartCoroutine(this.LostString(callback));
 			break;
 
         case "204-2":
-			this.lostStringAnchor.transform.gameObject.SetActive (false);
-			if(callback!=null){callback();};
+            LostSprite.Instance.Hide();
+			//this.lostStringAnchor.transform.gameObject.SetActive (false);
+			//if(callback!=null){callback();};
 			break;
 
 		// マリンピース開始
@@ -4562,6 +4563,7 @@ public class GinparaManager : MonoBehaviour {
         // マリンピース終了
         case "301-2":
 			this.rollBubble.transform.gameObject.SetActive (false);
+            Lucky.Instance.Hide();
             BataashiMarin.Instance.Hide();
 			this.MarinPeaceStop(callback);
 			this.RollBubbleStop(callback);
@@ -4569,8 +4571,7 @@ public class GinparaManager : MonoBehaviour {
 
         // ラッキー
 		case "302":
-			this.luckyStringAnime.transform.gameObject.SetActive (true);
-			this.luckyStringAnime.Play(null);
+            Lucky.Instance.Show();
 			break;
 
         // 図柄表示消す
@@ -4943,7 +4944,7 @@ public class GinparaManager : MonoBehaviour {
 	/// <returns></returns>
 	private IEnumerator MarinNoticeIN(System.Action callback){
 
-        this.marinNoticeCallAnime.Play(null);
+        //this.marinNoticeCallAnime.Play(null);
         Marin.Instance.display();
 		if(callback != null) callback();
 
@@ -5153,7 +5154,6 @@ public class GinparaManager : MonoBehaviour {
     {
         // 演出No29→１図柄 No38→10図柄
         var EnsyutuMainNo = (Tokuzu + 28).ToString();
-
         foreach (var count in Enumerable.Range(0, 3))
         {
             foreach (var subNo in Enumerable.Range(1, 5))

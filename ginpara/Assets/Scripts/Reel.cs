@@ -1025,8 +1025,8 @@ public class Reel
 
         AtariZugara = Tokuzu;
 
-        Debug.Log("特図：" + Tokuzu);
-        Debug.Log("リーチライン：" + ReachLine);
+        //Debug.Log("特図：" + Tokuzu);
+        //Debug.Log("リーチライン：" + ReachLine);
 
         // 上段、中段、下段の止まる位置を仮固定
         var r1 = reel1.Where(r => r.Tokuzu.Equals(Tokuzu.ToString())).First();
@@ -1084,8 +1084,8 @@ public class Reel
             
             var rnd = UnityEngine.Random.Range(0, 2);
 
-            Debug.Log("rnd:" + rnd);
-            Debug.Log(rnd == 0 ? "前図柄" : "後図柄");
+            //Debug.Log("rnd:" + rnd);
+            //Debug.Log(rnd == 0 ? "前図柄" : "後図柄");
 
             var Zugara = Tokuzu.ToString();
             if( rnd == 0 ){
