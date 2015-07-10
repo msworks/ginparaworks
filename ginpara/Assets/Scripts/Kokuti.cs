@@ -8,36 +8,41 @@ public class Kokuti : MonoBehaviour {
 
     private static Kokuti _instance;
 
-    private UITexture flash;
+    UISprite flash;
 
-    public static Kokuti Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
+    bool state = false;
 
-    void Awake()
+    public static Kokuti Instance { get { return _instance; } }
+
+    void Start()
     {
         _instance = this;
-        flash = this.gameObject.transform.FindChild("TaiyoFlash").GetComponent<UITexture>();
+        flash = GetComponent<UISprite>();
+        flash.alpha = 0.0f;
     }
 
     public void KokutiActionA()
     {
+        state = true;
         StartCoroutine(enumKokutiActionA());
+    }
+
+    public void Finish()
+    {
+        state = false;
     }
 
     private IEnumerator enumKokutiActionA()
     {
+        yield return new WaitForSeconds(1f);
+
         AudioManager.Instance.PlaySE(21, 0.2f);
 
         var count = 0f;
         var alpha = 0f;
         flash.alpha = alpha;
 
-        while (count < 1f)
+        while (state==true)
         {
             alpha = Mathf.Abs(Mathf.Sin(count * 30)*Mathf.Sin(count*30)*3);
             flash.alpha = alpha;
@@ -48,27 +53,4 @@ public class Kokuti : MonoBehaviour {
         flash.alpha = 0f;
     }
 
-    public void KokutiActionB()
-    {
-        StartCoroutine(enumKokutiActionB());
-    }
-
-    private IEnumerator enumKokutiActionB()
-    {
-        AudioManager.Instance.PlaySE(21, 0.2f);
-
-        var count = 0f;
-        var alpha = 0f;
-        flash.alpha = alpha;
-
-        while (count < 2f)
-        {
-            alpha = Mathf.Abs(Mathf.Sin(count*5));
-            flash.alpha = alpha;
-            count += Time.deltaTime;
-            yield return null;
-        }
-
-        flash.alpha = 0f;
-    }
 }

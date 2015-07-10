@@ -15,7 +15,9 @@ public class LastRoundBGM : FsmStateAction
 	{
         if (Round.Value == LastRound.Value)
         {
-            AudioManager.Instance.PlayBGMLoop(7);
+            // 最終RoundのBGMはループしない
+            AudioManager.Instance.PlayBGMOneShot(7);
+            //AudioManager.Instance.PlayBGMLoop(7);
         }
 
         Finish();

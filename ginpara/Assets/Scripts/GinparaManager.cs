@@ -14,11 +14,12 @@ public enum CORAL_POSITION
     RIGHT   // 右
 }
 
-public class GinparaManager : MonoBehaviour {
-	//====================================================================================================
-	// Field
-	//====================================================================================================
-	public UITextureManager back = null;
+/// <summary>
+/// 役割を多く担いすぎているので、分割すべき
+/// </summary>
+public class GinparaManager : MonoBehaviour
+{
+    public UITextureManager back = null;
 	public UITextureManager lamp1 = null;
 	public UITextureManager lamp6 = null;
 	public UITextureManager lamp7 = null;
@@ -97,24 +98,15 @@ public class GinparaManager : MonoBehaviour {
         get { return _instance; }
     }
 
-	//====================================================================================================
-	// Method
-	//====================================================================================================
-	void Start(){
+	void Start()
+    {
         _instance = this.gameObject.GetComponent<GinparaManager>();
 	}
 	
-	//----------------------------------------------------------------------------------------------------
-	void Update(){
+	void Update()
+    {
 		this.deltaTime = Time.deltaTime;
 
-        /*
-		if(this.isBackgroundLoop){
-			float value = this.backgroundAnchor.relativeOffset.x + (this.deltaTime / 22.5f);
-			if(value > 1) value -= 2;
-			this.backgroundAnchor.relativeOffset = new Vector2(value, this.backgroundAnchor.relativeOffset.y);
-		}
-         */
 #if UNITY_EDITOR
         if (Input.GetKeyUp(KeyCode.Backspace))
         {
@@ -289,13 +281,11 @@ public class GinparaManager : MonoBehaviour {
     /// <param name="patternNo">実行するパターンNo</param>
     /// <param name="callback">実行完了後（またはループ開始時）に呼ばれるコールバック</param>
     /// <returns>発生したエラー内容を返します（普通は null が返ります）</returns>
-    public string Order(string patternNo, System.Action callback = null){
-
-        //Debug.Log("演出No." + patternNo);
-
-        string errorCode = null;
-        int EnsyutuNo = -1;  // 演出No
-        int SubNo = -1;      // 演出Noサブ
+    public string Order(string patternNo, System.Action callback = null)
+    {
+        var errorCode = null as string;
+        var EnsyutuNo = -1;
+        var SubNo = -1;
 
         if (patternNo.Contains("-"))
         {
@@ -492,127 +482,147 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "4-20":
-			StartCoroutine (this.topRail.RailStop (-1, () => {
+			StartCoroutine (this.topRail.StopAfter1Turn (-1, () => {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-1":
-			StartCoroutine (this.mediumRail.RailStop (1, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(1, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-2":
-			StartCoroutine (this.mediumRail.RailStop (-1, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(-1, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-3":
-			StartCoroutine (this.mediumRail.RailStop (2, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(2, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-4":
-			StartCoroutine (this.mediumRail.RailStop (-2, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(-2, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-5":
-			StartCoroutine (this.mediumRail.RailStop (3, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(3, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-6":
-			StartCoroutine (this.mediumRail.RailStop (-3, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(-3, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-7":
-			StartCoroutine (this.mediumRail.RailStop (4, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(4, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-8":
-			StartCoroutine (this.mediumRail.RailStop (-4, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(-4, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-9":
-			StartCoroutine (this.mediumRail.RailStop (5, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(5, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-10":
-			StartCoroutine (this.mediumRail.RailStop (-5, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(-5, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-11":
-			StartCoroutine (this.mediumRail.RailStop (6, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(6, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-12":
-			StartCoroutine (this.mediumRail.RailStop (-6, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(-6, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-13":
-			StartCoroutine (this.mediumRail.RailStop (7, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(7, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-14":
-			StartCoroutine (this.mediumRail.RailStop (-7, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(-7, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-15":
-			StartCoroutine (this.mediumRail.RailStop (8, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(8, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-16":
-			StartCoroutine (this.mediumRail.RailStop (-8, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(-8, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-17":
-			StartCoroutine (this.mediumRail.RailStop (9, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(9, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-18":
-			StartCoroutine (this.mediumRail.RailStop (-9, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(-9, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-19":
-			StartCoroutine (this.mediumRail.RailStop (10, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(10, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
 			
 		case "5-20":
-			StartCoroutine (this.mediumRail.RailStop (-10, () => {
+            StartCoroutine(this.mediumRail.StopAfter1Turn(-10, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;
@@ -4561,12 +4571,19 @@ public class GinparaManager : MonoBehaviour {
 			break;
 		
         // マリンピース終了
+        // だったが、ラウンド中もマリン表示するので、
+        // マリンは消さずに泡だけ表示する
         case "301-2":
 			this.rollBubble.transform.gameObject.SetActive (false);
             Lucky.Instance.Hide();
-            BataashiMarin.Instance.Hide();
+            //BataashiMarin.Instance.Hide();
 			this.MarinPeaceStop(callback);
 			this.RollBubbleStop(callback);
+            break;
+
+        // バタ足マリンを消す
+        case "301-3":
+            BataashiMarin.Instance.Hide();
             break;
 
         // ラッキー
@@ -4718,15 +4735,15 @@ public class GinparaManager : MonoBehaviour {
 			break;
 			
 		case "403":
-			this.bonusPicture.transform.gameObject.SetActive (false);
-			this.bonusPictureNum.transform.gameObject.SetActive(false);
-			this.bonusPictureBase.transform.gameObject.SetActive (false);
+			//this.bonusPicture.transform.gameObject.SetActive (false);
+			//this.bonusPictureNum.transform.gameObject.SetActive(false);
+			//this.bonusPictureBase.transform.gameObject.SetActive (false);
 			//this.bonusRound.transform.gameObject.SetActive(false);
 			//this.bonusRoundBase.transform.gameObject.SetActive(false);
 			
-			this.bonusFinishBackground.transform.gameObject.SetActive (true);
-			this.bonusFinishLabel.transform.gameObject.SetActive (true);
-			this.marinFinishAnime.transform.gameObject.SetActive (true);
+			//this.bonusFinishBackground.transform.gameObject.SetActive (true);
+			//this.bonusFinishLabel.transform.gameObject.SetActive (true);
+			//this.marinFinishAnime.transform.gameObject.SetActive (true);
 			StartCoroutine (this.BonusFinish(callback));
 			break;
 			
@@ -5128,8 +5145,9 @@ public class GinparaManager : MonoBehaviour {
         this.rollBubble.Stop(null);
     }
 
-	//----------------------------------------------------------------------------------------------------
-	private IEnumerator BonusFinish(System.Action callback){
+	private IEnumerator BonusFinish(System.Action callback)
+    {
+        /*
 		this.marinFinishAnime.Play( ()=> {
 			this.marinFinishAnchor.relativeOffset = new Vector2(-0.35f, 0);
 			this.marinFinishAnime.transform.gameObject.SetActive (false);
@@ -5142,6 +5160,8 @@ public class GinparaManager : MonoBehaviour {
 			this.marinFinishAnchor.relativeOffset += new Vector2(this.deltaTime * 0.35f / 3f, 0);
 			yield return null;
 		}
+        */
+        yield return null;
 	}
 
     /// <summary>

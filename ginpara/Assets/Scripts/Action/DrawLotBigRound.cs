@@ -33,8 +33,6 @@ namespace Ginpara
         public FsmBool ForceSP3;
         public FsmBool ForceSaishidou;
 
-        //string Ooatari = "大当たり";
-
         struct Sizi
         {
             public string EnsyutuNo;
@@ -57,7 +55,7 @@ namespace Ginpara
 
 	    public override void OnEnter()
 	    {
-            int atariZugara = -1;
+            var atariZugara = -1;
 
             var result = MainLogic.Instance.DrawLot(
                 HoryuSu.Value,
@@ -68,6 +66,14 @@ namespace Ginpara
                 ForceSP3.Value,
                 ForceSaishidou.Value
             );
+
+            // 告知
+            // 大当り確定時、1/3の確率で告知を行う
+            if (result.isOOatari)
+            {
+
+                Kokuti.Instance.KokutiActionA();
+            }
 
             //Debug.Log("リーチライン:" + result.reachLine);
             //Debug.Log("リーチパターン:" + result.reachPattern);

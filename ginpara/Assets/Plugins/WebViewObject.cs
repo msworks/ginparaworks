@@ -64,11 +64,13 @@ public class WebViewObject : MonoBehaviour
 #endif
 	
 	public bool IsKeyboardVisible {
-		get {
+		get
+        {
 #if UNITY_ANDROID && !UNITY_EDITOR
-			return mIsKeyboardVisible;
+            return mIsKeyboardVisible;
 #else
-			return TouchScreenKeyboard.visible;
+            //return TouchScreenKeyboard.visible;
+            return false;
 #endif
 		}
 	}

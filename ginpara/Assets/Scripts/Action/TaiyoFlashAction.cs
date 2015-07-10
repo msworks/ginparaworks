@@ -16,11 +16,21 @@ public class TaiyoFlashActionA : FsmStateAction
 }
 
 [ActionCategory("Ginpara")]
+public class TaiyoFlashFinish : FsmStateAction
+{
+    public override void OnEnter()
+    {
+        Kokuti.Instance.Finish();
+        Finish();
+    }
+}
+
+[ActionCategory("Ginpara")]
 public class TaiyoFlashActionB : FsmStateAction
 {
     public override void OnEnter()
     {
-        Kokuti.Instance.KokutiActionB();
+        //Kokuti.Instance.KokutiActionB();
         Finish();
     }
 }

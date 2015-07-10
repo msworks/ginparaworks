@@ -298,8 +298,8 @@ public class MainLogic : MonoBehaviour {
         NML_Chusen = ATARI.Concat(HAZURE).ToArray();
 
         // 大当たり（確変）抽選テーブルの初期化
-        var KH_ATARI = Enumerable.Range(0, ATARI_NUM).Select(v => true);
-        var KH_HAZURE = Enumerable.Range(0, HAZURE_NUM).Select(v => false);
+        var KH_ATARI = Enumerable.Range(0, KH_ATARI_NUM).Select(v => true);
+        var KH_HAZURE = Enumerable.Range(0, KH_HAZURE_NUM).Select(v => false);
         KH_Chusen = KH_ATARI.Concat(KH_HAZURE).ToArray();
 
         // リーチライン抽選テーブルの初期化
@@ -379,6 +379,8 @@ public class MainLogic : MonoBehaviour {
 
         var IsKakuhen = (KenriKaisu == 0) ? false : true;
 
+        Debug.Log("カクヘン：" + IsKakuhen);
+
         if (IsAtari(RndFFFF, IsKakuhen) || ForceOoatari)
         {
             //---------//
@@ -388,12 +390,27 @@ public class MainLogic : MonoBehaviour {
             // リーチライン抽選
             var rl = DrawLotReachLine(RndFFFF);
 
+            if (SliderChange.Instance.value != 0)
+            {
+                while (SliderChange.Instance.value != GetTokuzu(rl.Tokuzu))
+                {
+                    rl = DrawLotReachLine(RndFFFF);
+                }
+            }
+
             // リーチパターン抽選
             structReachPattern[] RP;
             if (rl.ReachLine != 4) { RP = Atari123_Chusen; }
             else { RP = Atari4_Chusen; }
 
             var rp = RP[RndFFFF];
+
+            if (ForceNormalReach)
+            {
+                ForceSPReach = false;
+                ForceSP3 = false;
+                ForceSaishidou = false;
+            }
 
             if (ForceSPReach)
             {
@@ -422,7 +439,15 @@ public class MainLogic : MonoBehaviour {
                     rp = RP[RndFFFF];
                 }
             }
-            
+
+            if (ForceNormalReach)
+            {
+                while (rp.Name.Contains("再始動") || rp.Name.Contains("SP"))
+                {
+                    rp = RP[RndFFFF];
+                }
+            }
+
             // 返却値をセット
             result.isOOatari = true;
             result.reachLine = rl.ReachLine;

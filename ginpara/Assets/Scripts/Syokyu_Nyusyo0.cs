@@ -25,6 +25,8 @@ public class Syokyu_Nyusyo0 : MonoBehaviour {
         var ball = NGUITools.AddChild(BodyPath, BallPrefab);
         ball.transform.position = ChackerOut.transform.position;
 
+        ball.GetComponent<UISprite>().depth = 980;
+
     }
 
 }

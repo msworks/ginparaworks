@@ -32,28 +32,33 @@ public class Rail : MonoBehaviour
 		}
 	}
 	
-	public void ResetAnchor(int pictureNum){
+	public void ResetAnchor(int pictureNum)
+    {
 		this.anchorValue = this.preAnchorValue = 0;
-		for (int i = 0; i < this.railPanels.Length; ++i) {
+		for (int i = 0; i < this.railPanels.Length; ++i)
+        {
 			this.railPanels [(this.railPanels.Length - 1) - i].Anchor.relativeOffset = new Vector2 ((this.railPanels.Length - 1) - ((this.anchorValue + i + this.originValue) % this.railPanels.Length), 0);
 			this.railPanels [(this.railPanels.Length - 1) - i].Reset();
 		}
 		
 		var dic = this.pictureManager.Initialize (pictureNum, this.railPanels);
 		
-		foreach(RailPanel panel in this.railPanels){
-            //panel.MainTexture = dic[(int)panel.Anchor.relativeOffset.x];
+		foreach(RailPanel panel in this.railPanels)
+        {
             panel.spriteName = dic[(int)panel.Anchor.relativeOffset.x];
         }
 	}
 	
-	void Update(){
+	void Update()
+    {
 		if(this.isRolling){
 			this.anchorValue += Time.deltaTime * 32f;
 		}
 		
-		if ((this.anchorValue + this.originValue) != this.preAnchorValue  &&  (this.anchorValue + this.originValue) > this.preAnchorValue) {
-			for (int i = 0; i < this.railPanels.Length; ++i) {
+		if ((this.anchorValue + this.originValue) != this.preAnchorValue  &&  (this.anchorValue + this.originValue) > this.preAnchorValue)
+        {
+			for (int i = 0; i < this.railPanels.Length; ++i)
+            {
 				this.railPanels [(this.railPanels.Length - 1) - i].Anchor.relativeOffset = new Vector2 ((this.railPanels.Length - 1) - ((this.anchorValue + i + this.originValue) % this.railPanels.Length), 0);
 			}
 			this.preAnchorValue = this.anchorValue + this.originValue;
@@ -62,7 +67,8 @@ public class Rail : MonoBehaviour
 			this.anchorValue = this.preAnchorValue = 0;
 	}
 
-	void Initialize(int pictureNum){
+	void Initialize(int pictureNum)
+    {
 		this.anchorValue = this.preAnchorValue = 0;
 
 		this.railPanels[0].Anchor.relativeOffset = new Vector2(0, 0);
@@ -74,7 +80,8 @@ public class Rail : MonoBehaviour
 		
 		var dic = this.pictureManager.Initialize (pictureNum, this.railPanels);
 		
-		foreach(RailPanel panel in this.railPanels){
+		foreach(RailPanel panel in this.railPanels)
+        {
             //panel.MainTexture = dic[(int)panel.Anchor.relativeOffset.x];
             panel.spriteName = dic[(int)panel.Anchor.relativeOffset.x];
         }
@@ -82,8 +89,10 @@ public class Rail : MonoBehaviour
 		//Debug.Log (this.gameObject.name+"を"+pictureNum.ToString()+"で初期化");
 	}
 	
-	public IEnumerator RailStart(System.Action callback){
-		while(this.isAct){
+	public IEnumerator RailStart(System.Action callback)
+    {
+		while(this.isAct)
+        {
 			yield return null;
 		}
 		this.isAct = true;
@@ -103,8 +112,10 @@ public class Rail : MonoBehaviour
 		yield break;
 	}
 	
-	public IEnumerator RailStop(int targetNum, System.Action callback){
-		while(this.isAct){
+	public IEnumerator RailStop(int targetNum, System.Action callback)
+    {
+		while(this.isAct)
+        {
 			yield return null;
 		}
 		this.isAct = true;
@@ -126,12 +137,69 @@ public class Rail : MonoBehaviour
 		this.anchorValue = (this.anchorValue + this.originValue);
 		this.originValue = 0;
 		this.isAct = false;
-		if(callback != null) callback();
+        if (callback != null)
+        {
+            callback();
+        }
+
 		yield break;
 	}
-	
-	public IEnumerator RailReach(int certainNum, System.Action callback){
-		while(this.isAct){
+
+    /// <summary>
+    /// ２週目で停止
+    /// </summary>
+    /// <param name="targetNum"></param>
+    /// <param name="callback"></param>
+    /// <returns></returns>
+    public IEnumerator StopAfter1Turn(int targetNum, System.Action callback)
+    {
+        float totalTime = (1f / 3f) * (float)5;
+        while (totalTime > 0)
+        {
+            float deltaTime = Time.deltaTime;
+            totalTime -= deltaTime;
+            if (totalTime >= 0) this.anchorValue += deltaTime * 3f;
+            else this.anchorValue += (totalTime + deltaTime) * 3f;
+            yield return null;
+        }
+
+        while (this.isAct)
+        {
+            yield return null;
+        }
+        this.isAct = true;
+
+        while (this.railAnimation.isPlaying)
+        {
+            yield return null;
+        }
+
+        this.ResetAnchor(this.pictureManager.StopStartNum(targetNum));
+        this.isRolling = false;
+        this.railAnimation.clip = this.anims[1];
+        this.originValue = (int)this.anchorValue;
+        this.anchorValue = 0;
+        this.railAnimation.Play();
+        while (this.railAnimation.isPlaying)
+        {
+            yield return null;
+        }
+
+        this.anchorValue = (this.anchorValue + this.originValue);
+        this.originValue = 0;
+        this.isAct = false;
+        if (callback != null)
+        {
+            callback();
+        }
+
+        yield break;
+    }
+
+	public IEnumerator RailReach(int certainNum, System.Action callback)
+    {
+		while(this.isAct)
+        {
 			yield return null;
 		}
 		this.isAct = true;
@@ -168,8 +236,10 @@ public class Rail : MonoBehaviour
 		yield break;
 	}
 	
-	public IEnumerator RailSuperReach(int certainNum, int lowNum, System.Action callback){
-		while(this.isAct){
+	public IEnumerator RailSuperReach(int certainNum, int lowNum, System.Action callback)
+    {
+		while(this.isAct)
+        {
 			yield return null;
 		}
 		this.isAct = true;
@@ -211,12 +281,16 @@ public class Rail : MonoBehaviour
         AudioManager.Instance.StopSE(11);
 
 		this.isAct = false;
-		if(callback != null) callback();
+        if (callback != null)
+        {
+            callback();
+        }
+
 		yield break;
 	}
 	
-	public IEnumerator RailVitaStop(int moveNum, System.Action callback){
-
+	public IEnumerator RailVitaStop(int moveNum, System.Action callback)
+    {
         // ハズレ→再始動の発声
         AudioManager.Instance.PlaySE(12);
 
@@ -255,5 +329,10 @@ public class Rail : MonoBehaviour
 		this.pictureManager.ChangeHitPicture(pictureNum);
 	}
 	
-	public int[] RecodePanelNum { get { return this.pictureManager.RecodePanelNum; } }
+	public int[] RecodePanelNum {
+        get
+        {
+            return this.pictureManager.RecodePanelNum;
+        }
+    }
 }

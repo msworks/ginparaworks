@@ -3,13 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-// 
-
-public class TextureAnimation : MonoBehaviour {
-	//====================================================================================================
-	// Field
-	//====================================================================================================
-	[SerializeField] private UITexture uiTexture = null;
+public class TextureAnimation : MonoBehaviour
+{
+    [SerializeField] private UITexture uiTexture = null;
 	[SerializeField] private List<Texture> textureList = null;
 	[SerializeField] private float intervalTime = 0;
 	[SerializeField] private float totalTime = 0;
@@ -17,9 +13,6 @@ public class TextureAnimation : MonoBehaviour {
 	private int currentNum = 0;
 	private bool isAnimating = false;
 
-	//====================================================================================================
-	// Priperty
-	//====================================================================================================
 	public UITexture UiTexture { get { return this.uiTexture; } set { this.uiTexture = value; } }
 	public bool IsAnimating{ get { return this.isAnimating; } }
 	public float IntervalTime { get {return this.intervalTime; }  set { this.intervalTime = value; } }
@@ -27,9 +20,6 @@ public class TextureAnimation : MonoBehaviour {
 	public bool IsLoop { get { return this.isLoop; } set { this.isLoop = value;} }
 	public List<Texture> TextureList { get { return this.textureList; } set { this.textureList = value; } }
 
-	//====================================================================================================
-	// Method
-	//====================================================================================================
 	void Start ()
 	{
 		if (this.uiTexture != null)
@@ -39,8 +29,8 @@ public class TextureAnimation : MonoBehaviour {
 			Debug.Log(this.gameObject.name+"のTextureAnimation-textureListに画像が設定されていません。");
 	}
 	
-	//----------------------------------------------------------------------------------------------------
-	public void Play(System.Action callback){
+	public void Play(System.Action callback)
+    {
 		this.isAnimating = true;
 		StartCoroutine (this.TextureAnimating (callback));
 	}
@@ -51,8 +41,8 @@ public class TextureAnimation : MonoBehaviour {
         if (callback != null) { callback(); }
     }
 
-	//----------------------------------------------------------------------------------------------------
-	private IEnumerator TextureAnimating(System.Action callback){
+	private IEnumerator TextureAnimating(System.Action callback)
+    {
 
         if (this.textureList.Count <= this.currentNum)
         {
@@ -66,17 +56,18 @@ public class TextureAnimation : MonoBehaviour {
         }
 
 		++this.currentNum;
-		float timeElapsed = 0;
-		float recodeTime = 0;
+		var timeElapsed = 0f;
+		var recodeTime = 0f;
 
-		while(timeElapsed < this.totalTime  ||  this.totalTime == -1){
-
+		while(timeElapsed < this.totalTime  ||  this.totalTime == -1)
+        {
             if (this.isAnimating == false)
             {
                 break;
             }
 
-			if(timeElapsed - recodeTime > this.intervalTime){
+			if(timeElapsed - recodeTime > this.intervalTime)
+            {
 				recodeTime = timeElapsed;
 				if(this.textureList.Count != this.currentNum  &&  this.textureList[this.currentNum] != null) this.uiTexture.mainTexture = this.textureList[this.currentNum];
 				if((this.textureList.Count - 1) > this.currentNum)
