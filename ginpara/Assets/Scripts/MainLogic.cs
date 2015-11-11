@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
 /// メインロジック
 /// </summary>
-public class MainLogic : MonoBehaviour {
-
+public class MainLogic : MonoBehaviour
+{
     // 保留オブジェクト
     public GameObject Horyu;
     const string ThroughChacker = "チャッカー通過";

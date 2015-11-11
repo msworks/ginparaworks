@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// 回転体内部の回転処理
 /// </summary>
-public class KaitentaiInnerRotation : MonoBehaviour {
-
+public class KaitentaiInnerRotation : MonoBehaviour
+{
     private float Hz = 1f / 12f * 3.14f;        // 1/12ヘルツ
 
 	/// <summary>

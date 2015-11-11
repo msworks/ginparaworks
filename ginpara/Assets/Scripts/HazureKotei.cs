@@ -1,13 +1,13 @@
 ﻿using HutongGames.PlayMaker;
 using UnityEngine;
-using System.Collections;
 
-public class HazureKotei : MonoBehaviour {
-
+public class HazureKotei : MonoBehaviour
+{
     static HazureKotei _instance;
     static public HazureKotei Instance { get { return _instance; } }
 
-    void Start () {
+    void Start ()
+    {
         _instance = this;
 	}
 

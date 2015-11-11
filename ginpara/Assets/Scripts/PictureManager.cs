@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
-public class PictureManager : MonoBehaviour {
-
-    [SerializeField]
-    private bool isTop = false;
+public class PictureManager : MonoBehaviour
+{
+    [SerializeField] private bool isTop = false;
 
     public int PictureNum { get { return this.pictureNum; } }
     public int[] RecodePanelNum { get { return new int[3] { this.recodePanel[1].pictureNum, this.recodePanel[2].pictureNum, this.recodePanel[3].pictureNum }; } }
@@ -20,7 +18,8 @@ public class PictureManager : MonoBehaviour {
 	private int pictureNum = 1;
 	private List<RecodePanel> recodePanel = new List<RecodePanel>();
 
-    private float[] animeIntervalTimes = new float[] {
+    private float[] animeIntervalTimes = new float[]
+    {
         0.06f,
         0.06f,
         0.06f,
@@ -39,8 +38,10 @@ public class PictureManager : MonoBehaviour {
         0.06f,
     };
 
-	void Awake(){
-        this.spriteNameListList = new List<List<string>>(){
+	void Awake()
+    {
+        this.spriteNameListList = new List<List<string>>()
+        {
             new List<string>(){ "b_a","b_a","b_a","b_a","b_a","b_a","b_b","b_b","b_b","b_b","b_b","b_b", },
             new List<string>(){ "1_a","1_b","1_c","1_d","1_e","1_f","1_g","1_f","1_e","1_d","1_c","1_b", },
             new List<string>(){ "2_a","2_b","2_c","2_d","2_e","2_f","2_g","2_f","2_e","2_d","2_c","2_b", },
@@ -54,7 +55,8 @@ public class PictureManager : MonoBehaviour {
             new List<string>(){ "10_a","10_b","10_c","10_d","10_e","10_f","10_g","10_f","10_e","10_d","10_c","10_b", },
         };
 
-        this.hitSpriteNameList = new List<string>(){
+        this.hitSpriteNameList = new List<string>()
+        {
             "1_wow",
             "2_wow",
             "3_wow",

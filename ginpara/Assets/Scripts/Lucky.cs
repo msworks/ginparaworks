@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Lucky : MonoBehaviour {
-
+public class Lucky : MonoBehaviour
+{
     static Lucky _instance;
     static public Lucky Instance { get { return _instance; } }
 

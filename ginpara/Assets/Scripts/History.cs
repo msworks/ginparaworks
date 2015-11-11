@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 using HutongGames.PlayMaker;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
 /// ヒストリー管理クラス
 /// </summary>
-public class History : MonoBehaviour {
-
+public class History : MonoBehaviour
+{
     public UISprite[] Sprites;
     public UISprite[] LabelSprites;
 

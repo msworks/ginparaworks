@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class OoatariController : MonoBehaviour {
-
+public class OoatariController : MonoBehaviour
+{
     static private OoatariController _instance;
 
 	void Start () {
@@ -11,8 +10,10 @@ public class OoatariController : MonoBehaviour {
 
 	static public OoatariController Instance{ get { return _instance; } }
 
-    public string AtariZugara{
-        get {
+    public string AtariZugara
+    {
+        get
+        {
             return this.gameObject.GetComponent<PlayMakerFSM>().FsmVariables.FindFsmString("大当たり図柄").Value.ToString();
         }
     }

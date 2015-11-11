@@ -1,6 +1,5 @@
 ﻿using HutongGames.PlayMaker;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,8 +7,8 @@ using System.Linq;
 /// アベレージを表示する
 /// 仕様：総回転数÷大当り回数
 /// </summary>
-public class Average : MonoBehaviour {
-
+public class Average : MonoBehaviour
+{
     static Average _instance;
     static public Average Instance { get { return _instance; } }
 
@@ -86,29 +85,5 @@ public class Average : MonoBehaviour {
             Average.Instance.Display(SouKaitensu.Value, OoatariKaisu.Value);
             Finish();
         }
-    }
-}
-
-static class intEx
-{
-    /// <summary>
-    /// 整数を指定の範囲にクランプする
-    /// </summary>
-    /// <param name="number">対象の数値</param>
-    /// <param name="max">最大値</param>
-    /// <param name="min">最小値</param>
-    /// <returns>クランプされた整数</returns>
-    public static int Clamp(this int number, int min, int max)
-    {
-        if (max < number)
-        {
-            number = max;
-        }
-        else if (number < min)
-        {
-            number = min;
-        }
-
-        return number;
     }
 }

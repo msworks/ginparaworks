@@ -1,13 +1,10 @@
-﻿using HutongGames.PlayMaker;
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
 
 /// <summary>
 /// ランプを光らせる
 /// </summary>
-public class LightLamp : MonoBehaviour {
-
+public class LightLamp : MonoBehaviour
+{
     public GameObject right;
     public GameObject left;
 

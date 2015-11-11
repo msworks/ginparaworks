@@ -1,16 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 public class KugiSetteiButton : MonoBehaviour
 {
-
-    [SerializeField]
-    int Kugi;
-
-    [SerializeField]
-    UISprite[] buttons;
+    [SerializeField] int Kugi;
+    [SerializeField] UISprite[] buttons;
 
     Dictionary<bool, string> spriteNameMap = new Dictionary<bool, string>()
     {

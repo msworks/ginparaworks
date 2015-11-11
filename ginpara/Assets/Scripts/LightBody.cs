@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// 筐体、ランプを光らせる
 /// </summary>
-public class LightBody : MonoBehaviour {
-
+public class LightBody : MonoBehaviour
+{
     public GameObject inside;
     public GameObject outside;
 

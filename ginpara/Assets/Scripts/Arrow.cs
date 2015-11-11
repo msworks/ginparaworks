@@ -12,8 +12,8 @@ using System.Collections.Generic;
 /// Arrow.Instance.State = ArrowState.Hide; // 非表示
 /// などとして下さい。
 /// </summary>
-public class Arrow : MonoBehaviour {
-
+public class Arrow : MonoBehaviour
+{
     static Arrow _instance;
     static public Arrow Instance { get { return _instance; } }
 

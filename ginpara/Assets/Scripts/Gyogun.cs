@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Gyogun : MonoBehaviour {
-
+public class Gyogun : MonoBehaviour
+{
     static Gyogun _instance;
     static public Gyogun Instance { get { return _instance; } }
 
@@ -17,5 +16,4 @@ public class Gyogun : MonoBehaviour {
 
         return this;
     }
-
 }

@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// アタッカー
 /// </summary>
-public class Atacker : MonoBehaviour {
-
+public class Atacker : MonoBehaviour
+{
     public GameObject MainLogic;
 
     string msg = "権利獲得成功";
 
     /// <summary>
-    /// アタッカーに入ったときに権利獲得メッセージをメインロジックに通知
+    /// アタッカーに入ったときに権利獲得メッセージを
+    /// メインロジックに通知
     /// </summary>
     /// <param name="collision"></param>
     void OnTriggerEnter2D(Collider2D collision)

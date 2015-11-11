@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
-public class AtariZugara : MonoBehaviour {
-
+public class AtariZugara : MonoBehaviour
+{
     /// <summary>
     /// 図柄１～１０
     /// </summary>
@@ -64,5 +62,4 @@ public class AtariZugara : MonoBehaviour {
 
         Hide();
 	}
-	
 }

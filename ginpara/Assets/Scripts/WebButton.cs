@@ -5,8 +5,8 @@ using System.Collections.Generic;
 /// <summary>
 /// ウェブボタン
 /// </summary>
-public class WebButton : MonoBehaviour {
-
+public class WebButton : MonoBehaviour
+{
     public UISprite lightButton;
     public GameObject CloseButton;
 
@@ -69,5 +69,4 @@ public class WebButton : MonoBehaviour {
 
         yield return null;
     }
-
 }

@@ -3,8 +3,7 @@ using System.Collections;
 
 public class RailDebugger : MonoBehaviour
 {
-    [SerializeField]
-    Rail[] rails;
+    [SerializeField] Rail[] rails;
 
 	void Start ()
     {

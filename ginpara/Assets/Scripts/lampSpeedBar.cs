@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LampSpeedBar : MonoBehaviour {
-
+public class LampSpeedBar : MonoBehaviour
+{
 	private float barSpeed = 1.0f;
     //ランプの点滅速度や回転速度を調整できるGUIスライダーです
 	//0~1fの間で速さの変更ができます

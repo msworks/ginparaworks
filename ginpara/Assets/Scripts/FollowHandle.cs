@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class FollowHandle : MonoBehaviour {
-
+public class FollowHandle : MonoBehaviour
+{
     public GameObject Handle;
 
     public void OnValueChanged()
@@ -14,5 +13,4 @@ public class FollowHandle : MonoBehaviour {
         Handle.GetComponent<PlayMakerFSM>().FsmVariables.GetFsmFloat("Rotation").Value = value;
         Handle.GetComponent<PlayMakerFSM>().SendEvent("Rotation");
     }
-
 }

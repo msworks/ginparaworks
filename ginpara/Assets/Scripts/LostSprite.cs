@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class LostSprite : MonoBehaviour {
-
+public class LostSprite : MonoBehaviour
+{
     static LostSprite _instance;
     static public LostSprite Instance { get { return _instance; } }
 

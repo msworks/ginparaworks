@@ -4,8 +4,8 @@ using System.Collections;
 /// <summary>
 /// 告知クラス
 /// </summary>
-public class Kokuti : MonoBehaviour {
-
+public class Kokuti : MonoBehaviour
+{
     private static Kokuti _instance;
 
     UISprite flash;

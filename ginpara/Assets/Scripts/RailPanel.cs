@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class RailPanel : MonoBehaviour
 {
@@ -26,9 +24,6 @@ public class RailPanel : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 謎の上の流儀に倣ってみる
-    /// </summary>
     public string spriteName
     {
         set
