@@ -6,8 +6,8 @@ using System.Linq;
 /// <summary>
 /// 泡演出クラス
 /// </summary>
-public class Bubble : MonoBehaviour {
-
+public class Bubble : MonoBehaviour
+{
     static Bubble _instance;
     static public Bubble Instance { get { return _instance; } }
 
@@ -22,5 +22,4 @@ public class Bubble : MonoBehaviour {
         
         return this;
     }
-
 }
