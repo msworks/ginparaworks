@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// ウェブボタン
@@ -9,52 +10,18 @@ public class WebButton : MonoBehaviour {
     public UISprite lightButton;
     public GameObject CloseButton;
 
-    public WebViewObject webView;
+    [SerializeField]
+    GameObject WebMenu;
 
-    /// <summary>
-    /// ページをロードする
-    /// </summary>
-    /// <param name="url"></param>
-    void Load(string url)
-    {
-        var webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
-        webViewObject.Init((msg) =>
-        {
-            if (msg == "clicked")
-            {
-                // webViewObject.SetVisibility(false);
-            }
+    [SerializeField]
+    List<GameObject> DisplayPanels;
 
-            if (msg.Contains("submit"))
-            {
-                Application.LoadLevel("Main");
-            }
-        });
-
-        webViewObject.LoadURL(url);
-        webViewObject.SetMargins(0, 100, 100, 50);
-        webViewObject.EvaluateJS(
-            "window.addEventListener('load', function() {" +
-            "   window.addEventListener('click', function() {" +
-            "       Unity.call('clicked');" +
-            "   }, false);" +
-            "}, false);");
-
-        webView = webViewObject;
-    }
+    [SerializeField]
+    List<GameObject> HidePanels;
 
     void Start()
     {
-        var url = "http://www.google.co.jp/";
-        Load(url);
-
-        CloseButton.SetActive(true);
         StartCoroutine(light());
-
-        if (webView != null)
-        {
-            webView.SetVisibility(true);
-        }
     }
 
     /// <summary>
@@ -62,18 +29,26 @@ public class WebButton : MonoBehaviour {
     /// </summary>
     public void OnClick()
     {
-        // アプリをポーズ状態にする
-        //GameManager.Instance.PauseState = GameManager.PAUSE_STATE.PAUSE;
+        // 盤面に玉がある場合はメニュー表示しない
+        if (Ball.Count != 0)
+        {
+            // バルーン表示
+            Balloon.Instance.Display();
+            return;
+        }
 
-        var url = "http://web.ee-gaming.net/game/menu1.html";
-        Load(url);
-
-        CloseButton.SetActive(true);
         StartCoroutine(light());
 
-        if (webView != null)
+        WebMenu.SetActive(true);
+
+        foreach(var panel in DisplayPanels)
         {
-            webView.SetVisibility(true);
+            panel.SetActive(true);
+        }
+
+        foreach (var panel in HidePanels)
+        {
+            panel.SetActive(false);
         }
     }
 

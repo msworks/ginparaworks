@@ -8,10 +8,5 @@ public class CloseButton : MonoBehaviour {
 
     public void OnClick()
     {
-        if (WebButton.GetComponent<WebButton>().webView)
-        {
-            WebButton.GetComponent<WebButton>().webView.SetVisibility(false);
-        }
-        this.gameObject.SetActive(false);
     }
 }

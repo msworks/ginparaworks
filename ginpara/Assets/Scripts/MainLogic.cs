@@ -381,7 +381,13 @@ public class MainLogic : MonoBehaviour {
 
         Debug.Log("カクヘン：" + IsKakuhen);
 
-        if (IsAtari(RndFFFF, IsKakuhen) || ForceOoatari)
+        var Atari = IsAtari(RndFFFF, IsKakuhen);
+        var ForceHazure = HazureKotei.Instance.State;
+
+        if (ForceHazure) Atari = false;
+        if (ForceOoatari) Atari = true;
+
+        if (Atari)
         {
             //---------//
             // 大当たり //

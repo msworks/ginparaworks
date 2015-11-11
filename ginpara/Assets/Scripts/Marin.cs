@@ -6,6 +6,9 @@ public class Marin : MonoBehaviour
     public GameObject Yobikomi;
     public Transform Goal;
 
+    [SerializeField]
+    Texture[] animation;
+
     Vector3 from;
     Vector3 to;
 
@@ -17,6 +20,20 @@ public class Marin : MonoBehaviour
         _instance = this;
         from = Yobikomi.transform.position;
         to = Goal.transform.position;
+
+        StartCoroutine(AnimationCore());
+    }
+
+    IEnumerator AnimationCore()
+    {
+        var uiTexture = Yobikomi.GetComponent<UITexture>();
+        foreach (var texture in animation.Repeat())
+        {
+            uiTexture.mainTexture = texture;
+            yield return new WaitForSeconds(0.03f);
+        }
+
+        yield return null;
     }
 
     public void display()

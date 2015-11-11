@@ -71,7 +71,6 @@ namespace Ginpara
             // 大当り確定時、1/3の確率で告知を行う
             if (result.isOOatari)
             {
-
                 Kokuti.Instance.KokutiActionA();
             }
 

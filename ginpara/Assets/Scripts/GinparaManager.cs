@@ -482,7 +482,8 @@ public class GinparaManager : MonoBehaviour
 			break;
 			
 		case "4-20":
-			StartCoroutine (this.topRail.StopAfter1Turn (-1, () => {
+            StartCoroutine(this.topRail.RailStop(-1, () =>
+            {
 				if(callback != null) callback();
 			}));
 			break;

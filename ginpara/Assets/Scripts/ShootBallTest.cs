@@ -62,7 +62,7 @@ public class ShootBallTest : MonoBehaviour {
 
         public override void OnEnter()
         {
-            var tama = Fsm.GetFsmInt("tama").Value - 2500;
+            var tama = Fsm.GetFsmInt("tama").Value - 10000;
 
             sadama.text = "差玉：" + tama.ToString();
             

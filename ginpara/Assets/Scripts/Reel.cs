@@ -1171,13 +1171,13 @@ public class Reel
             }
             else if (ReachLine == 2)
             {
-                r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                r2 = CyclicReel2normal.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                                 .Skip(19)
                                 .First();
             }
             else if (ReachLine == 3)
             {
-                r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
+                r2 = CyclicReel2normal.SkipWhile(elem => !elem.Tokuzu.Equals(Tokuzu.ToString()))
                                 .Skip(18)
                                 .First();
             }
@@ -1192,10 +1192,10 @@ public class Reel
                     Zugara = CyclicReelUnder.SkipWhile(e => !e.Equals(Tokuzu.ToString()))
                              .Skip(18)
                              .First();
-                    AtariZugara = int.Parse(Zugara);
+                    AtariZugara = int.Parse(Zugara);    // 出力
                 }
 
-                r2 = CyclicReel2.SkipWhile(elem => !elem.Tokuzu.Equals(Zugara))
+                r2 = CyclicReel2normal.SkipWhile(elem => !elem.Tokuzu.Equals(Zugara))
                                 .Skip(19)
                                 .First();
             }

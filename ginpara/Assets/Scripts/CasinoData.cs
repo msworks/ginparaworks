@@ -287,7 +287,9 @@ public class CasinoData : MonoBehaviour {
     /// </summary>
     void UpdateExchange()
     {
-        var str = string.Format("{0, 8}", (int)(exchangeNum*100)).Reverse();
+        var num = exchangeNum * 100f;
+        var intNum = (int)num;
+        var str = string.Format("{0, 8}", intNum).Reverse();
         var i = 0;
         foreach (var c in str)
         {

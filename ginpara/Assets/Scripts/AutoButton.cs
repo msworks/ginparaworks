@@ -32,6 +32,8 @@ public class AutoButton : MonoBehaviour {
         get { return _instance; }
     }
 
+    public bool isAuto { get { return autoSwitch; } }
+
     void Awake()
     {
         _instance = this;
