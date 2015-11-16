@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 // チャッカー
-public class Syokyu_Nyusyo0 : MonoBehaviour {
-
+public class Syokyu_Nyusyo0 : MonoBehaviour
+{
     public GameObject Horyu;
     public GameObject ChackerOut;
     public GameObject BallPrefab;
@@ -13,20 +12,17 @@ public class Syokyu_Nyusyo0 : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ball")
+        if (collision.gameObject.tag != "Ball")
         {
-            Destroy(collision.gameObject);
+            return;
         }
 
         // 保留オブジェクトにチャッカー通過メッセージを送る
         Horyu.GetComponent<PlayMakerFSM>().SendEvent(msg);
 
         // チャッカー出口に玉を出す
-        var ball = NGUITools.AddChild(BodyPath, BallPrefab);
+        var ball = collision.gameObject;
         ball.transform.position = ChackerOut.transform.position;
-
-        ball.GetComponent<UISprite>().depth = 980;
-
+        ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
-
 }

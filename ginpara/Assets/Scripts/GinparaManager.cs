@@ -4736,15 +4736,6 @@ public class GinparaManager : MonoBehaviour
 			break;
 			
 		case "403":
-			//this.bonusPicture.transform.gameObject.SetActive (false);
-			//this.bonusPictureNum.transform.gameObject.SetActive(false);
-			//this.bonusPictureBase.transform.gameObject.SetActive (false);
-			//this.bonusRound.transform.gameObject.SetActive(false);
-			//this.bonusRoundBase.transform.gameObject.SetActive(false);
-			
-			//this.bonusFinishBackground.transform.gameObject.SetActive (true);
-			//this.bonusFinishLabel.transform.gameObject.SetActive (true);
-			//this.marinFinishAnime.transform.gameObject.SetActive (true);
 			StartCoroutine (this.BonusFinish(callback));
 			break;
 			
@@ -4859,7 +4850,6 @@ public class GinparaManager : MonoBehaviour
 		return errorCode;
 	}
 	
-	//----------------------------------------------------------------------------------------------------
 	private IEnumerator BubbleNotice(System.Action callback){
 		float totalTime = 0;
 		while(totalTime < 1f){
@@ -4984,7 +4974,6 @@ public class GinparaManager : MonoBehaviour
 
     }
 
-	//----------------------------------------------------------------------------------------------------
 	private IEnumerator DisplayUpper(System.Action callback){
 		float totalTime = 0;
 		while(totalTime < 6f){
@@ -4998,7 +4987,6 @@ public class GinparaManager : MonoBehaviour
 		if(callback != null) callback();
 	}
 
-    //----------------------------------------------------------------------------------------------------
     // 液晶を大当たりから通常に戻す
     private IEnumerator DisplayDowner(System.Action callback)
     {
@@ -5015,59 +5003,16 @@ public class GinparaManager : MonoBehaviour
         if (callback != null) callback();
     }
 	
-	//----------------------------------------------------------------------------------------------------
-	private IEnumerator MarinShakeHand(System.Action callback){
-        /*
-		float totalTime = 0;
-		while(totalTime < 2f){
-			float time = Time.deltaTime;
-			totalTime += time;
-			this.marinShakeHandAnchor.relativeOffset -= new Vector2(0, time * 0.5f);
-			yield return null;
-		}
-		
-		this.marinShakeHandAnime.Play (null);
-		
-		while(this.marinShakeHandAnime.IsAnimating)
-			yield return null;
-		
-		this.marinShakeHandAnchor.relativeOffset = new Vector2(0, 0);
-		this.marinShakeHandAnchor.transform.gameObject.SetActive (false);
-		if(callback != null) callback();
-         */
-
+	private IEnumerator MarinShakeHand(System.Action callback)
+    {
         yield return null;
 	}
 	
-	//----------------------------------------------------------------------------------------------------
-	private IEnumerator MarinBrown(System.Action callback){
-        /*
-		this.marinSBrownAnime.Play (null);
-		this.loseBubbleAnime.Play (null);
-		
-		while(this.marinSBrownAnime.IsAnimating  ||  this.loseBubbleAnime.IsAnimating)
-			yield return null;
-		
-		float totalTime = 0;
-		while(totalTime < 2f){
-			float time = Time.deltaTime;
-			totalTime += time;
-			this.loseBubbleAnchor.relativeOffset -= new Vector2(0, time * 0.5f);
-			this.marinBrownAnchor.relativeOffset -= new Vector2(0, time * 0.5f);
-			yield return null;
-		}
-		
-		this.marinBrownAnchor.relativeOffset = new Vector2(0, 0);
-		this.loseBubbleAnchor.relativeOffset = new Vector2(0, 0);
-		this.loseBubbleAnchor.transform.gameObject.SetActive (false);
-		this.marinBrownAnchor.transform.gameObject.SetActive (false);
-		if(callback != null) callback();
-         */
-
+	private IEnumerator MarinBrown(System.Action callback)
+    {
         yield return null;
 	}
 	
-	//----------------------------------------------------------------------------------------------------
 	private IEnumerator LostString(System.Action callback){
 		this.lostStringAnime.Play (null);
 		
@@ -5092,18 +5037,8 @@ public class GinparaManager : MonoBehaviour
 	/// </summary>
 	/// <param name="callback"></param>
 	/// <returns></returns>
-	private IEnumerator MarinPeaceStart(Action callback){
-        /*
-        this.marinPeaceAnime.TotalTime = -1f;
-        this.marinPeaceAnime.IsLoop = true;
-		this.marinPeaceAnime.Play (null);
-		
-		while(this.marinPeaceAnime.IsAnimating  ||  this.loseBubbleAnime.IsAnimating)
-			yield return null;
-		
-		//this.marinPeaceAnchor.relativeOffset = new Vector2(0, 0);
-		this.marinPeaceAnchor.transform.gameObject.SetActive (false);
-         */
+	private IEnumerator MarinPeaceStart(Action callback)
+    {
 		if(callback != null) callback();
         yield return null;
 	}
@@ -5122,7 +5057,8 @@ public class GinparaManager : MonoBehaviour
     /// </summary>
     /// <param name="callback"></param>
     /// <returns></returns>
-	private IEnumerator RollBubbleStart(Action callback){
+	private IEnumerator RollBubbleStart(Action callback)
+    {
         this.rollBubble.TotalTime = -1f;
         this.rollBubble.IsLoop = true;
         this.rollBubble.Play(null);
@@ -5210,10 +5146,9 @@ public class GinparaManager : MonoBehaviour
         return null;
     }
 
-	//----------------------------------------------------------------------------------------------------
-	#if UNITY_EDITOR
-	void OnGUI(){
+#if UNITY_EDITOR
+    void OnGUI(){
 		GUILayout.Label ("パターンNoを入力（Enterで実行） : " + this.orderCode, GUILayout.Height (Screen.height / 5));
 	}
-	#endif
+#endif
 }

@@ -10,14 +10,9 @@ public class WebButton : MonoBehaviour
     public UISprite lightButton;
     public GameObject CloseButton;
 
-    [SerializeField]
-    GameObject WebMenu;
-
-    [SerializeField]
-    List<GameObject> DisplayPanels;
-
-    [SerializeField]
-    List<GameObject> HidePanels;
+    [SerializeField] GameObject WebMenu;
+    [SerializeField] List<GameObject> DisplayPanels;
+    [SerializeField] List<GameObject> HidePanels;
 
     void Start()
     {

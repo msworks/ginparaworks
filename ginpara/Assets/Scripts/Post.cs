@@ -1,11 +1,13 @@
 ﻿using HutongGames.PlayMaker;
-using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.IO;
+using UnityEditor;
+using UnityEngine;
+using TheOcean;
 
 public class Post : MonoBehaviour
 {
@@ -18,7 +20,7 @@ public class Post : MonoBehaviour
     // WEB - 本番
     // DESKTOP - TEST MODE
     //MODE mode = MODE.WEB;
-    MODE mode = MODE.WEB;
+    MODE mode = MODE.DESKTOP;
 
     static string serverHead = "http://web.ee-gaming.net/ps/pachinko/";
     static string logicHead = "http://localhost:9876/";
@@ -57,23 +59,22 @@ public class Post : MonoBehaviour
     }
 
     [ActionCategory("Ginpara")]
-    public class GetParameter : FsmStateAction
-    {
-        public override void OnEnter()
-        {
-            // Webページに対してパラメータ送信要求
-            Application.ExternalCall("GetParameter");
-        }
-    }
-
-    [ActionCategory("Ginpara")]
     public class Open : FsmStateAction
     {
         public Post post;
+        public FsmEvent Demo;
+        public FsmEvent Real;
+        public FsmEvent failed;
 
         public override void OnEnter()
         {
-            post._Open();
+            var events = new Dictionary<string, FsmEvent>()
+            {
+                { "Demo", Demo },
+                { "Real", Real },
+                { "failed", failed },
+            };
+            post._Open(events);
         }
     }
 
@@ -133,6 +134,15 @@ public class Post : MonoBehaviour
         }
     }
 
+    [ActionCategory("Ginpara")]
+    public class Failed : FsmStateAction
+    {
+        public override void OnEnter()
+        {
+            EditorUtility.DisplayDialog("Connection Failed", "Message Text!", "OK");
+        }
+    }
+
     /// <summary>
     /// サーバーにConfigコマンド発行
     /// </summary>
@@ -148,7 +158,7 @@ public class Post : MonoBehaviour
 
         var desktopParam = new Dictionary<string, string>()
         {
-            { "gameId", "2" },
+            { "gameId", "1" },
             { "userId", "1" },
         };
 
@@ -221,7 +231,7 @@ public class Post : MonoBehaviour
 
         var desktopParam = new Dictionary<string, string>()
         {
-            { "gameId", "2" },
+            { "gameId", "1" },
             { "userId", "1" },
         };
 
@@ -232,7 +242,7 @@ public class Post : MonoBehaviour
 
         Action<WWW> desktopAction = (www) =>
         {
-            Debug.Log(www.text);
+            //Debug.Log(www.text);
             var json = new JSONObject(www.text);
             fsm.SendEvent("Succeed");
         };
@@ -268,8 +278,7 @@ public class Post : MonoBehaviour
         var fsm = GetComponent<PlayMakerFSM>();
 
         var betcount = bet;
-        var rate = 1;
-//        var rate = (float)Rate.Instanse.GetRate() / 100;
+        var rate = (int)Rates.Rate;
 
         var webParam = new Dictionary<string, string>()
         {
@@ -280,7 +289,7 @@ public class Post : MonoBehaviour
 
         var desktopParam = new Dictionary<string, string>()
         {
-            { "gameId", "2" },
+            { "gameId", "1" },
             { "userId", "1" },
             { "betCount", betcount.ToString() },
             { "rate", rate.ToString() },
@@ -294,17 +303,20 @@ public class Post : MonoBehaviour
 
         Action<WWW> desktopAction = (www) =>
         {
-            Debug.Log(www.text);
+            //Debug.Log(www.text);
             var json = new JSONObject(www.text);
 
-            var yaku = json.GetField("yaku").ToString().ParseInt();
+            var yaku = (Yaku)json.GetField("yaku").ToString().ParseInt();
+            var route = (Route)json.GetField("route").ToString().ParseInt();
+
+            Debug.Log(String.Format("yaku:{0} route:{1}", yaku, route));
 
             fsm.SendEvent("Succeed");
         };
 
         Action<WWW> webAction = (www) =>
         {
-            Debug.Log(www.text);
+            //Debug.Log(www.text);
 
             var xmlDoc = new XmlDocument();
             xmlDoc.Load(new StringReader(www.text));
@@ -344,7 +356,7 @@ public class Post : MonoBehaviour
 
         var desktopParam = new Dictionary<string, string>()
         {
-            { "gameId", "2" },
+            { "gameId", "1" },
             { "userId", "1" },
             { "reelStopLeft", "1" },
             { "reelStopCenter", "1" },
@@ -359,9 +371,8 @@ public class Post : MonoBehaviour
 
         Action<WWW> desktopAction = (www) =>
         {
-            Debug.Log(www.text);
+            //Debug.Log(www.text);
             var json = new JSONObject(www.text);
-
             var result = json.GetField("result").ToString();
             //var winnings = Decimal.Parse(json.GetField("winnings").ToString());
 
@@ -397,20 +408,19 @@ public class Post : MonoBehaviour
     /// <summary>
     /// ログイン
     /// </summary>
-    public void _Open()
+    public void _Open(Dictionary<string, FsmEvent> events)
     {
         var fsm = GetComponent<PlayMakerFSM>();
 
         if (mode == MODE.DESKTOP)
         {
-            // TEST CODE
             var WalletApi = "http://web.ee-gaming.net/apis/wallet1_1/";
             var authenticate = WalletApi + "login.html";
 
             PostWWW(authenticate,
                 HashCalculation(new Dictionary<string, string>()
                 {
-                    { "gameId", "2" },
+                    { "gameId", "1" },
                     { "login", "ttakekawa@manasoft.co.jp" },
                     { "password", "L18mmTR3" },
                     { "providerId", "33" },
@@ -418,12 +428,8 @@ public class Post : MonoBehaviour
                 }, "test123"),
                 www => { 
                     var text = www.text;
-
-                    // {"token":"HQWQQ5D9IUQC70KKXK5ZFFHFPPG36TQ9"}
                     var json = new JSONObject(text);
                     var token = json.GetField("token").str;
-
-                    //gameId=2&token=aaa&language=ja&operatorId=1&mode=1
 
                     var msg = string.Format("gameId=2&token={0}&language=ja&operatorId=1&mode=1", token);
 
@@ -449,23 +455,17 @@ public class Post : MonoBehaviour
         }
         else
         {
-            fsm.SendEvent("Failed");
+            fsm.SendEvent(events["Failed"].Name);
         }
     }
 
     public void PostOpen(Dictionary<string, string> param)
     {
-        if (mode == MODE.DESKTOP)
-        {
-            //// コインを補充
-            //GameManager.Instance.InsertCoin(1000);
-        }
-
         var fsm = GetComponent<PlayMakerFSM>();
         var url = head + "open.html";
 
         PostWWW(url, param,
-            www => { fsm.SendEvent("Succeed"); },
+            www => { fsm.SendEvent("Real"); },
             www => { fsm.SendEvent("Failed"); }
         );
     }
@@ -479,19 +479,16 @@ public class Post : MonoBehaviour
         var fsm = GetComponent<PlayMakerFSM>();
         fsm.SendEvent("Succeed");
 
-        // デバッグ用にアラートを出す
-        //Application.ExternalCall("AlertByUnity", msg);
+        var param = new Dictionary<string, string>();
 
-        //var param = new Dictionary<string, string>();
+        var kvs = msg.Split('&')
+                     .Select(query => query.Split('='))
+                     .Select(strings => new KeyValuePair<string, string>(strings[0], strings[1]));
 
-        //var kvs = msg.Split('&')
-        //   .Select(query => query.Split('='))
-        //   .Select(strings => new KeyValuePair<string, string>(strings[0], strings[1]));
-
-        //foreach(var kv in kvs)
-        //{
-        //    param.Add(kv.Key, kv.Value);
-        //}
+        foreach (var kv in kvs)
+        {
+            param.Add(kv.Key, kv.Value);
+        }
 
         //// OpenをPOST
         //PostOpen(param);
@@ -510,9 +507,6 @@ public class Post : MonoBehaviour
         };
 
         var s = f() + himitsu;
-
-        //Debug.Log("PRE HASH:" + s);
-
         var data = System.Text.Encoding.UTF8.GetBytes(s);
         var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
         var bs = md5.ComputeHash(data);
@@ -522,9 +516,6 @@ public class Post : MonoBehaviour
         {
             result.Append(b.ToString("x2"));
         }
-
-        //結果を表示
-        //Debug.Log("POST HASH:"+result.ToString());
 
         i.Add("hash", result.ToString());
 
@@ -541,9 +532,21 @@ public class Post : MonoBehaviour
         StartCoroutine(PostWWWCore(url, post, success, failed));
     }
 
-    IEnumerator PostWWWCore(string url, Dictionary<string, string> post, Action<WWW> success, Action<WWW> failed)
+    /// <summary>
+    /// POSTのコア
+    /// </summary>
+    /// <param name="url"></param>
+    /// <param name="post"></param>
+    /// <param name="success"></param>
+    /// <param name="failed"></param>
+    /// <returns></returns>
+    IEnumerator PostWWWCore(
+        string url,
+        Dictionary<string, string> post,
+        Action<WWW> success,
+        Action<WWW> failed)
     {
-        Debug.Log("POST:url=" + url);
+        //Debug.Log("POST:url=" + url);
 
         WWWForm form = new WWWForm();
 

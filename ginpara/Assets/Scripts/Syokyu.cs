@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// 賞球クラス
 /// </summary>
-public class Syokyu : MonoBehaviour {
-
+public class Syokyu : MonoBehaviour
+{
     public GameObject Kenri;
     public GameObject Uchidashi;
     public int Syokyusu;
@@ -16,7 +15,16 @@ public class Syokyu : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Ball")
         {
-            Destroy(collision.gameObject);
+            var ball = collision.gameObject.GetComponent<Ball>();
+
+            if(Syokyusu == 15)
+            {
+                ball.DeleteBall(TheOcean.Route.Syokyu15);
+            }
+            else
+            {
+                ball.DeleteBall(TheOcean.Route.Syokyu7);
+            }
 
             Uchidashi.GetComponent<PlayMakerFSM>().FsmVariables.GetFsmInt("tama").Value += Syokyusu;
 

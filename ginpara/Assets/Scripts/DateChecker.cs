@@ -2,14 +2,12 @@
 using HutongGames.PlayMaker;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 /// <summary>
 /// 日付チェッカー もとい締め処理
 /// </summary>
-public class DateChecker : MonoBehaviour {
-
+public class DateChecker : MonoBehaviour
+{
     // 締めで持ち越すデータ群
 
     static private DateChecker _instance;

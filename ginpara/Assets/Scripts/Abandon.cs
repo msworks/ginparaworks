@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TheOcean;
 
 /// <summary>
 /// 玉を消す
@@ -7,6 +8,8 @@ public class Abandon : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
+        var ball = collision.gameObject.GetComponent<Ball>();
+        ball.DeleteBall(Route.Abandon);
+        //Destroy(collision.gameObject);
     }
 }

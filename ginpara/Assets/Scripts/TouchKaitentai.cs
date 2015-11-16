@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-// 回転体に玉が乗ったときの挙動
-// ボールの状態を変化させる。自律的にやる。
-// 
-public class TouchKaitentai : MonoBehaviour {
-
+/// <summary>
+/// 回転体の中に玉が入ったときに、玉通過メッセージを発行
+/// </summary>
+public class TouchKaitentai : MonoBehaviour
+{
     public GameObject TurnBallPrefab;
     public GameObject BodyPath;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
+        //Destroy(collision.gameObject);
+        var ball = collision.gameObject.GetComponent<Ball>();
+        ball.DeleteBall(TheOcean.Route.Kaitenti);
+
         this.gameObject.GetComponent<PlayMakerFSM>().SendEvent("玉通過");
     }
-
 }

@@ -1,9 +1,11 @@
 using UnityEngine;
 using HutongGames.PlayMaker;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+
+public enum SliderMode
+{
+    Normal,
+    Sequence,
+}
 
 /// <summary>
 /// スライダーの値を取得する
@@ -13,13 +15,32 @@ public class GetSliderValue : FsmStateAction
 {
     public GameObject Slider;
     public FsmFloat   Value;
-	
-	// Code that runs on entering the state.
+    public SliderMode Mode;
+
+    static int seq = 0;
+
 	public override void OnEnter()
 	{
-        Value.Value = Slider.GetComponent<UISlider>().value;
+        if( Mode == SliderMode.Sequence)
+        {
+            seq++;
+            if( seq >= 4096)
+            {
+                Value.Value = 0f;
+            }
+            else
+            {
+                var s = (float)seq;
+                Value.Value = s / 4096f;
+            }
+
+            Slider.GetComponent<UISlider>().value = Value.Value;
+        }
+        else if( Mode == SliderMode.Normal)
+        {
+            Value.Value = Slider.GetComponent<UISlider>().value;
+        }
+
 		Finish();
 	}
-
-
 }

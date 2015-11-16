@@ -1,56 +1,59 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using TheOcean;
 
-public class Ball : MonoBehaviour {
-
-    static private int _count = 0;
-
+/// <summary>
+/// 生成するときにPowerを設定すること
+/// </summary>
+public class Ball : MonoBehaviour
+{
     static public int Count
     {
-        get
-        {
-            return _count;
-        }
+        get; private set;
     }
 
-	void Start () {
-        _count++;
+    List<Vector3> positions = new List<Vector3>();
 
+    /// <summary>
+    /// Power min:0 max:255
+    /// </summary>
+    public int Power
+    {
+        get; set;
+    }
+
+	void Start ()
+    {
+        Count++;
+
+        // 30秒経っても玉が残っている場合は玉を消す
         StartCoroutine(DeleteBall(30f));
+    }
+
+    void Update()
+    {
+        positions.Add(transform.position);
+    }
+
+    public void DeleteBall(Route route)
+    {
+        // 軌道と力と結果を保存
+
+        Debug.Log(string.Format("[Delete Ball]Power:{0} Route:{1}", Power, route));
+
+        Destroy(this.gameObject);
     }
 
     IEnumerator DeleteBall(float time)
     {
+        // タイムアウトした玉の軌道は保存しない
         yield return new WaitForSeconds(time);
         Destroy(this.gameObject);
     }	
 
     void OnDestroy()
     {
-        _count--;
-    }
-
-    // 玉が重ならないようにする
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "Ball")
-        {
-            var delta = ( col.gameObject.transform.position - this.gameObject.transform.position ).normalized;
-            GetComponent<Rigidbody2D>().AddForce(delta / 30);
-            //this.gameObject.rigidbody2D.AddForce(delta/30);
-        }
-    }
-
-    // 玉が重ならないようにする
-    void OnCollisionStay2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "Ball")
-        {
-            var delta = (col.gameObject.transform.position - this.gameObject.transform.position).normalized;
-            GetComponent<Rigidbody2D>().AddForce(delta / 30);
-            //this.gameObject.rigidbody2D.AddForce(delta / 30);
-        }
+        Count--;
     }
 }

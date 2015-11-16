@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class UITextureManager : MonoBehaviour {
+public class UITextureManager : MonoBehaviour
+{
 	[SerializeField] private UITexture uiTexture = null;
 	[SerializeField] private Texture[] textures = null;
 	public Animation textureAnimation = null;
@@ -9,10 +9,8 @@ public class UITextureManager : MonoBehaviour {
 	public float textureNum = 0;
 	private int currentNum = 0;
 	
-	//====================================================================================================
-	// Method
-	//====================================================================================================
-	void Update(){
+	void Update()
+    {
 		if (this.textureNum < 0)
 			this.textureNum = 0;
 		else if (this.textureNum > this.textures.Length - 1)
@@ -24,8 +22,8 @@ public class UITextureManager : MonoBehaviour {
 		}
 	}
 
-    //----------------------------------------------------------------------------------------------------
-	public void PlayAnim(int animNum){
+	public void PlayAnim(int animNum)
+    {
 		if (animNum > this.anims.Length - 1 || animNum < 0)
 			return;
 
@@ -34,8 +32,8 @@ public class UITextureManager : MonoBehaviour {
 		this.textureAnimation.Play ();
 	}
 	
-	//----------------------------------------------------------------------------------------------------
-	public void StopAnim(){
+	public void StopAnim()
+    {
 		if (this.textureAnimation.isPlaying)
 			this.textureAnimation.Stop ();
 	}

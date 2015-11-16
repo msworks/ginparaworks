@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class TouchScreen : MonoBehaviour {
-
+public class TouchScreen : MonoBehaviour
+{
     // インスペクタから設定する
     public Camera secondCamera;
 
@@ -30,5 +29,4 @@ public class TouchScreen : MonoBehaviour {
             secondCamera.gameObject.SetActive(false);
         }
     }
-
 }
