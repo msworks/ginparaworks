@@ -5,24 +5,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 using TheOcean;
+using Prefab = UnityEngine.GameObject;
+using MaybeMonad;
 
 public class Post : MonoBehaviour
 {
-    enum MODE
+    public static Post Instance { private set; get; }
+
+    [SerializeField]
+    Prefab BallPrefab;
+
+    [SerializeField]
+    GameObject BodyPath;
+
+    [SerializeField]
+    GameObject ShootPosition;
+
+    enum RealDemoMode
     {
-        WEB,
-        DESKTOP,
+        Real,
+        Demo,
+    }
+
+    enum Mode
+    {
+        Web,
+        Desktop,
     }
 
     // WEB - 本番
     // DESKTOP - TEST MODE
     //MODE mode = MODE.WEB;
-    MODE mode = MODE.DESKTOP;
+    Mode mode = Mode.Web;
 
-    static string serverHead = "http://web.ee-gaming.net/ps/pachinko/";
+    RealDemoMode realDemo = RealDemoMode.Real;
+
+    static string serverHead = "../pachinko/";
     static string logicHead = "http://localhost:9876/";
 
     static Dictionary<string, string> verbsLogic = new Dictionary<string, string>()
@@ -46,12 +66,14 @@ public class Post : MonoBehaviour
 
     void Start()
     {
-        if( mode==MODE.WEB)
+        Instance = this;
+
+        if( mode==Mode.Web)
         {
             head = serverHead;
             verbs = verbsServer;
         }
-        else if( mode == MODE.DESKTOP)
+        else if( mode == Mode.Desktop)
         {
             head = logicHead;
             verbs = verbsLogic;
@@ -116,10 +138,11 @@ public class Post : MonoBehaviour
     {
         public Post post;
         public FsmInt bet;
+        public FsmInt power;
 
         public override void OnEnter()
         {
-            post.PostPlay(bet.Value);
+            post.PostPlay(bet.Value, power.Value);
         }
     }
 
@@ -139,7 +162,7 @@ public class Post : MonoBehaviour
     {
         public override void OnEnter()
         {
-            EditorUtility.DisplayDialog("Connection Failed", "Message Text!", "OK");
+            // TODO エラーメッセージ
         }
     }
 
@@ -200,22 +223,13 @@ public class Post : MonoBehaviour
             var reelright = associate["reelRight"].ToString().ParseInt();
             var seed = associate["seed"].ToString().ParseInt();
 
-            // コインチャージ
-            // balance  : 所持金($)
-            // balanceCent : 所持金（セント）
-            // rateCent : コイン１毎あたりの値段（単位：セント）
-            // coinNum  : コイン枚数
-            // coinNum = balanceCent / rateCent
-            var rateCent = 1;
-            //var rateCent = Rate.Instanse.GetRate();
-            var balanceCent = balance * 100;
-            var coinNum = (int)(balanceCent / rateCent);
+            CasinoData.Instance.Exchange = (float)balance;
 
             fsm.SendEvent("Succeed");
         };
 
-        var param = mode == MODE.WEB ? webParam : desktopParam;
-        var success = mode == MODE.WEB ? webAction : desktopAction;
+        var param = mode == Mode.Web ? webParam : desktopParam;
+        var success = mode == Mode.Web ? webAction : desktopAction;
 
         PostWWW(url, param, success, failed);
     }
@@ -265,13 +279,13 @@ public class Post : MonoBehaviour
             fsm.SendEvent("Succeed");
         };
 
-        var param = mode == MODE.WEB ? webParam : desktopParam;
-        var success = mode == MODE.WEB ? webAction : desktopAction;
+        var param = mode == Mode.Web ? webParam : desktopParam;
+        var success = mode == Mode.Web ? webAction : desktopAction;
 
         PostWWW(url, param, success, failed);
     }
 
-    public void PostPlay(int bet)
+    public void PostPlay(int bet, int power)
     {
         var verb = verbs["play"];
         var url = head + verb;
@@ -284,7 +298,7 @@ public class Post : MonoBehaviour
         {
             { "rate", rate.ToString() },
             { "betCount",betcount.ToString() },
-            { "power", "0" },
+            { "power", power.ToString() },
         };
 
         var desktopParam = new Dictionary<string, string>()
@@ -293,7 +307,7 @@ public class Post : MonoBehaviour
             { "userId", "1" },
             { "betCount", betcount.ToString() },
             { "rate", rate.ToString() },
-            { "power", "0" },
+            { "power", power.ToString() },
         };
 
         Action<WWW> failed = (www) =>
@@ -303,21 +317,41 @@ public class Post : MonoBehaviour
 
         Action<WWW> desktopAction = (www) =>
         {
-            //Debug.Log(www.text);
             var json = new JSONObject(www.text);
-
             var yaku = (Yaku)json.GetField("yaku").ToString().ParseInt();
             var route = (Route)json.GetField("route").ToString().ParseInt();
 
-            Debug.Log(String.Format("yaku:{0} route:{1}", yaku, route));
+            if( route != Route.Abandon)
+            {
+                Debug.Log(String.Format("yaku:{0} route:{1}", yaku, route));
+            }
+
+            var ball = NGUITools.AddChild(BodyPath, BallPrefab);
+            ball.transform.position = ShootPosition.transform.position;
+            ball.GetComponent<UISprite>().depth = 980;
+
+            var ballComponent = ball.GetComponent<Ball>();
+            ballComponent.Power = power;
+            ballComponent.Route = route;
+            ballComponent.RouteMode = RouteMode.DefinedRoute;
+
+            if (route == Route.Chacker || route == Route.Chacker7)
+            {
+                if (yaku == Yaku.Atari)
+                {
+                    MainLogic.Instance.Enqueue(true);
+                }
+                else
+                {
+                    MainLogic.Instance.Enqueue(false);
+                }
+            }
 
             fsm.SendEvent("Succeed");
         };
 
         Action<WWW> webAction = (www) =>
         {
-            //Debug.Log(www.text);
-
             var xmlDoc = new XmlDocument();
             xmlDoc.Load(new StringReader(www.text));
             var res = xmlDoc.GetElementsByTagName("response");
@@ -327,14 +361,38 @@ public class Post : MonoBehaviour
                 associate.Add(node.Name, node.InnerText);
             }
 
-            var yaku = associate["yaku"].ToString().ParseInt();
-            var balance = Decimal.Parse(associate["balance"].ToString());
+            var yaku = (Yaku)associate["yaku"].ToString().ParseInt();
+            var route = (Route)associate["route"].ToString().ParseInt();
 
+            Debug.Log(String.Format("yaku:{0} route:{1}", yaku, route));
+
+            var ball = NGUITools.AddChild(BodyPath, BallPrefab);
+            ball.transform.position = ShootPosition.transform.position;
+            ball.GetComponent<UISprite>().depth = 980;
+
+            var ballComponent = ball.GetComponent<Ball>();
+            ballComponent.Power = power;
+            ballComponent.Route = route;
+            ballComponent.RouteMode = RouteMode.DefinedRoute;
+
+            if (route == Route.Chacker || route == Route.Chacker7)
+            {
+                if (yaku == Yaku.Atari)
+                {
+                    MainLogic.Instance.Enqueue(true);
+                }
+                else
+                {
+                    MainLogic.Instance.Enqueue(false);
+                }
+            }
+
+            Debug.Log("Succeed");
             fsm.SendEvent("Succeed");
         };
 
-        var param = mode == MODE.WEB ? webParam : desktopParam;
-        var success = mode == MODE.WEB ? webAction : desktopAction;
+        var param = mode == Mode.Web ? webParam : desktopParam;
+        var success = mode == Mode.Web ? webAction : desktopAction;
 
         PostWWW(url, param, success, failed);
 
@@ -399,8 +457,8 @@ public class Post : MonoBehaviour
             fsm.SendEvent("Succeed");
         };
 
-        var param = mode == MODE.WEB ? webParam : desktopParam;
-        var success = mode == MODE.WEB ? webAction : desktopAction;
+        var param = mode == Mode.Web ? webParam : desktopParam;
+        var success = mode == Mode.Web ? webAction : desktopAction;
 
         PostWWW(url, param, success, failed);
     }
@@ -412,43 +470,26 @@ public class Post : MonoBehaviour
     {
         var fsm = GetComponent<PlayMakerFSM>();
 
-        if (mode == MODE.DESKTOP)
+        if (mode == Mode.Desktop)
         {
             var WalletApi = "http://web.ee-gaming.net/apis/wallet1_1/";
             var authenticate = WalletApi + "login.html";
 
-            PostWWW(authenticate,
-                HashCalculation(new Dictionary<string, string>()
-                {
-                    { "gameId", "1" },
-                    { "login", "ttakekawa@manasoft.co.jp" },
-                    { "password", "L18mmTR3" },
-                    { "providerId", "33" },
-                    { "siteId", "1" }
-                }, "test123"),
-                www => { 
-                    var text = www.text;
-                    var json = new JSONObject(text);
-                    var token = json.GetField("token").str;
+            var msg = string.Format("gameId=1&userId=1&language=ja&operatorId=1&mode=1");
 
-                    var msg = string.Format("gameId=2&token={0}&language=ja&operatorId=1&mode=1", token);
+            var kvs = msg.Split('&')
+                       .Select(query => query.Split('='))
+                       .Select(strings => new KeyValuePair<string, string>(strings[0], strings[1]));
 
-                    var kvs = msg.Split('&')
-                               .Select(query => query.Split('='))
-                               .Select(strings => new KeyValuePair<string, string>(strings[0], strings[1]));
+            var param = new Dictionary<string, string>();
+            foreach (var kv in kvs)
+            {
+                param.Add(kv.Key, kv.Value);
+            }
 
-                    var param = new Dictionary<string, string>();
-                    foreach (var kv in kvs)
-                    {
-                        param.Add(kv.Key, kv.Value);
-                    }
-
-                    PostOpen(param);
-                },
-                www => { fsm.SendEvent("Failed"); }
-            );
+            PostOpen(param);
         }
-        else if (mode == MODE.WEB)
+        else if (mode == Mode.Web)
         {
             // Webページに対してパラメータ送信要求
             Application.ExternalCall("GetParameter");
@@ -476,8 +517,8 @@ public class Post : MonoBehaviour
     /// <param name="msg">gameId=2&token=aaa&language=ja&operatorId=1&mode=1</param>
     public void Response(string msg)
     {
-        var fsm = GetComponent<PlayMakerFSM>();
-        fsm.SendEvent("Succeed");
+        // デバッグ用にアラートを出す
+        //Application.ExternalCall("AlertByUnity", msg);
 
         var param = new Dictionary<string, string>();
 
@@ -490,8 +531,17 @@ public class Post : MonoBehaviour
             param.Add(kv.Key, kv.Value);
         }
 
-        //// OpenをPOST
-        //PostOpen(param);
+        if(param["mode"]=="0")
+        {
+            // デモモード
+            realDemo = RealDemoMode.Demo;
+
+            // 1000枚セット
+            var coinCount = 1000;
+        }
+
+        var fsm = GetComponent<PlayMakerFSM>();
+        fsm.SendEvent("Real");
     }
 
     Dictionary<string, string> HashCalculation(Dictionary<string, string> i, string himitsu)
@@ -571,4 +621,75 @@ public class Post : MonoBehaviour
             failed(www);
         }
     }
+
+    Queue<Message> messageQueue = new Queue<Message>();
+
+    public void Enqueue(Message message)
+    {
+        messageQueue.Enqueue(message);
+    }
+
+    public Option<Message> Dequeue()
+    {
+        if(messageQueue.Count() == 0)
+        {
+            return Option<Message>.None();
+        }
+
+        var message = messageQueue.Dequeue();
+
+        return Option<Message>.Just(message);
+    }
+
+    [ActionCategory("Ginpara")]
+    public class WaitMessage : FsmStateAction
+    {
+        public Post post;
+        public FsmEvent Shoot;
+        public FsmEvent Progress;
+
+        public override void OnUpdate()
+        {
+            var message = post.Dequeue();
+
+            if (!message.IsNone)
+            {
+                if(message.Value== Message.Shoot)
+                {
+                    Fsm.Event(Shoot);
+                }
+                else if(message.Value == Message.Progress)
+                {
+                    Fsm.Event(Progress);
+                }
+            }
+        }
+    }
+
+    [ActionCategory("Ginpara")]
+    public class Shoot : FsmStateAction
+    {
+        public override void OnEnter()
+        {
+            Post.Instance.Enqueue(Message.Shoot);
+            Finish();
+        }
+    }
+
+    [ActionCategory("Ginpara")]
+    public class Progress : FsmStateAction
+    {
+        public override void OnEnter()
+        {
+            Post.Instance.Enqueue(Message.Progress);
+            Finish();
+        }
+    }
 }
+
+public enum Message
+{
+    Shoot,
+    Progress,
+}
+

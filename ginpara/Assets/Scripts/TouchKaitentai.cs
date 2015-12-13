@@ -10,10 +10,10 @@ public class TouchKaitentai : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        //Destroy(collision.gameObject);
-        var ball = collision.gameObject.GetComponent<Ball>();
-        ball.DeleteBall(TheOcean.Route.Kaitenti);
+        ////Destroy(collision.gameObject);
+        //var ball = collision.gameObject.GetComponent<Ball>();
+        //ball.DeleteBall(TheOcean.Route.Kaitenti);
 
-        this.gameObject.GetComponent<PlayMakerFSM>().SendEvent("玉通過");
+        //this.gameObject.GetComponent<PlayMakerFSM>().SendEvent("玉通過");
     }
 }

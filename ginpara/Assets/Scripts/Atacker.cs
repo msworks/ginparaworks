@@ -18,12 +18,12 @@ public class Atacker : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ball")
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
 
-            // アタッカーに入った→権利獲得
-            MainLogic.GetComponent<PlayMakerFSM>().SendEvent(msg);
+            //// アタッカーに入った→権利獲得
+            //MainLogic.GetComponent<PlayMakerFSM>().SendEvent(msg);
 
-            GetComponent<PlayMakerFSM>().SendEvent("入賞");
+            //GetComponent<PlayMakerFSM>().SendEvent("入賞");
         }
     }
 }

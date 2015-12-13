@@ -130,7 +130,7 @@ public class KugiSettei : MonoBehaviour {
         }
 
         _instance = this;
-        SetSettei(SettingValue.設定1);
+        SetSettei(SettingValue.設定6);
     }
 
     /// <summary>

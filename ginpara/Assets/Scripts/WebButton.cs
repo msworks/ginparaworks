@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// ウェブボタン
+/// メニューボタン
+/// 旧ウェブボタン
 /// </summary>
 public class WebButton : MonoBehaviour
 {
@@ -13,6 +15,12 @@ public class WebButton : MonoBehaviour
     [SerializeField] GameObject WebMenu;
     [SerializeField] List<GameObject> DisplayPanels;
     [SerializeField] List<GameObject> HidePanels;
+
+    [SerializeField]
+    Text[] zandaka;
+
+    [SerializeField]
+    Text[] rate;
 
     void Start()
     {
@@ -44,6 +52,15 @@ public class WebButton : MonoBehaviour
         foreach (var panel in HidePanels)
         {
             panel.SetActive(false);
+        }
+
+        foreach (var z in zandaka) {
+            z.text = CasinoData.Instance.Exchange.ToString();
+        }
+
+        foreach(var r in rate)
+        {
+            r.text = ((int)Rates.Rate).ToString();
         }
     }
 

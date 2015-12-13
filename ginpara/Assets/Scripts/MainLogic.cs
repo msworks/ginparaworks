@@ -24,6 +24,25 @@ public class MainLogic : MonoBehaviour
         }
     }
 
+    // 大当たりキュー
+    Queue<bool> AtariQueue = new Queue<bool>();
+
+    public void Enqueue(bool flg)
+    {
+        AtariQueue.Enqueue(flg);
+    }
+
+    bool Dequeue()
+    {
+        if(AtariQueue.Count()==0)
+        {
+            // キューイングされていない
+            return false;
+        }
+
+        return AtariQueue.Dequeue();
+    }
+
     /// <summary>
     /// 権利回数を返す
     /// </summary>
@@ -381,6 +400,9 @@ public class MainLogic : MonoBehaviour
         Debug.Log("カクヘン：" + IsKakuhen);
 
         var Atari = IsAtari(RndFFFF, IsKakuhen);
+
+        Atari = Dequeue();
+
         var ForceHazure = HazureKotei.Instance.State;
 
         if (ForceHazure) Atari = false;

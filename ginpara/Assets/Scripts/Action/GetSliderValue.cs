@@ -21,26 +21,30 @@ public class GetSliderValue : FsmStateAction
 
 	public override void OnEnter()
 	{
-        if( Mode == SliderMode.Sequence)
-        {
-            seq++;
-            if( seq >= 4096)
-            {
-                Value.Value = 0f;
-            }
-            else
-            {
-                var s = (float)seq;
-                Value.Value = s / 4096f;
-            }
-
-            Slider.GetComponent<UISlider>().value = Value.Value;
-        }
-        else if( Mode == SliderMode.Normal)
-        {
-            Value.Value = Slider.GetComponent<UISlider>().value;
-        }
+        Value.Value = Slider.GetComponent<UISlider>().value;
 
 		Finish();
 	}
+}
+
+/// <summary>
+/// スライダーの値を取得する
+/// </summary>
+[ActionCategory("Ginpara")]
+public class FloatPowerToInt : FsmStateAction
+{
+    public FsmFloat floatValue;
+    public FsmInt intValue;
+
+    static int seq = 0;
+
+    public override void OnEnter()
+    {
+        var f = floatValue.Value;
+        var i = ((int)(f * 256)).Clamp(0, 255);
+
+        intValue.Value = i;
+
+        Finish();
+    }
 }

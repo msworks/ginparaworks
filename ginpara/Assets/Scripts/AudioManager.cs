@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
 /// オーディオ管理クラス
 /// </summary>
-public class AudioManager : MonoBehaviour {
-
+public class AudioManager : MonoBehaviour
+{
     static private AudioManager _instance;
 
     static public AudioManager Instance

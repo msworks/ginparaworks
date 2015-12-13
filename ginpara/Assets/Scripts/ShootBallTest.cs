@@ -22,8 +22,8 @@ public class ShootBallTest : MonoBehaviour
         var uchi = Uchidashi.GetComponent<ShootPowerEditor>();
 
         // パワーを変換
-        power = uchi.Power_MIN + power * (uchi.Power_MAX-uchi.Power_MIN);
-        ShootPower = new Vector2(power, power);
+        var power2 = uchi.Power_MIN + power * (uchi.Power_MAX-uchi.Power_MIN);
+        ShootPower = new Vector2(power2, power2);
 
         yureMin = 1 - uchi.Yure;
         yureMax = 1 + uchi.Yure;

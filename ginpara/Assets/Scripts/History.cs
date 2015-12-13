@@ -51,7 +51,10 @@ public class History : MonoBehaviour
     {
         if (current == -1)
         {
-            CasinoData.Instance.GameCount = data[0];
+            if( data != null)
+            {
+                CasinoData.Instance.GameCount = data[0];
+            }
         }
         else
         {
@@ -124,6 +127,12 @@ public class History : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (data == null)
+        {
+            data = new int[10];
+            return;
+        }
+
         time += Time.deltaTime;
         if (time > hz) time -= hz;
         else return;
