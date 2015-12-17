@@ -59,7 +59,7 @@ public class CasinoData : MonoBehaviour {
     [SerializeField]
     UISprite exchangeDotSprites = null;
 
-    float exchangeNum = 0;
+    Decimal exchangeNum = 0;
 
     [SerializeField]
     UISprite[] exchangeRateSprites = null;
@@ -122,7 +122,7 @@ public class CasinoData : MonoBehaviour {
     public int RB { get { return this.rbNum; } set { this.rbNum = (value > 999) ? 999 : value; this.UpdateRB(); } }
     
     /// UI-Exchangeを操作する.5桁を超える数字は99999に置換し,小数点は第1位のみを表示.
-    public float Exchange { get { return this.exchangeNum; } set { this.exchangeNum = (value > 999999.99f) ? 999999.99f : value; this.UpdateExchange(); } }
+    public Decimal Exchange { get { return this.exchangeNum; } set { this.exchangeNum = (value > 999999.99m) ? 999999.99m : value; this.UpdateExchange(); } }
     
     /// UI-Exchangeを操作する.2桁を超える数字は99に置換し,小数点は第1位のみを表示.
     public float ExchangeRate { get { return this.exchangeRateNum; } set { this.exchangeRateNum = (value > 99.9f) ? 99.9f : value; this.UpdateExchangeRate(); } }
@@ -287,7 +287,7 @@ public class CasinoData : MonoBehaviour {
     /// </summary>
     void UpdateExchange()
     {
-        var num = exchangeNum * 100f;
+        var num = exchangeNum * 100m;
         var intNum = (int)num;
         var str = string.Format("{0, 8}", intNum).Reverse();
         var i = 0;

@@ -1,4 +1,5 @@
 using HutongGames.PlayMaker;
+using System;
 
 /// <summary>
 /// â~ï\é¶
@@ -10,7 +11,7 @@ public class YenHyozi : FsmStateAction
 	
 	public override void OnEnter()
 	{
-        Fsm.GameObject.GetComponent<CasinoData>().Exchange = (float)Yen.Value;
+        Fsm.GameObject.GetComponent<CasinoData>().Exchange = (Decimal)Yen.Value;
 		Finish();
 	}
 }
@@ -26,7 +27,7 @@ public class DollerHyozi : FsmStateAction
     public override void OnEnter()
     {
         // ÉåÅ[Égïœä∑
-        var doller = (float)Yen.Value / 120f;
+        var doller = (Decimal)Yen.Value / 120m;
         Fsm.GameObject.GetComponent<CasinoData>().Exchange = doller;
         Finish();
     }

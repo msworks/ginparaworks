@@ -216,6 +216,7 @@ public class Post : MonoBehaviour
                 associate.Add(node.Name, node.InnerText);
             }
 
+            var status = associate["status"].ToString();
             var balance = Decimal.Parse(associate["balance"].ToString());
             var setting = associate["setting"].ToString().ParseInt();
             var reelleft = associate["reelLeft"].ToString().ParseInt();
@@ -223,9 +224,16 @@ public class Post : MonoBehaviour
             var reelright = associate["reelRight"].ToString().ParseInt();
             var seed = associate["seed"].ToString().ParseInt();
 
-            CasinoData.Instance.Exchange = (float)balance;
+            CasinoData.Instance.Exchange = (Decimal)balance;
 
-            fsm.SendEvent("Succeed");
+            if (status.Contains("error"))
+            {
+                fsm.SendEvent("Failed");
+            }
+            else
+            {
+                fsm.SendEvent("Succeed");
+            }
         };
 
         var param = mode == Mode.Web ? webParam : desktopParam;
@@ -292,7 +300,10 @@ public class Post : MonoBehaviour
         var fsm = GetComponent<PlayMakerFSM>();
 
         var betcount = bet;
-        var rate = (int)Rates.Rate;
+        var rateCent = (Decimal)Rates.Rate;
+
+        // レートの単位はドル
+        var rate = rateCent / (Decimal)100;
 
         var webParam = new Dictionary<string, string>()
         {
@@ -452,7 +463,6 @@ public class Post : MonoBehaviour
 
             var balance = Decimal.Parse(associate["balance"].ToString());
             var result = associate["result"].ToString();
-            var winnings = Decimal.Parse(associate["winnings"].ToString());
 
             fsm.SendEvent("Succeed");
         };
@@ -665,6 +675,29 @@ public class Post : MonoBehaviour
             }
         }
     }
+
+    [ActionCategory("Ginpara")]
+    public class CheckMessagePomp : FsmStateAction
+    {
+        public Post post;
+        public FsmEvent ON;
+        public FsmEvent OFF;
+
+        public override void OnUpdate()
+        {
+            var count = post.messageQueue.Count();
+
+            if (count<4)
+            {
+                Fsm.Event(ON);
+            }
+            else
+            {
+                Fsm.Event(OFF);
+            }
+        }
+    }
+
 
     [ActionCategory("Ginpara")]
     public class Shoot : FsmStateAction

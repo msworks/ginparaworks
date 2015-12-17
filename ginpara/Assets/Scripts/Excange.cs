@@ -1,4 +1,5 @@
 ﻿using HutongGames.PlayMaker;
+using System;
 using UnityEngine;
 
 public class Excange : MonoBehaviour
@@ -24,7 +25,7 @@ public class Excange : MonoBehaviour
 
             if( rateCent <= hasCent )
             {
-                var doller = ((float)(hasCent - rateCent)) / 100.0f;
+                var doller = ((Decimal)(hasCent - rateCent)) / 100.0m;
                 CasinoData.Instance.Exchange = doller;
                 Fsm.Event(On);
             }
